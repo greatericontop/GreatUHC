@@ -25,17 +25,10 @@ public class ItemDropListener implements Listener {
     @EventHandler()
     public void onBlockBreak(BlockBreakEvent event) {
         Material typeBroken = event.getBlock().getType();
-        // these don't require a tool
+        // TODO: require tools?
         if (typeBroken == Material.OBSIDIAN) {
             event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.OBSIDIAN, 1));
         }
-
-
-        if (!event.isDropItems()) {
-            return;
-        }
-
-        // these require a tool
         if (typeBroken == Material.IRON_ORE || typeBroken == Material.DEEPSLATE_IRON_ORE) {
             event.setDropItems(false);
             event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.IRON_INGOT, 1));
@@ -47,7 +40,7 @@ public class ItemDropListener implements Listener {
             event.setExpToDrop(randint(1, 3));
         }
         if (typeBroken == Material.OAK_LEAVES) {
-            if (Math.random() < 0.99) { // TODO: after testing change back to 6%
+            if (Math.random() < 0.06) {
                 event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.APPLE, 1));
             }
         }
