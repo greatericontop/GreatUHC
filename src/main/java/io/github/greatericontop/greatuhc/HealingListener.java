@@ -26,6 +26,7 @@ public class HealingListener implements Listener {
             im.setOwningPlayer(victim);
             im.setDisplayName(String.format("§c%s§7's §bHead §e§lRIGHT CLICK", victim.getName()));
             head.setItemMeta(im);
+            victim.getWorld().dropItemNaturally(victim.getLocation(), head);
         }
     }
 
