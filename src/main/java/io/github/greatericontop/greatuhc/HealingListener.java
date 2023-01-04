@@ -44,7 +44,10 @@ public class HealingListener implements Listener {
             return;
         }
         player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 300, 1));
-        player.sendMessage("§aYou ate a player head and gained Regeneration II for 15 seconds!");
+        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 2400, 0));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 500, 0));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 400, 0));
+        player.sendMessage("§aYou ate a player head!");
         item.setAmount(item.getAmount() - 1);
     }
 
