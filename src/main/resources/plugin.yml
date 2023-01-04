@@ -1,0 +1,5 @@
+name: GreatUHC
+version: '${project.version}'
+main: io.github.greatericontop.greatuhc.GreatUHCMain
+api-version: 1.18
+authors: [greateric]
