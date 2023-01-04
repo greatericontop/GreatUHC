@@ -7,6 +7,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
@@ -65,6 +66,25 @@ public class Crafts implements Listener {
         exodusRecipe.setIngredient('e', Material.EMERALD);
         exodusRecipe.setIngredient('G', Material.GOLDEN_CARROT);
         Bukkit.getServer().addRecipe(exodusRecipe);
+
+        ItemStack lightAnvil = new ItemStack(Material.ANVIL, 1);
+        ShapedRecipe lightAnvilRecipe = new ShapedRecipe(NamespacedKey.minecraft("light_anvil"), lightAnvil);
+        lightAnvilRecipe.shape("iii", " I ", "iii");
+        lightAnvilRecipe.setIngredient('i', Material.IRON_INGOT);
+        lightAnvilRecipe.setIngredient('I', Material.IRON_BLOCK);
+        Bukkit.getServer().addRecipe(lightAnvilRecipe);
+
+        ItemStack sharpBook = new ItemStack(Material.ENCHANTED_BOOK, 1);
+        EnchantmentStorageMeta im4 = (EnchantmentStorageMeta) sharpBook.getItemMeta();
+        im4.setDisplayName("§cBook of Sharpening");
+        im4.addStoredEnchant(Enchantment.DAMAGE_ALL, 1, false);
+        sharpBook.setItemMeta(im4);
+        ShapedRecipe sharpBookRecipe = new ShapedRecipe(NamespacedKey.minecraft("sharp_book"), sharpBook);
+        sharpBookRecipe.shape("f  ", " pp", " pS");
+        sharpBookRecipe.setIngredient('f', Material.FLINT);
+        sharpBookRecipe.setIngredient('p', Material.PAPER);
+        sharpBookRecipe.setIngredient('S', Material.IRON_SWORD);
+        Bukkit.getServer().addRecipe(sharpBookRecipe);
 
     }
 
