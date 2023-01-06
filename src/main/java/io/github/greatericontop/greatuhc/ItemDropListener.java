@@ -29,6 +29,13 @@ public class ItemDropListener implements Listener {
         if (typeBroken == Material.OBSIDIAN) {
             event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.OBSIDIAN, 1));
         }
+        if (typeBroken == Material.GRAVEL) {
+            // +10% chance (19% total) for a flint
+            if (Math.random() < 0.1) {
+                event.setDropItems(false);
+                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.FLINT, 1));
+            }
+        }
         if (typeBroken == Material.IRON_ORE || typeBroken == Material.DEEPSLATE_IRON_ORE) {
             event.setDropItems(false);
             event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.IRON_INGOT, 1));
@@ -40,7 +47,7 @@ public class ItemDropListener implements Listener {
             event.setExpToDrop(randint(1, 3));
         }
         if (typeBroken == Material.OAK_LEAVES) {
-            if (Math.random() < 0.06) {
+            if (Math.random() < 0.045) {
                 event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.APPLE, 1));
             }
         }
