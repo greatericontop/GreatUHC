@@ -39,7 +39,7 @@ public class DiamondSpreading implements Listener {
             return;
         }
         // Make some attempts to spawn a diamond ore.
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 3; i++) {
             Location loc = event.getBlock().getLocation();
             int offset = random.nextInt(6);
             loc.add(dx[offset], dy[offset], dz[offset]);
@@ -56,13 +56,7 @@ public class DiamondSpreading implements Listener {
                 loc.getBlock().setType(Material.DEEPSLATE_DIAMOND_ORE);
                 return;
             }
-            // TODO: remove debug
-            if (loc.getBlock().getType() == Material.GLASS) {
-                loc.getBlock().setType(Material.DIAMOND_BLOCK);
-                return;
-            }
         }
-        event.getPlayer().sendMessage("§7debug: failed to spread diamond ore");
     }
 
 }
