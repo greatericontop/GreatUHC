@@ -8,6 +8,7 @@ public class GreatUHCMain extends JavaPlugin {
     public void onEnable() {
         Crafts.registerCrafts();
         this.getServer().getPluginManager().registerEvents(new Crafts(), this);
+        this.getServer().getPluginManager().registerEvents(new DiamondSpreading(), this);
         this.getServer().getPluginManager().registerEvents(new HealingListener(), this);
         this.getServer().getPluginManager().registerEvents(new ItemDropListener(), this);
         this.getLogger().info("GreatUHC finished setting up!");
