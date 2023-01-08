@@ -97,6 +97,19 @@ public class Crafts implements Listener {
         apprenticeHelmetRecipe.setIngredient('R', Material.REDSTONE_TORCH);
         Bukkit.getServer().addRecipe(apprenticeHelmetRecipe);
 
+        ItemStack assassinBlade = new ItemStack(Material.IRON_SWORD, 1);
+        ItemMeta im5 = assassinBlade.getItemMeta();
+        im5.setDisplayName("§bAssassin's Blade");
+        im5.setLore(List.of("id: ASSASSIN_BLADE", "§7WeaponMaster", "§7A very powerful sword."));
+        assassinBlade.setItemMeta(im5);
+        ShapedRecipe assassinBladeRecipe = new ShapedRecipe(NamespacedKey.minecraft("uhc_assassin_blade"), assassinBlade);
+        assassinBladeRecipe.shape("  I", " S ", "f  ");
+        assassinBladeRecipe.setIngredient('I', Material.IRON_BLOCK);
+        assassinBladeRecipe.setIngredient('S', Material.IRON_SWORD);
+        assassinBladeRecipe.setIngredient('f', Material.FLINT);
+        Bukkit.getServer().addRecipe(assassinBladeRecipe);
+
+
     }
 
 }
