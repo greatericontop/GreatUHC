@@ -38,16 +38,18 @@ public class ItemDropListener implements Listener {
         }
         if (typeBroken == Material.IRON_ORE || typeBroken == Material.DEEPSLATE_IRON_ORE) {
             event.setDropItems(false);
-            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.IRON_INGOT, 1));
+            int amount = Math.random() < 0.2 ? 2 : 1;
+            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.IRON_INGOT, amount));
             event.setExpToDrop(randint(1, 2));
         }
         if (typeBroken == Material.GOLD_ORE || typeBroken == Material.DEEPSLATE_GOLD_ORE) {
             event.setDropItems(false);
-            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.GOLD_INGOT, 1));
+            int amount = Math.random() < 0.2 ? 2 : 1;
+            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.GOLD_INGOT, amount));
             event.setExpToDrop(randint(1, 3));
         }
         if (typeBroken == Material.OAK_LEAVES) {
-            if (Math.random() < 0.045) {
+            if (Math.random() < 0.035) {
                 event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.APPLE, 1));
             }
         }
@@ -58,7 +60,7 @@ public class ItemDropListener implements Listener {
         LivingEntity victim = event.getEntity();
         if (victim.getType() == EntityType.SKELETON) {
             // additional arrows & small chance to drop a full durability bow
-            event.getDrops().add(new ItemStack(Material.ARROW, randint(0, 3)));
+            event.getDrops().add(new ItemStack(Material.ARROW, randint(1, 5)));
             if (Math.random() < 0.15) {
                 event.getDrops().add(new ItemStack(Material.BOW, 1));
             }
