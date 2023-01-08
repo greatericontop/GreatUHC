@@ -15,6 +15,7 @@ public class GreatUHCMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new DiamondSpreading(), this);
         this.getServer().getPluginManager().registerEvents(new HealingListener(this), this);
         this.getServer().getPluginManager().registerEvents(new ItemDropListener(), this);
+        this.getServer().getPluginManager().registerEvents(new OldPVP(), this);
 
         this.getCommand("greatuhc").setExecutor(new GreatUHCCommand(this));
 
