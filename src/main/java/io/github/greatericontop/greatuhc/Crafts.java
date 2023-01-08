@@ -109,6 +109,18 @@ public class Crafts implements Listener {
         assassinBladeRecipe.setIngredient('f', Material.FLINT);
         Bukkit.getServer().addRecipe(assassinBladeRecipe);
 
+        ItemStack tarnhelm = new ItemStack(Material.IRON_HELMET, 1);
+        tarnhelm.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2);
+        tarnhelm.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 1);
+        tarnhelm.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
+        tarnhelm.addUnsafeEnchantment(Enchantment.PROTECTION_FIRE, 1);
+        ShapedRecipe tarnhelmRecipe = new ShapedRecipe(NamespacedKey.minecraft("tarnhelm"), tarnhelm);
+        tarnhelmRecipe.shape("dId", "dRd");
+        tarnhelmRecipe.setIngredient('d', Material.DIAMOND);
+        tarnhelmRecipe.setIngredient('I', Material.IRON_INGOT);
+        tarnhelmRecipe.setIngredient('R', Material.REDSTONE_BLOCK);
+        Bukkit.getServer().addRecipe(tarnhelmRecipe);
+
 
     }
 
