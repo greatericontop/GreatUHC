@@ -17,11 +17,16 @@ import org.bukkit.potion.PotionEffectType;
 
 public class HealingListener implements Listener {
 
+    private final GreatUHCMain plugin;
+    public HealingListener(GreatUHCMain plugin) {
+        this.plugin = plugin;
+    }
+
     @EventHandler()
     public void onDeath(EntityDeathEvent event) {
         if (event.getEntity().getType() == EntityType.PLAYER) {
             Player victim = (Player) event.getEntity();
-            ItemStack head = new ItemStack(Material.PLAYER_HEAD, 1);
+            ItemStack head = new ItemStack(Material.PLAYER_HEAD, plugin.uhcDoubleHeads ? 2 : 1);
             SkullMeta im = (SkullMeta) head.getItemMeta();
             im.setOwningPlayer(victim);
             im.setDisplayName(String.format("§c%s§7's §bHead §e§lRIGHT CLICK", victim.getName()));
@@ -46,7 +51,9 @@ public class HealingListener implements Listener {
         player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 300, 1));
         player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 2400, 0));
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 500, 0));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 400, 0));
+        if (plugin.uhcPowerfulHeads) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 400, 0));
+        }
         player.sendMessage("§aYou ate a player head!");
         item.setAmount(item.getAmount() - 1);
     }
