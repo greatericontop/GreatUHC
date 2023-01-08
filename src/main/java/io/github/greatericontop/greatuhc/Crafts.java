@@ -86,6 +86,17 @@ public class Crafts implements Listener {
         sharpBookRecipe.setIngredient('S', Material.IRON_SWORD);
         Bukkit.getServer().addRecipe(sharpBookRecipe);
 
+        ItemStack apprenticeHelmet = new ItemStack(Material.IRON_HELMET, 1);
+        apprenticeHelmet.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
+        apprenticeHelmet.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 1);
+        apprenticeHelmet.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
+        apprenticeHelmet.addUnsafeEnchantment(Enchantment.PROTECTION_FIRE, 1);
+        ShapedRecipe apprenticeHelmetRecipe = new ShapedRecipe(NamespacedKey.minecraft("apprentice_helmet"), apprenticeHelmet);
+        apprenticeHelmetRecipe.shape("iii", "iRi");
+        apprenticeHelmetRecipe.setIngredient('i', Material.IRON_INGOT);
+        apprenticeHelmetRecipe.setIngredient('R', Material.REDSTONE_TORCH);
+        Bukkit.getServer().addRecipe(apprenticeHelmetRecipe);
+
     }
 
 }
