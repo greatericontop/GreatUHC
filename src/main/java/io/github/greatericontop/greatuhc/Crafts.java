@@ -109,7 +109,7 @@ public class Crafts implements Listener {
         assassinBladeRecipe.setIngredient('f', Material.FLINT);
         Bukkit.getServer().addRecipe(assassinBladeRecipe);
 
-        ItemStack tarnhelm = new ItemStack(Material.IRON_HELMET, 1);
+        ItemStack tarnhelm = new ItemStack(Material.DIAMOND_HELMET, 1);
         tarnhelm.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2);
         tarnhelm.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 1);
         tarnhelm.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
