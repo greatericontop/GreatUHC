@@ -13,6 +13,7 @@ public class GreatUHCMain extends JavaPlugin {
         Crafts.registerCrafts();
 
         this.getServer().getPluginManager().registerEvents(new Crafts(), this);
+        this.getServer().getPluginManager().registerEvents(new DamageEngine(this), this);
         this.getServer().getPluginManager().registerEvents(new DiamondSpreading(), this);
         this.getServer().getPluginManager().registerEvents(new HealingListener(this), this);
         this.getServer().getPluginManager().registerEvents(new ItemDropListener(), this);
