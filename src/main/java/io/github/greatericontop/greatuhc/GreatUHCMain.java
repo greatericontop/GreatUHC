@@ -6,6 +6,7 @@ public class GreatUHCMain extends JavaPlugin {
 
     public boolean uhcDoubleHeads = false;
     public boolean uhcPowerfulHeads = false;
+    public boolean uhcSurvivalism = true;
 
     @Override
     public void onEnable() {
