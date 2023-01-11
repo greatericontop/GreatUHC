@@ -23,6 +23,7 @@ public class DamageEngine implements Listener {
         if (!plugin.uhcSurvivalism)  return;
         if (!(event.getEntity() instanceof Player))  return;
         if (event.isCancelled())  return;
+        Player player = (Player) event.getEntity();
         DamageCause cause = event.getCause();
 
         if (cause == DamageCause.VOID
@@ -33,9 +34,11 @@ public class DamageEngine implements Listener {
             return;
         }
         if (cause == DamageCause.MAGIC || cause == DamageCause.POISON || cause == DamageCause.WITHER) {
+            plugin.debugMsg(player, "survivalism: potion damage cause, slightly reducing damage");
             event.setDamage(event.getDamage() * 0.8);
             return;
         }
+        plugin.debugMsg(player, "survivalism: other damage cause, reducing damage");
         event.setDamage(event.getDamage() * 0.6);
     }
 
@@ -45,10 +48,12 @@ public class DamageEngine implements Listener {
         if (!(event.getEntity() instanceof Player))  return;
         if (event.isCancelled())  return;
         Entity damagingEntity = event.getDamager();
+        Player player = (Player) event.getEntity();
         DamageCause cause = event.getCause();
 
         if (cause == DamageCause.ENTITY_ATTACK || cause == DamageCause.ENTITY_SWEEP_ATTACK) {
             if (!(damagingEntity instanceof Player)) {
+                plugin.debugMsg(player, "survivalism: entity attack, reducing damage");
                 event.setDamage(event.getDamage() * 0.6);
             }
             return;
@@ -57,9 +62,18 @@ public class DamageEngine implements Listener {
         if (cause == DamageCause.PROJECTILE) {
             ProjectileSource shooter = ((Projectile) damagingEntity).getShooter();
             if (!(shooter instanceof Player)) {
+                plugin.debugMsg(player, "survivalism: projectile hit, reducing damage");
                 event.setDamage(event.getDamage() * 0.6);
             }
+            return;
         }
+    }
+
+    @EventHandler(priority = EventPriority.LOW) // normal damage handler
+    public void onDamage(EntityDamageEvent event) {
+        if (!(event.getEntity() instanceof Player))  return;
+        if (event.isCancelled())  return;
+        event.setDamage(event.getDamage() * 0.89); // 11% damage reduction for everything
     }
 
 }
