@@ -16,9 +16,9 @@ public class GreatUHCMain extends JavaPlugin {
     public boolean uhcSurvivalism = true;
     public boolean debugMode = false;
 
-    public void debugMsg(Player player, String str, String... args) {
+    public void debugMsg(Player player, String str, Object... args) {
         if (debugMode) {
-            player.sendMessage("§7[Debug] " + String.format(str, (Object[]) args));
+            player.sendMessage("§7[Debug] " + String.format(str, args));
         }
     }
 

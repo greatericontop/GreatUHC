@@ -1,6 +1,7 @@
 package io.github.greatericontop.greatuhc.mechanics;
 
 import io.github.greatericontop.greatuhc.GreatUHCMain;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -10,6 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.projectiles.ProjectileSource;
 
 public class DamageEngine implements Listener {
@@ -74,7 +76,26 @@ public class DamageEngine implements Listener {
     public void onDamage(EntityDamageEvent event) {
         if (!(event.getEntity() instanceof Player))  return;
         if (event.isCancelled())  return;
-        event.setDamage(event.getDamage() * 0.89); // 11% damage reduction for everything
+        Player player = (Player) event.getEntity();
+
+        // buff protection
+        int totalProtectionLevel = 0;
+        ItemStack helmet = player.getInventory().getHelmet();
+        totalProtectionLevel += helmet != null ? helmet.getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL) : 0;
+        ItemStack chestplate = player.getInventory().getChestplate();
+        totalProtectionLevel += chestplate != null ? chestplate.getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL) : 0;
+        ItemStack leggings = player.getInventory().getLeggings();
+        totalProtectionLevel += leggings != null ? leggings.getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL) : 0;
+        ItemStack boots = player.getInventory().getBoots();
+        totalProtectionLevel += boots != null ? boots.getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL) : 0;
+        if (totalProtectionLevel > 0) {
+            totalProtectionLevel = Math.min(totalProtectionLevel, 18); // arbitrary threshold
+            double damageMultiplier = Math.pow(0.9725, totalProtectionLevel); // multiplicative reduction makes high levels less overpowered
+            plugin.debugMsg(player, "protection levels: %d | reduction: %.3f", totalProtectionLevel, 1-damageMultiplier);
+            event.setDamage(event.getDamage() * damageMultiplier);
+        }
+
+        event.setDamage(event.getDamage() * 0.89); // 11% damage reduction for everything for players
     }
 
 }
