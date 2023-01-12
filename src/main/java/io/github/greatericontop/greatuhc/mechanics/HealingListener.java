@@ -52,7 +52,7 @@ public class HealingListener implements Listener {
             return;
         }
         player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 300, 1));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 2400, 0));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 4800, 0));
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 500, 0));
         if (plugin.uhcPowerfulHeads) {
             player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 400, 0));
@@ -66,9 +66,11 @@ public class HealingListener implements Listener {
         Material foodType = event.getItem().getType();
         if (foodType == Material.GOLDEN_APPLE) {
             event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 100, 2));
+            event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 4800, 0));
         }
         if (foodType == Material.ENCHANTED_GOLDEN_APPLE) {
             event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 600, 4));
+            event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 4800, 3));
         }
     }
 
