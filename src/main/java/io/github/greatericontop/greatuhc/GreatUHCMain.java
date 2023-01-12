@@ -1,5 +1,6 @@
 package io.github.greatericontop.greatuhc;
 
+import io.github.greatericontop.greatuhc.customitems.CraftLimiter;
 import io.github.greatericontop.greatuhc.customitems.Crafts;
 import io.github.greatericontop.greatuhc.mechanics.DamageEngine;
 import io.github.greatericontop.greatuhc.mechanics.DiamondSpreading;
@@ -16,6 +17,8 @@ public class GreatUHCMain extends JavaPlugin {
     public boolean uhcSurvivalism = true;
     public boolean debugMode = false;
 
+    public CraftLimiter craftLimiter = null;
+
     public void debugMsg(Player player, String str, Object... args) {
         if (debugMode) {
             player.sendMessage("§7[Debug] " + String.format(str, args));
@@ -24,9 +27,12 @@ public class GreatUHCMain extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        Crafts.registerCrafts();
 
+        Crafts.registerCrafts();
         this.getServer().getPluginManager().registerEvents(new Crafts(), this);
+        craftLimiter = new CraftLimiter();
+        this.getServer().getPluginManager().registerEvents(craftLimiter, this);
+
         this.getServer().getPluginManager().registerEvents(new DamageEngine(this), this);
         this.getServer().getPluginManager().registerEvents(new DiamondSpreading(), this);
         this.getServer().getPluginManager().registerEvents(new HealingListener(this), this);
