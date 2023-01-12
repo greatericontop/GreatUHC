@@ -1,4 +1,4 @@
-package io.github.greatericontop.greatuhc;
+package io.github.greatericontop.greatuhc.customitems;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

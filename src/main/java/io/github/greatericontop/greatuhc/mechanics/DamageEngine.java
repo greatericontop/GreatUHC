@@ -1,5 +1,6 @@
-package io.github.greatericontop.greatuhc;
+package io.github.greatericontop.greatuhc.mechanics;
 
+import io.github.greatericontop.greatuhc.GreatUHCMain;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;

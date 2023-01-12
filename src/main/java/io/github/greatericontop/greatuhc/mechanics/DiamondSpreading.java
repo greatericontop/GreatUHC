@@ -1,4 +1,4 @@
-package io.github.greatericontop.greatuhc;
+package io.github.greatericontop.greatuhc.mechanics;
 
 import org.bukkit.Location;
 import org.bukkit.Material;

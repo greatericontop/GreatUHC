@@ -1,5 +1,6 @@
-package io.github.greatericontop.greatuhc;
+package io.github.greatericontop.greatuhc.mechanics;
 
+import io.github.greatericontop.greatuhc.GreatUHCMain;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
