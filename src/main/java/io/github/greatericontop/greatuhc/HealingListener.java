@@ -1,6 +1,7 @@
 package io.github.greatericontop.greatuhc;
 
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -30,6 +31,7 @@ public class HealingListener implements Listener {
             SkullMeta im = (SkullMeta) head.getItemMeta();
             im.setOwningPlayer(victim);
             im.setDisplayName(String.format("§c%s§7's §bHead §e§lRIGHT CLICK", victim.getName()));
+            im.addEnchant(Enchantment.LUCK, 1, true);
             head.setItemMeta(im);
             victim.getWorld().dropItemNaturally(victim.getLocation(), head);
         }
