@@ -100,7 +100,7 @@ public class Crafts implements Listener {
         ItemStack assassinBlade = new ItemStack(Material.IRON_SWORD, 1);
         ItemMeta im5 = assassinBlade.getItemMeta();
         im5.setDisplayName("§bAssassin's Blade");
-        im5.setLore(List.of("id: ASSASSIN_BLADE", "§7WeaponMaster", "§7A very powerful sword."));
+        im5.setLore(List.of("id: ASSASSINS_BLADE", "§7WeaponMaster", "§7A very powerful sword."));
         assassinBlade.setItemMeta(im5);
         ShapedRecipe assassinBladeRecipe = new ShapedRecipe(NamespacedKey.minecraft("uhc_assassin_blade"), assassinBlade);
         assassinBladeRecipe.shape("  I", " S ", "f  ");
