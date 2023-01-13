@@ -15,6 +15,7 @@ public class GreatUHCMain extends JavaPlugin {
     public boolean uhcDoubleHeads = false;
     public boolean uhcPowerfulHeads = false;
     public boolean uhcSurvivalism = true;
+    public boolean uhcMiningModifier = false;
     public boolean debugMode = false;
 
     public CraftLimiter craftLimiter = null;
@@ -36,7 +37,7 @@ public class GreatUHCMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new DamageEngine(this), this);
         this.getServer().getPluginManager().registerEvents(new DiamondSpreading(), this);
         this.getServer().getPluginManager().registerEvents(new HealingListener(this), this);
-        this.getServer().getPluginManager().registerEvents(new ItemDropListener(), this);
+        this.getServer().getPluginManager().registerEvents(new ItemDropListener(this), this);
         this.getServer().getPluginManager().registerEvents(new OldPVP(), this);
 
         this.getCommand("greatuhc").setExecutor(new GreatUHCCommand(this));

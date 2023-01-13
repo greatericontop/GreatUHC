@@ -1,5 +1,6 @@
 package io.github.greatericontop.greatuhc.mechanics;
 
+import io.github.greatericontop.greatuhc.GreatUHCMain;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -14,8 +15,10 @@ import java.util.Random;
 public class ItemDropListener implements Listener {
 
     private final Random random;
-    public ItemDropListener() {
+    private final GreatUHCMain plugin;
+    public ItemDropListener(GreatUHCMain plugin) {
         this.random = new Random();
+        this.plugin = plugin;
     }
 
     public int randint(int min, int max) {
@@ -39,12 +42,14 @@ public class ItemDropListener implements Listener {
         if (typeBroken == Material.IRON_ORE || typeBroken == Material.DEEPSLATE_IRON_ORE) {
             event.setDropItems(false);
             int amount = Math.random() < 0.2 ? 2 : 1;
+            amount += (plugin.uhcMiningModifier && Math.random() < 0.5) ? 1 : 0;
             event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.IRON_INGOT, amount));
             event.setExpToDrop(randint(1, 2));
         }
         if (typeBroken == Material.GOLD_ORE || typeBroken == Material.DEEPSLATE_GOLD_ORE) {
             event.setDropItems(false);
             int amount = Math.random() < 0.2 ? 2 : 1;
+            amount += (plugin.uhcMiningModifier && Math.random() < 0.5) ? 1 : 0;
             event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.GOLD_INGOT, amount));
             event.setExpToDrop(randint(1, 3));
         }

@@ -19,6 +19,7 @@ public class GreatUHCCommand implements CommandExecutor {
             sender.sendMessage(String.format("§cDouble Heads§7: %s", plugin.uhcDoubleHeads ? "§2ON" : "§4OFF"));
             sender.sendMessage(String.format("§cPowerful Heads§7: %s", plugin.uhcPowerfulHeads ? "§2ON" : "§4OFF"));
             sender.sendMessage(String.format("§cSurvivalism§7: %s", plugin.uhcSurvivalism ? "§2ON" : "§4OFF"));
+            sender.sendMessage(String.format("§cMining Modifier§7: %s", plugin.uhcMiningModifier ? "§2ON" : "§4OFF"));
             sender.sendMessage("");
             sender.sendMessage(String.format("§eDebug Mode§7: %s", plugin.debugMode ? "§2ON" : "§4OFF"));
             sender.sendMessage("§3Usage: /uhc [double-heads | powerful-heads | survivalism]");
@@ -37,6 +38,11 @@ public class GreatUHCCommand implements CommandExecutor {
         if (args[0].equals("survivalism")) {
             plugin.uhcSurvivalism = !plugin.uhcSurvivalism;
             sender.sendMessage(String.format("§cSurvivalism §3is now %s", plugin.uhcSurvivalism ? "§2ON" : "§4OFF"));
+            return true;
+        }
+        if (args[0].equals("mining-modifier")) {
+            plugin.uhcMiningModifier = !plugin.uhcMiningModifier;
+            sender.sendMessage(String.format("§cMining Modifier §3is now %s", plugin.uhcMiningModifier ? "§2ON" : "§4OFF"));
             return true;
         }
         if (args[0].equals("debug-mode")) {
