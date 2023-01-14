@@ -168,7 +168,8 @@ public class Crafts implements Listener {
         ShapedRecipe cornRecipe = new ShapedRecipe(new NamespacedKey("uhc", "corn"), corn);
         cornRecipe.shape("ccc", "cGc", "ccc");
         cornRecipe.setIngredient('c', Material.CARROT);
-        cornRecipe.setIngredient('R', Material.GOLDEN_APPLE);
+        cornRecipe.setIngredient('G', Material.GOLDEN_APPLE);
+        Bukkit.getServer().addRecipe(cornRecipe);
     }
 
 }

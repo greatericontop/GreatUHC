@@ -40,12 +40,8 @@ public class HealingListener implements Listener {
 
     @EventHandler()
     public void onRightClickHead(PlayerInteractEvent event) {
-        if (event.getHand() != EquipmentSlot.HAND) {
-            return;
-        }
-        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
-            return;
-        }
+        if (event.getHand() != EquipmentSlot.HAND)  return;
+        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)  return;
         Player player = event.getPlayer();
         ItemStack item = player.getInventory().getItemInMainHand();
         if (item.getType() != Material.PLAYER_HEAD) {
@@ -63,12 +59,8 @@ public class HealingListener implements Listener {
 
     @EventHandler()
     public void onRightClickCorn(PlayerInteractEvent event) {
-        if (event.getHand() != EquipmentSlot.HAND) {
-            return;
-        }
-        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
-            return;
-        }
+        if (event.getHand() != EquipmentSlot.HAND)  return;
+        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)  return;
         Player player = event.getPlayer();
         ItemStack item = player.getInventory().getItemInMainHand();
         if (item.getType() != Material.GOLDEN_CARROT) {
@@ -77,8 +69,8 @@ public class HealingListener implements Listener {
         if (item.getItemMeta() == null || item.getItemMeta().getLore() == null) {
             return;
         }
-        if (!item.getItemMeta().getLore().get(0).equals("Corn")) {
-            player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 300, 1));
+        if (item.getItemMeta().getLore().get(0).equals("Corn")) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 300, 0));
             player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 1200, 0));
             item.setAmount(item.getAmount() - 1);
         }
