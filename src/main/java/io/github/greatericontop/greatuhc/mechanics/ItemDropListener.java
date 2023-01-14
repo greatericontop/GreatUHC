@@ -95,6 +95,12 @@ public class ItemDropListener implements Listener {
                 event.getDrops().add(new ItemStack(Material.BOW, 1));
             }
         }
+        if (victim.getType() == EntityType.CREEPER) {
+            // chance to get extra gunpowder
+            if (Math.random() < 0.4) {
+                event.getDrops().add(new ItemStack(Material.GUNPOWDER, 1));
+            }
+        }
     }
 
 }
