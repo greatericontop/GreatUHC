@@ -110,10 +110,13 @@ public class Crafts implements Listener {
         Bukkit.getServer().addRecipe(assassinBladeRecipe);
 
         ItemStack tarnhelm = new ItemStack(Material.DIAMOND_HELMET, 1);
-        tarnhelm.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 2);
-        tarnhelm.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 1);
-        tarnhelm.addUnsafeEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
-        tarnhelm.addUnsafeEnchantment(Enchantment.PROTECTION_FIRE, 1);
+        ItemMeta im6 = tarnhelm.getItemMeta();
+        im6.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, true);
+        im6.addEnchant(Enchantment.PROTECTION_EXPLOSIONS, 1, true);
+        im6.addEnchant(Enchantment.PROTECTION_PROJECTILE, 1, true);
+        im6.addEnchant(Enchantment.PROTECTION_FIRE, 1, true);
+        im6.setDisplayName("§bTarnhelm");
+        tarnhelm.setItemMeta(im6);
         ShapedRecipe tarnhelmRecipe = new ShapedRecipe(new NamespacedKey("uhc", "tarnhelm"), tarnhelm);
         tarnhelmRecipe.shape("dId", "dRd");
         tarnhelmRecipe.setIngredient('d', Material.DIAMOND);
@@ -121,6 +124,34 @@ public class Crafts implements Listener {
         tarnhelmRecipe.setIngredient('R', Material.REDSTONE_BLOCK);
         Bukkit.getServer().addRecipe(tarnhelmRecipe);
 
+        ItemStack sevenLeagueBoots = new ItemStack(Material.DIAMOND_BOOTS, 1);
+        ItemMeta im7 = sevenLeagueBoots.getItemMeta();
+        im7.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, false);
+        im7.addEnchant(Enchantment.PROTECTION_FALL, 3, false);
+        im7.addEnchant(Enchantment.DURABILITY, 2, false);
+        im7.setDisplayName("§eSeven League Boots");
+        sevenLeagueBoots.setItemMeta(im7);
+        ShapedRecipe sevenLeagueBootsRecipe = new ShapedRecipe(new NamespacedKey("uhc", "seven_league_boots"), sevenLeagueBoots);
+        sevenLeagueBootsRecipe.shape("fPf", "fBf", "fWf");
+        sevenLeagueBootsRecipe.setIngredient('f', Material.FEATHER);
+        sevenLeagueBootsRecipe.setIngredient('P', Material.ENDER_PEARL);
+        sevenLeagueBootsRecipe.setIngredient('B', Material.DIAMOND_BOOTS);
+        sevenLeagueBootsRecipe.setIngredient('W', Material.WATER_BUCKET);
+        Bukkit.getServer().addRecipe(sevenLeagueBootsRecipe);
+
+        ItemStack hermesBoots = new ItemStack(Material.DIAMOND_BOOTS, 1);
+        ItemMeta im8 = hermesBoots.getItemMeta();
+        im8.addEnchant(Enchantment.DURABILITY, 1, false);
+        im8.setDisplayName("§6Hermes Boots");
+        im8.setLore(List.of("id: HERMES_BOOTS", "§7WeaponMaster", "§7Some very powerful boots."));
+        hermesBoots.setItemMeta(im8);
+        ShapedRecipe hermesBootsRecipe = new ShapedRecipe(new NamespacedKey("uhc", "hermes_boots"), hermesBoots);
+        hermesBootsRecipe.shape("d d", "bBb", "f f");
+        hermesBootsRecipe.setIngredient('d', Material.DIAMOND);
+        hermesBootsRecipe.setIngredient('b', Material.BLAZE_POWDER);
+        hermesBootsRecipe.setIngredient('B', Material.DIAMOND_BOOTS);
+        hermesBootsRecipe.setIngredient('f', Material.FEATHER);
+        Bukkit.getServer().addRecipe(hermesBootsRecipe);
 
     }
 
