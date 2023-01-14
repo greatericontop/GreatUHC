@@ -3,14 +3,18 @@ package io.github.greatericontop.greatuhc.customitems;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
+import java.util.UUID;
 
 public class Crafts implements Listener {
 
@@ -141,9 +145,12 @@ public class Crafts implements Listener {
 
         ItemStack hermesBoots = new ItemStack(Material.DIAMOND_BOOTS, 1);
         ItemMeta im8 = hermesBoots.getItemMeta();
+        im8.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, false);
         im8.addEnchant(Enchantment.DURABILITY, 1, false);
         im8.setDisplayName("§6Hermes Boots");
-        im8.setLore(List.of("id: HERMES_BOOTS", "§7WeaponMaster", "§7Some very powerful boots."));
+        im8.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(), "UHC", 3, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET));
+        im8.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier(UUID.randomUUID(), "UHC", 2, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET));
+        im8.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, new AttributeModifier(UUID.randomUUID(), "UHC", 0.1, AttributeModifier.Operation.ADD_SCALAR, EquipmentSlot.FEET));
         hermesBoots.setItemMeta(im8);
         ShapedRecipe hermesBootsRecipe = new ShapedRecipe(new NamespacedKey("uhc", "hermes_boots"), hermesBoots);
         hermesBootsRecipe.shape("d d", "bBb", "f f");
