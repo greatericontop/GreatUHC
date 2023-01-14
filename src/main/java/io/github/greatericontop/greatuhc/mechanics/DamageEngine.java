@@ -21,7 +21,7 @@ public class DamageEngine implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler(priority = EventPriority.LOWEST) // this will run first before all the other events
+    @EventHandler(priority = EventPriority.HIGH) // runs last
     public void onDamageSurvivalism(EntityDamageEvent event) {
         if (!plugin.uhcSurvivalism)  return;
         if (!(event.getEntity() instanceof Player))  return;
@@ -45,7 +45,7 @@ public class DamageEngine implements Listener {
         event.setDamage(event.getDamage() * 0.6);
     }
 
-    @EventHandler(priority = EventPriority.LOWEST) // same here
+    @EventHandler(priority = EventPriority.HIGHEST) // runs last
     public void onDamageByEntitySurvivalism(EntityDamageByEntityEvent event) {
         if (!plugin.uhcSurvivalism)  return;
         if (!(event.getEntity() instanceof Player))  return;
@@ -72,8 +72,8 @@ public class DamageEngine implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.LOW) // normal damage handler
-    public void onDamage(EntityDamageEvent event) {
+    @EventHandler(priority = EventPriority.LOWEST) // runs first
+    public void onDamageProtection(EntityDamageEvent event) {
         if (!(event.getEntity() instanceof Player))  return;
         if (event.isCancelled())  return;
         Player player = (Player) event.getEntity();
@@ -96,6 +96,23 @@ public class DamageEngine implements Listener {
         }
 
         event.setDamage(event.getDamage() * 0.89); // 11% damage reduction for everything for players
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST) // runs first
+    public void onDamageSharpness(EntityDamageByEntityEvent event) {
+        if (!(event.getDamager() instanceof Player))  return; // melee attacks from players only
+        if (event.isCancelled())  return;
+        Player player = (Player) event.getDamager();
+
+        ItemStack attackingItem = player.getInventory().getItemInMainHand();
+        int sharpnessLevel = attackingItem.getEnchantmentLevel(Enchantment.DAMAGE_ALL);
+        if (sharpnessLevel > 0) {
+            // add 0.25 damage per sharpness level (now 1.25 followed by 0.75)
+            // this isn't perfect as EntityDamageByEntityEvent isn't called ALWAYS
+            double bonusDamage = sharpnessLevel * 0.25;
+            plugin.debugMsg(player, "sharpness buff +%.2f", bonusDamage);
+            event.setDamage(event.getDamage() + bonusDamage);
+        }
     }
 
 }
