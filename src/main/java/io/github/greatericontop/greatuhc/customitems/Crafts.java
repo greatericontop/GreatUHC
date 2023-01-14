@@ -54,13 +54,15 @@ public class Crafts implements Listener {
         im2.setLore(List.of("id: EXCALIBUR", "§7WeaponMaster", "§7A very powerful sword."));
         excalibur.setItemMeta(im2);
         ShapedRecipe excaliburRecipe = new ShapedRecipe(new NamespacedKey("uhc", "uhc_excalibur"), excalibur);
-        excaliburRecipe.shape(" T ", "TST");
+        excaliburRecipe.shape("s s", "sTs", "sSs");
         excaliburRecipe.setIngredient('T', Material.TNT);
         excaliburRecipe.setIngredient('S', Material.DIAMOND_SWORD);
+        excaliburRecipe.setIngredient('s', Material.SOUL_SAND);
         Bukkit.getServer().addRecipe(excaliburRecipe);
 
         ItemStack exodus = new ItemStack(Material.DIAMOND_HELMET, 1);
         ItemMeta im3 = exodus.getItemMeta();
+        im3.addEnchant(Enchantment.DURABILITY, 3, false);
         im3.setDisplayName("§cExodus");
         im3.setLore(List.of("id: EXODUS", "§7WeaponMaster", "§7A very powerful helmet."));
         exodus.setItemMeta(im3);
@@ -145,7 +147,7 @@ public class Crafts implements Listener {
 
         ItemStack hermesBoots = new ItemStack(Material.DIAMOND_BOOTS, 1);
         ItemMeta im8 = hermesBoots.getItemMeta();
-        im8.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, false);
+        im8.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, false);
         im8.addEnchant(Enchantment.DURABILITY, 1, false);
         im8.setDisplayName("§6Hermes Boots");
         im8.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(), "UHC", 3, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET));
@@ -189,7 +191,7 @@ public class Crafts implements Listener {
 
         ItemStack dragonArmor = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
         ItemMeta im11 = dragonArmor.getItemMeta();
-        im11.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, true);
+        im11.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, true);
         im11.setDisplayName("§5Dragon Armor");
         im11.setLore(List.of("id: DRAGON_ARMOR", "§7WeaponMaster", "§7A very powerful chestplate."));
         dragonArmor.setItemMeta(im11);
