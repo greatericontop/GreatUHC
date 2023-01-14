@@ -59,6 +59,12 @@ public class ItemDropListener implements Listener {
                 event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.DIAMOND, 1));
             }
         }
+        if (typeBroken == Material.NETHER_GOLD_ORE) {
+            event.setDropItems(false);
+            int amount = randint(1, 2);
+            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.GOLD_NUGGET, amount));
+            event.setExpToDrop(randint(0, 1));
+        }
 
         if (typeBroken == Material.OAK_LEAVES || typeBroken == Material.DARK_OAK_LEAVES) {
             if (Math.random() < 0.035) {

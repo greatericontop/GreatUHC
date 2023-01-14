@@ -20,7 +20,7 @@ public class MobSpawning implements Listener {
             return; // require a mob spawned in the nether
         }
 
-        if (Math.random() < 0.04) {
+        if (Math.random() < 0.045) {
             spawnedEntity.getWorld().spawnEntity(spawnedEntity.getLocation(), EntityType.BLAZE, true);
         }
     }
