@@ -170,6 +170,23 @@ public class Crafts implements Listener {
         cornRecipe.setIngredient('c', Material.CARROT);
         cornRecipe.setIngredient('G', Material.GOLDEN_APPLE);
         Bukkit.getServer().addRecipe(cornRecipe);
+
+        ItemStack hideOfLeviathan = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
+        ItemMeta im10 = hideOfLeviathan.getItemMeta();
+        im10.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
+        im10.addEnchant(Enchantment.OXYGEN, 3, true);
+        im10.addEnchant(Enchantment.DURABILITY, 1, true);
+        im10.setDisplayName("§9Hide of Leviathan");
+        hideOfLeviathan.setItemMeta(im10);
+        ShapedRecipe hideOfLeviathanRecipe = new ShapedRecipe(new NamespacedKey("uhc", "hide_of_leviathan"), hideOfLeviathan);
+        hideOfLeviathanRecipe.shape("lWl", "dLd", "p p");
+        hideOfLeviathanRecipe.setIngredient('l', Material.LAPIS_BLOCK);
+        hideOfLeviathanRecipe.setIngredient('W', Material.WATER_BUCKET);
+        hideOfLeviathanRecipe.setIngredient('d', Material.DIAMOND);
+        hideOfLeviathanRecipe.setIngredient('L', Material.DIAMOND_LEGGINGS);
+        hideOfLeviathanRecipe.setIngredient('p', Material.LILY_PAD);
+        Bukkit.getServer().addRecipe(hideOfLeviathanRecipe);
+
     }
 
 }
