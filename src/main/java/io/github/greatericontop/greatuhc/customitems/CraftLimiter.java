@@ -14,10 +14,12 @@ public class CraftLimiter implements Listener {
 
     private final Map<UUID, Integer> crafts_LightApple = new HashMap<>();
     private final Map<UUID, Integer> crafts_sharpBook = new HashMap<>();
+    private final Map<UUID, Integer> crafts_corn = new HashMap<>();
 
     public void clearCrafts() {
         crafts_LightApple.clear();
         crafts_sharpBook.clear();
+        crafts_corn.clear();
     }
 
     private void handleLimitedCraft(CraftItemEvent event, Map<UUID, Integer> craftMap, int craftLimit) {
@@ -48,6 +50,8 @@ public class CraftLimiter implements Listener {
             handleLimitedCraft(event, crafts_LightApple, 2);
         } else if (key.getKey().equals("sharp_book")) {
             handleLimitedCraft(event, crafts_sharpBook, 4);
+        } else if (key.getKey().equals("corn")) {
+            handleLimitedCraft(event, crafts_corn, 1);
         }
     }
 

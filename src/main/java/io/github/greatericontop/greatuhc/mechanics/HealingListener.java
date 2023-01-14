@@ -39,7 +39,7 @@ public class HealingListener implements Listener {
     }
 
     @EventHandler()
-    public void onRightClick(PlayerInteractEvent event) {
+    public void onRightClickHead(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND) {
             return;
         }
@@ -59,6 +59,29 @@ public class HealingListener implements Listener {
         }
         player.sendMessage("§aYou ate a player head!");
         item.setAmount(item.getAmount() - 1);
+    }
+
+    @EventHandler()
+    public void onRightClickCorn(PlayerInteractEvent event) {
+        if (event.getHand() != EquipmentSlot.HAND) {
+            return;
+        }
+        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
+            return;
+        }
+        Player player = event.getPlayer();
+        ItemStack item = player.getInventory().getItemInMainHand();
+        if (item.getType() != Material.GOLDEN_CARROT) {
+            return;
+        }
+        if (item.getItemMeta() == null || item.getItemMeta().getLore() == null) {
+            return;
+        }
+        if (!item.getItemMeta().getLore().get(0).equals("Corn")) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 300, 1));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 1200, 0));
+            item.setAmount(item.getAmount() - 1);
+        }
     }
 
     @EventHandler()

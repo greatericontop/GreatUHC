@@ -160,6 +160,15 @@ public class Crafts implements Listener {
         hermesBootsRecipe.setIngredient('f', Material.FEATHER);
         Bukkit.getServer().addRecipe(hermesBootsRecipe);
 
+        ItemStack corn = new ItemStack(Material.GOLDEN_CARROT, 3);
+        ItemMeta im9 = corn.getItemMeta();
+        im9.setDisplayName("§6Cornucopia");
+        im9.setLore(List.of("Corn", "§7Gives Regeneration and Saturation."));
+        corn.setItemMeta(im9);
+        ShapedRecipe cornRecipe = new ShapedRecipe(new NamespacedKey("uhc", "corn"), corn);
+        cornRecipe.shape("ccc", "cGc", "ccc");
+        cornRecipe.setIngredient('c', Material.CARROT);
+        cornRecipe.setIngredient('R', Material.GOLDEN_APPLE);
     }
 
 }
