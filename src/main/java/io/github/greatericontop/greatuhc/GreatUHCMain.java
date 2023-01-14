@@ -6,6 +6,7 @@ import io.github.greatericontop.greatuhc.mechanics.DamageEngine;
 import io.github.greatericontop.greatuhc.mechanics.DiamondSpreading;
 import io.github.greatericontop.greatuhc.mechanics.HealingListener;
 import io.github.greatericontop.greatuhc.mechanics.ItemDropListener;
+import io.github.greatericontop.greatuhc.mechanics.MobSpawning;
 import io.github.greatericontop.greatuhc.mechanics.OldPVP;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -38,6 +39,7 @@ public class GreatUHCMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new DiamondSpreading(), this);
         this.getServer().getPluginManager().registerEvents(new HealingListener(this), this);
         this.getServer().getPluginManager().registerEvents(new ItemDropListener(this), this);
+        this.getServer().getPluginManager().registerEvents(new MobSpawning(), this);
         this.getServer().getPluginManager().registerEvents(new OldPVP(), this);
 
         this.getCommand("greatuhc").setExecutor(new GreatUHCCommand(this));
