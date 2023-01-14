@@ -187,6 +187,21 @@ public class Crafts implements Listener {
         hideOfLeviathanRecipe.setIngredient('p', Material.LILY_PAD);
         Bukkit.getServer().addRecipe(hideOfLeviathanRecipe);
 
+        ItemStack dragonArmor = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
+        ItemMeta im11 = dragonArmor.getItemMeta();
+        im11.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, true);
+        im11.setDisplayName("§5Dragon Armor");
+        im11.setLore(List.of("id: DRAGON_ARMOR", "§7WeaponMaster", "§7A very powerful chestplate."));
+        dragonArmor.setItemMeta(im11);
+        ShapedRecipe dragonArmorRecipe = new ShapedRecipe(new NamespacedKey("uhc", "dragon_armor"), dragonArmor);
+        dragonArmorRecipe.shape(" m ", "MCM", "oAo");
+        dragonArmorRecipe.setIngredient('M', Material.MAGMA_BLOCK);
+        dragonArmorRecipe.setIngredient('m', Material.MAGMA_CREAM);
+        dragonArmorRecipe.setIngredient('C', Material.DIAMOND_CHESTPLATE);
+        dragonArmorRecipe.setIngredient('o', Material.OBSIDIAN);
+        dragonArmorRecipe.setIngredient('A', Material.ANVIL);
+        Bukkit.getServer().addRecipe(dragonArmorRecipe);
+
     }
 
 }
