@@ -39,9 +39,10 @@ public class HealingListener implements Listener {
     }
 
     @EventHandler()
-    public void onRightClickHead(PlayerInteractEvent event) {
+    public void onClickHead(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND)  return;
-        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)  return;
+        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK
+                && event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK)  return;
         Player player = event.getPlayer();
         ItemStack item = player.getInventory().getItemInMainHand();
         if (item.getType() != Material.PLAYER_HEAD) {
@@ -60,8 +61,7 @@ public class HealingListener implements Listener {
     @EventHandler()
     public void onRightClickCorn(PlayerInteractEvent event) {
         if (event.getHand() != EquipmentSlot.HAND)  return;
-        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK
-                && event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK)  return;
+        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)  return;
         Player player = event.getPlayer();
         ItemStack item = player.getInventory().getItemInMainHand();
         if (item.getType() != Material.GOLDEN_CARROT) {
