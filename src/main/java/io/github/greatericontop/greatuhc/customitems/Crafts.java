@@ -218,6 +218,14 @@ public class Crafts implements Listener {
         andurilRecipe.setIngredient('B', Material.BLAZE_ROD);
         Bukkit.getServer().addRecipe(andurilRecipe);
 
+        ItemStack flamingArtifact = new ItemStack(Material.BLAZE_ROD, 1);
+        ShapedRecipe flamingArtifactRecipe = new ShapedRecipe(new NamespacedKey("uhc", "flaming_artifact"), flamingArtifact);
+        flamingArtifactRecipe.shape("gLg", "gFg", "gLg");
+        flamingArtifactRecipe.setIngredient('g', Material.ORANGE_STAINED_GLASS);
+        flamingArtifactRecipe.setIngredient('L', Material.LAVA_BUCKET);
+        flamingArtifactRecipe.setIngredient('F', Material.FIREWORK_ROCKET);
+        Bukkit.getServer().addRecipe(flamingArtifactRecipe);
+
     }
 
 }
