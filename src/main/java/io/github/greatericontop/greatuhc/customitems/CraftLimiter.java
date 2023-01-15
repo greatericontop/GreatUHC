@@ -43,13 +43,12 @@ public class CraftLimiter implements Listener {
             event.setCancelled(true);
             event.getWhoClicked().sendMessage(String.format("§cYou already crafted the limit of §e%d §cof this item.", craftLimit));
         } else {
-            int numberOfCrafts = findNumberInCraftingTable(event);
-            if (craftsAlready + numberOfCrafts > craftLimit) { // attempted to make too many
+            if (findNumberInCraftingTable(event) > 1) { // attempted to make too many
                 event.setCancelled(true);
-                event.getWhoClicked().sendMessage(String.format("§cYou have too many items in the crafting table. You can only craft §e%d §cmore items. (You tried to make %d.)", craftLimit-craftsAlready, numberOfCrafts));
+                event.getWhoClicked().sendMessage("§cYou have too many items in the crafting table.");
             } else {
-                craftMap.put(uuid, craftsAlready + numberOfCrafts);
-                event.getWhoClicked().sendMessage(String.format("§7You have crafted §e%d§7/§e%d §7of this item.", craftsAlready + numberOfCrafts, craftLimit));
+                craftMap.put(uuid, craftsAlready + 1);
+                event.getWhoClicked().sendMessage(String.format("§7You have crafted §e%d§7/§e%d §7of this item.", craftsAlready + 1, craftLimit));
             }
         }
     }
