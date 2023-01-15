@@ -9,6 +9,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -192,7 +193,7 @@ public class Crafts implements Listener {
 
         ItemStack dragonArmor = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
         ItemMeta im11 = dragonArmor.getItemMeta();
-        im11.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, true);
+        im11.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, false);
         im11.setDisplayName("§5Dragon Armor");
         im11.setLore(List.of("id: DRAGON_ARMOR", "§7WeaponMaster", "§7A very powerful chestplate."));
         dragonArmor.setItemMeta(im11);
@@ -207,7 +208,7 @@ public class Crafts implements Listener {
 
         ItemStack anduril = new ItemStack(Material.IRON_SWORD, 1);
         ItemMeta im12 = anduril.getItemMeta();
-        im12.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+        im12.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
         im12.setDisplayName("§aAnduril");
         im12.setLore(List.of("id: ANDURIL", "§7WeaponMaster", "§7A very powerful sword."));
         anduril.setItemMeta(im12);
@@ -225,6 +226,19 @@ public class Crafts implements Listener {
         flamingArtifactRecipe.setIngredient('L', Material.LAVA_BUCKET);
         flamingArtifactRecipe.setIngredient('F', Material.FIREWORK_ROCKET);
         Bukkit.getServer().addRecipe(flamingArtifactRecipe);
+
+        ItemStack netherBlessing = new ItemStack(Material.ENCHANTED_BOOK, 1);
+        EnchantmentStorageMeta im13 = (EnchantmentStorageMeta) netherBlessing.getItemMeta();
+        im13.addStoredEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, false);
+        im13.addStoredEnchant(Enchantment.DURABILITY, 2, false);
+        im13.addStoredEnchant(Enchantment.THORNS, 1, false);
+        im13.setDisplayName("§4Nether Blessing");
+        netherBlessing.setItemMeta(im13);
+        ShapedRecipe netherBlessingRecipe = new ShapedRecipe(new NamespacedKey("uhc", "nether_blessing"), netherBlessing);
+        netherBlessingRecipe.shape("nnn", "nMn", "nnn");
+        netherBlessingRecipe.setIngredient('n', new RecipeChoice.MaterialChoice(Material.NETHER_WART_BLOCK, Material.WARPED_WART_BLOCK));
+        netherBlessingRecipe.setIngredient('M', Material.MAGMA_BLOCK);
+        Bukkit.getServer().addRecipe(netherBlessingRecipe);
 
     }
 
