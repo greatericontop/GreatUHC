@@ -9,6 +9,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.Random;
 
@@ -28,7 +30,22 @@ public class ItemDropListener implements Listener {
     @EventHandler()
     public void onBlockBreak(BlockBreakEvent event) {
         Material typeBroken = event.getBlock().getType();
-        // TODO: require tools?
+
+        if (typeBroken == Material.COAL_ORE || typeBroken == Material.DEEPSLATE_COAL_ORE
+                || typeBroken == Material.COPPER_ORE || typeBroken == Material.DEEPSLATE_COPPER_ORE
+                || typeBroken == Material.IRON_ORE || typeBroken == Material.DEEPSLATE_IRON_ORE
+                || typeBroken == Material.GOLD_ORE || typeBroken == Material.DEEPSLATE_GOLD_ORE
+                || typeBroken == Material.DIAMOND_ORE || typeBroken == Material.DEEPSLATE_DIAMOND_ORE
+                || typeBroken == Material.EMERALD_ORE || typeBroken == Material.DEEPSLATE_EMERALD_ORE
+                || typeBroken == Material.REDSTONE_ORE || typeBroken == Material.DEEPSLATE_REDSTONE_ORE
+                || typeBroken == Material.LAPIS_ORE || typeBroken == Material.DEEPSLATE_LAPIS_ORE
+                || typeBroken == Material.SAND
+                || typeBroken == Material.GRAVEL
+                || typeBroken == Material.OBSIDIAN
+        ) {
+            event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 400, 0));
+        }
+
         if (typeBroken == Material.OBSIDIAN) {
             event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.OBSIDIAN, 1));
         }
