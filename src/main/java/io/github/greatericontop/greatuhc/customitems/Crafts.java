@@ -240,6 +240,21 @@ public class Crafts implements Listener {
         netherBlessingRecipe.setIngredient('M', Material.MAGMA_BLOCK);
         Bukkit.getServer().addRecipe(netherBlessingRecipe);
 
+        ItemStack enhancementBook = new ItemStack(Material.ENCHANTED_BOOK, 1);
+        EnchantmentStorageMeta im14 = (EnchantmentStorageMeta) enhancementBook.getItemMeta();
+        im14.addStoredEnchant(Enchantment.MENDING, 1, false);
+        im14.setDisplayName("§6Enhancement Book");
+        im14.setLore(List.of("Enhancement Book", "§7Use this in an anvil to", "§7level 30 enchant it."));
+        enhancementBook.setItemMeta(im14);
+        ShapedRecipe enhancementBookRecipe = new ShapedRecipe(new NamespacedKey("uhc", "enhancement_book"), enhancementBook);
+        enhancementBookRecipe.shape("rrr", "PdA", "bbb");
+        enhancementBookRecipe.setIngredient('r', Material.REDSTONE_BLOCK);
+        enhancementBookRecipe.setIngredient('P', Material.IRON_PICKAXE);
+        enhancementBookRecipe.setIngredient('d', Material.DIAMOND);
+        enhancementBookRecipe.setIngredient('A', Material.IRON_AXE);
+        enhancementBookRecipe.setIngredient('b', Material.BOOKSHELF);
+        Bukkit.getServer().addRecipe(enhancementBookRecipe);
+
     }
 
 }

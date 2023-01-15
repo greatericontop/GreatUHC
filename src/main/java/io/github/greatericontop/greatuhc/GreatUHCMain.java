@@ -2,6 +2,7 @@ package io.github.greatericontop.greatuhc;
 
 import io.github.greatericontop.greatuhc.customitems.CraftLimiter;
 import io.github.greatericontop.greatuhc.customitems.Crafts;
+import io.github.greatericontop.greatuhc.customitems.EnhancementBookListener;
 import io.github.greatericontop.greatuhc.mechanics.DamageEngine;
 import io.github.greatericontop.greatuhc.mechanics.DiamondSpreading;
 import io.github.greatericontop.greatuhc.mechanics.HealingListener;
@@ -34,6 +35,7 @@ public class GreatUHCMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new Crafts(), this);
         craftLimiter = new CraftLimiter();
         this.getServer().getPluginManager().registerEvents(craftLimiter, this);
+        this.getServer().getPluginManager().registerEvents(new EnhancementBookListener(), this);
 
         this.getServer().getPluginManager().registerEvents(new DamageEngine(this), this);
         this.getServer().getPluginManager().registerEvents(new DiamondSpreading(), this);
