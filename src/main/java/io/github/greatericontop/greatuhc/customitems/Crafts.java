@@ -19,6 +19,7 @@ import java.util.UUID;
 public class Crafts implements Listener {
 
     public static void registerCrafts() {
+        Bukkit.getServer().removeRecipe(new NamespacedKey("minecraft", "anduril"));
 
         ItemStack lightApple = new ItemStack(Material.GOLDEN_APPLE, 1);
         ShapedRecipe lightAppleRecipe = new ShapedRecipe(new NamespacedKey("uhc", "light_apple"), lightApple);
@@ -203,6 +204,19 @@ public class Crafts implements Listener {
         dragonArmorRecipe.setIngredient('o', Material.OBSIDIAN);
         dragonArmorRecipe.setIngredient('A', Material.ANVIL);
         Bukkit.getServer().addRecipe(dragonArmorRecipe);
+
+        ItemStack anduril = new ItemStack(Material.IRON_SWORD, 1);
+        ItemMeta im12 = anduril.getItemMeta();
+        im12.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+        im12.setDisplayName("§aAnduril");
+        im12.setLore(List.of("id: ANDURIL", "§7WeaponMaster", "§7A very powerful sword."));
+        anduril.setItemMeta(im12);
+        ShapedRecipe andurilRecipe = new ShapedRecipe(new NamespacedKey("uhc", "anduril"), anduril);
+        andurilRecipe.shape("fIf", "fIf", "fBf");
+        andurilRecipe.setIngredient('f', Material.FEATHER);
+        andurilRecipe.setIngredient('I', Material.IRON_BLOCK);
+        andurilRecipe.setIngredient('B', Material.BLAZE_ROD);
+        Bukkit.getServer().addRecipe(andurilRecipe);
 
     }
 

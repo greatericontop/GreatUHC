@@ -10,6 +10,7 @@ import io.github.greatericontop.greatuhc.mechanics.MobSpawning;
 import io.github.greatericontop.greatuhc.mechanics.OldPVP;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class GreatUHCMain extends JavaPlugin {
 
@@ -30,7 +31,6 @@ public class GreatUHCMain extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        Crafts.registerCrafts();
         this.getServer().getPluginManager().registerEvents(new Crafts(), this);
         craftLimiter = new CraftLimiter();
         this.getServer().getPluginManager().registerEvents(craftLimiter, this);
@@ -45,6 +45,14 @@ public class GreatUHCMain extends JavaPlugin {
         this.getCommand("greatuhc").setExecutor(new GreatUHCCommand(this));
 
         this.getLogger().info("GreatUHC finished setting up!");
+
+        new BukkitRunnable() {
+            public void run() {
+                Crafts.registerCrafts(); // need to wait a few ticks because this needs to run AFTER other plugins initialize
+                getLogger().info("Crafts ready!");
+            }
+        }.runTaskLater(this, 10L);
+
     }
 
 }
