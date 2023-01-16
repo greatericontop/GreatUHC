@@ -73,20 +73,14 @@ public class CraftLimiter implements Listener {
         }
         UUID uuid = event.getWhoClicked().getUniqueId();
 
-        if (key.getKey().equals("light_apple")) {
-            handleLimitedCraft(event, crafts_LightApple, 2);
-        } else if (key.getKey().equals("sharp_book")) {
-            handleLimitedCraft(event, crafts_sharpBook, 4);
-        } else if (key.getKey().equals("corn")) {
-            handleLimitedCraft(event, crafts_corn, 1);
-        } else if (key.getKey().equals("flaming_artifact")) {
-            handleLimitedCraft(event, crafts_flamingArtifact, 1);
-        } else if (key.getKey().equals("nether_blessing")) {
-            handleLimitedCraft(event, crafts_netherBlessing, 1);
-        } else if (key.getKey().equals("enhancement_book")) {
-            handleLimitedCraft(event, crafts_enhancementBook, 1);
-        } else if (key.getKey().equals("protection_book")) {
-            handleLimitedCraft(event, crafts_protectionBook, 1);
+        switch (key.getKey()) {
+            case "light_apple" -> handleLimitedCraft(event, crafts_LightApple, 2);
+            case "sharp_book" -> handleLimitedCraft(event, crafts_sharpBook, 4);
+            case "corn" -> handleLimitedCraft(event, crafts_corn, 1);
+            case "flaming_artifact" -> handleLimitedCraft(event, crafts_flamingArtifact, 1);
+            case "nether_blessing" -> handleLimitedCraft(event, crafts_netherBlessing, 1);
+            case "enhancement_book" -> handleLimitedCraft(event, crafts_enhancementBook, 1);
+            case "protection_book" -> handleLimitedCraft(event, crafts_protectionBook, 1);
         }
     }
 
