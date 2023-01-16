@@ -80,7 +80,7 @@ public class CraftLimiter implements Listener {
             case "flaming_artifact" -> handleLimitedCraft(event, crafts_flamingArtifact, 1);
             case "nether_blessing" -> handleLimitedCraft(event, crafts_netherBlessing, 1);
             case "enhancement_book" -> handleLimitedCraft(event, crafts_enhancementBook, 1);
-            case "protection_book" -> handleLimitedCraft(event, crafts_protectionBook, 1);
+            case "protection_book" -> handleLimitedCraft(event, crafts_protectionBook, 4);
         }
     }
 
