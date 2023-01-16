@@ -255,6 +255,17 @@ public class Crafts implements Listener {
         enhancementBookRecipe.setIngredient('b', Material.BOOKSHELF);
         Bukkit.getServer().addRecipe(enhancementBookRecipe);
 
+        ItemStack protectionBook = new ItemStack(Material.ENCHANTED_BOOK, 1);
+        EnchantmentStorageMeta im15 = (EnchantmentStorageMeta) protectionBook.getItemMeta();
+        im15.setDisplayName("§cBook of Protection");
+        im15.addStoredEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, false);
+        protectionBook.setItemMeta(im15);
+        ShapedRecipe protectionBookRecipe = new ShapedRecipe(new NamespacedKey("uhc", "protection_book"), protectionBook);
+        protectionBookRecipe.shape("pp", "pI");
+        protectionBookRecipe.setIngredient('p', Material.PAPER);
+        protectionBookRecipe.setIngredient('I', Material.IRON_INGOT);
+        Bukkit.getServer().addRecipe(protectionBookRecipe);
+
     }
 
 }
