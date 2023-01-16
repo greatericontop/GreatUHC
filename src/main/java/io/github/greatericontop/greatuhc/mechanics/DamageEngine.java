@@ -107,11 +107,11 @@ public class DamageEngine implements Listener {
         ItemStack attackingItem = player.getInventory().getItemInMainHand();
         int sharpnessLevel = attackingItem.getEnchantmentLevel(Enchantment.DAMAGE_ALL);
         if (sharpnessLevel > 0) {
-            // add 0.25 damage per sharpness level (now 1.25 followed by 0.75)
+            // add 0.75 damage per sharpness level (now 1.25 each - the first level starts at 1, so we subtract 0.5)
             // this isn't perfect as EntityDamageByEntityEvent isn't called ALWAYS
-            double bonusDamage = sharpnessLevel * 0.25;
-            plugin.debugMsg(player, "sharpness buff +%.2f", bonusDamage);
+            double bonusDamage = sharpnessLevel * 0.75 - 0.5;
             event.setDamage(event.getDamage() + bonusDamage);
+            plugin.debugMsg(player, "sharpness buff +%.2f, new damage §f%.2f", bonusDamage, event.getDamage());
         }
     }
 
