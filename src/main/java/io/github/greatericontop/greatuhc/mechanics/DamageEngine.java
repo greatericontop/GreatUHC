@@ -3,6 +3,7 @@ package io.github.greatericontop.greatuhc.mechanics;
 import io.github.greatericontop.greatuhc.GreatUHCMain;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
@@ -19,6 +20,14 @@ public class DamageEngine implements Listener {
     private final GreatUHCMain plugin;
     public DamageEngine(GreatUHCMain plugin) {
         this.plugin = plugin;
+    }
+
+    @EventHandler(priority = EventPriority.HIGH) // runs last
+    public void onDamageNonPlayers(EntityDamageEvent event) {
+        if (event.getEntity() instanceof Mob) {
+            // mobs take extra damage from all sources
+            event.setDamage(event.getDamage() * 1.25);
+        }
     }
 
     @EventHandler(priority = EventPriority.HIGH) // runs last
