@@ -110,8 +110,10 @@ public class DamageEngine implements Listener {
             // add 0.75 damage per sharpness level (now 1.25 each - the first level starts at 1, so we subtract 0.5)
             // this isn't perfect as EntityDamageByEntityEvent isn't called ALWAYS
             double bonusDamage = sharpnessLevel * 0.75 - 0.5;
-            event.setDamage(event.getDamage() + bonusDamage);
-            plugin.debugMsg(player, "sharpness buff +%.2f, new damage §f%.2f", bonusDamage, event.getDamage());
+            // decrease the power if the attack wasn't fully charged (linearly, getCooledAttackStrength is linear)
+            double adjustedBonusDamage = bonusDamage * player.getCooledAttackStrength(0.0F);
+            event.setDamage(event.getDamage() + adjustedBonusDamage);
+            plugin.debugMsg(player, "sharpness buff +%.2f, new damage §f%.2f", adjustedBonusDamage, event.getDamage());
         }
     }
 
