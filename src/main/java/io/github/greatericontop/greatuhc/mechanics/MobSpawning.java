@@ -16,12 +16,17 @@ public class MobSpawning implements Listener {
             return;
         }
         LivingEntity spawnedEntity = event.getEntity();
-        if (spawnedEntity.getWorld().getEnvironment() != World.Environment.NETHER) {
-            return; // require a mob spawned in the nether
+
+        if (spawnedEntity.getWorld().getEnvironment() == World.Environment.NETHER) {
+            if (Math.random() < 0.05) {
+                spawnedEntity.getWorld().spawnEntity(spawnedEntity.getLocation(), EntityType.BLAZE, true);
+            }
         }
 
-        if (Math.random() < 0.05) {
-            spawnedEntity.getWorld().spawnEntity(spawnedEntity.getLocation(), EntityType.BLAZE, true);
+        if (spawnedEntity.getWorld().getEnvironment() == World.Environment.NORMAL) {
+            if (Math.random() < 0.01) {
+                spawnedEntity.getWorld().spawnEntity(spawnedEntity.getLocation(), EntityType.ENDERMAN, true);
+            }
         }
     }
 
