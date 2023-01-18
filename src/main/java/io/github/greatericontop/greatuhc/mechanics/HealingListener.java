@@ -48,9 +48,9 @@ public class HealingListener implements Listener {
         if (item.getType() != Material.PLAYER_HEAD) {
             return;
         }
-        player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 300, 1));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 300, 1)); // 6 hearts
         player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 4800, 0));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 500, 0));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 500, 1));
         if (plugin.uhcPowerfulHeads) {
             player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 400, 0));
         }
