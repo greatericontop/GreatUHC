@@ -46,10 +46,11 @@ public class DiamondSpreading implements Listener {
         if (isExposed(loc)) {
             return;
         }
-        // it must be stone or deepslate
-        if (loc.getBlock().getType() == Material.STONE) {
+        // replace
+        Material mat = loc.getBlock().getType();
+        if (mat == Material.STONE || mat == Material.ANDESITE || mat == Material.DIORITE || mat == Material.GRANITE) {
             loc.getBlock().setType(Material.DIAMOND_ORE);
-        } else if (loc.getBlock().getType() == Material.DEEPSLATE) {
+        } else if (mat == Material.DEEPSLATE || mat == Material.TUFF) {
             loc.getBlock().setType(Material.DEEPSLATE_DIAMOND_ORE);
         }
     }
