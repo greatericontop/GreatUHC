@@ -38,24 +38,19 @@ public class DiamondSpreading implements Listener {
         if (Math.random() >= 0.3) {
             return;
         }
-        // Make some attempts to spawn a diamond ore.
-        for (int i = 0; i < 3; i++) {
-            Location loc = event.getBlock().getLocation();
-            int offset = random.nextInt(6);
-            loc.add(dx[offset], dy[offset], dz[offset]);
-            // the target block must be covered (unexposed to air)
-            if (isExposed(loc)) {
-                continue;
-            }
-            // it must be stone or deepslate
-            if (loc.getBlock().getType() == Material.STONE) {
-                loc.getBlock().setType(Material.DIAMOND_ORE);
-                return;
-            }
-            if (loc.getBlock().getType() == Material.DEEPSLATE) {
-                loc.getBlock().setType(Material.DEEPSLATE_DIAMOND_ORE);
-                return;
-            }
+        // Make one attempt to spawn a diamond ore.
+        Location loc = event.getBlock().getLocation();
+        int offset = random.nextInt(6);
+        loc.add(dx[offset], dy[offset], dz[offset]);
+        // the target block must be covered (unexposed to air)
+        if (isExposed(loc)) {
+            return;
+        }
+        // it must be stone or deepslate
+        if (loc.getBlock().getType() == Material.STONE) {
+            loc.getBlock().setType(Material.DIAMOND_ORE);
+        } else if (loc.getBlock().getType() == Material.DEEPSLATE) {
+            loc.getBlock().setType(Material.DEEPSLATE_DIAMOND_ORE);
         }
     }
 
