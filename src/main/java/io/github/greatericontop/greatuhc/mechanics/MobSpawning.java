@@ -23,11 +23,6 @@ public class MobSpawning implements Listener {
             }
         }
 
-        if (spawnedEntity.getWorld().getEnvironment() == World.Environment.NORMAL) {
-            if (Math.random() < 0.01) {
-                spawnedEntity.getWorld().spawnEntity(spawnedEntity.getLocation(), EntityType.ENDERMAN, true);
-            }
-        }
     }
 
 }
