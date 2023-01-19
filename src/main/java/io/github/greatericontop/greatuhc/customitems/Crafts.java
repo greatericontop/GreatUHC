@@ -13,6 +13,9 @@ import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.List;
 import java.util.UUID;
@@ -277,6 +280,19 @@ public class Crafts implements Listener {
         expertSealRecipe.setIngredient('G', Material.GOLD_BLOCK);
         expertSealRecipe.setIngredient('I', Material.IRON_BLOCK);
         Bukkit.getServer().addRecipe(expertSealRecipe);
+
+        ItemStack deusExMachina = new ItemStack(Material.POTION, 1);
+        PotionMeta im17 = (PotionMeta) deusExMachina.getItemMeta();
+        im17.setDisplayName("§cDeus Ex Machina");
+        im17.setLore(List.of("§7Grants invincibility!", "§cCrafting costs half your health!"));
+        im17.addCustomEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 240, 4), true);
+        deusExMachina.setItemMeta(im17);
+        ShapedRecipe deusExMachinaRecipe = new ShapedRecipe(new NamespacedKey("uhc", "deus_ex_machina"), deusExMachina);
+        deusExMachinaRecipe.shape("E", "R", "g");
+        deusExMachinaRecipe.setIngredient('E', Material.EMERALD);
+        deusExMachinaRecipe.setIngredient('R', Material.REDSTONE_BLOCK);
+        deusExMachinaRecipe.setIngredient('g', Material.GLASS_BOTTLE);
+        Bukkit.getServer().addRecipe(deusExMachinaRecipe);
 
     }
 
