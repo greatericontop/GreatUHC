@@ -1,5 +1,6 @@
 package io.github.greatericontop.greatuhc.customitems;
 
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -105,6 +106,7 @@ public class CraftLimiter implements Listener {
                     Player player = (Player) event.getWhoClicked();
                     player.setHealth(Math.max(player.getHealth() - 20.0, 0.0));
                     player.getWorld().strikeLightningEffect(player.getLocation());
+                    event.getInventory().setResult(new ItemStack(Material.COAL, 2));
                 }
             }
         }
