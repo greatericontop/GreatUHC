@@ -109,7 +109,7 @@ public class CraftLimiter implements Listener {
             }
             case "chest_of_fate" -> {
                 handleLimitedCraft(event, crafts_chestOfFate, 1);
-                if (Math.random() < 0.5) {
+                if (Math.random() < 0.5 && !event.isCancelled()) { // 50% chance to blow up when successfully crafted
                     Player player = (Player) event.getWhoClicked();
                     event.getInventory().setResult(new ItemStack(Material.COAL, 2));
                     new BukkitRunnable() {
