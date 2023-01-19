@@ -13,8 +13,10 @@ import java.util.UUID;
 
 public class CraftLimiter implements Listener {
 
-    private final Map<UUID, Integer> crafts_LightApple = new HashMap<>();
+    private final Map<UUID, Integer> crafts_lightApple = new HashMap<>();
     private final Map<UUID, Integer> crafts_sharpBook = new HashMap<>();
+    private final Map<UUID, Integer> crafts_apprenticeHelmet = new HashMap<>();
+    private final Map<UUID, Integer> crafts_tarnhelm = new HashMap<>();
     private final Map<UUID, Integer> crafts_corn = new HashMap<>();
     private final Map<UUID, Integer> crafts_flamingArtifact = new HashMap<>();
     private final Map<UUID, Integer> crafts_netherBlessing = new HashMap<>();
@@ -23,8 +25,10 @@ public class CraftLimiter implements Listener {
     private final Map<UUID, Integer> crafts_expertSeal = new HashMap<>();
 
     public void clearCrafts() {
-        crafts_LightApple.clear();
+        crafts_lightApple.clear();
         crafts_sharpBook.clear();
+        crafts_apprenticeHelmet.clear();
+        crafts_tarnhelm.clear();
         crafts_corn.clear();
         crafts_flamingArtifact.clear();
         crafts_netherBlessing.clear();
@@ -76,8 +80,10 @@ public class CraftLimiter implements Listener {
         UUID uuid = event.getWhoClicked().getUniqueId();
 
         switch (key.getKey()) {
-            case "light_apple" -> handleLimitedCraft(event, crafts_LightApple, 2);
+            case "light_apple" -> handleLimitedCraft(event, crafts_lightApple, 2);
             case "sharp_book" -> handleLimitedCraft(event, crafts_sharpBook, 4);
+            case "apprentice_helmet" -> handleLimitedCraft(event, crafts_apprenticeHelmet, 1);
+            case "tarnhelm" -> handleLimitedCraft(event, crafts_tarnhelm, 1);
             case "corn" -> handleLimitedCraft(event, crafts_corn, 1);
             case "flaming_artifact" -> handleLimitedCraft(event, crafts_flamingArtifact, 1);
             case "nether_blessing" -> handleLimitedCraft(event, crafts_netherBlessing, 1);
