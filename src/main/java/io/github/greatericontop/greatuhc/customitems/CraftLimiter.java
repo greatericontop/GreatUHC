@@ -20,6 +20,7 @@ public class CraftLimiter implements Listener {
     private final Map<UUID, Integer> crafts_netherBlessing = new HashMap<>();
     private final Map<UUID, Integer> crafts_enhancementBook = new HashMap<>();
     private final Map<UUID, Integer> crafts_protectionBook = new HashMap<>();
+    private final Map<UUID, Integer> crafts_expertSeal = new HashMap<>();
 
     public void clearCrafts() {
         crafts_LightApple.clear();
@@ -29,6 +30,7 @@ public class CraftLimiter implements Listener {
         crafts_netherBlessing.clear();
         crafts_enhancementBook.clear();
         crafts_protectionBook.clear();
+        crafts_expertSeal.clear();
     }
 
     private int findNumberInCraftingTable(CraftItemEvent event) {
@@ -81,6 +83,7 @@ public class CraftLimiter implements Listener {
             case "nether_blessing" -> handleLimitedCraft(event, crafts_netherBlessing, 1);
             case "enhancement_book" -> handleLimitedCraft(event, crafts_enhancementBook, 1);
             case "protection_book" -> handleLimitedCraft(event, crafts_protectionBook, 4);
+            case "expert_seal" -> handleLimitedCraft(event, crafts_expertSeal, 1);
         }
     }
 

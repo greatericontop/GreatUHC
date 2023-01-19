@@ -266,6 +266,18 @@ public class Crafts implements Listener {
         protectionBookRecipe.setIngredient('I', Material.IRON_INGOT);
         Bukkit.getServer().addRecipe(protectionBookRecipe);
 
+        ItemStack expertSeal = new ItemStack(Material.NETHER_STAR, 3);
+        ItemMeta im16 = expertSeal.getItemMeta();
+        im16.setDisplayName("§6Expert Seal");
+        im16.setLore(List.of("id: EXPERT_SEAL", "§7WeaponMaster", "§eMove this over another item", "§eto upgrade its enchantments."));
+        expertSeal.setItemMeta(im16);
+        ShapedRecipe expertSealRecipe = new ShapedRecipe(new NamespacedKey("uhc", "expert_seal"), expertSeal);
+        expertSealRecipe.shape("dGd", "IdI", "dGd");
+        expertSealRecipe.setIngredient('d', Material.DIAMOND);
+        expertSealRecipe.setIngredient('G', Material.GOLD_BLOCK);
+        expertSealRecipe.setIngredient('I', Material.IRON_BLOCK);
+        Bukkit.getServer().addRecipe(expertSealRecipe);
+
     }
 
 }
