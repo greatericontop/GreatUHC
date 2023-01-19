@@ -33,7 +33,7 @@ public class GreatUHCMain extends JavaPlugin {
     public void onEnable() {
 
         this.getServer().getPluginManager().registerEvents(new Crafts(), this);
-        craftLimiter = new CraftLimiter();
+        craftLimiter = new CraftLimiter(this);
         this.getServer().getPluginManager().registerEvents(craftLimiter, this);
         this.getServer().getPluginManager().registerEvents(new EnhancementBookListener(), this);
 

@@ -1,5 +1,6 @@
 package io.github.greatericontop.greatuhc.customitems;
 
+import io.github.greatericontop.greatuhc.GreatUHCMain;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -8,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,6 +29,11 @@ public class CraftLimiter implements Listener {
     private final Map<UUID, Integer> crafts_expertSeal = new HashMap<>();
     private final Map<UUID, Integer> crafts_deusExMachina = new HashMap<>();
     private final Map<UUID, Integer> crafts_chestOfFate = new HashMap<>();
+
+    private final GreatUHCMain plugin;
+    public CraftLimiter(GreatUHCMain plugin) {
+        this.plugin = plugin;
+    }
 
     public void clearCrafts() {
         crafts_lightApple.clear();
@@ -104,9 +111,13 @@ public class CraftLimiter implements Listener {
                 handleLimitedCraft(event, crafts_chestOfFate, 1);
                 if (Math.random() < 0.5) {
                     Player player = (Player) event.getWhoClicked();
-                    player.setHealth(Math.max(player.getHealth() - 20.0, 0.0));
-                    player.getWorld().strikeLightningEffect(player.getLocation());
                     event.getInventory().setResult(new ItemStack(Material.COAL, 2));
+                    new BukkitRunnable() {
+                        public void run() {
+                            player.setHealth(Math.max(player.getHealth() - 20.0, 0.0));
+                            player.getWorld().strikeLightningEffect(player.getLocation());
+                        }
+                    }.runTaskLater(plugin, 1L);
                 }
             }
         }
