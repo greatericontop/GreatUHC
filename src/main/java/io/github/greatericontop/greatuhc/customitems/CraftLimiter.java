@@ -92,7 +92,10 @@ public class CraftLimiter implements Listener {
             case "enhancement_book" -> handleLimitedCraft(event, crafts_enhancementBook, 1);
             case "protection_book" -> handleLimitedCraft(event, crafts_protectionBook, 4);
             case "expert_seal" -> handleLimitedCraft(event, crafts_expertSeal, 1);
-            case "deus_ex_machina" -> handleLimitedCraft(event, crafts_deusExMachina, 1);
+            case "deus_ex_machina" -> {
+                handleLimitedCraft(event, crafts_deusExMachina, 1);
+                event.getWhoClicked().setHealth(event.getWhoClicked().getHealth() * 0.5);
+            }
         }
     }
 
