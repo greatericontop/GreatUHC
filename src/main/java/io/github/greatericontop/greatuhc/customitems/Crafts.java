@@ -294,6 +294,20 @@ public class Crafts implements Listener {
         deusExMachinaRecipe.setIngredient('g', Material.GLASS_BOTTLE);
         Bukkit.getServer().addRecipe(deusExMachinaRecipe);
 
+        ItemStack chestOfFate = new ItemStack(Material.POTION, 1);
+        PotionMeta im18 = (PotionMeta) chestOfFate.getItemMeta();
+        im18.setDisplayName("§2Chest of Fate");
+        im18.setLore(List.of("§7Tempt Fate and get a powerful", "§7blessing or curse."));
+        im18.addCustomEffect(new PotionEffect(PotionEffectType.ABSORPTION, 2400, 11), true); // 24 hearts
+        im18.addCustomEffect(new PotionEffect(PotionEffectType.SPEED, 900, 1), true);
+        im18.addCustomEffect(new PotionEffect(PotionEffectType.JUMP, 900, 4), true);
+        chestOfFate.setItemMeta(im18);
+        ShapedRecipe chestOfFateRecipe = new ShapedRecipe(new NamespacedKey("uhc", "chest_of_fate"), chestOfFate);
+        chestOfFateRecipe.shape("ccc", "cHc", "ccc");
+        chestOfFateRecipe.setIngredient('c', Material.CHEST);
+        chestOfFateRecipe.setIngredient('H', Material.PLAYER_HEAD);
+        Bukkit.getServer().addRecipe(chestOfFateRecipe);
+
     }
 
 }

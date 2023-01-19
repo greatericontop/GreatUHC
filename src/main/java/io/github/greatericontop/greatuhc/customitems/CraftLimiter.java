@@ -1,6 +1,7 @@
 package io.github.greatericontop.greatuhc.customitems;
 
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
@@ -24,6 +25,7 @@ public class CraftLimiter implements Listener {
     private final Map<UUID, Integer> crafts_protectionBook = new HashMap<>();
     private final Map<UUID, Integer> crafts_expertSeal = new HashMap<>();
     private final Map<UUID, Integer> crafts_deusExMachina = new HashMap<>();
+    private final Map<UUID, Integer> crafts_chestOfFate = new HashMap<>();
 
     public void clearCrafts() {
         crafts_lightApple.clear();
@@ -37,6 +39,7 @@ public class CraftLimiter implements Listener {
         crafts_protectionBook.clear();
         crafts_expertSeal.clear();
         crafts_deusExMachina.clear();
+        crafts_chestOfFate.clear();
     }
 
     private int findNumberInCraftingTable(CraftItemEvent event) {
@@ -95,6 +98,14 @@ public class CraftLimiter implements Listener {
             case "deus_ex_machina" -> {
                 handleLimitedCraft(event, crafts_deusExMachina, 1);
                 event.getWhoClicked().setHealth(event.getWhoClicked().getHealth() * 0.5);
+            }
+            case "chest_of_fate" -> {
+                handleLimitedCraft(event, crafts_chestOfFate, 1);
+                if (Math.random() < 0.5) {
+                    Player player = (Player) event.getWhoClicked();
+                    player.setHealth(Math.max(player.getHealth() - 20.0, 0.0));
+                    player.getWorld().strikeLightningEffect(player.getLocation());
+                }
             }
         }
     }
