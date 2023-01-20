@@ -18,7 +18,7 @@ public class Placeholders extends PlaceholderExpansion {
 
     @Override
     public String getIdentifier() {
-        return "GreatUHC-placeholders";
+        return "GreatUHC";
     }
 
     @Override
