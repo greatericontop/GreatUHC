@@ -45,6 +45,8 @@ public class Placeholders extends PlaceholderExpansion {
                 String color;
                 if (borderRadius - playerRadius <= 30) {
                     color = "§c";
+                } else if (borderRadius - playerRadius <= 60) {
+                    color = "§6";
                 } else if (borderRadius - playerRadius <= 100) {
                     color = "§e";
                 } else {
