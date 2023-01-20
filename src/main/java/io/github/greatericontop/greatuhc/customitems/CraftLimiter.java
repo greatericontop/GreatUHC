@@ -29,6 +29,7 @@ public class CraftLimiter implements Listener {
     private final Map<UUID, Integer> crafts_expertSeal = new HashMap<>();
     private final Map<UUID, Integer> crafts_deusExMachina = new HashMap<>();
     private final Map<UUID, Integer> crafts_chestOfFate = new HashMap<>();
+    private final Map<UUID, Integer> crafts_holyWater = new HashMap<>();
 
     private final GreatUHCMain plugin;
     public CraftLimiter(GreatUHCMain plugin) {
@@ -48,6 +49,7 @@ public class CraftLimiter implements Listener {
         crafts_expertSeal.clear();
         crafts_deusExMachina.clear();
         crafts_chestOfFate.clear();
+        crafts_holyWater.clear();
     }
 
     private int findNumberInCraftingTable(CraftItemEvent event) {
@@ -120,6 +122,7 @@ public class CraftLimiter implements Listener {
                     }.runTaskLater(plugin, 1L);
                 }
             }
+            case "holy_water" -> handleLimitedCraft(event, crafts_holyWater, 3);
         }
     }
 

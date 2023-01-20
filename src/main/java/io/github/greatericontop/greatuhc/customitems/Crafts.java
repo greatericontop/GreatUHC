@@ -309,6 +309,23 @@ public class Crafts implements Listener {
         chestOfFateRecipe.setIngredient('H', Material.PLAYER_HEAD);
         Bukkit.getServer().addRecipe(chestOfFateRecipe);
 
+        ItemStack holyWater = new ItemStack(Material.POTION, 1);
+        PotionMeta im19 = (PotionMeta) holyWater.getItemMeta();
+        im19.setDisplayName("§7Holy Water");
+        im19.addCustomEffect(new PotionEffect(PotionEffectType.HEAL, 1, 2), true);
+        holyWater.setItemMeta(im19);
+        ShapedRecipe holyWaterRecipe = new ShapedRecipe(new NamespacedKey("uhc", "holy_water"), holyWater);
+        holyWaterRecipe.shape("gRg", "gMg", " b ");
+        holyWaterRecipe.setIngredient('g', Material.GOLD_INGOT);
+        holyWaterRecipe.setIngredient('R', Material.REDSTONE_BLOCK);
+        holyWaterRecipe.setIngredient('M', new RecipeChoice.MaterialChoice(
+                Material.MUSIC_DISC_11, Material.MUSIC_DISC_13, Material.MUSIC_DISC_BLOCKS, Material.MUSIC_DISC_CAT,
+                Material.MUSIC_DISC_CHIRP, Material.MUSIC_DISC_FAR, Material.MUSIC_DISC_MALL, Material.MUSIC_DISC_MELLOHI,
+                Material.MUSIC_DISC_STAL, Material.MUSIC_DISC_STRAD, Material.MUSIC_DISC_WAIT, Material.MUSIC_DISC_WARD,
+                Material.MUSIC_DISC_OTHERSIDE, Material.MUSIC_DISC_PIGSTEP));
+        holyWaterRecipe.setIngredient('b', Material.GLASS_BOTTLE);
+        Bukkit.getServer().addRecipe(holyWaterRecipe);
+
     }
 
 }
