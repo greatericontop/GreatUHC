@@ -9,6 +9,7 @@ import io.github.greatericontop.greatuhc.mechanics.HealingListener;
 import io.github.greatericontop.greatuhc.mechanics.ItemDropListener;
 import io.github.greatericontop.greatuhc.mechanics.MobSpawning;
 import io.github.greatericontop.greatuhc.mechanics.OldPVP;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -45,6 +46,12 @@ public class GreatUHCMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new OldPVP(), this);
 
         this.getCommand("greatuhc").setExecutor(new GreatUHCCommand(this));
+
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            new Placeholders(this).register();
+        } else {
+            getLogger().warning("PlaceholderAPI not found, you will lose its functionality");
+        }
 
         this.getLogger().info("GreatUHC finished setting up!");
 

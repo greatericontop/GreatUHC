@@ -4,6 +4,8 @@ main: io.github.greatericontop.greatuhc.GreatUHCMain
 api-version: 1.18
 authors: [greateric]
 
+softdepend: [PlaceholderAPI]
+
 commands:
     uhc:
         description: 'GreatUHC command'
