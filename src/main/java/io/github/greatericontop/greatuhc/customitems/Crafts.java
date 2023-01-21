@@ -337,6 +337,20 @@ public class Crafts implements Listener {
         undeadBowRecipe.setIngredient('B', Material.BONE);
         Bukkit.getServer().addRecipe(undeadBowRecipe);
 
+        ItemStack artemisBow = new ItemStack(Material.BOW, 1);
+        ItemMeta im21 = artemisBow.getItemMeta();
+        im21.setDisplayName("§5Artemis Bow");
+        im21.setLore(List.of("id: ARTEMIS_BOW", "§7WeaponMaster", "§7Arrows shot from this bow", "§7will always hit their target!"));
+        im21.addEnchant(Enchantment.DURABILITY, 1, true);
+        artemisBow.setItemMeta(im21);
+        ShapedRecipe artemisBowRecipe = new ShapedRecipe(new NamespacedKey("uhc", "artemis_bow"), artemisBow);
+        artemisBowRecipe.shape("fEf", "fBf", "fDf");
+        artemisBowRecipe.setIngredient('f', Material.FEATHER);
+        artemisBowRecipe.setIngredient('E', Material.ENDER_EYE);
+        artemisBowRecipe.setIngredient('B', Material.BOW);
+        artemisBowRecipe.setIngredient('D', Material.DIAMOND);
+        Bukkit.getServer().addRecipe(artemisBowRecipe);
+
     }
 
 }

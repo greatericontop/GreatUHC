@@ -145,6 +145,10 @@ public class DamageEngine implements Listener {
                     if (lore != null && lore.get(0).equals("Undead")) {
                         multi += 0.2;
                     }
+                    if (lore != null && lore.get(0).equals("id: ARTEMIS_BOW")) {
+                        // Artemis damage is much lower
+                        multi -= 0.15;
+                    }
                 }
             }
         }
