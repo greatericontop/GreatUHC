@@ -326,6 +326,17 @@ public class Crafts implements Listener {
         holyWaterRecipe.setIngredient('b', Material.GLASS_BOTTLE);
         Bukkit.getServer().addRecipe(holyWaterRecipe);
 
+        ItemStack undeadBow = new ItemStack(Material.BOW, 1);
+        ItemMeta im20 = undeadBow.getItemMeta();
+        im20.setDisplayName("§9Undead Bow");
+        im20.setLore(List.of("Undead", "§7Arrows deal more damage."));
+        ShapedRecipe undeadBowRecipe = new ShapedRecipe(new NamespacedKey("uhc", "undead_bow"), undeadBow);
+        undeadBowRecipe.shape(" tS", "tBS", " tS");
+        undeadBowRecipe.setIngredient('t', Material.REDSTONE_TORCH);
+        undeadBowRecipe.setIngredient('S', Material.STRING);
+        undeadBowRecipe.setIngredient('B', Material.BONE);
+        Bukkit.getServer().addRecipe(undeadBowRecipe);
+
     }
 
 }

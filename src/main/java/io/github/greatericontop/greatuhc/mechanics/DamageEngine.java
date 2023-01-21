@@ -15,7 +15,10 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.projectiles.ProjectileSource;
+
+import java.util.List;
 
 public class DamageEngine implements Listener {
 
@@ -132,9 +135,19 @@ public class DamageEngine implements Listener {
     public void onShootBow(EntityShootBowEvent event) {
         if (!(event.getProjectile() instanceof AbstractArrow))  return;
         AbstractArrow projectile = (AbstractArrow) event.getProjectile();
-        double multi = 0.8;
-        // TODO: undead bow
-        // if (event.getEntity() instanceof Player) {}
+        double multi = 0.65;
+        if (event.getEntity() instanceof Player) {
+            ItemStack bow = event.getBow();
+            if (bow != null) {
+                ItemMeta im = bow.getItemMeta();
+                if (im != null) {
+                    List<String> lore = im.getLore();
+                    if (lore != null && lore.get(0).equals("Undead")) {
+                        multi += 0.2;
+                    }
+                }
+            }
+        }
         projectile.setDamage(projectile.getDamage() * multi);
     }
 
