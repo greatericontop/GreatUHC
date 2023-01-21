@@ -2,6 +2,7 @@ package io.github.greatericontop.greatuhc.mechanics;
 
 import io.github.greatericontop.greatuhc.GreatUHCMain;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
@@ -12,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.projectiles.ProjectileSource;
 
@@ -124,6 +126,16 @@ public class DamageEngine implements Listener {
             event.setDamage(event.getDamage() + adjustedBonusDamage);
             plugin.debugMsg(player, "sharpness buff +%.2f, new damage §f%.2f", adjustedBonusDamage, event.getDamage());
         }
+    }
+
+    @EventHandler()
+    public void onShootBow(EntityShootBowEvent event) {
+        if (!(event.getProjectile() instanceof AbstractArrow))  return;
+        AbstractArrow projectile = (AbstractArrow) event.getProjectile();
+        double multi = 0.8;
+        // TODO: undead bow
+        // if (event.getEntity() instanceof Player) {}
+        projectile.setDamage(projectile.getDamage() * multi);
     }
 
 }
