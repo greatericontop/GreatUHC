@@ -118,12 +118,6 @@ public class ItemDropListener implements Listener {
                 event.getDrops().add(new ItemStack(Material.GUNPOWDER, 1));
             }
         }
-        if (victim.getType() == EntityType.BLAZE) {
-            if (event.getDrops().size() == 0) {
-                // always drop a blaze rod (add one if it doesn't drop)
-                event.getDrops().add(new ItemStack(Material.BLAZE_ROD, 1));
-            }
-        }
     }
 
 }
