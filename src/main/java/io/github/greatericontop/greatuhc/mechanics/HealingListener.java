@@ -2,6 +2,7 @@ package io.github.greatericontop.greatuhc.mechanics;
 
 import io.github.greatericontop.greatuhc.GreatUHCMain;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -13,6 +14,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -40,16 +42,21 @@ public class HealingListener implements Listener {
 
     @EventHandler()
     public void onClickHead(PlayerInteractEvent event) {
-        if (event.getHand() != EquipmentSlot.HAND)  return;
+        if (event.getHand() != EquipmentSlot.HAND) return;
         if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK
-                && event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK)  return;
+                && event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK) return;
         Player player = event.getPlayer();
         ItemStack item = player.getInventory().getItemInMainHand();
         if (item.getType() != Material.PLAYER_HEAD) {
             return;
         }
-        player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 300, 1)); // 6 hearts
-        player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 4800, 0));
+        ItemMeta im = item.getItemMeta();
+        if (im != null && im.getPersistentDataContainer().has(new NamespacedKey("uhc", "golden_head"))) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 120, 3)); // 10 hearts
+            player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 4800, 0));
+        } else {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 200, 1)); // 4 hearts
+        }
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 500, 1));
         if (plugin.uhcPowerfulHeads) {
             player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 400, 0));

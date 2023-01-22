@@ -15,6 +15,8 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -389,6 +391,19 @@ public class Crafts implements Listener {
         deathScytheRecipe.setIngredient('C', Material.CLOCK);
         deathScytheRecipe.setIngredient('B', Material.BLAZE_POWDER);
         Bukkit.getServer().addRecipe(deathScytheRecipe);
+
+        ItemStack goldenHead = new ItemStack(Material.PLAYER_HEAD, 1);
+        SkullMeta im24 = (SkullMeta) goldenHead.getItemMeta();
+        im24.setDisplayName("§6Golden Head");
+        // https://namemc.com/skin/4ed16e1139f0f81f
+        im24.setOwningPlayer(Bukkit.getOfflinePlayer("_GoldenHead"));
+        im24.getPersistentDataContainer().set(new NamespacedKey("uhc", "golden_head"), PersistentDataType.INTEGER, 1);
+        goldenHead.setItemMeta(im24);
+        ShapedRecipe goldenHeadRecipe = new ShapedRecipe(new NamespacedKey("uhc", "golden_head"), goldenHead);
+        goldenHeadRecipe.shape("ggg", "gHg", "ggg");
+        goldenHeadRecipe.setIngredient('g', Material.GOLD_INGOT);
+        goldenHeadRecipe.setIngredient('H', Material.PLAYER_HEAD);
+        Bukkit.getServer().addRecipe(goldenHeadRecipe);
 
     }
 
