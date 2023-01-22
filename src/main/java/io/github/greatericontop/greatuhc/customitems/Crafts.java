@@ -405,6 +405,22 @@ public class Crafts implements Listener {
         goldenHeadRecipe.setIngredient('H', Material.PLAYER_HEAD);
         Bukkit.getServer().addRecipe(goldenHeadRecipe);
 
+        ItemStack bookOfThoth = new ItemStack(Material.ENCHANTED_BOOK, 1);
+        EnchantmentStorageMeta im25 = (EnchantmentStorageMeta) bookOfThoth.getItemMeta();
+        im25.setDisplayName("§cBook of Thoth");
+        im25.addStoredEnchant(Enchantment.DAMAGE_ALL, 2, true);
+        im25.addStoredEnchant(Enchantment.FIRE_ASPECT, 1, true);
+        im25.addStoredEnchant(Enchantment.ARROW_DAMAGE, 2, true);
+        im25.addStoredEnchant(Enchantment.ARROW_KNOCKBACK, 1, true);
+        im25.addStoredEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, true);
+        bookOfThoth.setItemMeta(im25);
+        ShapedRecipe bookOfThothRecipe = new ShapedRecipe(new NamespacedKey("uhc", "book_of_thoth"), bookOfThoth);
+        bookOfThothRecipe.shape("E  ", " pp", " pF");
+        bookOfThothRecipe.setIngredient('E', Material.ENDER_PEARL);
+        bookOfThothRecipe.setIngredient('p', Material.PAPER);
+        bookOfThothRecipe.setIngredient('F', Material.FIRE_CHARGE);
+        Bukkit.getServer().addRecipe(bookOfThothRecipe);
+
     }
 
 }
