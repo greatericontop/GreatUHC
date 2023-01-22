@@ -367,6 +367,14 @@ public class Crafts implements Listener {
         philosopherPickaxeRecipe.setIngredient('s', Material.STICK);
         Bukkit.getServer().addRecipe(philosopherPickaxeRecipe);
 
+        ItemStack arrowEconomy = new ItemStack(Material.ARROW, 20);
+        ShapedRecipe arrowEconomyRecipe = new ShapedRecipe(new NamespacedKey("uhc", "arrow_economy"), arrowEconomy);
+        arrowEconomyRecipe.shape("FFF", "sss", "fff");
+        arrowEconomyRecipe.setIngredient('F', Material.FLINT);
+        arrowEconomyRecipe.setIngredient('s', Material.STICK);
+        arrowEconomyRecipe.setIngredient('f', Material.FEATHER);
+        Bukkit.getServer().addRecipe(arrowEconomyRecipe);
+
     }
 
 }
