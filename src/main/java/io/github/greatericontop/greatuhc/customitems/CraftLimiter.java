@@ -17,20 +17,8 @@ import java.util.UUID;
 
 public class CraftLimiter implements Listener {
 
-    private final Map<UUID, Integer> crafts_lightApple = new HashMap<>();
-    private final Map<UUID, Integer> crafts_sharpBook = new HashMap<>();
-    private final Map<UUID, Integer> crafts_apprenticeHelmet = new HashMap<>();
-    private final Map<UUID, Integer> crafts_tarnhelm = new HashMap<>();
-    private final Map<UUID, Integer> crafts_corn = new HashMap<>();
-    private final Map<UUID, Integer> crafts_flamingArtifact = new HashMap<>();
-    private final Map<UUID, Integer> crafts_netherBlessing = new HashMap<>();
-    private final Map<UUID, Integer> crafts_enhancementBook = new HashMap<>();
-    private final Map<UUID, Integer> crafts_protectionBook = new HashMap<>();
-    private final Map<UUID, Integer> crafts_expertSeal = new HashMap<>();
-    private final Map<UUID, Integer> crafts_deusExMachina = new HashMap<>();
-    private final Map<UUID, Integer> crafts_chestOfFate = new HashMap<>();
-    private final Map<UUID, Integer> crafts_holyWater = new HashMap<>();
-    private final Map<UUID, Integer> crafts_philosopherPickaxe = new HashMap<>();
+    // maps an item craft (identified by its key) to a map of player UUID to number crafted
+    private final Map<String, Map<UUID, Integer>> crafts = new HashMap<>();
 
     private final GreatUHCMain plugin;
     public CraftLimiter(GreatUHCMain plugin) {
@@ -38,20 +26,7 @@ public class CraftLimiter implements Listener {
     }
 
     public void clearCrafts() {
-        crafts_lightApple.clear();
-        crafts_sharpBook.clear();
-        crafts_apprenticeHelmet.clear();
-        crafts_tarnhelm.clear();
-        crafts_corn.clear();
-        crafts_flamingArtifact.clear();
-        crafts_netherBlessing.clear();
-        crafts_enhancementBook.clear();
-        crafts_protectionBook.clear();
-        crafts_expertSeal.clear();
-        crafts_deusExMachina.clear();
-        crafts_chestOfFate.clear();
-        crafts_holyWater.clear();
-        crafts_philosopherPickaxe.clear();
+        crafts.clear();
     }
 
     private int findNumberInCraftingTable(CraftItemEvent event) {
@@ -67,8 +42,13 @@ public class CraftLimiter implements Listener {
         return minNumber;
     }
 
-    private void handleLimitedCraft(CraftItemEvent event, Map<UUID, Integer> craftMap, int craftLimit) {
+    private void handleLimitedCraft(String craftMapKey, CraftItemEvent event, int craftLimit) {
         UUID uuid = event.getWhoClicked().getUniqueId();
+        if (!crafts.containsKey(craftMapKey)) {
+            crafts.put(craftMapKey, new HashMap<>());
+        }
+        Map<UUID, Integer> craftMap = crafts.get(craftMapKey);
+
         int craftsAlready = craftMap.getOrDefault(uuid, 0);
         if (craftsAlready >= craftLimit) { // can't make more
             event.setCancelled(true);
@@ -84,6 +64,7 @@ public class CraftLimiter implements Listener {
         }
     }
 
+    @SuppressWarnings("DuplicateBranchesInSwitch")
     @EventHandler()
     public void onCraft(CraftItemEvent event) {
         if (!(event.getRecipe() instanceof ShapedRecipe)) {
@@ -94,25 +75,25 @@ public class CraftLimiter implements Listener {
         if (!key.getNamespace().equals("uhc")) {
             return;
         }
-        UUID uuid = event.getWhoClicked().getUniqueId();
+        String craftKey = key.getKey();
 
-        switch (key.getKey()) {
-            case "light_apple" -> handleLimitedCraft(event, crafts_lightApple, 2);
-            case "sharp_book" -> handleLimitedCraft(event, crafts_sharpBook, 4);
-            case "apprentice_helmet" -> handleLimitedCraft(event, crafts_apprenticeHelmet, 1);
-            case "tarnhelm" -> handleLimitedCraft(event, crafts_tarnhelm, 1);
-            case "corn" -> handleLimitedCraft(event, crafts_corn, 1);
-            case "flaming_artifact" -> handleLimitedCraft(event, crafts_flamingArtifact, 1);
-            case "nether_blessing" -> handleLimitedCraft(event, crafts_netherBlessing, 1);
-            case "enhancement_book" -> handleLimitedCraft(event, crafts_enhancementBook, 1);
-            case "protection_book" -> handleLimitedCraft(event, crafts_protectionBook, 4);
-            case "expert_seal" -> handleLimitedCraft(event, crafts_expertSeal, 1);
+        switch (craftKey) {
+            case "light_apple" -> handleLimitedCraft(craftKey, event, 2);
+            case "sharp_book" -> handleLimitedCraft(craftKey, event, 4);
+            case "apprentice_helmet" -> handleLimitedCraft(craftKey, event, 1);
+            case "tarnhelm" -> handleLimitedCraft(craftKey, event, 1);
+            case "corn" -> handleLimitedCraft(craftKey, event, 1);
+            case "flaming_artifact" -> handleLimitedCraft(craftKey, event, 1);
+            case "nether_blessing" -> handleLimitedCraft(craftKey, event, 1);
+            case "enhancement_book" -> handleLimitedCraft(craftKey, event, 1);
+            case "protection_book" -> handleLimitedCraft(craftKey, event, 4);
+            case "expert_seal" -> handleLimitedCraft(craftKey, event, 1);
             case "deus_ex_machina" -> {
-                handleLimitedCraft(event, crafts_deusExMachina, 1);
+                handleLimitedCraft(craftKey, event, 1);
                 event.getWhoClicked().setHealth(event.getWhoClicked().getHealth() * 0.5);
             }
             case "chest_of_fate" -> {
-                handleLimitedCraft(event, crafts_chestOfFate, 1);
+                handleLimitedCraft(craftKey, event, 1);
                 if (Math.random() < 0.5 && !event.isCancelled()) { // 50% chance to blow up when successfully crafted
                     Player player = (Player) event.getWhoClicked();
                     event.getInventory().setResult(new ItemStack(Material.COAL, 2));
@@ -124,8 +105,8 @@ public class CraftLimiter implements Listener {
                     }.runTaskLater(plugin, 1L);
                 }
             }
-            case "holy_water" -> handleLimitedCraft(event, crafts_holyWater, 3);
-            case "philosopher_pickaxe" -> handleLimitedCraft(event, crafts_philosopherPickaxe, 2);
+            case "holy_water" -> handleLimitedCraft(craftKey, event, 3);
+            case "philosopher_pickaxe" -> handleLimitedCraft(craftKey, event, 2);
         }
     }
 
