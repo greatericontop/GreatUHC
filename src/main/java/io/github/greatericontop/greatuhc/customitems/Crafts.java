@@ -356,7 +356,6 @@ public class Crafts implements Listener {
         ItemStack philosopherPickaxe = new ItemStack(Material.DIAMOND_PICKAXE, 1);
         Damageable im22 = (Damageable) philosopherPickaxe.getItemMeta();
         im22.setDisplayName("§ePhilosopher Pickaxe");
-        im22.addEnchant(Enchantment.DIG_SPEED, 4, true);
         im22.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 2, true);
         im22.setDamage(1561 - 3);
         philosopherPickaxe.setItemMeta(im22);
