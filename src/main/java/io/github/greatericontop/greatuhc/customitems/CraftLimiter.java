@@ -30,6 +30,7 @@ public class CraftLimiter implements Listener {
     private final Map<UUID, Integer> crafts_deusExMachina = new HashMap<>();
     private final Map<UUID, Integer> crafts_chestOfFate = new HashMap<>();
     private final Map<UUID, Integer> crafts_holyWater = new HashMap<>();
+    private final Map<UUID, Integer> crafts_philosopherPickaxe = new HashMap<>();
 
     private final GreatUHCMain plugin;
     public CraftLimiter(GreatUHCMain plugin) {
@@ -50,6 +51,7 @@ public class CraftLimiter implements Listener {
         crafts_deusExMachina.clear();
         crafts_chestOfFate.clear();
         crafts_holyWater.clear();
+        crafts_philosopherPickaxe.clear();
     }
 
     private int findNumberInCraftingTable(CraftItemEvent event) {
@@ -123,6 +125,7 @@ public class CraftLimiter implements Listener {
                 }
             }
             case "holy_water" -> handleLimitedCraft(event, crafts_holyWater, 3);
+            case "philosopher_pickaxe" -> handleLimitedCraft(event, crafts_philosopherPickaxe, 2);
         }
     }
 

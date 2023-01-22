@@ -11,6 +11,7 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
@@ -350,6 +351,21 @@ public class Crafts implements Listener {
         artemisBowRecipe.setIngredient('B', Material.BOW);
         artemisBowRecipe.setIngredient('D', Material.DIAMOND);
         Bukkit.getServer().addRecipe(artemisBowRecipe);
+
+        ItemStack philosopherPickaxe = new ItemStack(Material.DIAMOND_PICKAXE, 1);
+        Damageable im22 = (Damageable) philosopherPickaxe.getItemMeta();
+        im22.setDisplayName("§ePhilosopher Pickaxe");
+        im22.addEnchant(Enchantment.DIG_SPEED, 4, true);
+        im22.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 2, true);
+        im22.setDamage(1561 - 3);
+        philosopherPickaxe.setItemMeta(im22);
+        ShapedRecipe philosopherPickaxeRecipe = new ShapedRecipe(new NamespacedKey("uhc", "philosopher_pickaxe"), philosopherPickaxe);
+        philosopherPickaxeRecipe.shape("igi", "LsL", " s ");
+        philosopherPickaxeRecipe.setIngredient('i', Material.IRON_INGOT);
+        philosopherPickaxeRecipe.setIngredient('g', Material.GOLD_INGOT);
+        philosopherPickaxeRecipe.setIngredient('L', Material.LAPIS_BLOCK);
+        philosopherPickaxeRecipe.setIngredient('s', Material.STICK);
+        Bukkit.getServer().addRecipe(philosopherPickaxeRecipe);
 
     }
 
