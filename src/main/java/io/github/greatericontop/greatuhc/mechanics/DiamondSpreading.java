@@ -35,7 +35,7 @@ public class DiamondSpreading implements Listener {
         if (blockType != Material.DIAMOND_ORE && blockType != Material.DEEPSLATE_DIAMOND_ORE) {
             return;
         }
-        if (Math.random() >= 0.3) {
+        if (Math.random() >= 0.24) {
             return;
         }
         // Make one attempt to spawn a diamond ore.
