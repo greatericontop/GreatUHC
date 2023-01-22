@@ -375,6 +375,21 @@ public class Crafts implements Listener {
         arrowEconomyRecipe.setIngredient('f', Material.FEATHER);
         Bukkit.getServer().addRecipe(arrowEconomyRecipe);
 
+        ItemStack deathScythe = new ItemStack(Material.IRON_HOE, 1);
+        ItemMeta im23 = deathScythe.getItemMeta();
+        im23.setDisplayName("§cDeath's Scythe");
+        im23.setLore(List.of("id: DEATH_SCYTHE", "§7WeaponMaster",
+                "§7Deals increasing true damage to your enemies!", "§7Gain §cStrength §7based on the damage dealt."));
+        deathScythe.setItemMeta(im23);
+        ShapedRecipe deathScytheRecipe = new ShapedRecipe(new NamespacedKey("uhc", "death_scythe"), deathScythe);
+        deathScytheRecipe.shape("DDH", "DbC", "b B");
+        deathScytheRecipe.setIngredient('D', Material.DIAMOND);
+        deathScytheRecipe.setIngredient('H', Material.PLAYER_HEAD);
+        deathScytheRecipe.setIngredient('b', Material.BONE);
+        deathScytheRecipe.setIngredient('C', Material.CLOCK);
+        deathScytheRecipe.setIngredient('B', Material.BLAZE_POWDER);
+        Bukkit.getServer().addRecipe(deathScytheRecipe);
+
     }
 
 }
