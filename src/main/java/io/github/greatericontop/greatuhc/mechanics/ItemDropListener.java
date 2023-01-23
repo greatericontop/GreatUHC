@@ -4,6 +4,7 @@ import io.github.greatericontop.greatuhc.GreatUHCMain;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -103,7 +104,7 @@ public class ItemDropListener implements Listener {
     }
 
     @EventHandler()
-    public void onDeath(EntityDeathEvent event) {
+    public void onDeathItemDrops(EntityDeathEvent event) {
         LivingEntity victim = event.getEntity();
         if (victim.getType() == EntityType.SKELETON) {
             // additional arrows & small chance to drop a full durability bow
@@ -117,6 +118,23 @@ public class ItemDropListener implements Listener {
             if (Math.random() < 0.6) {
                 event.getDrops().add(new ItemStack(Material.GUNPOWDER, 1));
             }
+        }
+    }
+
+    @EventHandler()
+    public void onDeathExperienceDrops(EntityDeathEvent event) {
+        LivingEntity victim = event.getEntity();
+        if (victim.getType() == EntityType.PLAYER) {
+            Player victimPlayer = (Player) victim;
+            // Players drop 100% their XP on death (with a much more generous limit of 0->40 levels).
+            int totalXp = victimPlayer.getTotalExperience();
+            event.setDroppedExp(Math.min(totalXp, 3000));
+        } else {
+            // All other entities drop more XP (probability rounded).
+            double newXpRaw = event.getDroppedExp() * 1.4;
+            int newXp = (int) newXpRaw;
+            newXp += Math.random() < (newXpRaw - newXp) ? 1 : 0;
+            event.setDroppedExp(newXp);
         }
     }
 
