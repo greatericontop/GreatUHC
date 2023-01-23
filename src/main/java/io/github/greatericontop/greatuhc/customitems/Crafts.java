@@ -11,6 +11,7 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -431,6 +432,12 @@ public class Crafts implements Listener {
         bookOfPowerRecipe.setIngredient('B', Material.BONE);
         bookOfPowerRecipe.setIngredient('p', Material.PAPER);
         Bukkit.getServer().addRecipe(bookOfPowerRecipe);
+
+        ItemStack appleEconomy = new ItemStack(Material.APPLE, 2);
+        ShapelessRecipe appleEconomyRecipe = new ShapelessRecipe(new NamespacedKey("uhc", "apple_economy"), appleEconomy);
+        appleEconomyRecipe.addIngredient(Material.APPLE);
+        appleEconomyRecipe.addIngredient(Material.BONE_MEAL);
+        Bukkit.getServer().addRecipe(appleEconomyRecipe);
 
     }
 

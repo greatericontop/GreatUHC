@@ -9,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
@@ -67,11 +68,14 @@ public class CraftLimiter implements Listener {
     @SuppressWarnings("DuplicateBranchesInSwitch")
     @EventHandler()
     public void onCraft(CraftItemEvent event) {
-        if (!(event.getRecipe() instanceof ShapedRecipe)) {
+        NamespacedKey key;
+        if (event.getRecipe() instanceof ShapedRecipe recipe) {
+            key = recipe.getKey();
+        } else if (event.getRecipe() instanceof ShapelessRecipe recipe) {
+            key = recipe.getKey();
+        } else {
             return;
         }
-        ShapedRecipe recipe = (ShapedRecipe) event.getRecipe();
-        NamespacedKey key = recipe.getKey();
         if (!key.getNamespace().equals("uhc")) {
             return;
         }
@@ -112,6 +116,7 @@ public class CraftLimiter implements Listener {
             case "golden_head" -> handleLimitedCraft(craftKey, event, 2);
             case "book_of_thoth" -> handleLimitedCraft(craftKey, event, 1);
             case "power_book" -> handleLimitedCraft(craftKey, event, 3);
+            case "apple_economy" -> handleLimitedCraft(craftKey, event, 3);
         }
     }
 
