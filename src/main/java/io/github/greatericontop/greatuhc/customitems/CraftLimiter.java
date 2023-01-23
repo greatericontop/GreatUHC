@@ -111,6 +111,7 @@ public class CraftLimiter implements Listener {
             case "death_scythe" -> handleLimitedCraft(craftKey, event, 1);
             case "golden_head" -> handleLimitedCraft(craftKey, event, 2);
             case "book_of_thoth" -> handleLimitedCraft(craftKey, event, 1);
+            case "power_book" -> handleLimitedCraft(craftKey, event, 3);
         }
     }
 

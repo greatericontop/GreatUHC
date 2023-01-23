@@ -421,6 +421,17 @@ public class Crafts implements Listener {
         bookOfThothRecipe.setIngredient('F', Material.FIRE_CHARGE);
         Bukkit.getServer().addRecipe(bookOfThothRecipe);
 
+        ItemStack powerBook = new ItemStack(Material.ENCHANTED_BOOK, 1);
+        EnchantmentStorageMeta im26 = (EnchantmentStorageMeta) powerBook.getItemMeta();
+        im26.setDisplayName("§cBook of Power");
+        im26.addStoredEnchant(Enchantment.ARROW_DAMAGE, 1, true);
+        powerBook.setItemMeta(im26);
+        ShapedRecipe bookOfPowerRecipe = new ShapedRecipe(new NamespacedKey("uhc", "power_book"), powerBook);
+        bookOfPowerRecipe.shape("B  ", " pp", " pB");
+        bookOfPowerRecipe.setIngredient('B', Material.BONE);
+        bookOfPowerRecipe.setIngredient('p', Material.PAPER);
+        Bukkit.getServer().addRecipe(bookOfPowerRecipe);
+
     }
 
 }
