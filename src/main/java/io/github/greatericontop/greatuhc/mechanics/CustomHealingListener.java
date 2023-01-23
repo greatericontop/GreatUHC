@@ -19,10 +19,10 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class HealingListener implements Listener {
+public class CustomHealingListener implements Listener {
 
     private final GreatUHCMain plugin;
-    public HealingListener(GreatUHCMain plugin) {
+    public CustomHealingListener(GreatUHCMain plugin) {
         this.plugin = plugin;
     }
 

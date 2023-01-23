@@ -20,10 +20,10 @@ import org.bukkit.projectiles.ProjectileSource;
 
 import java.util.List;
 
-public class DamageEngine implements Listener {
+public class UHCCustomDamage implements Listener {
 
     private final GreatUHCMain plugin;
-    public DamageEngine(GreatUHCMain plugin) {
+    public UHCCustomDamage(GreatUHCMain plugin) {
         this.plugin = plugin;
     }
 

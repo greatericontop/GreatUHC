@@ -3,9 +3,9 @@ package io.github.greatericontop.greatuhc;
 import io.github.greatericontop.greatuhc.customitems.CraftLimiter;
 import io.github.greatericontop.greatuhc.customitems.Crafts;
 import io.github.greatericontop.greatuhc.customitems.EnhancementBookListener;
-import io.github.greatericontop.greatuhc.mechanics.DamageEngine;
+import io.github.greatericontop.greatuhc.mechanics.UHCCustomDamage;
 import io.github.greatericontop.greatuhc.mechanics.DiamondSpreading;
-import io.github.greatericontop.greatuhc.mechanics.HealingListener;
+import io.github.greatericontop.greatuhc.mechanics.CustomHealingListener;
 import io.github.greatericontop.greatuhc.mechanics.ItemDropListener;
 import io.github.greatericontop.greatuhc.mechanics.MobSpawning;
 import io.github.greatericontop.greatuhc.mechanics.OldPVP;
@@ -38,9 +38,9 @@ public class GreatUHCMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(craftLimiter, this);
         this.getServer().getPluginManager().registerEvents(new EnhancementBookListener(), this);
 
-        this.getServer().getPluginManager().registerEvents(new DamageEngine(this), this);
+        this.getServer().getPluginManager().registerEvents(new UHCCustomDamage(this), this);
         this.getServer().getPluginManager().registerEvents(new DiamondSpreading(), this);
-        this.getServer().getPluginManager().registerEvents(new HealingListener(this), this);
+        this.getServer().getPluginManager().registerEvents(new CustomHealingListener(this), this);
         this.getServer().getPluginManager().registerEvents(new ItemDropListener(this), this);
         this.getServer().getPluginManager().registerEvents(new MobSpawning(), this);
         this.getServer().getPluginManager().registerEvents(new OldPVP(), this);
