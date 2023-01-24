@@ -7,10 +7,10 @@ authors: [greateric]
 softdepend: [PlaceholderAPI]
 
 commands:
-    uhc:
+    greatuhc:
         description: 'GreatUHC command'
-        usage: '§cusage: /uhc'
-        aliases: [greatuhc]
+        usage: '§cusage: /greatuhc'
+        aliases: [uhc]
     uhcrecipes:
         description: 'GreatUHC unlock recipes command'
         usage: '§cusage: /uhcrecipes'
