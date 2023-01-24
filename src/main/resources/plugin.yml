@@ -11,3 +11,7 @@ commands:
         description: 'GreatUHC command'
         usage: '§cusage: /uhc'
         aliases: [greatuhc]
+    uhcrecipes:
+        description: 'GreatUHC unlock recipes command'
+        usage: '§cusage: /uhcrecipes'
+        aliases: [custom-recipes]
