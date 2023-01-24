@@ -439,6 +439,20 @@ public class Crafts implements Listener {
         appleEconomyRecipe.addIngredient(Material.BONE_MEAL);
         Bukkit.getServer().addRecipe(appleEconomyRecipe);
 
+        ItemStack shoesOfVidar = new ItemStack(Material.DIAMOND_BOOTS, 1);
+        ItemMeta im27 = shoesOfVidar.getItemMeta();
+        im27.setDisplayName("§9Shoes of Vidar");
+        im27.addEnchant(Enchantment.DEPTH_STRIDER, 2, false);
+        im27.addEnchant(Enchantment.DURABILITY, 2, false);
+        shoesOfVidar.setItemMeta(im27);
+        ShapedRecipe shoesOfVidarRecipe = new ShapedRecipe(new NamespacedKey("uhc", "shoes_of_vidar"), shoesOfVidar);
+        shoesOfVidarRecipe.shape(" X ", "tBt", " r ");
+        shoesOfVidarRecipe.setIngredient('X', new RecipeChoice.MaterialChoice(Material.AXOLOTL_BUCKET, Material.PUFFERFISH));
+        shoesOfVidarRecipe.setIngredient('t', Material.TROPICAL_FISH);
+        shoesOfVidarRecipe.setIngredient('B', Material.DIAMOND_BOOTS);
+        shoesOfVidarRecipe.setIngredient('r', Material.FISHING_ROD);
+        Bukkit.getServer().addRecipe(shoesOfVidarRecipe);
+
     }
 
 }
