@@ -466,6 +466,19 @@ public class Crafts implements Listener {
         warlockPantsRecipe.setIngredient('i', Material.IRON_BLOCK);
         Bukkit.getServer().addRecipe(warlockPantsRecipe);
 
+        ItemStack cupidsBow = new ItemStack(Material.BOW, 1);
+        ItemMeta im29 = cupidsBow.getItemMeta();
+        im29.setDisplayName("§cCupid's Bow");
+        im29.addEnchant(Enchantment.ARROW_FIRE, 1, false);
+        cupidsBow.setItemMeta(im29);
+        ShapedRecipe cupidsBowRecipe = new ShapedRecipe(new NamespacedKey("uhc", "cupids_bow"), cupidsBow);
+        cupidsBowRecipe.shape(" H ", "bBb", " L ");
+        cupidsBowRecipe.setIngredient('H', Material.PLAYER_HEAD);
+        cupidsBowRecipe.setIngredient('b', Material.BLAZE_ROD);
+        cupidsBowRecipe.setIngredient('B', Material.BOW);
+        cupidsBowRecipe.setIngredient('L', Material.LAVA_BUCKET);
+        Bukkit.getServer().addRecipe(cupidsBowRecipe);
+
     }
 
 }
