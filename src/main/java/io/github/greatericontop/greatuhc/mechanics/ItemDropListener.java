@@ -119,6 +119,12 @@ public class ItemDropListener implements Listener {
                 event.getDrops().add(new ItemStack(Material.GUNPOWDER, 1));
             }
         }
+        if (victim.getType() == EntityType.ENDERMAN) {
+            // always drop a pearl
+            if (event.getDrops().isEmpty()) {
+                event.getDrops().add(new ItemStack(Material.ENDER_PEARL, 1));
+            }
+        }
     }
 
     @EventHandler()
