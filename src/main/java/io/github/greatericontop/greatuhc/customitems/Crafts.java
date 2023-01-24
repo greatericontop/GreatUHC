@@ -21,6 +21,7 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -452,6 +453,18 @@ public class Crafts implements Listener {
         shoesOfVidarRecipe.setIngredient('B', Material.DIAMOND_BOOTS);
         shoesOfVidarRecipe.setIngredient('r', Material.FISHING_ROD);
         Bukkit.getServer().addRecipe(shoesOfVidarRecipe);
+
+        ItemStack warlockPants = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
+        ItemMeta im28 = warlockPants.getItemMeta();
+        im28.setDisplayName("§7Warlock Pants");
+        im28.setLore(Arrays.asList("id: WARLOCK_PANTS", "§7WeaponMaster", "§3Permanent §cStrength §3while wearing!"));
+        warlockPants.setItemMeta(im28);
+        ShapedRecipe warlockPantsRecipe = new ShapedRecipe(new NamespacedKey("uhc", "warlock_pants"), warlockPants);
+        warlockPantsRecipe.shape("bLb", "ibi");
+        warlockPantsRecipe.setIngredient('b', Material.BLAZE_ROD);
+        warlockPantsRecipe.setIngredient('L', Material.DIAMOND_LEGGINGS);
+        warlockPantsRecipe.setIngredient('i', Material.IRON_BLOCK);
+        Bukkit.getServer().addRecipe(warlockPantsRecipe);
 
     }
 
