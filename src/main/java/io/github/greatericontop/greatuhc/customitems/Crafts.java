@@ -333,7 +333,7 @@ public class Crafts implements Listener {
 
         ItemStack undeadBow = new ItemStack(Material.BOW, 1);
         ItemMeta im20 = undeadBow.getItemMeta();
-        im20.setDisplayName("§9Undead Bow");
+        im20.setDisplayName("§aUndead Bow");
         im20.setLore(List.of("Undead", "§7Arrows deal more damage."));
         undeadBow.setItemMeta(im20);
         ShapedRecipe undeadBowRecipe = new ShapedRecipe(new NamespacedKey("uhc", "undead_bow"), undeadBow);
