@@ -52,8 +52,8 @@ public class Crafts implements Listener {
         im1.setLore(List.of("id: DRAGON_SWORD", "§7WeaponMaster", "§7A very powerful sword.", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"));
         dragonSword.setItemMeta(im1);
         ShapedRecipe dragonSwordRecipe = new ShapedRecipe(new NamespacedKey("uhc", "uhc_dragon_sword"), dragonSword);
-        dragonSwordRecipe.shape(" D ", " S ", "oDo");
-        dragonSwordRecipe.setIngredient('D', Material.DIAMOND);
+        dragonSwordRecipe.shape(" B ", " S ", "oBo");
+        dragonSwordRecipe.setIngredient('B', Material.BLAZE_POWDER);
         dragonSwordRecipe.setIngredient('S', Material.DIAMOND_SWORD);
         dragonSwordRecipe.setIngredient('o', Material.OBSIDIAN);
         Bukkit.getServer().addRecipe(dragonSwordRecipe);
