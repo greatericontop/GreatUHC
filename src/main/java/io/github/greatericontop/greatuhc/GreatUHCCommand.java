@@ -15,7 +15,7 @@ public class GreatUHCCommand implements CommandExecutor {
 
     private Component generateMsg(String modName, boolean state, String command) {
         return Component
-                .text(String.format("§e%s§7: %s   ", modName, state ? "§2ON" : "§4OFF"))
+                .text(String.format("§e%s§7: §f[%s§f]  ", modName, state ? "§2ON" : "§4OFF"))
                 .append(Component.text("§7[toggle]")
                         .clickEvent(ClickEvent.runCommand(String.format("/greatuhc %s", command)))
                         .hoverEvent(Component.text("§7Click to toggle this modifier."))
@@ -25,7 +25,7 @@ public class GreatUHCCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
-            sender.sendMessage("§9------------------------------------------------------------");
+            sender.sendMessage("§9--------------------------------------------------");
             sender.sendMessage("§3GreatUHC by greateric");
             sender.sendMessage("");
             sender.sendMessage(generateMsg("Double Heads", plugin.uhcDoubleHeads, "double-heads"));
@@ -36,7 +36,7 @@ public class GreatUHCCommand implements CommandExecutor {
             sender.sendMessage(generateMsg("Debug Mode", plugin.debugMode, "debug-mode"));
             sender.sendMessage("");
             sender.sendMessage("§3Usage: /uhc [crafts | double-heads | powerful-heads | survivalism | mining-modifier | debug-mode]");
-            sender.sendMessage("§9------------------------------------------------------------");
+            sender.sendMessage("§9--------------------------------------------------");
             return true;
         }
         if (args[0].equals("crafts")) {
