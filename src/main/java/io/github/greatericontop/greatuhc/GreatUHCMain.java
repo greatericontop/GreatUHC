@@ -24,6 +24,7 @@ public class GreatUHCMain extends JavaPlugin {
     public boolean debugMode = false;
 
     public CraftLimiter craftLimiter = null;
+    public GameManager gameManager = null;
 
     public void debugMsg(Player player, String str, Object... args) {
         if (debugMode) {
@@ -33,6 +34,9 @@ public class GreatUHCMain extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        gameManager = new GameManager(this);
+        gameManager.registerRunnable();
 
         this.getServer().getPluginManager().registerEvents(new Crafts(), this);
         craftLimiter = new CraftLimiter(this);
