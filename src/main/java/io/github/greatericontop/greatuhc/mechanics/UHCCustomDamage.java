@@ -56,7 +56,7 @@ public class UHCCustomDamage implements Listener {
             return;
         }
         plugin.debugMsg(player, "survivalism: other damage cause, reducing damage");
-        event.setDamage(event.getDamage() * 0.6);
+        event.setDamage(event.getDamage() * 0.5);
     }
 
     @EventHandler(priority = EventPriority.HIGHEST) // runs last
@@ -71,7 +71,7 @@ public class UHCCustomDamage implements Listener {
         if (cause == DamageCause.ENTITY_ATTACK || cause == DamageCause.ENTITY_SWEEP_ATTACK) {
             if (!(damagingEntity instanceof Player)) {
                 plugin.debugMsg(player, "survivalism: entity attack, reducing damage");
-                event.setDamage(event.getDamage() * 0.6);
+                event.setDamage(event.getDamage() * 0.5);
             }
             return;
         }
@@ -80,7 +80,7 @@ public class UHCCustomDamage implements Listener {
             ProjectileSource shooter = ((Projectile) damagingEntity).getShooter();
             if (!(shooter instanceof Player)) {
                 plugin.debugMsg(player, "survivalism: projectile hit, reducing damage");
-                event.setDamage(event.getDamage() * 0.6);
+                event.setDamage(event.getDamage() * 0.5);
             }
             return;
         }
