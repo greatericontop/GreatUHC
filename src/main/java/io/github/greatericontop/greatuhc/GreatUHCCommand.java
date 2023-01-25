@@ -1,5 +1,7 @@
 package io.github.greatericontop.greatuhc;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.ClickEvent;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -11,18 +13,30 @@ public class GreatUHCCommand implements CommandExecutor {
         this.plugin = plugin;
     }
 
+    private Component generateMsg(String modName, boolean state, String command) {
+        return Component
+                .text(String.format("§e%s§7: %s   ", modName, state ? "§2ON" : "§4OFF"))
+                .append(Component.text("§7[toggle]")
+                        .clickEvent(ClickEvent.runCommand(String.format("/greatuhc %s", command)))
+                        .hoverEvent(Component.text("§7Click to toggle this modifier."))
+                );
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
+            sender.sendMessage("§9------------------------------------------------------------");
             sender.sendMessage("§3GreatUHC by greateric");
             sender.sendMessage("");
-            sender.sendMessage(String.format("§cDouble Heads§7: %s", plugin.uhcDoubleHeads ? "§2ON" : "§4OFF"));
-            sender.sendMessage(String.format("§cPowerful Heads§7: %s", plugin.uhcPowerfulHeads ? "§2ON" : "§4OFF"));
-            sender.sendMessage(String.format("§cSurvivalism§7: %s", plugin.uhcSurvivalism ? "§2ON" : "§4OFF"));
-            sender.sendMessage(String.format("§cMining Modifier§7: %s", plugin.uhcMiningModifier ? "§2ON" : "§4OFF"));
+            sender.sendMessage(generateMsg("Double Heads", plugin.uhcDoubleHeads, "double-heads"));
+            sender.sendMessage(generateMsg("Powerful Heads", plugin.uhcPowerfulHeads, "powerful-heads"));
+            sender.sendMessage(generateMsg("Survivalism", plugin.uhcSurvivalism, "survivalism"));
+            sender.sendMessage(generateMsg("Mining Modifier", plugin.uhcMiningModifier, "mining-modifier"));
             sender.sendMessage("");
-            sender.sendMessage(String.format("§eDebug Mode§7: %s", plugin.debugMode ? "§2ON" : "§4OFF"));
+            sender.sendMessage(generateMsg("Debug Mode", plugin.debugMode, "debug-mode"));
+            sender.sendMessage("");
             sender.sendMessage("§3Usage: /uhc [crafts | double-heads | powerful-heads | survivalism | mining-modifier | debug-mode]");
+            sender.sendMessage("§9------------------------------------------------------------");
             return true;
         }
         if (args[0].equals("crafts")) {
