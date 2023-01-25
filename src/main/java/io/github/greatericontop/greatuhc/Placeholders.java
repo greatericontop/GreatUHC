@@ -72,6 +72,14 @@ public class Placeholders extends PlaceholderExpansion {
             return String.valueOf(count);
         }
 
+        if (args.equals("timeleft1")) {
+            return plugin.gameManager.getMessageLine1();
+        }
+
+        if (args.equals("timeleft2")) {
+            return plugin.gameManager.getMessageLine2();
+        }
+
         return null;
     }
 

@@ -53,6 +53,7 @@ public class GreatUHCMain extends JavaPlugin {
 
         this.getCommand("greatuhc").setExecutor(new GreatUHCCommand(this));
         this.getCommand("uhcrecipes").setExecutor(new RecipesCommand());
+        this.getCommand("uhcstart").setExecutor(new StartCommand(this));
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new Placeholders(this).register();
