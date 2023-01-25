@@ -44,7 +44,7 @@ public class ItemDropListener implements Listener {
                 || typeBroken == Material.GRAVEL
                 || typeBroken == Material.OBSIDIAN
         ) {
-            event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 400, 0));
+            event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 700, 0));
         }
 
         if (typeBroken == Material.OBSIDIAN) {
