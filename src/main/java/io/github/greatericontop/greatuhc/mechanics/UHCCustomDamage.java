@@ -47,16 +47,20 @@ public class UHCCustomDamage implements Listener {
                 || cause == DamageCause.ENTITY_ATTACK
                 || cause == DamageCause.ENTITY_SWEEP_ATTACK
                 || cause == DamageCause.PROJECTILE) {
-            // TODO: check this in EntityDamageByEntityEvent
             return;
         }
         if (cause == DamageCause.MAGIC || cause == DamageCause.POISON || cause == DamageCause.WITHER) {
             plugin.debugMsg(player, "survivalism: potion damage cause, slightly reducing damage");
-            event.setDamage(event.getDamage() * 0.8);
+            event.setDamage(event.getDamage() * 0.75);
+            return;
+        }
+        if (cause == DamageCause.LAVA || cause == DamageCause.FIRE || cause == DamageCause.FIRE_TICK) {
+            plugin.debugMsg(player, "survivalism: fire damage cause, slightly reducing damage");
+            event.setDamage(event.getDamage() * 0.65);
             return;
         }
         plugin.debugMsg(player, "survivalism: other damage cause, reducing damage");
-        event.setDamage(event.getDamage() * 0.5);
+        event.setDamage(event.getDamage() * 0.4);
     }
 
     @EventHandler(priority = EventPriority.HIGHEST) // runs last
@@ -71,7 +75,7 @@ public class UHCCustomDamage implements Listener {
         if (cause == DamageCause.ENTITY_ATTACK || cause == DamageCause.ENTITY_SWEEP_ATTACK) {
             if (!(damagingEntity instanceof Player)) {
                 plugin.debugMsg(player, "survivalism: entity attack, reducing damage");
-                event.setDamage(event.getDamage() * 0.5);
+                event.setDamage(event.getDamage() * 0.4);
             }
             return;
         }
@@ -80,7 +84,7 @@ public class UHCCustomDamage implements Listener {
             ProjectileSource shooter = ((Projectile) damagingEntity).getShooter();
             if (!(shooter instanceof Player)) {
                 plugin.debugMsg(player, "survivalism: projectile hit, reducing damage");
-                event.setDamage(event.getDamage() * 0.5);
+                event.setDamage(event.getDamage() * 0.4);
             }
             return;
         }
