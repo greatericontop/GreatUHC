@@ -22,7 +22,7 @@ public class GreatUHCCommand implements CommandExecutor {
             sender.sendMessage(String.format("§cMining Modifier§7: %s", plugin.uhcMiningModifier ? "§2ON" : "§4OFF"));
             sender.sendMessage("");
             sender.sendMessage(String.format("§eDebug Mode§7: %s", plugin.debugMode ? "§2ON" : "§4OFF"));
-            sender.sendMessage("§3Usage: /uhc [crafts | double-heads | powerful-heads | survivalism]");
+            sender.sendMessage("§3Usage: /uhc [crafts | double-heads | powerful-heads | survivalism | mining-modifier | debug-mode]");
             return true;
         }
         if (args[0].equals("crafts")) {
