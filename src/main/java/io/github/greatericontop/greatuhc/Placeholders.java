@@ -1,6 +1,8 @@
 package io.github.greatericontop.greatuhc;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
@@ -28,6 +30,7 @@ public class Placeholders extends PlaceholderExpansion {
 
     @Override
     public String onPlaceholderRequest(Player player, String args) {
+
         if (args.startsWith("border_")) {
             String worldName = args.substring(7);
             World world;
@@ -57,6 +60,18 @@ public class Placeholders extends PlaceholderExpansion {
                 return String.format("§7-%d, +%d", borderRadius, borderRadius);
             }
         }
+
+        if (args.equals("playersalive")) {
+            int count = 0;
+            // Players alive in this case means the number of non-spectator players
+            for (Player p1 : Bukkit.getServer().getOnlinePlayers()) {
+                if (p1.getGameMode() != GameMode.SPECTATOR) {
+                    count++;
+                }
+            }
+            return String.valueOf(count);
+        }
+
         return null;
     }
 
