@@ -1,8 +1,10 @@
-package io.github.greatericontop.greatuhc;
+package io.github.greatericontop.greatuhc.game;
 
+import io.github.greatericontop.greatuhc.GreatUHCMain;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class GameManager {
+    private static final boolean SHORT_GAMES = true;
 
     public enum GamePhase {
         INACTIVE, GRACE_PERIOD, PVP, DEATHMATCH
@@ -29,11 +31,11 @@ public class GameManager {
                     switch (currentPhase) {
                         case GRACE_PERIOD -> {
                             currentPhase = GamePhase.PVP;
-                            ticksLeft = 30_000; // 25 minutes
+                            ticksLeft = SHORT_GAMES ? 2400 : 30_000; // 25 minutes
                         }
                         case PVP -> {
                             currentPhase = GamePhase.DEATHMATCH;
-                            ticksLeft = 18_000; // 15 minutes
+                            ticksLeft = SHORT_GAMES ? 2400 : 18_000; // 15 minutes
                         }
                         case DEATHMATCH -> {
                             currentPhase = GamePhase.INACTIVE;
@@ -47,7 +49,7 @@ public class GameManager {
 
     public void start() {
         currentPhase = GamePhase.GRACE_PERIOD;
-        ticksLeft = 18_000; // 15 minutes
+        ticksLeft = SHORT_GAMES ? 2400 : 18_000; // 15 minutes
     }
 
     public String getMessageLine1() {

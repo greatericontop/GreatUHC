@@ -1,5 +1,6 @@
-package io.github.greatericontop.greatuhc;
+package io.github.greatericontop.greatuhc.game;
 
+import io.github.greatericontop.greatuhc.GreatUHCMain;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
