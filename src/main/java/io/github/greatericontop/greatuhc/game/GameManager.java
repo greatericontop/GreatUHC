@@ -1,10 +1,12 @@
 package io.github.greatericontop.greatuhc.game;
 
 import io.github.greatericontop.greatuhc.GreatUHCMain;
+import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class GameManager {
-    private static final boolean SHORT_GAMES = true;
+    public static final boolean SHORT_GAMES = true;
 
     public enum GamePhase {
         INACTIVE, GRACE_PERIOD, PVP, DEATHMATCH
@@ -14,10 +16,25 @@ public class GameManager {
     private int ticksLeft;
 
     private final GreatUHCMain plugin;
+    public GreatUHCMain getPlugin() {
+        return plugin;
+    }
+    private World overworld;
+    public World getOverworld() {
+        return overworld;
+    }
+    private World nether;
+    public World getNether() {
+        return nether;
+    }
+
     public GameManager(GreatUHCMain plugin) {
         this.plugin = plugin;
         currentPhase = GamePhase.INACTIVE;
         ticksLeft = -1;
+
+        overworld = Bukkit.getWorld("world");
+        nether = Bukkit.getWorld("world_nether");
     }
 
     public void registerRunnable() {
@@ -31,11 +48,11 @@ public class GameManager {
                     switch (currentPhase) {
                         case GRACE_PERIOD -> {
                             currentPhase = GamePhase.PVP;
-                            ticksLeft = SHORT_GAMES ? 2400 : 30_000; // 25 minutes
+                            ticksLeft = SHORT_GAMES ? 1400 : 30_000; // 25 minutes
                         }
                         case PVP -> {
                             currentPhase = GamePhase.DEATHMATCH;
-                            ticksLeft = SHORT_GAMES ? 2400 : 18_000; // 15 minutes
+                            ticksLeft = SHORT_GAMES ? 1400 : 18_000; // 15 minutes
                         }
                         case DEATHMATCH -> {
                             currentPhase = GamePhase.INACTIVE;
@@ -49,7 +66,8 @@ public class GameManager {
 
     public void start() {
         currentPhase = GamePhase.GRACE_PERIOD;
-        ticksLeft = SHORT_GAMES ? 2400 : 18_000; // 15 minutes
+        ticksLeft = SHORT_GAMES ? 1400 : 18_000; // 15 minutes
+        GracePeriod.start(this);
     }
 
     public String getMessageLine1() {
