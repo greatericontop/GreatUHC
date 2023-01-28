@@ -1,5 +1,6 @@
 package io.github.greatericontop.greatuhc.game;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.GameRule;
@@ -23,6 +24,14 @@ public class GracePeriod {
     public static void start(GameManager gameManager) {
         World overworld = gameManager.getOverworld();
         World nether = gameManager.getNether();
+
+        Bukkit.broadcast(Component.text("§9------------------------------"));
+        Bukkit.broadcast(Component.text("§4§lGreatUHC"));
+        Bukkit.broadcast(Component.text(""));
+        Bukkit.broadcast(Component.text("§aThe grace period has started!"));
+        Bukkit.broadcast(Component.text("§aYou have 15 minutes to gather resources!"));
+        Bukkit.broadcast(Component.text(""));
+        Bukkit.broadcast(Component.text("§9------------------------------"));
 
         // Initialization stuff
         overworld.setGameRule(GameRule.NATURAL_REGENERATION, false);
