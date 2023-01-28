@@ -4,7 +4,6 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.GameRule;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
@@ -13,11 +12,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scheduler.BukkitRunnable;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 public class GracePeriod {
 
@@ -61,7 +55,6 @@ public class GracePeriod {
             player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 18_000, 3));
             player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 200, 4));
             player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 200, 4));
-            player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 200, 6));
 
             // TODO: add fully customizable kits
             ItemStack stoneSword = new ItemStack(Material.STONE_SWORD);
@@ -88,26 +81,7 @@ public class GracePeriod {
         Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), spreadCommand);
 
         // Don't let players move for 10 seconds (slowness doesn't work due to the momentum gained by jumping)
-        Map<UUID, Location> locations = new HashMap<>();
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            locations.put(player.getUniqueId(), player.getLocation());
-        }
-        new BukkitRunnable() {
-            int counter = 20;
-            public void run() {
-                if (counter <= 0) {
-                    cancel();
-                    return;
-                }
-                counter--;
-                for (Player player : Bukkit.getOnlinePlayers()) {
-                    Location previousLoc = locations.get(player.getUniqueId());
-                    if (previousLoc != null) {
-                        player.teleport(previousLoc);
-                    }
-                }
-            }
-        }.runTaskTimer(gameManager.getPlugin(), 10L, 10L);
+        GameUtils.freezePlayers(gameManager.getPlugin(), 200);
     }
 
 }
