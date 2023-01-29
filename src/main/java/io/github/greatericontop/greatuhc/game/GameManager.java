@@ -54,6 +54,7 @@ public class GameManager {
                         case PVP -> {
                             currentPhase = GamePhase.DEATHMATCH;
                             ticksLeft = SHORT_GAMES ? 1400 : 18_000; // 15 minutes
+                            DeathmatchPeriod.start(GameManager.this);
                         }
                         case DEATHMATCH -> {
                             currentPhase = GamePhase.INACTIVE;
