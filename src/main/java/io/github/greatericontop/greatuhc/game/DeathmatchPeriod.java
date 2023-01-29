@@ -18,7 +18,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.Random;
 
 public class DeathmatchPeriod {
-    private static final int DEATHMATCH_WORLD_HEIGHT = 309;
+    private static final int DEATHMATCH_WORLD_HEIGHT = 308;
+    private static final int MAX_WORLD_HEIGHT = 319;
 
     public static void start(GameManager gameManager) {
         World overworld = gameManager.getOverworld();
@@ -49,17 +50,17 @@ public class DeathmatchPeriod {
         long seed = random.nextLong();
         for (int x = -80; x <= 80; x++) {
             for (int z = -80; z <= 80; z++) {
-                double noise = OpenSimplex2.noise2(seed, x, z);
-                int height = (int) (8 * (noise * 0.5 + 0.5)); // height will be from 0 to 7
-                for (int y = 0; y <= (319 - DEATHMATCH_WORLD_HEIGHT); y++) {
+                double noise = OpenSimplex2.noise2(seed, x/35.0, z/35.0);
+                int height = (int) (6 * (noise * 0.5 + 0.5)); // height will be from 0 to 5
+                for (int y = 0; y <= (MAX_WORLD_HEIGHT - DEATHMATCH_WORLD_HEIGHT); y++) {
                     Material mat = y <= height ? Material.BEDROCK : Material.AIR;
                     overworld.getBlockAt(x, y+DEATHMATCH_WORLD_HEIGHT, z).setType(mat, false);
                 }
             }
         }
-        for (int x = -6; x <= 6; x++) {
-            for (int z = -6; z <= 6; z++) {
-                int yMax = 7 - Math.max(Math.abs(x), Math.abs(z));
+        for (int x = -8; x <= 8; x++) {
+            for (int z = -8; z <= 8; z++) {
+                int yMax = 9 - Math.max(Math.abs(x), Math.abs(z));
                 for (int deltaY = 1; deltaY <= yMax; deltaY++) {
                     Block block = overworld.getBlockAt(x, DEATHMATCH_WORLD_HEIGHT + deltaY, z);
                     if (block.getType() == Material.AIR) {
@@ -68,7 +69,7 @@ public class DeathmatchPeriod {
                 }
             }
         }
-        Block chestBlock = overworld.getBlockAt(0, DEATHMATCH_WORLD_HEIGHT + 8, 0);
+        Block chestBlock = overworld.getBlockAt(0, DEATHMATCH_WORLD_HEIGHT + 10, 0);
         chestBlock.setType(Material.CHEST, false);
         Chest chest = (Chest) chestBlock.getState(); // org.bukkit.block.Chest
         Inventory inv = chest.getInventory();
