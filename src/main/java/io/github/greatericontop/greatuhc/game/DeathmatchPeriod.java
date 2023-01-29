@@ -15,13 +15,14 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Random;
 
 public class DeathmatchPeriod {
-    private static final int DEATHMATCH_WORLD_HEIGHT = 311;
+    private static final int DEATHMATCH_WORLD_HEIGHT = 309;
 
     public static void start(GameManager gameManager) {
         World overworld = gameManager.getOverworld();
+        Random random = new Random();
 
         Bukkit.broadcast(Component.text("§9------------------------------"));
         Bukkit.broadcast(Component.text(""));
@@ -44,24 +45,34 @@ public class DeathmatchPeriod {
         }.runTaskLater(gameManager.getPlugin(), 1200L);
 
         // Setup world for deathmatch
+        // OpenSimplex Noise: generate bedrock that transitions into stone
+        long seed = random.nextLong();
         for (int x = -80; x <= 80; x++) {
             for (int z = -80; z <= 80; z++) {
-                overworld.getBlockAt(x, DEATHMATCH_WORLD_HEIGHT, z).setType(Material.BEDROCK, false);
-            }
-        }
-        for (int x = -4; x <= 4; x++) {
-            for (int z = -4; z <= 4; z++) {
-                int yMax = 5 - Math.max(Math.abs(x), Math.abs(z));
-                for (int deltaY = 1; deltaY <= yMax; deltaY++) {
-                    overworld.getBlockAt(x, DEATHMATCH_WORLD_HEIGHT + deltaY, z).setType(Material.SMOOTH_SANDSTONE, false);
+                double noise = OpenSimplex2.noise2(seed, x, z);
+                int height = (int) (8 * (noise * 0.5 + 0.5)); // height will be from 0 to 7
+                for (int y = 0; y <= (319 - DEATHMATCH_WORLD_HEIGHT); y++) {
+                    Material mat = y <= height ? Material.BEDROCK : Material.AIR;
+                    overworld.getBlockAt(x, y+DEATHMATCH_WORLD_HEIGHT, z).setType(mat, false);
                 }
             }
         }
-        Block chestBlock = overworld.getBlockAt(0, DEATHMATCH_WORLD_HEIGHT + 6, 0);
+        for (int x = -6; x <= 6; x++) {
+            for (int z = -6; z <= 6; z++) {
+                int yMax = 7 - Math.max(Math.abs(x), Math.abs(z));
+                for (int deltaY = 1; deltaY <= yMax; deltaY++) {
+                    Block block = overworld.getBlockAt(x, DEATHMATCH_WORLD_HEIGHT + deltaY, z);
+                    if (block.getType() == Material.AIR) {
+                        block.setType(Material.SMOOTH_SANDSTONE, false);
+                    }
+                }
+            }
+        }
+        Block chestBlock = overworld.getBlockAt(0, DEATHMATCH_WORLD_HEIGHT + 8, 0);
         chestBlock.setType(Material.CHEST, false);
         Chest chest = (Chest) chestBlock.getState(); // org.bukkit.block.Chest
         Inventory inv = chest.getInventory();
-        inv.setItem(ThreadLocalRandom.current().nextInt(0, 27), new ItemStack(Material.GOLDEN_APPLE, 1));
+        inv.setItem(random.nextInt(27), new ItemStack(Material.GOLDEN_APPLE, 1));
 
         for (Player player : Bukkit.getOnlinePlayers()) {
             player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 200, 4));

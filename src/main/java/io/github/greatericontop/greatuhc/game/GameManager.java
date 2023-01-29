@@ -48,12 +48,12 @@ public class GameManager {
                     switch (currentPhase) {
                         case GRACE_PERIOD -> {
                             currentPhase = GamePhase.PVP;
-                            ticksLeft = SHORT_GAMES ? 1400 : 30_000; // 25 minutes
+                            ticksLeft = SHORT_GAMES ? 600 : 30_000; // 25 minutes
                             PVPPeriod.start(GameManager.this);
                         }
                         case PVP -> {
                             currentPhase = GamePhase.DEATHMATCH;
-                            ticksLeft = SHORT_GAMES ? 1400 : 18_000; // 15 minutes
+                            ticksLeft = 18_000; // 15 minutes
                             DeathmatchPeriod.start(GameManager.this);
                         }
                         case DEATHMATCH -> {
@@ -68,7 +68,7 @@ public class GameManager {
 
     public void start() {
         currentPhase = GamePhase.GRACE_PERIOD;
-        ticksLeft = SHORT_GAMES ? 1400 : 18_000; // 15 minutes
+        ticksLeft = SHORT_GAMES ? 600 : 18_000; // 15 minutes
         GracePeriod.start(this);
     }
 
