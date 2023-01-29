@@ -5,6 +5,8 @@ import io.github.greatericontop.greatuhc.customitems.Crafts;
 import io.github.greatericontop.greatuhc.customitems.EnhancementBookListener;
 import io.github.greatericontop.greatuhc.game.GameManager;
 import io.github.greatericontop.greatuhc.game.StartCommand;
+import io.github.greatericontop.greatuhc.game.pregame.KitSelectorGUIListener;
+import io.github.greatericontop.greatuhc.game.pregame.PreGameManager;
 import io.github.greatericontop.greatuhc.mechanics.CustomHealingListener;
 import io.github.greatericontop.greatuhc.mechanics.DiamondSpreading;
 import io.github.greatericontop.greatuhc.mechanics.ItemDropListener;
@@ -37,7 +39,9 @@ public class GreatUHCMain extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        gameManager = new GameManager(this);
+        PreGameManager preGameManager = new PreGameManager();
+        this.getServer().getPluginManager().registerEvents(new KitSelectorGUIListener(preGameManager), this);
+        gameManager = new GameManager(this, preGameManager);
         gameManager.registerRunnable();
 
         this.getServer().getPluginManager().registerEvents(new Crafts(), this);

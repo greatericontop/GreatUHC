@@ -4,12 +4,9 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.GameRule;
-import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -56,19 +53,7 @@ public class GracePeriod {
             player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 200, 4));
             player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 200, 4));
 
-            // TODO: add fully customizable kits
-            ItemStack stoneSword = new ItemStack(Material.STONE_SWORD);
-            stoneSword.addEnchantment(Enchantment.DURABILITY, 1);
-            ItemStack stonePickaxe = new ItemStack(Material.STONE_PICKAXE);
-            stonePickaxe.addEnchantment(Enchantment.DIG_SPEED, 1);
-            stonePickaxe.addEnchantment(Enchantment.DURABILITY, 1);
-            ItemStack stoneAxe = new ItemStack(Material.STONE_AXE);
-            stoneAxe.addEnchantment(Enchantment.DIG_SPEED, 1);
-            stoneAxe.addEnchantment(Enchantment.DURABILITY, 1);
-            ItemStack stoneShovel = new ItemStack(Material.STONE_SHOVEL);
-            stoneShovel.addEnchantment(Enchantment.DIG_SPEED, 1);
-            stoneShovel.addEnchantment(Enchantment.DURABILITY, 1);
-            player.getInventory().addItem(stoneSword, stonePickaxe, stoneAxe, stoneShovel);
+            gameManager.getPreGameManager().giveKitTo(player, false);
 
             // Teleport them to the overworld to prepare for spreading them.
             player.teleport(overworld.getSpawnLocation());

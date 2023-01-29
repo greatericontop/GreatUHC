@@ -1,6 +1,7 @@
 package io.github.greatericontop.greatuhc.game;
 
 import io.github.greatericontop.greatuhc.GreatUHCMain;
+import io.github.greatericontop.greatuhc.game.pregame.PreGameManager;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -9,16 +10,12 @@ public class GameManager {
     public static final boolean SHORT_GAMES = true;
 
     public enum GamePhase {
-        INACTIVE, GRACE_PERIOD, PVP, DEATHMATCH
+        INACTIVE, PRE_GAME, GRACE_PERIOD, PVP, DEATHMATCH
     }
 
     private GamePhase currentPhase;
     private int ticksLeft;
 
-    private final GreatUHCMain plugin;
-    public GreatUHCMain getPlugin() {
-        return plugin;
-    }
     private World overworld;
     public World getOverworld() {
         return overworld;
@@ -28,8 +25,19 @@ public class GameManager {
         return nether;
     }
 
-    public GameManager(GreatUHCMain plugin) {
+    private final GreatUHCMain plugin;
+    public GreatUHCMain getPlugin() {
+        return plugin;
+    }
+
+    private final PreGameManager preGameManager;
+    public PreGameManager getPreGameManager() {
+        return preGameManager;
+    }
+
+    public GameManager(GreatUHCMain plugin, PreGameManager preGameManager) {
         this.plugin = plugin;
+        this.preGameManager = preGameManager;
         currentPhase = GamePhase.INACTIVE;
         ticksLeft = -1;
 
@@ -46,6 +54,11 @@ public class GameManager {
                 ticksLeft--;
                 if (ticksLeft <= 0) {
                     switch (currentPhase) {
+                        case PRE_GAME -> {
+                            currentPhase = GamePhase.GRACE_PERIOD;
+                            ticksLeft = SHORT_GAMES ? 1600 : 18_000; // 15 minutes
+                            GracePeriod.start(GameManager.this);
+                        }
                         case GRACE_PERIOD -> {
                             currentPhase = GamePhase.PVP;
                             ticksLeft = SHORT_GAMES ? 1600 : 30_000; // 25 minutes
@@ -67,15 +80,18 @@ public class GameManager {
     }
 
     public void start() {
-        currentPhase = GamePhase.GRACE_PERIOD;
-        ticksLeft = SHORT_GAMES ? 1600 : 18_000; // 15 minutes
-        GracePeriod.start(this);
+        currentPhase = GamePhase.PRE_GAME;
+        ticksLeft = 900; // 45 seconds
+        PreGameManager.startPreGame(this);
     }
 
     public String getMessageLine1() {
         switch (currentPhase) {
             case INACTIVE -> {
                 return "§7No running game";
+            }
+            case PRE_GAME -> {
+                return "§fGame Starts in";
             }
             case GRACE_PERIOD -> {
                 return "§fPVP Enables in";
