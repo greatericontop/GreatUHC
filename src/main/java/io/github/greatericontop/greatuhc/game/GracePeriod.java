@@ -2,7 +2,6 @@ package io.github.greatericontop.greatuhc.game;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.GameRule;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
@@ -35,14 +34,14 @@ public class GracePeriod {
         overworld.getWorldBorder().setSize(1400.0);
         overworld.getWorldBorder().setCenter(0.0, 0.0);
         overworld.getWorldBorder().setDamageAmount(0.25);
-        overworld.getWorldBorder().setDamageBuffer(0.0);
+        overworld.getWorldBorder().setDamageBuffer(1.0);
         nether.getWorldBorder().setSize(350.0);
         nether.getWorldBorder().setCenter(0.0, 0.0);
         nether.getWorldBorder().setDamageAmount(0.25);
-        nether.getWorldBorder().setDamageBuffer(0.0);
+        nether.getWorldBorder().setDamageBuffer(1.0);
 
         for (Player player : Bukkit.getOnlinePlayers()) {
-            player.setGameMode(GameMode.SURVIVAL);
+            player.getInventory().clear();
             player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(40.0);
 
             // Add grace period effects
@@ -54,9 +53,6 @@ public class GracePeriod {
             player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 200, 4));
 
             gameManager.getPreGameManager().giveKitTo(player, false);
-
-            // Teleport them to the overworld to prepare for spreading them.
-            player.teleport(overworld.getSpawnLocation());
         }
 
 

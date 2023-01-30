@@ -3,6 +3,7 @@ package io.github.greatericontop.greatuhc.game.pregame;
 import io.github.greatericontop.greatuhc.game.GameManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -100,8 +101,8 @@ public class PreGameManager {
 
         // TODO: what stuff do we do in pregame vs start of grace period
 
-        for (int x = 1985; x <= 2015; x++) {
-            for (int z = 1985; z <= 2015; z++) {
+        for (int x = -1985; x < 2015; x++) {
+            for (int z = -1985; z < 2015; z++) {
                 overworld.getBlockAt(x, 319, z).setType(Material.BEDROCK);
             }
         }
@@ -116,6 +117,9 @@ public class PreGameManager {
             kitSelector.setItemMeta(im);
             player.getInventory().addItem(kitSelector);
 
+            player.setGameMode(GameMode.SURVIVAL);
+            player.undiscoverRecipes(player.getDiscoveredRecipes());
+            player.chat("/uhcrecipes");
             player.teleport(new Location(overworld, 2000.0, 320.0, 2000.0));
         }
 
