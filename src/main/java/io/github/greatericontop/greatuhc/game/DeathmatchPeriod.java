@@ -64,7 +64,8 @@ public class DeathmatchPeriod {
                 for (int deltaY = 1; deltaY <= yMax; deltaY++) {
                     Block block = overworld.getBlockAt(x, DEATHMATCH_WORLD_HEIGHT + deltaY, z);
                     if (block.getType() == Material.AIR) {
-                        block.setType(Material.SMOOTH_SANDSTONE, false);
+                        boolean isOre = deltaY != yMax && random.nextDouble() < 0.02;
+                        block.setType(isOre ? Material.DIAMOND_ORE : Material.SMOOTH_SANDSTONE, false);
                     }
                 }
             }
