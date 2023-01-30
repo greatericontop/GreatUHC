@@ -16,7 +16,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.Arrays;
 
 public class KitSelectorGUIListener implements Listener {
-    private static final String INVENTORY_NAME = "§k~~ §6UHC Kits §k~~";
+    private static final String INVENTORY_NAME = "§e§k~~ §6UHC Kits §e§k~~";
 
     private PreGameManager manager;
     public KitSelectorGUIListener(PreGameManager manager) {
