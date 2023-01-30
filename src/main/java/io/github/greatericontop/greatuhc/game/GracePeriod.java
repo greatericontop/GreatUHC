@@ -26,9 +26,9 @@ public class GracePeriod {
         // Initialization stuff
         overworld.setGameRule(GameRule.NATURAL_REGENERATION, false);
         nether.setGameRule(GameRule.NATURAL_REGENERATION, false);
-        overworld.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
         overworld.setGameRule(GameRule.DO_WEATHER_CYCLE, false);
-        overworld.setTime(6000L);
+        overworld.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
+        nether.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
 
         // Borders
         overworld.getWorldBorder().setSize(1400.0);
