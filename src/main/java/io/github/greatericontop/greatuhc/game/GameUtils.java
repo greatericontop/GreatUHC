@@ -32,7 +32,9 @@ public class GameUtils {
                     }
                     Location playerLoc = player.getLocation();
                     // only teleport when XYZ changes, allow changes to yaw/pitch
-                    if (playerLoc.getX() != previousLoc.getX() || playerLoc.getY() != previousLoc.getY() || playerLoc.getZ() != previousLoc.getZ()) {
+                    if (Math.abs(playerLoc.getX()-previousLoc.getX()) > 0.5
+                            || Math.abs(playerLoc.getY() - previousLoc.getY()) > 1.25
+                            || Math.abs(playerLoc.getZ() - previousLoc.getZ()) > 0.5) {
                         player.teleport(previousLoc);
                     }
                 }
