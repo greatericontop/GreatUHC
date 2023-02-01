@@ -150,8 +150,7 @@ public class UHCCustomDamage implements Listener {
                         multi += 0.2;
                     }
                     if (lore != null && lore.get(0).equals("id: ARTEMIS_BOW")) {
-                        // Artemis damage is much lower
-                        multi -= 0.15;
+                        multi += 0.1; // make it just barely stronger (not even close to power 1) since it can't be enchanted
                     }
                 }
             }
