@@ -160,7 +160,7 @@ public class Crafts implements Listener {
 
         ItemStack hermesBoots = new ItemStack(Material.DIAMOND_BOOTS, 1);
         ItemMeta im8 = hermesBoots.getItemMeta();
-        im8.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, false);
+        im8.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, false);
         im8.addEnchant(Enchantment.DURABILITY, 1, false);
         im8.setDisplayName("§6Hermes Boots");
         im8.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(), "UHC", 3, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET));
