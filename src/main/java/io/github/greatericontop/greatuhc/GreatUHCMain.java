@@ -7,6 +7,7 @@ import io.github.greatericontop.greatuhc.game.GameManager;
 import io.github.greatericontop.greatuhc.game.StartCommand;
 import io.github.greatericontop.greatuhc.game.pregame.KitSelectorGUIListener;
 import io.github.greatericontop.greatuhc.game.pregame.PreGameManager;
+import io.github.greatericontop.greatuhc.mechanics.AntiAnvil;
 import io.github.greatericontop.greatuhc.mechanics.CustomHealingListener;
 import io.github.greatericontop.greatuhc.mechanics.DiamondSpreading;
 import io.github.greatericontop.greatuhc.mechanics.ItemDropListener;
@@ -49,6 +50,7 @@ public class GreatUHCMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(craftLimiter, this);
         this.getServer().getPluginManager().registerEvents(new EnhancementBookListener(), this);
 
+        this.getServer().getPluginManager().registerEvents(new AntiAnvil(), this);
         this.getServer().getPluginManager().registerEvents(new CustomHealingListener(this), this);
         this.getServer().getPluginManager().registerEvents(new DiamondSpreading(), this);
         this.getServer().getPluginManager().registerEvents(new ItemDropListener(this), this);

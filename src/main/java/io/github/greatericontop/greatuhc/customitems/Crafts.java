@@ -1,5 +1,6 @@
 package io.github.greatericontop.greatuhc.customitems;
 
+import io.github.greatericontop.greatuhc.mechanics.AntiAnvil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -62,6 +63,7 @@ public class Crafts implements Listener {
         ItemMeta im2 = excalibur.getItemMeta();
         im2.setDisplayName("§bExcalibur");
         im2.setLore(List.of("id: EXCALIBUR", "§7WeaponMaster", "§7A very powerful sword."));
+        AntiAnvil.disallowAnvil(im2);
         excalibur.setItemMeta(im2);
         ShapedRecipe excaliburRecipe = new ShapedRecipe(new NamespacedKey("uhc", "uhc_excalibur"), excalibur);
         excaliburRecipe.shape("s s", "sTs", "sSs");
@@ -75,6 +77,7 @@ public class Crafts implements Listener {
         im3.addEnchant(Enchantment.DURABILITY, 3, false);
         im3.setDisplayName("§cExodus");
         im3.setLore(List.of("id: EXODUS", "§7WeaponMaster", "§7A very powerful helmet."));
+        AntiAnvil.disallowAnvil(im3);
         exodus.setItemMeta(im3);
         ShapedRecipe exodusRecipe = new ShapedRecipe(new NamespacedKey("uhc", "uhc_exodus"), exodus);
         exodusRecipe.shape("ddd", "d d", "eGe");
@@ -219,6 +222,7 @@ public class Crafts implements Listener {
         im12.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
         im12.setDisplayName("§aAnduril");
         im12.setLore(List.of("id: ANDURIL", "§7WeaponMaster", "§7A very powerful sword."));
+        AntiAnvil.disallowAnvil(im12);
         anduril.setItemMeta(im12);
         ShapedRecipe andurilRecipe = new ShapedRecipe(new NamespacedKey("uhc", "anduril"), anduril);
         andurilRecipe.shape("fIf", "fIf", "fBf");
@@ -348,6 +352,7 @@ public class Crafts implements Listener {
         im21.setDisplayName("§5Artemis Bow");
         im21.setLore(List.of("id: ARTEMIS_BOW", "§7WeaponMaster", "§7Arrows shot from this bow", "§7will always hit their target!"));
         im21.addEnchant(Enchantment.DURABILITY, 1, true);
+        AntiAnvil.disallowAnvil(im21);
         artemisBow.setItemMeta(im21);
         ShapedRecipe artemisBowRecipe = new ShapedRecipe(new NamespacedKey("uhc", "artemis_bow"), artemisBow);
         artemisBowRecipe.shape("fEf", "fBf", "fDf");
@@ -362,6 +367,7 @@ public class Crafts implements Listener {
         im22.setDisplayName("§ePhilosopher Pickaxe");
         im22.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 2, true);
         im22.setDamage(1561 - 3);
+        AntiAnvil.disallowAnvil(im22);
         philosopherPickaxe.setItemMeta(im22);
         ShapedRecipe philosopherPickaxeRecipe = new ShapedRecipe(new NamespacedKey("uhc", "philosopher_pickaxe"), philosopherPickaxe);
         philosopherPickaxeRecipe.shape("igi", "LsL", " s ");
@@ -458,6 +464,7 @@ public class Crafts implements Listener {
         ItemMeta im28 = warlockPants.getItemMeta();
         im28.setDisplayName("§7Warlock Pants");
         im28.setLore(Arrays.asList("id: WARLOCK_PANTS", "§7WeaponMaster", "§3Permanent §cStrength §3while wearing!"));
+        AntiAnvil.disallowAnvil(im28);
         warlockPants.setItemMeta(im28);
         ShapedRecipe warlockPantsRecipe = new ShapedRecipe(new NamespacedKey("uhc", "warlock_pants"), warlockPants);
         warlockPantsRecipe.shape("bLb", "ibi");
@@ -470,6 +477,7 @@ public class Crafts implements Listener {
         ItemMeta im29 = cupidsBow.getItemMeta();
         im29.setDisplayName("§cCupid's Bow");
         im29.addEnchant(Enchantment.ARROW_FIRE, 1, false);
+        AntiAnvil.disallowAnvil(im29);
         cupidsBow.setItemMeta(im29);
         ShapedRecipe cupidsBowRecipe = new ShapedRecipe(new NamespacedKey("uhc", "cupids_bow"), cupidsBow);
         cupidsBowRecipe.shape(" H ", "bBb", " L ");
