@@ -77,7 +77,7 @@ public class DeathmatchPeriod {
                 for (int deltaY = 1; deltaY <= yMax; deltaY++) {
                     Block block = overworld.getBlockAt(x, DEATHMATCH_WORLD_HEIGHT + deltaY, z);
                     if (block.getType() != Material.BEDROCK) {
-                        boolean isOre = deltaY != yMax && random.nextDouble() < 0.014;
+                        boolean isOre = deltaY != yMax && random.nextDouble() < 0.0135;
                         block.setType(isOre ? Material.DIAMOND_ORE : Material.SMOOTH_SANDSTONE, false);
                         debugAmountDiamond += isOre ? 1 : 0;
                         eligibleAmountPlaced += deltaY != yMax ? 1 : 0;
