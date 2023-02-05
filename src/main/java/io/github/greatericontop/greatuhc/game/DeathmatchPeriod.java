@@ -23,9 +23,9 @@ public class DeathmatchPeriod {
     private static final BlockFace[] faces = {BlockFace.EAST, BlockFace.WEST, BlockFace.SOUTH, BlockFace.NORTH};
     private static final Material[] topBlocks = {Material.STONE, Material.STONE, Material.STONE, Material.COBBLESTONE};
 
-    private static final int DEATHMATCH_WORLD_HEIGHT = 308;
+    private static final int DEATHMATCH_WORLD_HEIGHT = 309;
     private static final int MAX_WORLD_HEIGHT = 319;
-    private static final int PYRAMID_HEIGHT = 9;
+    private static final int PYRAMID_HEIGHT = 10;
 
     public static void start(GameManager gameManager) {
         World overworld = gameManager.getOverworld();
@@ -57,8 +57,8 @@ public class DeathmatchPeriod {
         for (int x = -80; x <= 80; x++) {
             for (int z = -80; z <= 80; z++) {
                 double noise = OpenSimplex2.noise2(seed, x/35.0, z/35.0);
-                int height = (int) (6 * (noise * 0.5 + 0.5)) + 1; // height will be from 1 to 6
-                                                                  // (bedrock layer 0 to 5)
+                int height = (int) (5 * (noise * 0.5 + 0.5)) + 1; // height will be from 1 to 5
+                                                                  // (bedrock layer 0 to 4)
                 for (int y = 0; y <= (MAX_WORLD_HEIGHT - DEATHMATCH_WORLD_HEIGHT); y++) {
                     Material mat;
                     if (y == height) {
