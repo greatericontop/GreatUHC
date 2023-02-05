@@ -75,7 +75,7 @@ public class DeathmatchPeriod {
                 int yMax = PYRAMID_HEIGHT - Math.max(Math.abs(x), Math.abs(z));
                 for (int deltaY = 1; deltaY <= yMax; deltaY++) {
                     Block block = overworld.getBlockAt(x, DEATHMATCH_WORLD_HEIGHT + deltaY, z);
-                    if (block.getType() == Material.AIR) {
+                    if (block.getType() != Material.BEDROCK) {
                         boolean isOre = deltaY != yMax && random.nextDouble() < 0.015;
                         block.setType(isOre ? Material.DIAMOND_ORE : Material.SMOOTH_SANDSTONE, false);
                     }
