@@ -81,7 +81,7 @@ public class GameManager {
 
     public void start() {
         currentPhase = GamePhase.PRE_GAME;
-        ticksLeft = 900; // 45 seconds
+        ticksLeft = SHORT_GAMES ? 100 : 900; // 45 seconds
         PreGameManager.startPreGame(this);
     }
 
