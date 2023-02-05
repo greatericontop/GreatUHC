@@ -19,8 +19,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.PotionType;
 
 import java.util.Arrays;
 import java.util.List;
@@ -467,10 +469,19 @@ public class Crafts implements Listener {
         AntiAnvil.disallowAnvil(im28);
         warlockPants.setItemMeta(im28);
         ShapedRecipe warlockPantsRecipe = new ShapedRecipe(new NamespacedKey("uhc", "warlock_pants"), warlockPants);
-        warlockPantsRecipe.shape("bLb", "ibi");
+        warlockPantsRecipe.shape("bLb", "iAi");
         warlockPantsRecipe.setIngredient('b', Material.BLAZE_ROD);
         warlockPantsRecipe.setIngredient('L', Material.DIAMOND_LEGGINGS);
         warlockPantsRecipe.setIngredient('i', Material.IRON_BLOCK);
+        ItemStack potAwkward = new ItemStack(Material.POTION);
+        PotionMeta pm1 = (PotionMeta) potAwkward.getItemMeta();
+        pm1.setBasePotionData(new PotionData(PotionType.AWKWARD));
+        potAwkward.setItemMeta(pm1);
+        ItemStack potThick = new ItemStack(Material.POTION);
+        PotionMeta pm2 = (PotionMeta) potThick.getItemMeta();
+        pm2.setBasePotionData(new PotionData(PotionType.THICK));
+        potThick.setItemMeta(pm2);
+        warlockPantsRecipe.setIngredient('A', new RecipeChoice.ExactChoice(potAwkward, potThick));
         Bukkit.getServer().addRecipe(warlockPantsRecipe);
 
         ItemStack cupidsBow = new ItemStack(Material.BOW, 1);
