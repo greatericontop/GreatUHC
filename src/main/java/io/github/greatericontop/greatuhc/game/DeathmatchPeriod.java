@@ -70,18 +70,22 @@ public class DeathmatchPeriod {
                 }
             }
         }
+        int eligibleAmountPlaced = 0, debugAmountDiamond = 0;
         for (int x = -PYRAMID_HEIGHT+1; x <= PYRAMID_HEIGHT-1; x++) {
             for (int z = -PYRAMID_HEIGHT+1; z <= PYRAMID_HEIGHT-1; z++) {
                 int yMax = PYRAMID_HEIGHT - Math.max(Math.abs(x), Math.abs(z));
                 for (int deltaY = 1; deltaY <= yMax; deltaY++) {
                     Block block = overworld.getBlockAt(x, DEATHMATCH_WORLD_HEIGHT + deltaY, z);
                     if (block.getType() != Material.BEDROCK) {
-                        boolean isOre = deltaY != yMax && random.nextDouble() < 0.015;
+                        boolean isOre = deltaY != yMax && random.nextDouble() < 0.014;
                         block.setType(isOre ? Material.DIAMOND_ORE : Material.SMOOTH_SANDSTONE, false);
+                        debugAmountDiamond += isOre ? 1 : 0;
+                        eligibleAmountPlaced += deltaY != yMax ? 1 : 0;
                     }
                 }
             }
         }
+        Bukkit.broadcastMessage(String.format("§7Placed §e%d§7, §b%d §7diamonds, expectation: §6%.1f", eligibleAmountPlaced, debugAmountDiamond, eligibleAmountPlaced*0.014));
         // Middle Chests
         int chestWithGoldApple = random.nextInt(4);
         for (int chestNum = 0; chestNum < 4; chestNum++) {
