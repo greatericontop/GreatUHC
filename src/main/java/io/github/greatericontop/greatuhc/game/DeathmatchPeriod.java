@@ -21,6 +21,7 @@ public class DeathmatchPeriod {
     private static final int[] dx = {2, -2, 0, 0};
     private static final int[] dz = {0, 0, 2, -2};
     private static final BlockFace[] faces = {BlockFace.EAST, BlockFace.WEST, BlockFace.SOUTH, BlockFace.NORTH};
+    private static final Material[] topBlocks = {Material.STONE, Material.STONE, Material.STONE, Material.COBBLESTONE};
 
     private static final int DEATHMATCH_WORLD_HEIGHT = 308;
     private static final int MAX_WORLD_HEIGHT = 319;
@@ -56,10 +57,16 @@ public class DeathmatchPeriod {
         for (int x = -80; x <= 80; x++) {
             for (int z = -80; z <= 80; z++) {
                 double noise = OpenSimplex2.noise2(seed, x/35.0, z/35.0);
-                int height = (int) (6 * (noise * 0.5 + 0.5)); // height will be from 0 to 5
+                int height = (int) (6 * (noise * 0.5 + 0.5)) + 1; // height will be from 1 to 6
+                                                                  // (bedrock layer 0 to 5)
                 for (int y = 0; y <= (MAX_WORLD_HEIGHT - DEATHMATCH_WORLD_HEIGHT); y++) {
-                    Material mat = y <= height ? Material.BEDROCK : Material.AIR;
-                    overworld.getBlockAt(x, y+DEATHMATCH_WORLD_HEIGHT, z).setType(mat, false);
+                    Material mat;
+                    if (y == height) {
+                        mat = topBlocks[random.nextInt(topBlocks.length)];
+                    } else {
+                        mat = y <= height ? Material.BEDROCK : Material.AIR;
+                    }
+                    overworld.getBlockAt(x, y + DEATHMATCH_WORLD_HEIGHT, z).setType(mat, false);
                 }
             }
         }
