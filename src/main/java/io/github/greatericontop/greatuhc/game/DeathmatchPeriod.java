@@ -21,7 +21,16 @@ public class DeathmatchPeriod {
     private static final int[] dx = {2, -2, 0, 0};
     private static final int[] dz = {0, 0, 2, -2};
     private static final BlockFace[] faces = {BlockFace.EAST, BlockFace.WEST, BlockFace.SOUTH, BlockFace.NORTH};
-    private static final Material[] topBlocks = {Material.STONE, Material.STONE, Material.STONE, Material.COBBLESTONE};
+    private static final Material[] stoneTopMaterials = {
+            Material.STONE, Material.STONE, Material.STONE, Material.STONE, Material.STONE,
+            Material.MOSSY_COBBLESTONE, Material.COBBLESTONE, Material.COBBLESTONE, Material.COBBLESTONE,
+            Material.STONE_BRICKS
+    };
+    private static final Material[] sandTopMaterials = {
+            Material.SANDSTONE, Material.SANDSTONE, Material.SANDSTONE, Material.SANDSTONE,
+            Material.SAND, Material.SAND, Material.SAND, Material.SAND, Material.SAND,
+            Material.RED_SAND, Material.RED_SANDSTONE,
+    };
 
     private static final int DEATHMATCH_WORLD_HEIGHT = 309;
     private static final int MAX_WORLD_HEIGHT = 319;
@@ -53,16 +62,27 @@ public class DeathmatchPeriod {
 
         // Setup world for deathmatch
         // OpenSimplex Noise: generate bedrock that transitions into stone
-        long seed = random.nextLong();
+        long seedTerrain = random.nextLong();
+        long seedTop = random.nextLong();
         for (int x = -80; x <= 80; x++) {
             for (int z = -80; z <= 80; z++) {
-                double noise = OpenSimplex2.noise2(seed, x/35.0, z/35.0);
+                double noise = OpenSimplex2.noise2(seedTerrain, x/35.0, z/35.0);
                 int height = (int) (5 * (noise * 0.5 + 0.5)) + 1; // height will be from 1 to 5
                                                                   // (bedrock layer 0 to 4)
                 for (int y = 0; y <= (MAX_WORLD_HEIGHT - DEATHMATCH_WORLD_HEIGHT); y++) {
                     Material mat;
                     if (y == height) {
-                        mat = topBlocks[random.nextInt(topBlocks.length)];
+                        // place top blocks depending on the noise value
+                        // one of: mossy/cobblestone/stone; or grass; or sand/sandstone
+                        // TODO: place trees in grass section?
+                        double noiseTop = OpenSimplex2.noise2(seedTop, x/30.0, z/30.0) * 0.5 + 0.5;
+                        if (noiseTop < 0.4 || (Math.random() < 0.5 && noiseTop < 0.5)) { // 45% (+/- 5%)
+                            mat = stoneTopMaterials[random.nextInt(stoneTopMaterials.length)];
+                        } else if (noiseTop < 0.75 || (Math.random() < 0.5 && noiseTop < 0.85)) { // 35%, appears between the other 2
+                            mat = Material.GRASS_BLOCK;
+                        } else { // 20%
+                            mat = sandTopMaterials[random.nextInt(sandTopMaterials.length)];
+                        }
                     } else {
                         mat = y <= height ? Material.BEDROCK : Material.AIR;
                     }
