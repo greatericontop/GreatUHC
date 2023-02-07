@@ -35,6 +35,7 @@ public class DeathmatchPeriod {
     private static final int DEATHMATCH_WORLD_HEIGHT = 309;
     private static final int MAX_WORLD_HEIGHT = 319;
     private static final int PYRAMID_HEIGHT = 10;
+    private static final int TERRAIN_HEIGHT = 5;
 
     public static void start(GameManager gameManager) {
         World overworld = gameManager.getOverworld();
@@ -64,11 +65,16 @@ public class DeathmatchPeriod {
         // OpenSimplex Noise: generate bedrock that transitions into stone
         long seedTerrain = random.nextLong();
         long seedTop = random.nextLong();
-        for (int x = -80; x <= 80; x++) {
-            for (int z = -80; z <= 80; z++) {
-                double noise = OpenSimplex2.noise2(seedTerrain, x/35.0, z/35.0);
-                int height = (int) (5 * (noise * 0.5 + 0.5)) + 1; // height will be from 1 to 5
-                                                                  // (bedrock layer 0 to 4)
+        for (int x = -85; x <= 85; x++) {
+            for (int z = -85; z <= 85; z++) {
+                double noise = OpenSimplex2.noise2(seedTerrain, x/35.0, z/35.0) * 0.5 + 0.5;
+                // height suddenly begins to increase when past the world border (75 to 85)
+                // noise gets increased by up to 90% over the span of 10 blocks
+                int extraDistance = Math.max(Math.abs(x), Math.abs(z)) - 75;
+                if (extraDistance > 0) {
+                    noise += 0.9 * Math.pow(extraDistance/10.0, 1.4);
+                }
+                int height = (int) (TERRAIN_HEIGHT * noise) + 1; // height will be from 1 to :TERRAIN_HEIGHT:
                 for (int y = 0; y <= (MAX_WORLD_HEIGHT - DEATHMATCH_WORLD_HEIGHT); y++) {
                     Material mat;
                     if (y == height) {
