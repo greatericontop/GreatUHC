@@ -8,13 +8,23 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class GameManager {
     public static final boolean SHORT_GAMES = true;
+    public static final int PRE_GAME_TIME = 900; // 45 seconds
+    public static final int GRACE_TIME = 18_000; // 15 minutes
+    public static final int PVP_TIME = 30_000; // 25 minutes
+    public static final int DEATHMATCH_TIME = 18_000; // 15 minutes
 
     public enum GamePhase {
         INACTIVE, PRE_GAME, GRACE_PERIOD, PVP, DEATHMATCH
     }
 
     private GamePhase currentPhase;
+    public GamePhase getCurrentPhase() {
+        return currentPhase;
+    }
     private int ticksLeft;
+    public int getTicksLeft() {
+        return ticksLeft;
+    }
 
     private World overworld;
     public World getOverworld() {
@@ -56,17 +66,17 @@ public class GameManager {
                     switch (currentPhase) {
                         case PRE_GAME -> {
                             currentPhase = GamePhase.GRACE_PERIOD;
-                            ticksLeft = SHORT_GAMES ? 300 : 18_000; // 15 minutes
+                            ticksLeft = SHORT_GAMES ? 300 : GRACE_TIME;
                             GracePeriod.start(GameManager.this);
                         }
                         case GRACE_PERIOD -> {
                             currentPhase = GamePhase.PVP;
-                            ticksLeft = SHORT_GAMES ? 300 : 30_000; // 25 minutes
+                            ticksLeft = SHORT_GAMES ? 300 : PVP_TIME;
                             PVPPeriod.start(GameManager.this);
                         }
                         case PVP -> {
                             currentPhase = GamePhase.DEATHMATCH;
-                            ticksLeft = 18_000; // 15 minutes
+                            ticksLeft = DEATHMATCH_TIME;
                             DeathmatchPeriod.start(GameManager.this);
                         }
                         case DEATHMATCH -> {
@@ -81,7 +91,7 @@ public class GameManager {
 
     public void start() {
         currentPhase = GamePhase.PRE_GAME;
-        ticksLeft = SHORT_GAMES ? 100 : 900; // 45 seconds
+        ticksLeft = SHORT_GAMES ? 100 : PRE_GAME_TIME;
         PreGameManager.startPreGame(this);
     }
 

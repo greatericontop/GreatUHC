@@ -10,7 +10,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Random;
 
-public class EnhancementBookListener implements Listener {
+public class ItemEnhancementBookListener implements Listener {
 
     private boolean checkEnhancementBook(ItemStack itemStack) {
         if (itemStack == null)  return false;

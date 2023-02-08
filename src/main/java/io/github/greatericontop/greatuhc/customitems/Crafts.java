@@ -498,6 +498,24 @@ public class Crafts implements Listener {
         cupidsBowRecipe.setIngredient('L', Material.LAVA_BUCKET);
         Bukkit.getServer().addRecipe(cupidsBowRecipe);
 
+        ItemStack bloodlust = new ItemStack(Material.DIAMOND_SWORD, 1);
+        ItemMeta im30 = bloodlust.getItemMeta();
+        im30.setDisplayName("§cBloodlust");
+        im30.setLore(List.of(
+                "§bGains Sharpness §c1 §bafter grace period",
+                "§bGains Sharpness §c2 §b10 (actually 15s for testing) minutes after grace period",
+                "§bGains Sharpness §c3 §bduring Deathmatch",
+                "§7If necessary, left or right click to update this item"
+        ));
+        im30.getPersistentDataContainer().set(new NamespacedKey("uhc", "bloodlust"), PersistentDataType.INTEGER, 1);
+        AntiAnvil.disallowAnvil(im30);
+        bloodlust.setItemMeta(im30);
+        ShapedRecipe bloodlustRecipe = new ShapedRecipe(new NamespacedKey("uhc", "bloodlust"), bloodlust);
+        bloodlustRecipe.shape("r", "S", "r");
+        bloodlustRecipe.setIngredient('r', Material.REDSTONE_BLOCK);
+        bloodlustRecipe.setIngredient('S', Material.DIAMOND_SWORD);
+        Bukkit.getServer().addRecipe(bloodlustRecipe);
+
     }
 
 }
