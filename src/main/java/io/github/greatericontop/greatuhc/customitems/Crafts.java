@@ -503,7 +503,7 @@ public class Crafts implements Listener {
         im30.setDisplayName("§cBloodlust");
         im30.setLore(List.of(
                 "§bGains Sharpness §c1 §bafter grace period",
-                "§bGains Sharpness §c2 §b10 (actually 15s for testing) minutes after grace period",
+                "§bGains Sharpness §c2 §b10 minutes after grace period",
                 "§bGains Sharpness §c3 §bduring Deathmatch",
                 "§7If necessary, left or right click to update this item"
         ));

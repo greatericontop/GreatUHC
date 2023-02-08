@@ -24,15 +24,25 @@ public class ItemBloodlustListener implements Listener {
         ItemMeta im = mainHandItem.getItemMeta();
         if (im == null)  return;
         if (im.getPersistentDataContainer().has(new NamespacedKey("uhc", "bloodlust"), PersistentDataType.INTEGER)) {
+            int previousLevel = im.getEnchantLevel(Enchantment.DAMAGE_ALL);
             im.removeEnchant(Enchantment.DAMAGE_ALL);
-            if (gameManager.getCurrentPhase() == GameManager.GamePhase.PVP) {
-                im.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
-            }
-            if (gameManager.getCurrentPhase() == GameManager.GamePhase.PVP && gameManager.getTicksLeft() < GameManager.PVP_TIME-300) {
-                im.addEnchant(Enchantment.DAMAGE_ALL, 2, true);
-            }
             if (gameManager.getCurrentPhase() == GameManager.GamePhase.DEATHMATCH) {
                 im.addEnchant(Enchantment.DAMAGE_ALL, 3, true);
+                if (previousLevel != 3) {
+                    event.getPlayer().sendMessage("§aYour §cBloodlust §areceived Sharpness III");
+                }
+            }
+            //
+            else if (gameManager.getCurrentPhase() == GameManager.GamePhase.PVP && gameManager.getTicksLeft() < GameManager.PVP_TIME-12000) {
+                im.addEnchant(Enchantment.DAMAGE_ALL, 2, true);
+                if (previousLevel != 2) {
+                    event.getPlayer().sendMessage("§aYour §cBloodlust §areceived Sharpness II");
+                }
+            } else if (gameManager.getCurrentPhase() == GameManager.GamePhase.PVP) {
+                im.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
+                if (previousLevel != 1) {
+                    event.getPlayer().sendMessage("§aYour §cBloodlust §areceived Sharpness I");
+                }
             }
             mainHandItem.setItemMeta(im);
         }
