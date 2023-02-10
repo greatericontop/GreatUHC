@@ -1,11 +1,13 @@
 package io.github.greatericontop.greatuhc.customitems;
 
 import io.github.greatericontop.greatuhc.GreatUHCMain;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
@@ -118,6 +120,21 @@ public class CraftLimiter implements Listener {
             case "power_book" -> handleLimitedCraft(craftKey, event, 3);
             case "apple_economy" -> handleLimitedCraft(craftKey, event, 3);
             case "bloodlust" -> handleLimitedCraft(craftKey, event, 1);
+            case "dice_of_god" -> {
+                if (event.getClick() != ClickType.LEFT && event.getClick() != ClickType.RIGHT) {
+                    event.getWhoClicked().sendMessage("§cYou can only craft this item by left or right clicking.");
+                    event.setCancelled(true);
+                    return;
+                }
+                handleLimitedCraft(craftKey, event, 1000);
+                if (!event.isCancelled()) {
+                    ItemStack ultimate = Crafts.getRandomUltimate();
+                    event.getInventory().setResult(ultimate);
+                    event.getWhoClicked().sendMessage(Component.text("§aYou received ")
+                            .append(ultimate.getItemMeta().displayName())
+                            .append(Component.text("§a.")));
+                }
+            }
         }
     }
 

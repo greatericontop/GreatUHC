@@ -27,6 +27,7 @@ import org.bukkit.potion.PotionType;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 public class Crafts implements Listener {
@@ -274,6 +275,24 @@ public class Crafts implements Listener {
         bloodlustRecipe.setIngredient('S', Material.DIAMOND_SWORD);
         Bukkit.getServer().addRecipe(bloodlustRecipe);
     }
+    private static void diceOfGod() {
+        ItemStack diceOfGod = new ItemStack(Material.END_PORTAL_FRAME, 1);
+        ItemMeta im = diceOfGod.getItemMeta();
+        im.setDisplayName("§aDice of God");
+        im.setLore(List.of(
+                "§eDo you have what it takes?",
+                "§7Roll the dice of god, and see!",
+                "§7Get a random ultimate item."
+        ));
+        im.addEnchant(Enchantment.LUCK, 1, true);
+        diceOfGod.setItemMeta(im);
+        ShapedRecipe diceOfGodRecipe = new ShapedRecipe(new NamespacedKey("uhc", "dice_of_god"), diceOfGod);
+        diceOfGodRecipe.shape("mJm", "mHm", "mmm");
+        diceOfGodRecipe.setIngredient('m', Material.MOSSY_COBBLESTONE);
+        diceOfGodRecipe.setIngredient('J', Material.JUKEBOX);
+        diceOfGodRecipe.setIngredient('H', Material.PLAYER_HEAD);
+        Bukkit.getServer().addRecipe(diceOfGodRecipe);
+    }
 
     private static ItemStack itemStackDragonSword() {
         ItemStack dragonSword = new ItemStack(Material.DIAMOND_SWORD, 1);
@@ -472,6 +491,7 @@ public class Crafts implements Listener {
         chestOfFate();
         cupidsBow();
         bloodlust();
+        diceOfGod();
 
         ItemStack dragonSword = itemStackDragonSword();
         ShapedRecipe dragonSwordRecipe = new ShapedRecipe(new NamespacedKey("uhc", "uhc_dragon_sword"), dragonSword);
@@ -637,6 +657,30 @@ public class Crafts implements Listener {
         warlockPantsRecipe.setIngredient('A', new RecipeChoice.ExactChoice(potAwkward, potThick));
         Bukkit.getServer().addRecipe(warlockPantsRecipe);
 
+    }
+
+    public static ItemStack getRandomUltimate() {
+        ItemStack[] extraUltimates = {
+                itemStackDragonSword(),
+                itemStackExcalibur(),
+                itemStackExodus(),
+                itemStackAssassinBlade(),
+                itemStackSevenLeagueBoots(),
+                itemStackHermesBoots(),
+                itemStackCorn(),
+                itemStackHideOfLeviathan(),
+                itemStackDragonArmor(),
+                itemStackAnduril(),
+                itemStackEnhancementBook(),
+                itemStackExpertSeal(),
+                itemStackDeusExMachina(),
+                itemStackArtemisBow(),
+                itemStackDeathScythe(),
+                itemStackBookOfThoth(),
+                itemStackShoesOfVidar(),
+                itemStackWarlockPants(),
+        };
+        return extraUltimates[new Random().nextInt(extraUltimates.length)];
     }
 
 }
