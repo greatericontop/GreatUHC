@@ -42,26 +42,30 @@ public class CustomHealingListener implements Listener {
 
     @EventHandler()
     public void onClickHead(PlayerInteractEvent event) {
-        if (event.getHand() != EquipmentSlot.HAND) return;
+        if (event.getHand() != EquipmentSlot.HAND)  return;
         if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK
-                && event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK) return;
+                && event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK)  return;
         Player player = event.getPlayer();
         ItemStack item = player.getInventory().getItemInMainHand();
         if (item.getType() != Material.PLAYER_HEAD) {
             return;
         }
+        if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            event.setCancelled(true); // prevent placing the head
+        }
         ItemMeta im = item.getItemMeta();
         if (im != null && im.getPersistentDataContainer().has(new NamespacedKey("uhc", "golden_head"))) {
             player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 120, 3)); // 10 hearts
             player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 4800, 0));
+            player.sendMessage("§aYou ate a §6Golden §aHead!");
         } else {
             player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 200, 1)); // 4 hearts
+            player.sendMessage("§aYou ate a player head!");
         }
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 500, 1));
         if (plugin.uhcPowerfulHeads) {
             player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 400, 0));
         }
-        player.sendMessage("§aYou ate a player head!");
         item.setAmount(item.getAmount() - 1);
     }
 
