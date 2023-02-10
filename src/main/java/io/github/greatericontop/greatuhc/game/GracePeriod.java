@@ -1,11 +1,15 @@
 package io.github.greatericontop.greatuhc.game;
 
+import io.github.greatericontop.greatuhc.customitems.Crafts;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -40,11 +44,24 @@ public class GracePeriod {
         nether.getWorldBorder().setDamageAmount(0.25);
         nether.getWorldBorder().setDamageBuffer(1.0);
 
+        // Modifiers
+        ItemStack randomUltimate = null;
+        if (gameManager.getPlugin().uhcRandomUltimate) {
+            randomUltimate = Crafts.getRandomUltimate();
+        }
+        ItemStack startingHeads = null;
+        if (gameManager.getPlugin().uhcStartingHeads) {
+            startingHeads = new ItemStack(Material.PLAYER_HEAD, 3);
+            SkullMeta im = (SkullMeta) startingHeads.getItemMeta();
+            im.setOwningPlayer(Bukkit.getOfflinePlayer("MHF_Villager"));
+            im.setDisplayName("§eStarting Head");
+            startingHeads.setItemMeta(im);
+        }
+
         for (Player player : Bukkit.getOnlinePlayers()) {
             player.getInventory().clear();
             player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(40.0);
 
-            // Add grace period effects
             player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 18_000, 0));
             player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 18_000, 0));
             player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 18_000, 0));
@@ -53,6 +70,14 @@ public class GracePeriod {
             player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 200, 4));
 
             gameManager.getPreGameManager().giveKitTo(player, false);
+            if (randomUltimate != null) {
+                player.sendMessage("§bYou have been given a random ultimate!");
+                player.getInventory().addItem(randomUltimate);
+            }
+            if (startingHeads != null) {
+                player.sendMessage("§bYou have been given starting heads!");
+                player.getInventory().addItem(startingHeads);
+            }
         }
 
 

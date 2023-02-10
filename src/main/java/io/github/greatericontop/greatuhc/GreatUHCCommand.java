@@ -32,10 +32,12 @@ public class GreatUHCCommand implements CommandExecutor {
             sender.sendMessage(generateMsg("Powerful Heads", plugin.uhcPowerfulHeads, "powerful-heads"));
             sender.sendMessage(generateMsg("Survivalism", plugin.uhcSurvivalism, "survivalism"));
             sender.sendMessage(generateMsg("Mining Modifier", plugin.uhcMiningModifier, "mining-modifier"));
+            sender.sendMessage(generateMsg("Starting Heads", plugin.uhcStartingHeads, "starting-heads"));
+            sender.sendMessage(generateMsg("Random Ultimate", plugin.uhcRandomUltimate, "random-ultimate"));
             sender.sendMessage("");
             sender.sendMessage(generateMsg("Debug Mode", plugin.debugMode, "debug-mode"));
             sender.sendMessage("");
-            sender.sendMessage("§3Usage: /uhc [crafts | double-heads | powerful-heads | survivalism | mining-modifier | debug-mode]");
+            sender.sendMessage("§3Usage: /uhc [crafts | double-heads | powerful-heads | survivalism | mining-modifier | starting-heads | random-ultimate | debug-mode]");
             sender.sendMessage("§9--------------------------------------------------");
             return true;
         }
@@ -67,6 +69,16 @@ public class GreatUHCCommand implements CommandExecutor {
         if (args[0].equals("debug-mode")) {
             plugin.debugMode = !plugin.debugMode;
             sender.sendMessage(String.format("§cDebug Mode §3is now %s", plugin.debugMode ? "§2ON" : "§4OFF"));
+            return true;
+        }
+        if (args[0].equals("starting-heads")) {
+            plugin.uhcStartingHeads = !plugin.uhcStartingHeads;
+            sender.sendMessage(String.format("§cStarting Heads §3is now %s", plugin.uhcStartingHeads ? "§2ON" : "§4OFF"));
+            return true;
+        }
+        if (args[0].equals("random-ultimate")) {
+            plugin.uhcRandomUltimate = !plugin.uhcRandomUltimate;
+            sender.sendMessage(String.format("§cRandom Ultimate §3is now %s", plugin.uhcRandomUltimate ? "§2ON" : "§4OFF"));
             return true;
         }
         return false;
