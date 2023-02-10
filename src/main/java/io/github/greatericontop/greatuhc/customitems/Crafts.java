@@ -2,6 +2,7 @@ package io.github.greatericontop.greatuhc.customitems;
 
 import io.github.greatericontop.greatuhc.mechanics.AntiAnvil;
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
@@ -137,6 +138,7 @@ public class Crafts implements Listener {
         PotionMeta im = (PotionMeta) holyWater.getItemMeta();
         im.setDisplayName("§7Holy Water");
         im.addCustomEffect(new PotionEffect(PotionEffectType.HEAL, 1, 2), true);
+        im.setColor(Color.fromRGB(0xfc2524)); // instant health color
         holyWater.setItemMeta(im);
         ShapedRecipe holyWaterRecipe = new ShapedRecipe(new NamespacedKey("uhc", "holy_water"), holyWater);
         holyWaterRecipe.shape("gRg", "gMg", " b ");
@@ -230,6 +232,7 @@ public class Crafts implements Listener {
         im18.addCustomEffect(new PotionEffect(PotionEffectType.REGENERATION, 100, 0), true); // 1 heart
         im18.addCustomEffect(new PotionEffect(PotionEffectType.SPEED, 900, 1), true);
         im18.addCustomEffect(new PotionEffect(PotionEffectType.JUMP, 900, 4), true);
+        im18.setColor(Color.fromRGB(0x349c00)); // luck color
         chestOfFate.setItemMeta(im18);
         ShapedRecipe chestOfFateRecipe = new ShapedRecipe(new NamespacedKey("uhc", "chest_of_fate"), chestOfFate);
         chestOfFateRecipe.shape("ccc", "cHc", "ccc");
@@ -388,6 +391,7 @@ public class Crafts implements Listener {
         PotionMeta im = (PotionMeta) deusExMachina.getItemMeta();
         im.setDisplayName("§cDeus Ex Machina");
         im.setLore(List.of("§7Grants invincibility!", "§cCrafting costs half your health!"));
+        im.setColor(Color.fromRGB(0x775d64)); // turtle master color
         im.addCustomEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 240, 4), true);
         deusExMachina.setItemMeta(im);
         return deusExMachina;
