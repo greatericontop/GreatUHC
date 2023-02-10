@@ -77,6 +77,10 @@ public class KitSelectorGUIListener implements Listener {
                 "§730 Bottle o' Enchanting",
                 "§7Stone Pickaxe (efficiency 1)"
         ));
+        gui.setItem(8, newItemStack(
+                Material.END_PORTAL_FRAME, "§7Fate",
+                "§7This kit could have some interesting materials."
+        ));
         player.openInventory(gui);
     }
 
@@ -100,6 +104,7 @@ public class KitSelectorGUIListener implements Listener {
             case 1 -> manager.setPlayerKit(player.getUniqueId(), PreGameManager.Kit.STONE_GEAR);
             case 2 -> manager.setPlayerKit(player.getUniqueId(), PreGameManager.Kit.ECOLOGIST);
             case 3 -> manager.setPlayerKit(player.getUniqueId(), PreGameManager.Kit.ENCHANTER);
+            case 8 -> manager.setPlayerKit(player.getUniqueId(), PreGameManager.Kit.FATE);
         }
         player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0F, 1.0F);
         event.setCancelled(true);

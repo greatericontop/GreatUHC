@@ -21,7 +21,8 @@ import java.util.UUID;
 public class PreGameManager {
 
     public enum Kit {
-        ARMORER, STONE_GEAR, ECOLOGIST, ENCHANTER //, ARCHER, FIRE_LORD
+        ARMORER, STONE_GEAR, ECOLOGIST, ENCHANTER, // ARCHER, FIRE_LORD,
+        FATE,
     }
 
     private Map<UUID, Kit> playerKits = new HashMap<>();
@@ -38,6 +39,7 @@ public class PreGameManager {
             case STONE_GEAR -> giveStoneGearTo(player, isEnhanced);
             case ECOLOGIST -> giveEcologistTo(player, isEnhanced);
             case ENCHANTER -> giveEnchanterTo(player, isEnhanced);
+            case FATE -> giveFateTo(player, isEnhanced);
         }
     }
 
@@ -83,6 +85,19 @@ public class PreGameManager {
         ItemStack stonePickaxe = new ItemStack(Material.STONE_PICKAXE);
         stonePickaxe.addEnchantment(Enchantment.DIG_SPEED, 1);
         player.getInventory().addItem(leather, sugarCane, experienceBottle, stonePickaxe);
+    }
+    private void giveFateTo(Player player, boolean isEnhanced) {
+        player.getInventory().addItem(
+                new ItemStack(Material.MOSSY_COBBLESTONE, 56),
+                new ItemStack(Material.JUKEBOX, 8),
+                new ItemStack(Material.PLAYER_HEAD, 10),
+                new ItemStack(Material.GOLD_INGOT, 24),
+                new ItemStack(Material.APPLE, 2),
+                new ItemStack(Material.OAK_PLANKS, 64),
+                new ItemStack(Material.IRON_INGOT, 8),
+                new ItemStack(Material.ANVIL, 1),
+                new ItemStack(Material.EXPERIENCE_BOTTLE, 32)
+        );
     }
 
 

@@ -71,7 +71,7 @@ public class GameManager {
                         }
                         case GRACE_PERIOD -> {
                             currentPhase = GamePhase.PVP;
-                            ticksLeft = SHORT_GAMES ? 300 : PVP_TIME;
+                            ticksLeft = SHORT_GAMES ? 1200 : PVP_TIME;
                             PVPPeriod.start(GameManager.this);
                         }
                         case PVP -> {
