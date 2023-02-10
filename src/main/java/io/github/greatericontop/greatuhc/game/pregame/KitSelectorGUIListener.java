@@ -53,14 +53,20 @@ public class KitSelectorGUIListener implements Listener {
                 "§7Leather Helmet (protection 1)",
                 "§7Leather Chestplate (protection 1)",
                 "§7Leather Leggings (protection 1)",
-                "§7Leather Boots (protection 1)"
+                "§7Leather Boots (protection 1)",
+                "",
+                "§6Enhancement",
+                "§7One piece of armor will be upgraded to iron."
         ));
         gui.setItem(1, newItemStack(
                 Material.STONE_PICKAXE, "§eStone Gear",
                 "§7Stone Sword (unbreaking 1)",
                 "§7Stone Pickaxe (efficiency 1 unbreaking 1)",
                 "§7Stone Axe (efficiency 1 unbreaking 1)",
-                "§7Stone Shovel (efficiency 1 unbreaking 1)"
+                "§7Stone Shovel (efficiency 1 unbreaking 1)",
+                "",
+                "§6Enhancement",
+                "§7One tool will be upgraded to iron."
         ));
         gui.setItem(2, newItemStack(
                 Material.VINE, "§eEcologist",
@@ -68,20 +74,32 @@ public class KitSelectorGUIListener implements Listener {
                 "§720 Oak Log",
                 "§73 Apple",
                 "§73 Sugar Cane",
-                "§7Stone Pickaxe (efficiency 1)"
+                "§7Stone Pickaxe (efficiency 1)",
+                "",
+                "§6Enhancement",
+                "§7Chance to get:",
+                "§7carrots, cow eggs, chicken eggs, coal blocks"
         ));
         gui.setItem(3, newItemStack(
                 Material.ENCHANTING_TABLE, "§eEnchanter",
                 "§76 Leather",
                 "§712 Sugar Cane",
                 "§730 Bottle o' Enchanting",
-                "§7Stone Pickaxe (efficiency 1)"
+                "§7Stone Pickaxe (efficiency 1)",
+                "",
+                "§6Enhancement",
+                "§7Chance to get:",
+                "§7obsidian, books, enchanted books"
         ));
         gui.setItem(4, newItemStack(
                 Material.BOW, "§eArcher",
                 "§73 String",
                 "§77 Feather",
-                "§7Stone Shovel (efficiency 1)"
+                "§7Stone Shovel (efficiency 1)",
+                "",
+                "§6Enhancement",
+                "§7Chance to get:",
+                "§7flint, bones, arrows"
         ));
         gui.setItem(8, newItemStack(
                 Material.END_PORTAL_FRAME, "§7Fate",

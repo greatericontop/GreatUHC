@@ -11,11 +11,13 @@ import org.bukkit.World;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
 
 public class PreGameManager {
@@ -23,6 +25,11 @@ public class PreGameManager {
     public enum Kit {
         ARMORER, STONE_GEAR, ECOLOGIST, ENCHANTER, ARCHER, // FIRE_LORD,
         FATE,
+    }
+
+    private final Random random;
+    public PreGameManager() {
+        random = new Random();
     }
 
     private Map<UUID, Kit> playerKits = new HashMap<>();
@@ -47,28 +54,44 @@ public class PreGameManager {
 
     private void giveArmorerTo(Player player, boolean isEnhanced) {
         ItemStack leatherHelmet = new ItemStack(Material.LEATHER_HELMET, 1);
-        leatherHelmet.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
         ItemStack leatherChestplate = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
-        leatherChestplate.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
         ItemStack leatherLeggings = new ItemStack(Material.LEATHER_LEGGINGS, 1);
-        leatherLeggings.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
         ItemStack leatherBoots = new ItemStack(Material.LEATHER_BOOTS, 1);
+        if (isEnhanced) {
+            switch (random.nextInt(4)) {
+                case 0 -> leatherHelmet = new ItemStack(Material.IRON_HELMET, 1);
+                case 1 -> leatherChestplate = new ItemStack(Material.IRON_CHESTPLATE, 1);
+                case 2 -> leatherLeggings = new ItemStack(Material.IRON_LEGGINGS, 1);
+                case 3 -> leatherBoots = new ItemStack(Material.IRON_BOOTS, 1);
+            }
+        }
+        leatherHelmet.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
+        leatherChestplate.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
+        leatherLeggings.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
         leatherBoots.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
         player.getInventory().addItem(leatherHelmet, leatherChestplate, leatherLeggings, leatherBoots);
     }
     private void giveStoneGearTo(Player player, boolean isEnhanced) {
-        ItemStack stoneSword = new ItemStack(Material.STONE_SWORD);
-        stoneSword.addEnchantment(Enchantment.DURABILITY, 1);
-        ItemStack stonePickaxe = new ItemStack(Material.STONE_PICKAXE);
-        stonePickaxe.addEnchantment(Enchantment.DIG_SPEED, 1);
-        stonePickaxe.addEnchantment(Enchantment.DURABILITY, 1);
-        ItemStack stoneAxe = new ItemStack(Material.STONE_AXE);
-        stoneAxe.addEnchantment(Enchantment.DIG_SPEED, 1);
-        stoneAxe.addEnchantment(Enchantment.DURABILITY, 1);
-        ItemStack stoneShovel = new ItemStack(Material.STONE_SHOVEL);
-        stoneShovel.addEnchantment(Enchantment.DIG_SPEED, 1);
-        stoneShovel.addEnchantment(Enchantment.DURABILITY, 1);
-        player.getInventory().addItem(stoneSword, stonePickaxe, stoneAxe, stoneShovel);
+        ItemStack sword = new ItemStack(Material.STONE_SWORD);
+        ItemStack pick = new ItemStack(Material.STONE_PICKAXE);
+        ItemStack axe = new ItemStack(Material.STONE_AXE);
+        ItemStack shovel = new ItemStack(Material.STONE_SHOVEL);
+        if (isEnhanced) {
+            switch (random.nextInt(4)) {
+                case 0 -> sword = new ItemStack(Material.IRON_SWORD);
+                case 1 -> pick = new ItemStack(Material.IRON_PICKAXE);
+                case 2 -> axe = new ItemStack(Material.IRON_AXE);
+                case 3 -> shovel = new ItemStack(Material.IRON_SHOVEL);
+            }
+        }
+        sword.addEnchantment(Enchantment.DURABILITY, 1);
+        pick.addEnchantment(Enchantment.DIG_SPEED, 1);
+        pick.addEnchantment(Enchantment.DURABILITY, 1);
+        axe.addEnchantment(Enchantment.DIG_SPEED, 1);
+        axe.addEnchantment(Enchantment.DURABILITY, 1);
+        shovel.addEnchantment(Enchantment.DIG_SPEED, 1);
+        shovel.addEnchantment(Enchantment.DURABILITY, 1);
+        player.getInventory().addItem(sword, pick, axe, shovel);
     }
     private void giveEcologistTo(Player player, boolean isEnhanced) {
         ItemStack lilyPad = new ItemStack(Material.LILY_PAD, 64);
@@ -78,6 +101,18 @@ public class PreGameManager {
         ItemStack stonePickaxe = new ItemStack(Material.STONE_PICKAXE);
         stonePickaxe.addEnchantment(Enchantment.DIG_SPEED, 1);
         player.getInventory().addItem(lilyPad, oakLog, apple, sugarCane, stonePickaxe);
+        if (isEnhanced) {
+            double d = random.nextDouble();
+            if (d < 0.15) { // 15%
+                player.getInventory().addItem(new ItemStack(Material.CARROT, 3));
+            } else if (d < 0.425) { // 27.5%
+                player.getInventory().addItem(new ItemStack(Material.COW_SPAWN_EGG, 6));
+            } else if (d < 0.7) { // 27.5%
+                player.getInventory().addItem(new ItemStack(Material.CHICKEN_SPAWN_EGG, 6));
+            } else { // 30%
+                player.getInventory().addItem(new ItemStack(Material.COAL_BLOCK, 5));
+            }
+        }
     }
     private void giveEnchanterTo(Player player, boolean isEnhanced) {
         ItemStack leather = new ItemStack(Material.LEATHER, 6);
@@ -86,6 +121,23 @@ public class PreGameManager {
         ItemStack stonePickaxe = new ItemStack(Material.STONE_PICKAXE);
         stonePickaxe.addEnchantment(Enchantment.DIG_SPEED, 1);
         player.getInventory().addItem(leather, sugarCane, experienceBottle, stonePickaxe);
+        if (isEnhanced) {
+            switch (random.nextInt(3)) {
+                case 0 -> player.getInventory().addItem(new ItemStack(Material.OBSIDIAN, 2));
+                case 1 -> player.getInventory().addItem(new ItemStack(Material.BOOK, 4));
+                case 2 -> {
+                    ItemStack enchantedBook = new ItemStack(Material.ENCHANTED_BOOK, 1);
+                    EnchantmentStorageMeta im = (EnchantmentStorageMeta) enchantedBook.getItemMeta();
+                    Enchantment[] enchants = {
+                            Enchantment.DAMAGE_ALL, Enchantment.KNOCKBACK, Enchantment.SWEEPING_EDGE,
+                            Enchantment.PROTECTION_ENVIRONMENTAL, Enchantment.PROTECTION_PROJECTILE,
+                            Enchantment.ARROW_DAMAGE, Enchantment.ARROW_KNOCKBACK};
+                    im.addStoredEnchant(enchants[random.nextInt(enchants.length)], 1, true);
+                    enchantedBook.setItemMeta(im);
+                    player.getInventory().addItem(enchantedBook);
+                }
+            }
+        }
     }
     private void giveArcherTo(Player player, boolean isEnhanced) {
         ItemStack string = new ItemStack(Material.STRING, 3);
@@ -93,6 +145,13 @@ public class PreGameManager {
         ItemStack shovel = new ItemStack(Material.STONE_SHOVEL);
         shovel.addEnchantment(Enchantment.DIG_SPEED, 1);
         player.getInventory().addItem(string, feather, shovel);
+        if (isEnhanced) {
+            switch (random.nextInt(3)) {
+                case 0 -> player.getInventory().addItem(new ItemStack(Material.FLINT, 5));
+                case 1 -> player.getInventory().addItem(new ItemStack(Material.BONE, 4));
+                case 2 -> player.getInventory().addItem(new ItemStack(Material.ARROW, random.nextInt(33) + 32)); // 32-64
+            }
+        }
     }
     private void giveFateTo(Player player, boolean isEnhanced) {
         player.getInventory().addItem(
