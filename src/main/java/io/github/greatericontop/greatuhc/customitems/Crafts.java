@@ -292,6 +292,20 @@ public class Crafts implements Listener {
         diceOfGodRecipe.setIngredient('H', Material.PLAYER_HEAD);
         Bukkit.getServer().addRecipe(diceOfGodRecipe);
     }
+    private static void velocityPotion() {
+        ItemStack velocityPotion = new ItemStack(Material.SPLASH_POTION, 1);
+        PotionMeta im = (PotionMeta) velocityPotion.getItemMeta();
+        im.setDisplayName("§9Potion of Velocity");
+        im.addCustomEffect(new PotionEffect(PotionEffectType.SPEED, 360, 2), true);
+        im.setColor(Color.fromRGB(0x7eb2ca)); // speed color
+        velocityPotion.setItemMeta(im);
+        ShapedRecipe velocityPotionRecipe = new ShapedRecipe(new NamespacedKey("uhc", "velocity_potion"), velocityPotion);
+        velocityPotionRecipe.shape(" P ", "PSP", " b ");
+        velocityPotionRecipe.setIngredient('P', Material.PUMPKIN);
+        velocityPotionRecipe.setIngredient('S', Material.SUGAR);
+        velocityPotionRecipe.setIngredient('b', Material.GLASS_BOTTLE);
+        Bukkit.getServer().addRecipe(velocityPotionRecipe);
+    }
 
     private static ItemStack itemStackDragonSword() {
         ItemStack dragonSword = new ItemStack(Material.DIAMOND_SWORD, 1);
@@ -484,6 +498,7 @@ public class Crafts implements Listener {
         goldenHead();
         powerBook();
         appleEconomy();
+        velocityPotion();
 
         // Crafts I feel like are good
         // But aren't good enough to (or shouldn't, if the craft is too weird) be ultimates

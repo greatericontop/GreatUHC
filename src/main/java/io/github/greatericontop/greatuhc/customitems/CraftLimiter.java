@@ -135,6 +135,7 @@ public class CraftLimiter implements Listener {
                             .append(Component.text("§a.")));
                 }
             }
+            case "velocity_potion" -> handleLimitedCraft(craftKey, event, 3);
         }
     }
 
