@@ -306,6 +306,20 @@ public class Crafts implements Listener {
         velocityPotionRecipe.setIngredient('b', Material.GLASS_BOTTLE);
         Bukkit.getServer().addRecipe(velocityPotionRecipe);
     }
+    private static void nectar() {
+        ItemStack nectar = new ItemStack(Material.POTION, 1);
+        PotionMeta im = (PotionMeta) nectar.getItemMeta();
+        im.setDisplayName("§dNectar");
+        im.addCustomEffect(new PotionEffect(PotionEffectType.ABSORPTION, 1500, 1), true);
+        im.setColor(Color.fromRGB(0xfcf4d5)); // slow falling color, why not
+        nectar.setItemMeta(im);
+        ShapedRecipe nectarRecipe = new ShapedRecipe(new NamespacedKey("uhc", "nectar"), nectar);
+        nectarRecipe.shape(" m ", "MgM", " m ");
+        nectarRecipe.setIngredient('M', Material.MELON);
+        nectarRecipe.setIngredient('g', Material.GLASS_BOTTLE);
+        nectarRecipe.setIngredient('m', Material.GLISTERING_MELON_SLICE);
+        Bukkit.getServer().addRecipe(nectarRecipe);
+    }
 
     private static ItemStack itemStackDragonSword() {
         ItemStack dragonSword = new ItemStack(Material.DIAMOND_SWORD, 1);
@@ -499,6 +513,7 @@ public class Crafts implements Listener {
         powerBook();
         appleEconomy();
         velocityPotion();
+        nectar();
 
         // Crafts I feel like are good
         // But aren't good enough to (or shouldn't, if the craft is too weird) be ultimates
