@@ -320,6 +320,18 @@ public class Crafts implements Listener {
         nectarRecipe.setIngredient('m', Material.GLISTERING_MELON_SLICE);
         Bukkit.getServer().addRecipe(nectarRecipe);
     }
+    private static void backpack() {
+        ItemStack backpack = new ItemStack(Material.SHULKER_BOX, 1);
+        ItemMeta im = backpack.getItemMeta();
+        im.setDisplayName("§aBackpack");
+        backpack.setItemMeta(im);
+        ShapedRecipe backpackRecipe = new ShapedRecipe(new NamespacedKey("uhc", "backpack"), backpack);
+        backpackRecipe.shape("scs", "csc", "sLs");
+        backpackRecipe.setIngredient('s', Material.STICK);
+        backpackRecipe.setIngredient('c', Material.CHEST);
+        backpackRecipe.setIngredient('L', Material.LEATHER);
+        Bukkit.getServer().addRecipe(backpackRecipe);
+    }
 
     private static ItemStack itemStackDragonSword() {
         ItemStack dragonSword = new ItemStack(Material.DIAMOND_SWORD, 1);
@@ -514,6 +526,7 @@ public class Crafts implements Listener {
         appleEconomy();
         velocityPotion();
         nectar();
+        backpack();
 
         // Crafts I feel like are good
         // But aren't good enough to (or shouldn't, if the craft is too weird) be ultimates
