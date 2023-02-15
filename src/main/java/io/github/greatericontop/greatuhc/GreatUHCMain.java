@@ -2,9 +2,9 @@ package io.github.greatericontop.greatuhc;
 
 import io.github.greatericontop.greatuhc.customitems.CraftLimiter;
 import io.github.greatericontop.greatuhc.customitems.Crafts;
-import io.github.greatericontop.greatuhc.customitems.ItemBloodlustListener;
 import io.github.greatericontop.greatuhc.customitems.ItemEnhancementBookListener;
 import io.github.greatericontop.greatuhc.customitems.ItemSugarCookieListener;
+import io.github.greatericontop.greatuhc.customitems.PeriodicItemUpgradeListener;
 import io.github.greatericontop.greatuhc.game.GameManager;
 import io.github.greatericontop.greatuhc.game.StartCommand;
 import io.github.greatericontop.greatuhc.game.pregame.KitSelectorGUIListener;
@@ -53,9 +53,9 @@ public class GreatUHCMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new Crafts(), this);
         craftLimiter = new CraftLimiter(this);
         this.getServer().getPluginManager().registerEvents(craftLimiter, this);
-        this.getServer().getPluginManager().registerEvents(new ItemBloodlustListener(gameManager), this);
         this.getServer().getPluginManager().registerEvents(new ItemEnhancementBookListener(), this);
         this.getServer().getPluginManager().registerEvents(new ItemSugarCookieListener(), this);
+        this.getServer().getPluginManager().registerEvents(new PeriodicItemUpgradeListener(gameManager), this);
 
         this.getServer().getPluginManager().registerEvents(new AbsorptionEffectFix(this), this);
         this.getServer().getPluginManager().registerEvents(new AntiAnvil(), this);
