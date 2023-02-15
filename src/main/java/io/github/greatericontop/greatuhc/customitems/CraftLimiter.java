@@ -96,7 +96,9 @@ public class CraftLimiter implements Listener {
             case "expert_seal" -> handleLimitedCraft(craftKey, event, 1);
             case "deus_ex_machina" -> {
                 handleLimitedCraft(craftKey, event, 1);
-                event.getWhoClicked().setHealth(event.getWhoClicked().getHealth() * 0.5);
+                if (!event.isCancelled()) {
+                    event.getWhoClicked().setHealth(event.getWhoClicked().getHealth() * 0.5);
+                }
             }
             case "chest_of_fate" -> {
                 handleLimitedCraft(craftKey, event, 1);
