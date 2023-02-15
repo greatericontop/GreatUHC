@@ -1,6 +1,7 @@
 package io.github.greatericontop.greatuhc;
 
 import io.github.greatericontop.greatuhc.customitems.CraftLimiter;
+import io.github.greatericontop.greatuhc.customitems.CraftNotifications;
 import io.github.greatericontop.greatuhc.customitems.Crafts;
 import io.github.greatericontop.greatuhc.customitems.ItemEnhancementBookListener;
 import io.github.greatericontop.greatuhc.customitems.ItemSugarCookieListener;
@@ -34,6 +35,7 @@ public class GreatUHCMain extends JavaPlugin {
     public boolean debugMode = false;
 
     public CraftLimiter craftLimiter = null;
+    public CraftNotifications craftNotifications = null;
     public GameManager gameManager = null;
 
     public void debugMsg(Player player, String str, Object... args) {
@@ -53,6 +55,9 @@ public class GreatUHCMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new Crafts(), this);
         craftLimiter = new CraftLimiter(this);
         this.getServer().getPluginManager().registerEvents(craftLimiter, this);
+        craftNotifications = new CraftNotifications();
+        this.getServer().getPluginManager().registerEvents(craftNotifications, this);
+
         this.getServer().getPluginManager().registerEvents(new ItemEnhancementBookListener(), this);
         this.getServer().getPluginManager().registerEvents(new ItemSugarCookieListener(), this);
         this.getServer().getPluginManager().registerEvents(new PeriodicItemUpgradeListener(gameManager), this);
@@ -82,6 +87,7 @@ public class GreatUHCMain extends JavaPlugin {
         new BukkitRunnable() {
             public void run() {
                 Crafts.registerCrafts(); // need to wait a few ticks because this needs to run AFTER other plugins initialize
+                craftNotifications.initializeCraftLists();
                 getLogger().info("Crafts ready!");
             }
         }.runTaskLater(this, 10L);
