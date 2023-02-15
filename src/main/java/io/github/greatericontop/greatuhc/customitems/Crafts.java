@@ -332,6 +332,24 @@ public class Crafts implements Listener {
         backpackRecipe.setIngredient('L', Material.LEATHER);
         Bukkit.getServer().addRecipe(backpackRecipe);
     }
+    private static void sugarCookie() {
+        ItemStack sugarCookie = new ItemStack(Material.COOKIE, 1);
+        ItemMeta im = sugarCookie.getItemMeta();
+        im.addEnchant(Enchantment.LUCK, 1, true);
+        im.setDisplayName("§eSugar Cookie");
+        im.setLore(List.of(
+                "Sugary",
+                "§7Eating gives you §aSpeed II §7and",
+                "§aJump Boost IV §7for §b20 §7seconds."
+        ));
+        sugarCookie.setItemMeta(im);
+        ShapedRecipe sugarCookieRecipe = new ShapedRecipe(new NamespacedKey("uhc", "sugar_cookie"), sugarCookie);
+        sugarCookieRecipe.shape("SCS", "CsC", "SCS");
+        sugarCookieRecipe.setIngredient('S', Material.SUGAR);
+        sugarCookieRecipe.setIngredient('C', Material.COCOA_BEANS);
+        sugarCookieRecipe.setIngredient('s', Material.WHEAT_SEEDS);
+        Bukkit.getServer().addRecipe(sugarCookieRecipe);
+    }
 
     private static ItemStack itemStackDragonSword() {
         ItemStack dragonSword = new ItemStack(Material.DIAMOND_SWORD, 1);
@@ -527,6 +545,7 @@ public class Crafts implements Listener {
         velocityPotion();
         nectar();
         backpack();
+        sugarCookie();
 
         // Crafts I feel like are good
         // But aren't good enough to (or shouldn't, if the craft is too weird) be ultimates
