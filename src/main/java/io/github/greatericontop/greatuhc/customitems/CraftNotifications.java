@@ -35,19 +35,14 @@ public class CraftNotifications implements Listener {
     public void initializeCraftLists() {
         Bukkit.recipeIterator().forEachRemaining(recipe -> {
             if (recipe instanceof ShapedRecipe shapedRecipe) {
-                if (shapedRecipe.getKey().getKey().equals("bloodlust")) {
+                if (shapedRecipe.getKey().getNamespace().equals("uhc")) {
                     shapedRecipes.add(shapedRecipe);
                 }
+            } else if (recipe instanceof ShapelessRecipe shapelessRecipe) {
+                if (shapelessRecipe.getKey().getNamespace().equals("uhc")) {
+                    shapelessRecipes.add(shapelessRecipe);
+                }
             }
-//            if (recipe instanceof ShapedRecipe shapedRecipe) {
-//                if (shapedRecipe.getKey().getNamespace().equals("uhc")) {
-//                    shapedRecipes.add(shapedRecipe);
-//                }
-//            } else if (recipe instanceof ShapelessRecipe shapelessRecipe) {
-//                if (shapelessRecipe.getKey().getNamespace().equals("uhc")) {
-//                    shapelessRecipes.add(shapelessRecipe);
-//                }
-//            }
         });
     }
 
