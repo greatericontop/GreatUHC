@@ -5,8 +5,14 @@ import net.kyori.adventure.text.event.ClickEvent;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
+import org.bukkit.util.StringUtil;
 
-public class GreatUHCCommand implements CommandExecutor {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class GreatUHCCommand implements CommandExecutor, TabCompleter {
 
     private final GreatUHCMain plugin;
     public GreatUHCCommand(GreatUHCMain plugin) {
@@ -37,7 +43,6 @@ public class GreatUHCCommand implements CommandExecutor {
             sender.sendMessage("");
             sender.sendMessage(generateMsg("Debug Mode", plugin.debugMode, "debug-mode"));
             sender.sendMessage("");
-            sender.sendMessage("§3Usage: /uhc [crafts | double-heads | powerful-heads | survivalism | mining-modifier | starting-heads | random-ultimate | debug-mode]");
             sender.sendMessage("§9--------------------------------------------------");
             return true;
         }
@@ -82,6 +87,18 @@ public class GreatUHCCommand implements CommandExecutor {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        if (args.length == 1) {
+            List<String> mainCommands = Arrays.asList(
+                    "crafts", "double-heads", "powerful-heads", "survivalism",
+                    "mining-modifier", "starting-heads", "random-ultimate", "debug-mode"
+            );
+            return StringUtil.copyPartialMatches(args[0], mainCommands, new ArrayList<>(mainCommands.size()));
+        }
+        return null;
     }
 
 }

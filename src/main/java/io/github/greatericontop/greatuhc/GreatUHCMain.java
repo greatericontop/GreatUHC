@@ -72,7 +72,9 @@ public class GreatUHCMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
         this.getServer().getPluginManager().registerEvents(new UHCCustomDamage(this), this);
 
-        this.getCommand("greatuhc").setExecutor(new GreatUHCCommand(this));
+        GreatUHCCommand greatUHCCommand = new GreatUHCCommand(this);
+        this.getCommand("greatuhc").setExecutor(greatUHCCommand);
+        this.getCommand("greatuhc").setTabCompleter(greatUHCCommand);
         this.getCommand("uhcrecipes").setExecutor(new RecipesCommand());
         this.getCommand("uhcstart").setExecutor(new StartCommand(this));
 
