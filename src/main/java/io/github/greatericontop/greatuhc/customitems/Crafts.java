@@ -359,6 +359,7 @@ public class Crafts implements Listener {
                 "§bGains Power §c2 §bduring Deathmatch"
         ));
         im.getPersistentDataContainer().set(new NamespacedKey("uhc", "apprentice_bow"), PersistentDataType.INTEGER, 1);
+        AntiAnvil.disallowAnvil(im);
         apprenticeBow.setItemMeta(im);
         ShapedRecipe apprenticeBowRecipe = new ShapedRecipe(new NamespacedKey("uhc", "apprentice_bow"), apprenticeBow);
         apprenticeBowRecipe.shape("aRa", "aBa", "aRa");
