@@ -361,9 +361,10 @@ public class Crafts implements Listener {
         im.getPersistentDataContainer().set(new NamespacedKey("uhc", "apprentice_bow"), PersistentDataType.INTEGER, 1);
         apprenticeBow.setItemMeta(im);
         ShapedRecipe apprenticeBowRecipe = new ShapedRecipe(new NamespacedKey("uhc", "apprentice_bow"), apprenticeBow);
-        apprenticeBowRecipe.shape("ttt", "tBt", "ttt");
+        apprenticeBowRecipe.shape("aRa", "aBa", "aRa");
         apprenticeBowRecipe.setIngredient('B', Material.BOW);
-        apprenticeBowRecipe.setIngredient('t', Material.REDSTONE_TORCH);
+        apprenticeBowRecipe.setIngredient('R', Material.REDSTONE_BLOCK);
+        apprenticeBowRecipe.setIngredient('a', Material.ARROW);
         Bukkit.getServer().addRecipe(apprenticeBowRecipe);
     }
 
