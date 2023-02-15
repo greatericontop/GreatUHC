@@ -128,4 +128,8 @@ public class GameManager {
         return String.format("§a%d minutes", (seconds+30) / 60);
     }
 
+    public void extendOneMinute() {
+        ticksLeft += 1200;
+    }
+
 }

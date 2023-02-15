@@ -2,6 +2,7 @@ package io.github.greatericontop.greatuhc;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -51,6 +52,11 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage("§aCrafts cleared!");
             return true;
         }
+        if (args[0].equals("extend-clock")) {
+            plugin.gameManager.extendOneMinute();
+            Bukkit.broadcastMessage("§aThe clock was extended by 1 minute!");
+            return true;
+        }
         if (args[0].equals("double-heads")) {
             plugin.uhcDoubleHeads = !plugin.uhcDoubleHeads;
             sender.sendMessage(String.format("§cDouble Heads §3is now %s", plugin.uhcDoubleHeads ? "§2ON" : "§4OFF"));
@@ -93,8 +99,10 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length == 1) {
             List<String> mainCommands = Arrays.asList(
-                    "crafts", "double-heads", "powerful-heads", "survivalism",
-                    "mining-modifier", "starting-heads", "random-ultimate", "debug-mode"
+                    "crafts", "extend-clock",
+                    "double-heads", "powerful-heads", "survivalism",
+                    "mining-modifier", "starting-heads", "random-ultimate",
+                    "debug-mode"
             );
             return StringUtil.copyPartialMatches(args[0], mainCommands, new ArrayList<>(mainCommands.size()));
         }
