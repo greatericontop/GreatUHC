@@ -1,6 +1,7 @@
 package io.github.greatericontop.greatuhc.customitems;
 
 import io.github.greatericontop.greatuhc.GreatUHCMain;
+import io.github.greatericontop.greatuhc.util.TrueDamageHelper;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -97,7 +98,7 @@ public class CraftLimiter implements Listener {
             case "deus_ex_machina" -> {
                 handleLimitedCraft(craftKey, event, 1);
                 if (!event.isCancelled()) {
-                    event.getWhoClicked().setHealth(event.getWhoClicked().getHealth() * 0.5);
+                    TrueDamageHelper.dealTrueDamage(event.getWhoClicked(), event.getWhoClicked().getHealth() * 0.5);
                 }
             }
             case "chest_of_fate" -> {
@@ -107,7 +108,7 @@ public class CraftLimiter implements Listener {
                     event.getInventory().setResult(new ItemStack(Material.COAL, 2));
                     new BukkitRunnable() {
                         public void run() {
-                            player.setHealth(Math.max(player.getHealth() - 20.0, 0.0));
+                            TrueDamageHelper.dealTrueDamage(player, 20.0);
                             player.getWorld().strikeLightningEffect(player.getLocation());
                         }
                     }.runTaskLater(plugin, 1L);
