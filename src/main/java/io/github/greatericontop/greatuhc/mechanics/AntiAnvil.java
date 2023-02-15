@@ -4,6 +4,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.enchantment.PrepareItemEnchantEvent;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -27,6 +28,15 @@ public class AntiAnvil implements Listener {
             // to delete it if someone actually takes it, and I'm too lazy for that.
             event.setResult(null);
             event.getViewers().get(0).sendMessage("§cYou can't use this in an anvil!");
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onEnchantingTable(PrepareItemEnchantEvent event) {
+        ItemMeta im = event.getItem().getItemMeta();
+        if (isAnvilDisabled(im)) {
+            event.setCancelled(true);
+            event.getViewers().get(0).sendMessage("§cYou can't manually enchant this item!");
         }
     }
 
