@@ -18,6 +18,11 @@ import java.util.List;
 import java.util.Map;
 
 public class CraftNotifications implements Listener {
+    private static final String HOVER_MSG = """
+            §eThis is a custom craft in UHC.
+            §7Open a crafting table to make this item.
+            You can find the recipe using the knowledge
+            book (in green, on the left).""";
 
     private final List<ShapedRecipe> shapedRecipes;
     private final List<ShapelessRecipe> shapelessRecipes;
@@ -117,6 +122,7 @@ public class CraftNotifications implements Listener {
                         .append(recipe.getResult().displayName())
                         .append(Component.text("§7."))
                 );
+                player.sendMessage(Component.text("      §8(Hover for more)").hoverEvent(Component.text(HOVER_MSG)));
             }
         }
         for (ShapelessRecipe recipe : shapelessRecipes) {
@@ -125,6 +131,7 @@ public class CraftNotifications implements Listener {
                         .append(recipe.getResult().displayName())
                         .append(Component.text("§7."))
                 );
+                player.sendMessage(Component.text("      §8(Hover for more)").hoverEvent(Component.text(HOVER_MSG)));
             }
         }
     }
