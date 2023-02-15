@@ -1,5 +1,7 @@
 package io.github.greatericontop.greatuhc.game;
 
+import io.github.greatericontop.greatuhc.util.GameUtils;
+import io.github.greatericontop.greatuhc.util.OpenSimplex2;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.GameRule;

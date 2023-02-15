@@ -1,4 +1,4 @@
-package io.github.greatericontop.greatuhc.game;
+package io.github.greatericontop.greatuhc.util;
 
 /*
  * OpenSimplex2 Noise
