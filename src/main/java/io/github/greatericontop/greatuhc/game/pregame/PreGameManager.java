@@ -155,15 +155,15 @@ public class PreGameManager {
     }
     private void giveFateTo(Player player, boolean isEnhanced) {
         player.getInventory().addItem(
-                new ItemStack(Material.MOSSY_COBBLESTONE, 56),
-                new ItemStack(Material.JUKEBOX, 8),
-                new ItemStack(Material.PLAYER_HEAD, 10),
+                new ItemStack(Material.MOSSY_COBBLESTONE, 63),
+                new ItemStack(Material.JUKEBOX, 9),
+                new ItemStack(Material.PLAYER_HEAD, 11),
                 new ItemStack(Material.GOLD_INGOT, 24),
                 new ItemStack(Material.APPLE, 2),
                 new ItemStack(Material.OAK_PLANKS, 64),
-                new ItemStack(Material.IRON_INGOT, 8),
+                new ItemStack(Material.IRON_INGOT, 32),
                 new ItemStack(Material.ANVIL, 1),
-                new ItemStack(Material.EXPERIENCE_BOTTLE, 32)
+                new ItemStack(Material.EXPERIENCE_BOTTLE, 64)
         );
     }
 
