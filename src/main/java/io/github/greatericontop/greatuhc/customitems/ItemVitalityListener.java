@@ -19,7 +19,7 @@ import java.util.UUID;
 
 public class ItemVitalityListener implements Listener {
     private static final double MAX_EUCLIDEAN_DISTANCE_2 = 4.0 * 4.0;
-    private static final double MAX_Y_DELTA = 2.125;
+    private static final double MAX_Y_DELTA = 3.0;
 
     // (UUID of potion) ---> (UUID of its owner)
     private Map<UUID, UUID> owners = new HashMap<>();
@@ -40,11 +40,11 @@ public class ItemVitalityListener implements Listener {
         if (!(event.getEntity() instanceof ThrownPotion thrownPotion))  return;
         UUID potionOwnerUUID = owners.get(thrownPotion.getUniqueId());
         if (potionOwnerUUID == null)  return; // only catch vitality pots since they have an owner
-        thrownPotion.getWorld().spawnParticle(Particle.SQUID_INK, thrownPotion.getLocation(), 30, 0.0, 0.0, 0.0, 0.03);
+        thrownPotion.getWorld().spawnParticle(Particle.SQUID_INK, thrownPotion.getLocation(), 40, 0.0, 0.0, 0.0, 0.08);
         for (Entity entity0 : thrownPotion.getNearbyEntities(4.0, 4.0, 4.0)) {
             if (!(entity0 instanceof LivingEntity entity))  continue;
-            // We'll use a simplified version of what Minecraft uses
-            // You must be 4.0 blocks Euclidean distance, and your Y coordinate must be within +/- 2.125 blocks.
+            // Y coordinate is more lenient than Minecraft's default potion effect application.
+            // You must be 4.0 blocks Euclidean distance, and your Y coordinate (of your eyes) must be within +/- 3.0 blocks.
             // All entities receive the FULL duration, rather than reduced duration.
             double distanceSquared = entity.getEyeLocation().distanceSquared(thrownPotion.getLocation());
             double yDelta = Math.abs(entity.getEyeLocation().getY() - thrownPotion.getLocation().getY());
