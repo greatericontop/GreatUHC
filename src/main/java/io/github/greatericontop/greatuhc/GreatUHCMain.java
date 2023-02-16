@@ -5,6 +5,7 @@ import io.github.greatericontop.greatuhc.customitems.CraftNotifications;
 import io.github.greatericontop.greatuhc.customitems.Crafts;
 import io.github.greatericontop.greatuhc.customitems.ItemEnhancementBookListener;
 import io.github.greatericontop.greatuhc.customitems.ItemSugarCookieListener;
+import io.github.greatericontop.greatuhc.customitems.ItemVitalityListener;
 import io.github.greatericontop.greatuhc.customitems.PeriodicItemUpgradeListener;
 import io.github.greatericontop.greatuhc.game.GameManager;
 import io.github.greatericontop.greatuhc.game.StartCommand;
@@ -61,6 +62,7 @@ public class GreatUHCMain extends JavaPlugin {
 
         this.getServer().getPluginManager().registerEvents(new ItemEnhancementBookListener(), this);
         this.getServer().getPluginManager().registerEvents(new ItemSugarCookieListener(), this);
+        this.getServer().getPluginManager().registerEvents(new ItemVitalityListener(), this);
         this.getServer().getPluginManager().registerEvents(new PeriodicItemUpgradeListener(gameManager), this);
 
         this.getServer().getPluginManager().registerEvents(new AbsorptionEffectFix(this), this);

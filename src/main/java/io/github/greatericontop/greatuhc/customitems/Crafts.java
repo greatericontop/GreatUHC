@@ -539,6 +539,24 @@ public class Crafts implements Listener {
         warlockPants.setItemMeta(im);
         return warlockPants;
     }
+    private static ItemStack itemStackVitalityPotion() {
+        ItemStack vitalityPotion = new ItemStack(Material.SPLASH_POTION, 1);
+        PotionMeta im = (PotionMeta) vitalityPotion.getItemMeta();
+        im.setDisplayName("§aVitality Potion");
+        im.setLore(List.of(
+                "Vital",
+                "§7For you:",
+                "§9Speed I (0:15)",
+                "§9Regeneration I (0:12)",
+                "§7For others:",
+                "§cSlowness I (0:15)",
+                "§cPoison I (0:12)",
+                "§7Anyone in range will receive §b100%",
+                "§7duration of the effects"
+        ));
+        vitalityPotion.setItemMeta(im);
+        return vitalityPotion;
+    }
 
     public static void registerCrafts() {
         Bukkit.getServer().removeRecipe(new NamespacedKey("minecraft", "anduril"));
@@ -737,6 +755,14 @@ public class Crafts implements Listener {
         warlockPantsRecipe.setIngredient('A', new RecipeChoice.ExactChoice(potAwkward, potThick));
         Bukkit.getServer().addRecipe(warlockPantsRecipe);
 
+        ItemStack vitalityPotion = itemStackVitalityPotion();
+        ShapedRecipe vitalityPotionRecipe = new ShapedRecipe(new NamespacedKey("uhc", "vitality_potion"), vitalityPotion);
+        vitalityPotionRecipe.shape("GBG", "GbG", "GiG");
+        vitalityPotionRecipe.setIngredient('G', Material.GLOWSTONE);
+        vitalityPotionRecipe.setIngredient('b', Material.GLASS_BOTTLE);
+        vitalityPotionRecipe.setIngredient('B', Material.BONE);
+        vitalityPotionRecipe.setIngredient('i', Material.IRON_INGOT);
+        Bukkit.getServer().addRecipe(vitalityPotionRecipe);
     }
 
     public static ItemStack getRandomUltimate() {
@@ -759,6 +785,7 @@ public class Crafts implements Listener {
                 itemStackBookOfThoth(),
                 itemStackShoesOfVidar(),
                 itemStackWarlockPants(),
+                itemStackVitalityPotion(),
         };
         return extraUltimates[new Random().nextInt(extraUltimates.length)];
     }
