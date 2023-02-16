@@ -19,6 +19,7 @@ import io.github.greatericontop.greatuhc.mechanics.MobSpawning;
 import io.github.greatericontop.greatuhc.mechanics.OldPVP;
 import io.github.greatericontop.greatuhc.mechanics.PlayerDeathListener;
 import io.github.greatericontop.greatuhc.mechanics.UHCCustomDamage;
+import io.github.greatericontop.greatuhc.mechanics.WorldBorderDamage;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -71,6 +72,7 @@ public class GreatUHCMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new OldPVP(), this);
         this.getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
         this.getServer().getPluginManager().registerEvents(new UHCCustomDamage(this), this);
+        WorldBorderDamage.registerRunnable(this);
 
         GreatUHCCommand greatUHCCommand = new GreatUHCCommand(this);
         this.getCommand("greatuhc").setExecutor(greatUHCCommand);
