@@ -38,12 +38,10 @@ public class GracePeriod {
         // Borders
         overworld.getWorldBorder().setSize(1400.0);
         overworld.getWorldBorder().setCenter(0.0, 0.0);
-        overworld.getWorldBorder().setDamageAmount(0.25);
-        overworld.getWorldBorder().setDamageBuffer(1.0);
+        overworld.getWorldBorder().setDamageAmount(0.0);
         nether.getWorldBorder().setSize(350.0);
         nether.getWorldBorder().setCenter(0.0, 0.0);
-        nether.getWorldBorder().setDamageAmount(0.25);
-        nether.getWorldBorder().setDamageBuffer(1.0);
+        nether.getWorldBorder().setDamageAmount(0.0);
 
         // Modifiers
         ItemStack randomUltimate = null;
