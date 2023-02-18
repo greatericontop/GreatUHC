@@ -82,7 +82,7 @@ public class CustomHealingListener implements Listener {
             return;
         }
         if (item.getItemMeta().getLore().get(0).equals("Corn")) {
-            player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 300, 0));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 160, 1));
             player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 1200, 0));
             item.setAmount(item.getAmount() - 1);
         }
