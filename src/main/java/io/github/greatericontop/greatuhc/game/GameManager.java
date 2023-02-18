@@ -90,7 +90,7 @@ public class GameManager {
                     int seconds = ticksLeft / 20;
                     if (seconds % 60 == 0) {
                         int minutes = seconds / 60;
-                        if (minutes <= 5 || minutes % 5 == 0) {
+                        if (minutes <= 8 || minutes % 5 == 0) {
                             Bukkit.broadcastMessage(String.format("§7| §b%d §eminutes left", minutes));
                             for (Player player : Bukkit.getOnlinePlayers()) {
                                 player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1.0F, 1.0F);
