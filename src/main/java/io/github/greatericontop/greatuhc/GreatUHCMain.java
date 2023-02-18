@@ -38,6 +38,7 @@ public class GreatUHCMain extends JavaPlugin {
 
     public CraftLimiter craftLimiter = null;
     public CraftNotifications craftNotifications = null;
+    public FightingDisplay fightingDisplay = null;
     public GameManager gameManager = null;
 
     public void debugMsg(Player player, String str, Object... args) {
@@ -75,6 +76,9 @@ public class GreatUHCMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
         this.getServer().getPluginManager().registerEvents(new UHCCustomDamage(this), this);
         WorldBorderDamage.registerRunnable(this);
+
+        fightingDisplay = new FightingDisplay(this);
+        this.getServer().getPluginManager().registerEvents(fightingDisplay, this);
 
         GreatUHCCommand greatUHCCommand = new GreatUHCCommand(this);
         this.getCommand("greatuhc").setExecutor(greatUHCCommand);

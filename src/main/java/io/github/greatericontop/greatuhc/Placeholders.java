@@ -72,6 +72,11 @@ public class Placeholders extends PlaceholderExpansion {
             return String.valueOf(count);
         }
 
+        if (args.equals("currentlyfighting")) {
+            String info = plugin.fightingDisplay.getInformation(player);
+            return (info == null) ? "§7-" : info;
+        }
+
         if (args.equals("timeleft1")) {
             return plugin.gameManager.getMessageLine1();
         }
