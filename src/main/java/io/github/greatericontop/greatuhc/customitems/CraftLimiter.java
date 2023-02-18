@@ -122,7 +122,7 @@ public class CraftLimiter implements Listener {
             case "book_of_thoth" -> handleLimitedCraft(craftKey, event, 1);
             case "power_book" -> handleLimitedCraft(craftKey, event, 3);
             case "apple_economy" -> handleLimitedCraft(craftKey, event, 3);
-            case "bloodlust" -> handleLimitedCraft(craftKey, event, 1);
+            case "apprentice_sword" -> handleLimitedCraft(craftKey, event, 1);
             case "dice_of_god" -> {
                 if (event.getClick() != ClickType.LEFT && event.getClick() != ClickType.RIGHT) {
                     event.getWhoClicked().sendMessage("§cYou can only craft this item by left or right clicking.");

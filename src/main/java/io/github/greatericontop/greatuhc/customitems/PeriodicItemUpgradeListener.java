@@ -24,23 +24,23 @@ public class PeriodicItemUpgradeListener implements Listener {
         ItemMeta im = mainHandItem.getItemMeta();
         if (im == null)  return;
 
-        if (im.getPersistentDataContainer().has(new NamespacedKey("uhc", "bloodlust"), PersistentDataType.INTEGER)) {
+        if (im.getPersistentDataContainer().has(new NamespacedKey("uhc", "apprentice_sword"), PersistentDataType.INTEGER)) {
             int previousLevel = im.getEnchantLevel(Enchantment.DAMAGE_ALL);
             im.removeEnchant(Enchantment.DAMAGE_ALL);
             if (gameManager.getCurrentPhase() == GameManager.GamePhase.DEATHMATCH) {
                 im.addEnchant(Enchantment.DAMAGE_ALL, 3, true);
                 if (previousLevel != 3) {
-                    event.getPlayer().sendMessage("§aYour §cBloodlust §areceived Sharpness III");
+                    event.getPlayer().sendMessage("§aYour §cApprentice Sword §areceived Sharpness III");
                 }
             } else if (gameManager.getCurrentPhase() == GameManager.GamePhase.PVP && gameManager.getTicksLeft() < GameManager.PVP_TIME-12000) {
                 im.addEnchant(Enchantment.DAMAGE_ALL, 2, true);
                 if (previousLevel != 2) {
-                    event.getPlayer().sendMessage("§aYour §cBloodlust §areceived Sharpness II");
+                    event.getPlayer().sendMessage("§aYour §cApprentice Sword §areceived Sharpness II");
                 }
             } else if (gameManager.getCurrentPhase() == GameManager.GamePhase.PVP) {
                 im.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
                 if (previousLevel != 1) {
-                    event.getPlayer().sendMessage("§aYour §cBloodlust §areceived Sharpness I");
+                    event.getPlayer().sendMessage("§aYour §cApprentice Sword §areceived Sharpness I");
                 }
             }
             mainHandItem.setItemMeta(im);

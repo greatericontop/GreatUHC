@@ -255,23 +255,23 @@ public class Crafts implements Listener {
         cupidsBowRecipe.setIngredient('L', Material.LAVA_BUCKET);
         Bukkit.getServer().addRecipe(cupidsBowRecipe);
     }
-    private static void bloodlust() {
-        ItemStack bloodlust = new ItemStack(Material.DIAMOND_SWORD, 1);
-        ItemMeta im = bloodlust.getItemMeta();
-        im.setDisplayName("§cBloodlust");
+    private static void apprenticeSword() {
+        ItemStack apprenticeSword = new ItemStack(Material.IRON_SWORD, 1);
+        ItemMeta im = apprenticeSword.getItemMeta();
+        im.setDisplayName("§aApprentice Sword");
         im.setLore(List.of(
                 "§bGains Sharpness §c1 §bafter grace period",
                 "§bGains Sharpness §c2 §b10 minutes after grace period",
                 "§bGains Sharpness §c3 §bduring Deathmatch",
                 "§7If necessary, left or right click to update this item"
         ));
-        im.getPersistentDataContainer().set(new NamespacedKey("uhc", "bloodlust"), PersistentDataType.INTEGER, 1);
+        im.getPersistentDataContainer().set(new NamespacedKey("uhc", "apprentice_sword"), PersistentDataType.INTEGER, 1);
         AntiAnvil.disallowAnvil(im);
-        bloodlust.setItemMeta(im);
-        ShapedRecipe bloodlustRecipe = new ShapedRecipe(new NamespacedKey("uhc", "bloodlust"), bloodlust);
+        apprenticeSword.setItemMeta(im);
+        ShapedRecipe bloodlustRecipe = new ShapedRecipe(new NamespacedKey("uhc", "apprentice_sword"), apprenticeSword);
         bloodlustRecipe.shape("r", "S", "r");
         bloodlustRecipe.setIngredient('r', Material.REDSTONE_BLOCK);
-        bloodlustRecipe.setIngredient('S', Material.DIAMOND_SWORD);
+        bloodlustRecipe.setIngredient('S', Material.IRON_SWORD);
         Bukkit.getServer().addRecipe(bloodlustRecipe);
     }
     private static void diceOfGod() {
@@ -592,6 +592,7 @@ public class Crafts implements Listener {
         goldenHead();
         powerBook();
         appleEconomy();
+        apprenticeSword();
         velocityPotion();
         nectar();
         backpack();
@@ -603,7 +604,6 @@ public class Crafts implements Listener {
         // But aren't good enough to (or shouldn't, if the craft is too weird) be ultimates
         chestOfFate();
         cupidsBow();
-        bloodlust();
         diceOfGod();
 
         ItemStack dragonSword = itemStackDragonSword();
