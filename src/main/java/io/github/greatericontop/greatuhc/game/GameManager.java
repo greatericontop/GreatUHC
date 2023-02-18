@@ -100,7 +100,7 @@ public class GameManager {
                         for (Player player : Bukkit.getOnlinePlayers()) {
                             player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1.0F, 1.0F);
                         }
-                        if (seconds <= 10 || seconds == 20 || seconds == 30 || seconds == 45) {
+                        if (seconds <= 10 || seconds == 15 || seconds == 20 || seconds == 30 || seconds == 45) {
                             Bukkit.broadcastMessage(String.format("§7| §b%d §cseconds left", seconds));
                         }
                     }
