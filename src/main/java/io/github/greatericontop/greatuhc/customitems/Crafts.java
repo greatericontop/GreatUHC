@@ -576,10 +576,10 @@ public class Crafts implements Listener {
         ItemMeta im = bloodlust.getItemMeta();
         im.setDisplayName("§cBloodlust");
         im.setLore(List.of(
-                "§3Gains Sharpness §cI §3after §b25 §3damage.",
-                "§3Gains Sharpness §cII §3after §b100 §3damage.",
-                "§3Gains Sharpness §cIII §3after §b200 §3damage.",
-                "§3Gains Sharpness §cIV §3after §b300 §3damage."
+                "§3Gains Sharpness §cI §3after §b50 §3damage.",
+                "§3Gains Sharpness §cII §3after §b150 §3damage.",
+                "§3Gains Sharpness §cIII §3after §b300 §3damage.",
+                "§3Gains Sharpness §cIV §3after §b600 §3damage."
         ));
         im.getPersistentDataContainer().set(new NamespacedKey("uhc", "bloodlust_damage"), PersistentDataType.DOUBLE, 0.0);
         AntiAnvil.disallowAnvil(im);
