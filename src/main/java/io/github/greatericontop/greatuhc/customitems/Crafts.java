@@ -571,6 +571,21 @@ public class Crafts implements Listener {
         vitalityPotion.setItemMeta(im);
         return vitalityPotion;
     }
+    private static ItemStack itemStackBloodlust() {
+        ItemStack bloodlust = new ItemStack(Material.DIAMOND_SWORD, 1);
+        ItemMeta im = bloodlust.getItemMeta();
+        im.setDisplayName("§cBloodlust");
+        im.setLore(List.of(
+                "§3Gains Sharpness §cI §3after §b25 §3damage.",
+                "§3Gains Sharpness §cII §3after §b100 §3damage.",
+                "§3Gains Sharpness §cIII §3after §b200 §3damage.",
+                "§3Gains Sharpness §cIV §3after §b300 §3damage."
+        ));
+        im.getPersistentDataContainer().set(new NamespacedKey("uhc", "bloodlust_damage"), PersistentDataType.DOUBLE, 0.0);
+        AntiAnvil.disallowAnvil(im);
+        bloodlust.setItemMeta(im);
+        return bloodlust;
+    }
 
     public static void registerCrafts() {
         Bukkit.getServer().removeRecipe(new NamespacedKey("minecraft", "anduril"));
@@ -778,6 +793,15 @@ public class Crafts implements Listener {
         vitalityPotionRecipe.setIngredient('B', Material.BONE);
         vitalityPotionRecipe.setIngredient('i', Material.IRON_INGOT);
         Bukkit.getServer().addRecipe(vitalityPotionRecipe);
+
+        ItemStack bloodlust = itemStackBloodlust();
+        ShapedRecipe bloodlustRecipe = new ShapedRecipe(new NamespacedKey("uhc", "bloodlust"), bloodlust);
+        bloodlustRecipe.shape("rDr", "rSr", "rOr");
+        bloodlustRecipe.setIngredient('r', Material.REDSTONE_BLOCK);
+        bloodlustRecipe.setIngredient('D', Material.DIAMOND);
+        bloodlustRecipe.setIngredient('S', Material.DIAMOND_SWORD);
+        bloodlustRecipe.setIngredient('O', Material.OBSIDIAN);
+        Bukkit.getServer().addRecipe(bloodlustRecipe);
     }
 
     public static ItemStack getRandomUltimate() {
@@ -801,6 +825,7 @@ public class Crafts implements Listener {
                 itemStackShoesOfVidar(),
                 itemStackWarlockPants(),
                 itemStackVitalityPotion(),
+                itemStackBloodlust(),
         };
         return extraUltimates[new Random().nextInt(extraUltimates.length)];
     }

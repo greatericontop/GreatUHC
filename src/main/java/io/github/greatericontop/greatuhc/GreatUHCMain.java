@@ -3,6 +3,7 @@ package io.github.greatericontop.greatuhc;
 import io.github.greatericontop.greatuhc.customitems.CraftLimiter;
 import io.github.greatericontop.greatuhc.customitems.CraftNotifications;
 import io.github.greatericontop.greatuhc.customitems.Crafts;
+import io.github.greatericontop.greatuhc.customitems.ItemBloodlustListener;
 import io.github.greatericontop.greatuhc.customitems.ItemEnhancementBookListener;
 import io.github.greatericontop.greatuhc.customitems.ItemSugarCookieListener;
 import io.github.greatericontop.greatuhc.customitems.ItemVitalityListener;
@@ -61,6 +62,7 @@ public class GreatUHCMain extends JavaPlugin {
         craftNotifications = new CraftNotifications();
         this.getServer().getPluginManager().registerEvents(craftNotifications, this);
 
+        this.getServer().getPluginManager().registerEvents(new ItemBloodlustListener(), this);
         this.getServer().getPluginManager().registerEvents(new ItemEnhancementBookListener(), this);
         this.getServer().getPluginManager().registerEvents(new ItemSugarCookieListener(), this);
         this.getServer().getPluginManager().registerEvents(new ItemVitalityListener(), this);
