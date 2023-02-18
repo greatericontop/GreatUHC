@@ -91,15 +91,17 @@ public class GameManager {
                     if (seconds % 60 == 0) {
                         int minutes = seconds / 60;
                         if (minutes <= 5 || minutes % 5 == 0) {
-                            Bukkit.broadcastMessage(String.format("§b%d §eminutes left", minutes));
+                            Bukkit.broadcastMessage(String.format("§7| §b%d §eminutes left", minutes));
                             for (Player player : Bukkit.getOnlinePlayers()) {
                                 player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1.0F, 1.0F);
                             }
                         }
-                    } else if (seconds <= 30) {
+                    } else if (seconds <= 30 || seconds == 45) {
                         for (Player player : Bukkit.getOnlinePlayers()) {
-                            player.sendActionBar(String.format("§b%d §cseconds left", seconds));
                             player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1.0F, 1.0F);
+                        }
+                        if (seconds <= 10 || seconds == 20 || seconds == 30 || seconds == 45) {
+                            Bukkit.broadcastMessage(String.format("§7| §b%d §cseconds left", seconds));
                         }
                     }
                 }
