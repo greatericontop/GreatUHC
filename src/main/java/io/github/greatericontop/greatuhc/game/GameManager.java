@@ -3,7 +3,9 @@ package io.github.greatericontop.greatuhc.game;
 import io.github.greatericontop.greatuhc.GreatUHCMain;
 import io.github.greatericontop.greatuhc.game.pregame.PreGameManager;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class GameManager {
@@ -82,6 +84,22 @@ public class GameManager {
                         case DEATHMATCH -> {
                             currentPhase = GamePhase.INACTIVE;
                             ticksLeft = 0;
+                        }
+                    }
+                } else if (ticksLeft % 20 == 0) {
+                    int seconds = ticksLeft / 20;
+                    if (seconds % 60 == 0) {
+                        int minutes = seconds / 60;
+                        if (minutes <= 5 || minutes % 5 == 0) {
+                            Bukkit.broadcastMessage(String.format("§b%d §eminutes left", minutes));
+                            for (Player player : Bukkit.getOnlinePlayers()) {
+                                player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1.0F, 1.0F);
+                            }
+                        }
+                    } else if (seconds <= 30) {
+                        for (Player player : Bukkit.getOnlinePlayers()) {
+                            player.sendActionBar(String.format("§b%d §cseconds left", seconds));
+                            player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1.0F, 1.0F);
                         }
                     }
                 }
