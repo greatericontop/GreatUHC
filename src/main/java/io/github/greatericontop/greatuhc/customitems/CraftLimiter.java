@@ -144,6 +144,7 @@ public class CraftLimiter implements Listener {
             case "sugar_cookie" -> handleLimitedCraft(craftKey, event, 3);
             case "apprentice_bow" -> handleLimitedCraft(craftKey, event, 1);
             case "vitality_potion" -> handleLimitedCraft(craftKey, event, 1);
+            case "toughness_potion" -> handleLimitedCraft(craftKey, event, 1);
         }
     }
 

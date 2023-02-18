@@ -368,6 +368,20 @@ public class Crafts implements Listener {
         apprenticeBowRecipe.setIngredient('a', Material.ARROW);
         Bukkit.getServer().addRecipe(apprenticeBowRecipe);
     }
+    private static void toughnessPotion() {
+        ItemStack toughnessPotion = new ItemStack(Material.POTION, 1);
+        PotionMeta im = (PotionMeta) toughnessPotion.getItemMeta();
+        im.setDisplayName("§bPotion of Toughness");
+        im.addCustomEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 2100, 0), true);
+        toughnessPotion.setItemMeta(im);
+        ShapedRecipe toughnessPotionRecipe = new ShapedRecipe(new NamespacedKey("uhc", "toughness_potion"), toughnessPotion);
+        toughnessPotionRecipe.shape("sIs", "sgs", "sss");
+        toughnessPotionRecipe.setIngredient('s', Material.SNOW_BLOCK);
+        toughnessPotionRecipe.setIngredient('I', Material.IRON_BLOCK);
+        toughnessPotionRecipe.setIngredient('g', Material.GLASS_BOTTLE);
+        Bukkit.getServer().addRecipe(toughnessPotionRecipe);
+    }
+
 
     private static ItemStack itemStackDragonSword() {
         ItemStack dragonSword = new ItemStack(Material.DIAMOND_SWORD, 1);
@@ -583,6 +597,7 @@ public class Crafts implements Listener {
         backpack();
         sugarCookie();
         apprenticeBow();
+        toughnessPotion();
 
         // Crafts I feel like are good
         // But aren't good enough to (or shouldn't, if the craft is too weird) be ultimates
