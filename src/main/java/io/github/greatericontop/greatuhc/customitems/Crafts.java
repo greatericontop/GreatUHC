@@ -373,6 +373,7 @@ public class Crafts implements Listener {
         PotionMeta im = (PotionMeta) toughnessPotion.getItemMeta();
         im.setDisplayName("§bPotion of Toughness");
         im.addCustomEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 2100, 0), true);
+        im.setColor(Color.fromRGB(0x7eb2ca)); // speed color
         toughnessPotion.setItemMeta(im);
         ShapedRecipe toughnessPotionRecipe = new ShapedRecipe(new NamespacedKey("uhc", "toughness_potion"), toughnessPotion);
         toughnessPotionRecipe.shape("sIs", "sgs", "sss");
@@ -568,6 +569,7 @@ public class Crafts implements Listener {
                 "§7Anyone in range will receive §b100%",
                 "§7duration of the effects"
         ));
+        im.setColor(Color.fromRGB(0xff0000));
         vitalityPotion.setItemMeta(im);
         return vitalityPotion;
     }
