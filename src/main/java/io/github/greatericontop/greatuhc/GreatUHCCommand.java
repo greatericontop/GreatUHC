@@ -53,8 +53,19 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
             return true;
         }
         if (args[0].equals("extend-clock")) {
-            plugin.gameManager.extendOneMinute();
-            Bukkit.broadcastMessage("§aThe clock was extended by 1 minute!");
+            int seconds;
+            if (args.length == 1) {
+                seconds = 30;
+            } else {
+                try {
+                    seconds = Integer.parseInt(args[1]);
+                } catch (NumberFormatException e) {
+                    sender.sendMessage("§cInvalid number!");
+                    return true;
+                }
+            }
+            plugin.gameManager.extend(seconds);
+            Bukkit.broadcastMessage(String.format("§aThe clock was extended by %d seconds!", seconds));
             return true;
         }
         if (args[0].equals("double-heads")) {
