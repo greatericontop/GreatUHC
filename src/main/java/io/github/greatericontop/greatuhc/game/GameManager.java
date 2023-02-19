@@ -87,6 +87,7 @@ public class GameManager {
                         }
                     }
                 } else if (ticksLeft % 20 == 0) {
+                    // note: since `ticksLeft--` was already called, this will NOT execute on the first tick when a clock starts
                     int seconds = ticksLeft / 20;
                     if (seconds % 60 == 0) {
                         int minutes = seconds / 60;
@@ -96,11 +97,16 @@ public class GameManager {
                                 player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1.0F, 1.0F);
                             }
                         }
-                    } else if (seconds <= 30 || seconds == 45) {
+                    } else if (seconds == 30 || seconds == 45) {
                         for (Player player : Bukkit.getOnlinePlayers()) {
                             player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1.0F, 1.0F);
                         }
-                        if (seconds <= 10 || seconds == 15 || seconds == 20 || seconds == 30 || seconds == 45) {
+                        Bukkit.broadcastMessage(String.format("§7| §b%d §6seconds left", seconds));
+                    } else if (seconds <= 20) {
+                        for (Player player : Bukkit.getOnlinePlayers()) {
+                            player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1.0F, 1.0F);
+                        }
+                        if (seconds <= 10 || seconds == 15 || seconds == 20) {
                             Bukkit.broadcastMessage(String.format("§7| §b%d §cseconds left", seconds));
                         }
                     }
