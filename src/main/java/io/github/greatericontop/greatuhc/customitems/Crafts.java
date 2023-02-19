@@ -390,6 +390,15 @@ public class Crafts implements Listener {
         deliciousMealRecipe.setIngredient('C', Material.COAL);
         Bukkit.getServer().addRecipe(deliciousMealRecipe);
     }
+    private static void glassEconomy() {
+        ItemStack glassEconomy = new ItemStack(Material.GLASS, 8);
+        ShapedRecipe glassEconomyRecipe = new ShapedRecipe(new NamespacedKey("uhc", "glass_economy"), glassEconomy);
+        glassEconomyRecipe.shape("sss", "sCs", "sss");
+        glassEconomyRecipe.setIngredient('s', Material.SAND);
+        glassEconomyRecipe.setIngredient('C', Material.COAL);
+        Bukkit.getServer().addRecipe(glassEconomyRecipe);
+    }
+
 
 
     private static ItemStack itemStackDragonSword() {
@@ -625,6 +634,7 @@ public class Crafts implements Listener {
         apprenticeBow();
         toughnessPotion();
         deliciousMeal();
+        glassEconomy();
 
         // Crafts I feel like are good
         // But aren't good enough to (or shouldn't, if the craft is too weird) be ultimates
