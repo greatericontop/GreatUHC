@@ -260,19 +260,19 @@ public class Crafts implements Listener {
         ItemMeta im = apprenticeSword.getItemMeta();
         im.setDisplayName("§aApprentice Sword");
         im.setLore(List.of(
-                "§bGains Sharpness §c1 §bafter grace period",
-                "§bGains Sharpness §c2 §b10 minutes after grace period",
-                "§bGains Sharpness §c3 §bduring Deathmatch",
+                "§bGains Sharpness §cI §bafter grace period",
+                "§bGains Sharpness §cII §b10 minutes after grace period",
+                "§bGains Sharpness §cIII §bduring Deathmatch",
                 "§7If necessary, left or right click to update this item"
         ));
         im.getPersistentDataContainer().set(new NamespacedKey("uhc", "apprentice_sword"), PersistentDataType.INTEGER, 1);
         AntiAnvil.disallowAnvil(im);
         apprenticeSword.setItemMeta(im);
-        ShapedRecipe bloodlustRecipe = new ShapedRecipe(new NamespacedKey("uhc", "apprentice_sword"), apprenticeSword);
-        bloodlustRecipe.shape("r", "S", "r");
-        bloodlustRecipe.setIngredient('r', Material.REDSTONE_BLOCK);
-        bloodlustRecipe.setIngredient('S', Material.IRON_SWORD);
-        Bukkit.getServer().addRecipe(bloodlustRecipe);
+        ShapedRecipe apprenticeSwordRecipe = new ShapedRecipe(new NamespacedKey("uhc", "apprentice_sword"), apprenticeSword);
+        apprenticeSwordRecipe.shape("r", "S", "r");
+        apprenticeSwordRecipe.setIngredient('r', Material.REDSTONE_BLOCK);
+        apprenticeSwordRecipe.setIngredient('S', Material.IRON_SWORD);
+        Bukkit.getServer().addRecipe(apprenticeSwordRecipe);
     }
     private static void diceOfGod() {
         ItemStack diceOfGod = new ItemStack(Material.END_PORTAL_FRAME, 1);
