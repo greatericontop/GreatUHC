@@ -398,8 +398,23 @@ public class Crafts implements Listener {
         glassEconomyRecipe.setIngredient('C', Material.COAL);
         Bukkit.getServer().addRecipe(glassEconomyRecipe);
     }
-
-
+    private static void fateTemptation() {
+        ItemStack fateTemptation = new ItemStack(Material.REDSTONE, 1);
+        ItemMeta im = fateTemptation.getItemMeta();
+        im.setDisplayName("§6Fate's Temptation");
+        im.setLore(List.of(
+                "§7You'll be blessed with random items to help you",
+                "§7along the road to victory."
+        ));
+        fateTemptation.setItemMeta(im);
+        ShapedRecipe fateTemptationRecipe = new ShapedRecipe(new NamespacedKey("uhc", "fate_temptation"), fateTemptation);
+        fateTemptationRecipe.shape("rRr", "gCg", "rRr");
+        fateTemptationRecipe.setIngredient('r', Material.REDSTONE);
+        fateTemptationRecipe.setIngredient('R', Material.REDSTONE_BLOCK);
+        fateTemptationRecipe.setIngredient('g', Material.GUNPOWDER);
+        fateTemptationRecipe.setIngredient('C', Material.CHEST);
+        Bukkit.getServer().addRecipe(fateTemptationRecipe);
+    }
 
     private static ItemStack itemStackDragonSword() {
         ItemStack dragonSword = new ItemStack(Material.DIAMOND_SWORD, 1);
@@ -635,6 +650,7 @@ public class Crafts implements Listener {
         toughnessPotion();
         deliciousMeal();
         glassEconomy();
+        fateTemptation();
 
         // Crafts I feel like are good
         // But aren't good enough to (or shouldn't, if the craft is too weird) be ultimates
