@@ -121,7 +121,7 @@ public class ItemDropListener implements Listener {
         }
         if (victim.getType() == EntityType.ENDERMAN) {
             // always drop a pearl
-            if (event.getDrops().isEmpty()) {
+            if (event.getDrops().stream().noneMatch(itemStack -> itemStack.getType() == Material.ENDER_PEARL)) {
                 event.getDrops().add(new ItemStack(Material.ENDER_PEARL, 1));
             }
         }
