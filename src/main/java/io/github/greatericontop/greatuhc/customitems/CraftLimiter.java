@@ -5,6 +5,7 @@ import io.github.greatericontop.greatuhc.util.TrueDamageHelper;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -52,18 +53,41 @@ public class CraftLimiter implements Listener {
             crafts.put(craftMapKey, new HashMap<>());
         }
         Map<UUID, Integer> craftMap = crafts.get(craftMapKey);
+        HumanEntity player = event.getWhoClicked();
+        switch (event.getClick()) {
 
-        int craftsAlready = craftMap.getOrDefault(uuid, 0);
-        if (craftsAlready >= craftLimit) { // can't make more
-            event.setCancelled(true);
-            event.getWhoClicked().sendMessage(String.format("§cYou already crafted the limit of §e%d §cof this item.", craftLimit));
-        } else {
-            if (findNumberInCraftingTable(event) > 1) { // attempted to make too many
+            case LEFT, RIGHT, DROP, NUMBER_KEY -> {
+                // craft one
+                int craftsAlready = craftMap.getOrDefault(uuid, 0);
+                if (craftsAlready >= craftLimit) { // can't make more
+                    event.setCancelled(true);
+                    player.sendMessage(String.format("§cYou already crafted the limit of §e%d §cof this item.", craftLimit));
+                } else {
+                    craftMap.put(uuid, craftsAlready + 1);
+                    player.sendMessage(String.format("§7You have crafted §e%d§7/§e%d §7of this item.", craftsAlready + 1, craftLimit));
+                }
+            }
+
+            case SHIFT_LEFT, SHIFT_RIGHT, CONTROL_DROP -> {
+                // craft a lot
+                int craftsAlready = craftMap.getOrDefault(uuid, 0);
+                int numberToMake = findNumberInCraftingTable(event);
+                if (craftsAlready + numberToMake > craftLimit) { // can't make more
+                    event.setCancelled(true);
+                    player.sendMessage(String.format("§cYou have too many items in the crafting table! You can only make §e%d §cmore of this item.", craftLimit - craftsAlready));
+                } else {
+                    craftMap.put(uuid, craftsAlready + numberToMake);
+                    player.sendMessage(String.format("§7You have crafted §e%d§7/§e%d §7of this item.", craftsAlready + numberToMake, craftLimit));
+                }
+            }
+
+            case DOUBLE_CLICK -> {
+                player.sendMessage("§cWe couldn't craft this due to a double click. Try crafting this item again.");
                 event.setCancelled(true);
-                event.getWhoClicked().sendMessage("§cYou have too many items in the crafting table.");
-            } else {
-                craftMap.put(uuid, craftsAlready + 1);
-                event.getWhoClicked().sendMessage(String.format("§7You have crafted §e%d§7/§e%d §7of this item.", craftsAlready + 1, craftLimit));
+            }
+            case MIDDLE, SWAP_OFFHAND, UNKNOWN, WINDOW_BORDER_LEFT, WINDOW_BORDER_RIGHT, CREATIVE -> {
+                player.sendMessage("§cWe couldn't craft this. This should never happen, but it did. Try crafting this item again.");
+                event.setCancelled(true);
             }
         }
     }
