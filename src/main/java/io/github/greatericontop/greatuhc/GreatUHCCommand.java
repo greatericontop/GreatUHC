@@ -117,6 +117,9 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
             );
             return StringUtil.copyPartialMatches(args[0], mainCommands, new ArrayList<>(mainCommands.size()));
         }
+        if (args.length == 2 && args[0].equals("extend-clock")) {
+            return List.of("<seconds>");
+        }
         return null;
     }
 
