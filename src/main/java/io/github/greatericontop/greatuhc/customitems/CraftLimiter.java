@@ -129,6 +129,11 @@ public class CraftLimiter implements Listener {
                     event.setCancelled(true);
                     return;
                 }
+                if (event.getWhoClicked().getItemOnCursor().getType() != Material.AIR) {
+                    event.getWhoClicked().sendMessage("§cThere can't be an item already on your cursor!");
+                    event.setCancelled(true);
+                    return;
+                }
                 handleLimitedCraft(craftKey, event, 1000);
                 if (!event.isCancelled()) {
                     ItemStack ultimate = Crafts.getRandomUltimate();
