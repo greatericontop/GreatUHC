@@ -382,6 +382,14 @@ public class Crafts implements Listener {
         toughnessPotionRecipe.setIngredient('g', Material.GLASS_BOTTLE);
         Bukkit.getServer().addRecipe(toughnessPotionRecipe);
     }
+    private static void deliciousMeal() {
+        ItemStack deliciousMeal = new ItemStack(Material.COOKED_BEEF, 8);
+        ShapedRecipe deliciousMealRecipe = new ShapedRecipe(new NamespacedKey("uhc", "delicious_meal"), deliciousMeal);
+        deliciousMealRecipe.shape("xxx", "xCx", "xxx");
+        deliciousMealRecipe.setIngredient('x', new RecipeChoice.MaterialChoice(Material.PORKCHOP, Material.BEEF));
+        deliciousMealRecipe.setIngredient('C', Material.COAL);
+        Bukkit.getServer().addRecipe(deliciousMealRecipe);
+    }
 
 
     private static ItemStack itemStackDragonSword() {
@@ -616,6 +624,7 @@ public class Crafts implements Listener {
         sugarCookie();
         apprenticeBow();
         toughnessPotion();
+        deliciousMeal();
 
         // Crafts I feel like are good
         // But aren't good enough to (or shouldn't, if the craft is too weird) be ultimates
