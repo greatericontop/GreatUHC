@@ -16,6 +16,7 @@ import io.github.greatericontop.greatuhc.mechanics.AbsorptionEffectFix;
 import io.github.greatericontop.greatuhc.mechanics.AntiAnvil;
 import io.github.greatericontop.greatuhc.mechanics.CustomHealingListener;
 import io.github.greatericontop.greatuhc.mechanics.DiamondSpreading;
+import io.github.greatericontop.greatuhc.mechanics.HungerListener;
 import io.github.greatericontop.greatuhc.mechanics.ItemDropListener;
 import io.github.greatericontop.greatuhc.mechanics.MobSpawning;
 import io.github.greatericontop.greatuhc.mechanics.OldPVP;
@@ -74,6 +75,7 @@ public class GreatUHCMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new AntiAnvil(), this);
         this.getServer().getPluginManager().registerEvents(new CustomHealingListener(this), this);
         this.getServer().getPluginManager().registerEvents(new DiamondSpreading(), this);
+        this.getServer().getPluginManager().registerEvents(new HungerListener(), this);
         this.getServer().getPluginManager().registerEvents(new ItemDropListener(this), this);
         this.getServer().getPluginManager().registerEvents(new MobSpawning(), this);
         this.getServer().getPluginManager().registerEvents(new OldPVP(), this);
