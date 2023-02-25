@@ -36,6 +36,7 @@ public class GreatUHCMain extends JavaPlugin {
     public boolean uhcMiningModifier = false;
     public boolean uhcStartingHeads = false;
     public boolean uhcRandomUltimate = false;
+    public boolean uhcAllDropStone = true;
     public boolean debugMode = false;
 
     public CraftLimiter craftLimiter = null;

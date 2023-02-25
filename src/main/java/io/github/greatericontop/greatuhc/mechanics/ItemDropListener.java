@@ -85,6 +85,11 @@ public class ItemDropListener implements Listener {
             event.setExpToDrop(randint(0, 1));
         }
 
+        if (plugin.uhcAllDropStone && (typeBroken == Material.ANDESITE || typeBroken == Material.DIORITE || typeBroken == Material.GRANITE)) {
+            event.setDropItems(false);
+            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.COBBLESTONE, 1));
+        }
+
         if (typeBroken == Material.OAK_LEAVES || typeBroken == Material.DARK_OAK_LEAVES) {
             if (Math.random() < 0.035) {
                 event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.APPLE, 1));

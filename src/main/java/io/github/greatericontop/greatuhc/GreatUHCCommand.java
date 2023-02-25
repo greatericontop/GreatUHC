@@ -41,6 +41,7 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage(generateMsg("Mining Modifier", plugin.uhcMiningModifier, "mining-modifier"));
             sender.sendMessage(generateMsg("Starting Heads", plugin.uhcStartingHeads, "starting-heads"));
             sender.sendMessage(generateMsg("Random Ultimate", plugin.uhcRandomUltimate, "random-ultimate"));
+            sender.sendMessage(generateMsg("All Drop Stone", plugin.uhcAllDropStone, "drop-stone"));
             sender.sendMessage("");
             sender.sendMessage(generateMsg("Debug Mode", plugin.debugMode, "debug-mode"));
             sender.sendMessage("");
@@ -103,6 +104,11 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage(String.format("§cRandom Ultimate §3is now %s", plugin.uhcRandomUltimate ? "§2ON" : "§4OFF"));
             return true;
         }
+        if (args[0].equals("all-drop-stone")) {
+            plugin.uhcAllDropStone = !plugin.uhcAllDropStone;
+            sender.sendMessage(String.format("§cAll Drop Stone §3is now %s", plugin.uhcAllDropStone ? "§2ON" : "§4OFF"));
+            return true;
+        }
         return false;
     }
 
@@ -111,8 +117,8 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
         if (args.length == 1) {
             List<String> mainCommands = Arrays.asList(
                     "crafts", "extend-clock",
-                    "double-heads", "powerful-heads", "survivalism",
-                    "mining-modifier", "starting-heads", "random-ultimate",
+                    "double-heads", "powerful-heads", "survivalism", "mining-modifier",
+                    "starting-heads", "random-ultimate", "all-drop-stone",
                     "debug-mode"
             );
             return StringUtil.copyPartialMatches(args[0], mainCommands, new ArrayList<>(mainCommands.size()));
