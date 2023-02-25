@@ -424,6 +424,13 @@ public class Crafts implements Listener {
         sugarEconomyRecipe.setIngredient('w', Material.WHEAT_SEEDS);
         Bukkit.getServer().addRecipe(sugarEconomyRecipe);
     }
+    private static void obsidian() {
+        ItemStack obsidian = new ItemStack(Material.OBSIDIAN, 1);
+        ShapelessRecipe obsidianRecipe = new ShapelessRecipe(new NamespacedKey("uhc", "obsidian"), obsidian);
+        obsidianRecipe.addIngredient(2, Material.WATER_BUCKET);
+        obsidianRecipe.addIngredient(2, Material.LAVA_BUCKET);
+        Bukkit.getServer().addRecipe(obsidianRecipe);
+    }
 
     private static ItemStack itemStackDragonSword() {
         ItemStack dragonSword = new ItemStack(Material.DIAMOND_SWORD, 1);
@@ -661,6 +668,7 @@ public class Crafts implements Listener {
         glassEconomy();
         fateTemptation();
         sugarEconomy();
+        obsidian();
 
         // Crafts I feel like are good
         // But aren't good enough to (or shouldn't, if the craft is too weird) be ultimates

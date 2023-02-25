@@ -228,6 +228,7 @@ public class CraftLimiter implements Listener {
                 }
             }
             case "sugar_economy" -> handleLimitedCraft(craftKey, event, 3);
+            case "obsidian" -> handleLimitedCraft(craftKey, event, 1);
         }
     }
 
