@@ -39,6 +39,10 @@ public class GameUtils {
                         player.teleport(previousLoc);
                     }
                 }
+                if (counter % 4 == 0 && counter != 0) {
+                    int seconds = counter / 4;
+                    Bukkit.broadcastMessage(String.format("§7You'll be able to move in §e%d§7 seconds.", seconds));
+                }
             }
         }.runTaskTimer(plugin, 5L, 5L);
     }
