@@ -637,6 +637,15 @@ public class Crafts implements Listener {
         bloodlust.setItemMeta(im);
         return bloodlust;
     }
+    private static ItemStack itemStackFlaskOfIchor() {
+        ItemStack flask = new ItemStack(Material.SPLASH_POTION, 1);
+        PotionMeta im = (PotionMeta) flask.getItemMeta();
+        im.setDisplayName("§4Flask of Ichor");
+        im.setColor(Color.fromRGB(0x440a09)); // instant damage color
+        im.addCustomEffect(new PotionEffect(PotionEffectType.HARM, 1, 2), true);
+        flask.setItemMeta(im);
+        return flask;
+    }
 
     public static void registerCrafts() {
         Bukkit.getServer().removeRecipe(new NamespacedKey("minecraft", "anduril"));
@@ -858,6 +867,15 @@ public class Crafts implements Listener {
         bloodlustRecipe.setIngredient('S', Material.DIAMOND_SWORD);
         bloodlustRecipe.setIngredient('O', Material.OBSIDIAN);
         Bukkit.getServer().addRecipe(bloodlustRecipe);
+
+        ItemStack flaskOfIchor = itemStackFlaskOfIchor();
+        ShapedRecipe flaskOfIchorRecipe = new ShapedRecipe(new NamespacedKey("uhc", "flask_of_ichor"), flaskOfIchor);
+        flaskOfIchorRecipe.shape(" S ", "MgM", " I ");
+        flaskOfIchorRecipe.setIngredient('S', Material.SPIDER_EYE);
+        flaskOfIchorRecipe.setIngredient('M', Material.BROWN_MUSHROOM);
+        flaskOfIchorRecipe.setIngredient('g', Material.GLASS_BOTTLE);
+        flaskOfIchorRecipe.setIngredient('I', Material.INK_SAC);
+        Bukkit.getServer().addRecipe(flaskOfIchorRecipe);
     }
 
     public static ItemStack getRandomUltimate() {
@@ -882,6 +900,7 @@ public class Crafts implements Listener {
                 itemStackWarlockPants(),
                 itemStackVitalityPotion(),
                 itemStackBloodlust(),
+                itemStackFlaskOfIchor(),
         };
         return extraUltimates[new Random().nextInt(extraUltimates.length)];
     }
