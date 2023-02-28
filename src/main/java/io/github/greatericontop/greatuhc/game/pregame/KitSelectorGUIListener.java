@@ -50,10 +50,10 @@ public class KitSelectorGUIListener implements Listener {
         }
         gui.setItem(0, newItemStack(
                 Material.LEATHER_CHESTPLATE, "§eArmorer",
-                "§7Leather Helmet (protection 1)",
-                "§7Leather Chestplate (protection 1)",
-                "§7Leather Leggings (protection 1)",
-                "§7Leather Boots (protection 1)",
+                "§7Leather Helmet (protection 1 unbreaking 1)",
+                "§7Leather Chestplate (protection 1 unbreaking 1)",
+                "§7Leather Leggings (protection 1 unbreaking 1)",
+                "§7Leather Boots (protection 1 unbreaking 1)",
                 "",
                 "§6Enhancement",
                 "§7One piece of armor will be upgraded to iron."
@@ -61,9 +61,9 @@ public class KitSelectorGUIListener implements Listener {
         gui.setItem(1, newItemStack(
                 Material.STONE_PICKAXE, "§eStone Gear",
                 "§7Stone Sword (unbreaking 1)",
-                "§7Stone Pickaxe (efficiency 1 unbreaking 1)",
-                "§7Stone Axe (efficiency 1 unbreaking 1)",
-                "§7Stone Shovel (efficiency 1 unbreaking 1)",
+                "§7Stone Pickaxe (efficiency 2 unbreaking 1)",
+                "§7Stone Axe (efficiency 2 unbreaking 1)",
+                "§7Stone Shovel (efficiency 2 unbreaking 1)",
                 "",
                 "§6Enhancement",
                 "§7One tool will be upgraded to iron."

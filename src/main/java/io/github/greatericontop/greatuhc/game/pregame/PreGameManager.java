@@ -66,9 +66,13 @@ public class PreGameManager {
             }
         }
         leatherHelmet.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
+        leatherHelmet.addEnchantment(Enchantment.DURABILITY, 1);
         leatherChestplate.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
+        leatherChestplate.addEnchantment(Enchantment.DURABILITY, 1);
         leatherLeggings.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
+        leatherLeggings.addEnchantment(Enchantment.DURABILITY, 1);
         leatherBoots.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
+        leatherBoots.addEnchantment(Enchantment.DURABILITY, 1);
         player.getInventory().addItem(leatherHelmet, leatherChestplate, leatherLeggings, leatherBoots);
     }
     private void giveStoneGearTo(Player player, boolean isEnhanced) {
@@ -85,11 +89,11 @@ public class PreGameManager {
             }
         }
         sword.addEnchantment(Enchantment.DURABILITY, 1);
-        pick.addEnchantment(Enchantment.DIG_SPEED, 1);
+        pick.addEnchantment(Enchantment.DIG_SPEED, 2);
         pick.addEnchantment(Enchantment.DURABILITY, 1);
-        axe.addEnchantment(Enchantment.DIG_SPEED, 1);
+        axe.addEnchantment(Enchantment.DIG_SPEED, 2);
         axe.addEnchantment(Enchantment.DURABILITY, 1);
-        shovel.addEnchantment(Enchantment.DIG_SPEED, 1);
+        shovel.addEnchantment(Enchantment.DIG_SPEED, 2);
         shovel.addEnchantment(Enchantment.DURABILITY, 1);
         player.getInventory().addItem(sword, pick, axe, shovel);
     }
