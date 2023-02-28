@@ -642,7 +642,7 @@ public class Crafts implements Listener {
         PotionMeta im = (PotionMeta) flask.getItemMeta();
         im.setDisplayName("§4Flask of Ichor");
         im.setColor(Color.fromRGB(0x440a09)); // instant damage color
-        im.addCustomEffect(new PotionEffect(PotionEffectType.HARM, 1, 2), true);
+        im.addCustomEffect(new PotionEffect(PotionEffectType.HARM, 1, 3), true);
         flask.setItemMeta(im);
         return flask;
     }

@@ -51,7 +51,7 @@ public class UHCCustomDamage implements Listener {
         }
         if (cause == DamageCause.MAGIC || cause == DamageCause.POISON || cause == DamageCause.WITHER) {
             plugin.debugMsg(player, "survivalism: potion damage cause, slightly reducing damage");
-            event.setDamage(event.getDamage() * 0.75);
+            event.setDamage(event.getDamage() * 0.725);
             return;
         }
         if (cause == DamageCause.LAVA || cause == DamageCause.FIRE || cause == DamageCause.FIRE_TICK) {
