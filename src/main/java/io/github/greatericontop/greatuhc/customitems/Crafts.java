@@ -598,6 +598,7 @@ public class Crafts implements Listener {
         ItemMeta im = warlockPants.getItemMeta();
         im.setDisplayName("§7Warlock Pants");
         im.setLore(Arrays.asList("id: WARLOCK_PANTS", "§7WeaponMaster", "§3Permanent §cStrength §3while wearing!"));
+        im.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, false);
         AntiAnvil.disallowAnvil(im);
         warlockPants.setItemMeta(im);
         return warlockPants;
