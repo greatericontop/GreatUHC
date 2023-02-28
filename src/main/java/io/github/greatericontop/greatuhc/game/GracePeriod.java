@@ -60,6 +60,11 @@ public class GracePeriod {
         for (Player player : Bukkit.getOnlinePlayers()) {
             player.getInventory().clear();
             player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(40.0);
+            if (gameManager.getPlugin().uhcFastReflexes) {
+                player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(99.0);
+            } else {
+                player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(4.0);
+            }
 
             for (PotionEffect effect : player.getActivePotionEffects()) {
                 player.removePotionEffect(effect.getType());
