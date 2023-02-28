@@ -89,7 +89,12 @@ public class GameManager {
                 } else if (ticksLeft % 20 == 0) {
                     // note: since `ticksLeft--` was already called, this will NOT execute on the first tick when a clock starts
                     int seconds = ticksLeft / 20;
-                    if (seconds % 60 == 0) {
+                    if (seconds == 30 || seconds == 45 || seconds == 60) { // putting this first makes "60 seconds" run rather than "1 minute"
+                        for (Player player : Bukkit.getOnlinePlayers()) {
+                            player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1.0F, 1.0F);
+                        }
+                        Bukkit.broadcastMessage(String.format("§7| §b%d §6seconds left", seconds));
+                    } else if (seconds % 60 == 0) {
                         int minutes = seconds / 60;
                         if (minutes <= 8 || minutes % 5 == 0) {
                             Bukkit.broadcastMessage(String.format("§7| §b%d §eminutes left", minutes));
@@ -97,11 +102,6 @@ public class GameManager {
                                 player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1.0F, 1.0F);
                             }
                         }
-                    } else if (seconds == 30 || seconds == 45) {
-                        for (Player player : Bukkit.getOnlinePlayers()) {
-                            player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1.0F, 1.0F);
-                        }
-                        Bukkit.broadcastMessage(String.format("§7| §b%d §6seconds left", seconds));
                     } else if (seconds <= 20) {
                         for (Player player : Bukkit.getOnlinePlayers()) {
                             player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1.0F, 1.0F);
