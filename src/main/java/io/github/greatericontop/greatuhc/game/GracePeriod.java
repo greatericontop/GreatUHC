@@ -61,6 +61,9 @@ public class GracePeriod {
             player.getInventory().clear();
             player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(40.0);
 
+            for (PotionEffect effect : player.getActivePotionEffects()) {
+                player.removePotionEffect(effect.getType());
+            }
             player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 18_000, 0));
             player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 18_000, 0));
             player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 18_000, 0));

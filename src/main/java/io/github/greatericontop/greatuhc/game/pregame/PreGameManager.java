@@ -13,6 +13,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.HashMap;
 import java.util.List;
@@ -192,7 +194,8 @@ public class PreGameManager {
 
         for (int x = 1985; x < 2015; x++) {
             for (int z = 1985; z < 2015; z++) {
-                overworld.getBlockAt(x, 319, z).setType(Material.BEDROCK);
+                overworld.getBlockAt(x, 319, z).setType(Material.AIR);
+                overworld.getBlockAt(x, 318, z).setType(Material.BEDROCK);
             }
         }
 
@@ -204,7 +207,14 @@ public class PreGameManager {
             im.setLore(List.of("Kit Selector"));
             im.addEnchant(Enchantment.LUCK, 1, true);
             kitSelector.setItemMeta(im);
-            player.getInventory().addItem(kitSelector);
+            ItemStack sword = new ItemStack(Material.NETHERITE_SWORD, 1);
+            ItemStack craftingTable = new ItemStack(Material.CRAFTING_TABLE, 1);
+            player.getInventory().addItem(kitSelector, sword, craftingTable);
+
+            // extra effects for pre-game fighting
+            player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 4));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 999999, 0));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 999999, 0));
 
             player.setGameMode(GameMode.SURVIVAL);
             player.undiscoverRecipes(player.getDiscoveredRecipes());
