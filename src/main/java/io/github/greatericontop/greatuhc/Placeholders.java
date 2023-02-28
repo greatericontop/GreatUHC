@@ -4,6 +4,7 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.World;
+import org.bukkit.WorldBorder;
 import org.bukkit.entity.Player;
 
 public class Placeholders extends PlaceholderExpansion {
@@ -42,9 +43,10 @@ public class Placeholders extends PlaceholderExpansion {
             if (world == null) {
                 return String.format("§cWorld §7%s §ccouldn't be found!", worldName);
             }
-            int borderRadius = (int) (world.getWorldBorder().getSize() / 2);
+            WorldBorder border = world.getWorldBorder();
+            int borderRadius = (int) (border.getSize() / 2);
             if (player != null) {
-                int playerRadius = (int) Math.max(Math.abs(player.getLocation().getX()), Math.abs(player.getLocation().getZ()));
+                int playerRadius = (int) Math.max(Math.abs(player.getLocation().getX()-border.getCenter().getX()), Math.abs(player.getLocation().getZ()-border.getCenter().getZ()));
                 String color;
                 if (borderRadius - playerRadius <= 30) {
                     color = "§c";
