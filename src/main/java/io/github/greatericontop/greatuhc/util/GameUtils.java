@@ -59,4 +59,16 @@ public class GameUtils {
         return arr;
     }
 
+    public static int[] shufflePositions(Random random) {
+        // Durstenfeld Shuffle
+        int[] arr = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39};
+        for (int i = arr.length-1; i >= 1; i--) {
+            int other = random.nextInt(i+1); // 0 to i, inclusive
+            int temp = arr[other];
+            arr[other] = arr[i];
+            arr[i] = temp;
+        }
+        return arr;
+    }
+
 }

@@ -22,6 +22,7 @@ import java.util.Random;
 public class DeathmatchPeriod {
     private static final int[] dx = {2, -2, 0, 0};
     private static final int[] dz = {0, 0, 2, -2};
+    private static final double ANGLE_CONVERSION = Math.PI / 15.0; // convert number (0-29) to radians (0-2pi)
     private static final BlockFace[] faces = {BlockFace.EAST, BlockFace.WEST, BlockFace.SOUTH, BlockFace.NORTH};
     private static final Material[] stoneTopMaterials = {
             Material.STONE, Material.STONE, Material.STONE, Material.STONE, Material.STONE,
@@ -138,15 +139,27 @@ public class DeathmatchPeriod {
             inv.setItem(chestItems[6], new ItemStack(Material.ARROW, 12));
         }
 
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 200, 4));
-            // Spreading
-            player.teleport(new Location(overworld, 0.0, 350.0, 0.0));
-        }
+        // Player initialization & spreading
+        if (Bukkit.getOnlinePlayers().size() > 30) {
+            Bukkit.broadcastMessage("§cToo many players! Falling back to normal spread algorithm.");
+            String spreadCommand = String.format("spreadplayers 0 0 %s %s false @a",
+                    20, 60);
+            Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), spreadCommand);
+        } else {
+            int[] positions = GameUtils.shufflePositions(random);
+            int i = 0;
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 200, 4));
 
-        String spreadCommand = String.format("spreadplayers 0 0 %s %s false @a",
-                20, 60);
-        Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), spreadCommand);
+                int x = (int) Math.round(64.0 * Math.cos(positions[i]*ANGLE_CONVERSION));
+                int z = (int) Math.round(64.0 * Math.sin(positions[i]*ANGLE_CONVERSION));
+                Location top = new Location(overworld, x, overworld.getHighestBlockYAt(x, z), z);
+                top.getBlock().setType(Material.QUARTZ_BLOCK);
+                player.teleport(top.add(0.5, 1.0, 0.5));
+
+                i++;
+            }
+        }
 
         GameUtils.freezePlayers(gameManager.getPlugin(), 200);
     }
