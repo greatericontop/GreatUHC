@@ -34,9 +34,9 @@ public class DeathmatchPeriod {
             Material.RED_SAND, Material.RED_SANDSTONE,
     };
 
-    private static final int DEATHMATCH_WORLD_HEIGHT = 309;
+    private static final int DEATHMATCH_WORLD_HEIGHT = 307;
     private static final int MAX_WORLD_HEIGHT = 319;
-    private static final int PYRAMID_HEIGHT = 10;
+    private static final int PYRAMID_HEIGHT = 12;
     private static final int TERRAIN_HEIGHT = 5;
 
     public static void start(GameManager gameManager) {
@@ -61,20 +61,23 @@ public class DeathmatchPeriod {
             public void run() {
                 overworld.getWorldBorder().setSize(20.0, 600L);
             }
-        }.runTaskLater(gameManager.getPlugin(), 1200L);
+        }.runTaskLater(gameManager.getPlugin(), 1200L); // border shrinks to +/- 10 from 14 to 4 minutes remaining
 
         // Setup world for deathmatch
         // OpenSimplex Noise: generate bedrock that transitions into stone
         long seedTerrain = random.nextLong();
         long seedTop = random.nextLong();
-        for (int x = -85; x <= 85; x++) {
-            for (int z = -85; z <= 85; z++) {
+        for (int x = -90; x <= 90; x++) {
+            for (int z = -90; z <= 90; z++) {
                 double noise = OpenSimplex2.noise2(seedTerrain, x/35.0, z/35.0) * 0.5 + 0.5;
-                // height suddenly begins to increase when past the world border (75 to 85)
-                // noise gets increased by up to 90% over the span of 10 blocks
-                int extraDistance = Math.max(Math.abs(x), Math.abs(z)) - 75;
+                // height suddenly begins to increase when past the world border (70 to 90)
+                // noise gets increased (the highest point will touch world height) over the span of 20 blocks
+                int extraDistance = Math.max(Math.abs(x), Math.abs(z)) - 70;
                 if (extraDistance > 0) {
-                    noise += 0.9 * Math.pow(extraDistance/10.0, 1.4);
+                    double distMul = extraDistance / 20.0;
+                    // max noise: (319 - 307) / 5 = 2.4 (use 319 because it's rounded down)
+                    // 1 + 0.77 + 0.63 = 2.4
+                    noise += 0.77*Math.pow(distMul, 1.4) + 0.63*distMul;
                 }
                 int height = (int) (TERRAIN_HEIGHT * noise) + 1; // height will be from 1 to :TERRAIN_HEIGHT:
                 for (int y = 0; y <= (MAX_WORLD_HEIGHT - DEATHMATCH_WORLD_HEIGHT); y++) {
@@ -82,7 +85,6 @@ public class DeathmatchPeriod {
                     if (y == height) {
                         // place top blocks depending on the noise value
                         // one of: mossy/cobblestone/stone; or grass; or sand/sandstone
-                        // TODO: place trees in grass section?
                         double noiseTop = OpenSimplex2.noise2(seedTop, x/30.0, z/30.0) * 0.5 + 0.5;
                         if (noiseTop < 0.4 || (Math.random() < 0.5 && noiseTop < 0.5)) { // 45% (+/- 5%)
                             mat = stoneTopMaterials[random.nextInt(stoneTopMaterials.length)];
@@ -105,7 +107,7 @@ public class DeathmatchPeriod {
                 for (int deltaY = 1; deltaY <= yMax; deltaY++) {
                     Block block = overworld.getBlockAt(x, DEATHMATCH_WORLD_HEIGHT + deltaY, z);
                     if (block.getType() != Material.BEDROCK) {
-                        boolean isOre = deltaY != yMax && random.nextDouble() < 0.0135;
+                        boolean isOre = deltaY != yMax && random.nextDouble() < 0.013;
                         block.setType(isOre ? Material.DIAMOND_ORE : Material.SMOOTH_SANDSTONE, false);
                         debugAmountDiamond += isOre ? 1 : 0;
                         eligibleAmountPlaced += deltaY != yMax ? 1 : 0;
