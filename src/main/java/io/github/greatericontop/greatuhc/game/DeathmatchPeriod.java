@@ -22,7 +22,7 @@ import java.util.Random;
 public class DeathmatchPeriod {
     private static final int[] dx = {2, -2, 0, 0};
     private static final int[] dz = {0, 0, 2, -2};
-    private static final double ANGLE_CONVERSION = Math.PI / 15.0; // convert number (0-29) to radians (0-2pi)
+    private static final double ANGLE_CONVERSION = Math.PI / 16.0; // convert number (0-31) to radians (0-2pi)
     private static final BlockFace[] faces = {BlockFace.EAST, BlockFace.WEST, BlockFace.SOUTH, BlockFace.NORTH};
     private static final Material[] stoneTopMaterials = {
             Material.STONE, Material.STONE, Material.STONE, Material.STONE, Material.STONE,
@@ -140,7 +140,7 @@ public class DeathmatchPeriod {
         }
 
         // Player initialization & spreading
-        if (Bukkit.getOnlinePlayers().size() > 30) {
+        if (Bukkit.getOnlinePlayers().size() > 32) {
             Bukkit.broadcastMessage("§cToo many players! Falling back to normal spread algorithm.");
             String spreadCommand = String.format("spreadplayers 0 0 %s %s false @a",
                     20, 60);
