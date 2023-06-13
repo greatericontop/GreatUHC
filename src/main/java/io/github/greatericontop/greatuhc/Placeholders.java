@@ -81,14 +81,7 @@ public class Placeholders extends PlaceholderExpansion {
         }
 
         if (args.equals("playersalive")) {
-            int count = 0;
-            // Players alive in this case means the number of non-spectator players
-            for (Player p1 : Bukkit.getServer().getOnlinePlayers()) {
-                if (p1.getGameMode() != GameMode.SPECTATOR) {
-                    count++;
-                }
-            }
-            return String.valueOf(count);
+            return String.valueOf(getPlayersAliveCount());
         }
 
         if (args.equals("currentlyfighting")) {
@@ -105,6 +98,17 @@ public class Placeholders extends PlaceholderExpansion {
         }
 
         return null;
+    }
+
+    public static int getPlayersAliveCount() {
+        int count = 0;
+        // Players alive in this case means the number of non-spectator players
+        for (Player p1 : Bukkit.getServer().getOnlinePlayers()) {
+            if (p1.getGameMode() != GameMode.SPECTATOR) {
+                count++;
+            }
+        }
+        return count;
     }
 
 }

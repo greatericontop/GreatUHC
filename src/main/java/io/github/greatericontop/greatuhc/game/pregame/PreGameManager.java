@@ -177,6 +177,11 @@ public class PreGameManager {
         }
     }
     private void giveFateTo(Player player, boolean isEnhanced) {
+        if (!GameManager.SHORT_GAMES) {
+            player.getInventory().addItem(new ItemStack(Material.DIRT, 1));
+            player.sendMessage("§cYou get what you deserve.");
+            return;
+        }
         player.getInventory().addItem(
                 new ItemStack(Material.MOSSY_COBBLESTONE, 63),
                 new ItemStack(Material.JUKEBOX, 9),

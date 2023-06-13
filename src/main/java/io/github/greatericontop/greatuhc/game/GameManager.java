@@ -18,6 +18,7 @@ package io.github.greatericontop.greatuhc.game;
  */
 
 import io.github.greatericontop.greatuhc.GreatUHCMain;
+import io.github.greatericontop.greatuhc.Placeholders;
 import io.github.greatericontop.greatuhc.game.pregame.PreGameManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
@@ -26,7 +27,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class GameManager {
-    public static final boolean SHORT_GAMES = true;
+    public static final boolean SHORT_GAMES = false;
     public static final int PRE_GAME_TIME = 900; // 45 seconds
     public static final int GRACE_TIME = 18_000; // 15 minutes
     public static final int PVP_TIME = 30_000; // 25 minutes
@@ -127,6 +128,14 @@ public class GameManager {
                             Bukkit.broadcastMessage(String.format("§7| §b%d §cseconds left", seconds));
                         }
                     }
+                }
+                // PVP: game shortener
+                if (currentPhase == GamePhase.PVP && ticksLeft > 6000 && Placeholders.getPlayersAliveCount() <= 4) {
+                    Bukkit.broadcastMessage("§c§lOnly 4 players left! Timer to deathmatch has been reduced to 5 minutes!");
+                    for (Player p1 : Bukkit.getOnlinePlayers()) {
+                        p1.playSound(p1.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.0F, 1.0F);
+                    }
+                    ticksLeft = 6000;
                 }
             }
         }.runTaskTimer(plugin, 1L, 1L);
