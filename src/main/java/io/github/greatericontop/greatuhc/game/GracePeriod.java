@@ -53,10 +53,10 @@ public class GracePeriod {
         nether.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
 
         // Borders
-        overworld.getWorldBorder().setSize(1600.0);
+        overworld.getWorldBorder().setSize(gameManager.getPlugin().getConfig().getDouble("overworld_main_border_start"));
         overworld.getWorldBorder().setCenter(0.0, 0.0);
         overworld.getWorldBorder().setDamageAmount(0.0);
-        nether.getWorldBorder().setSize(400.0);
+        nether.getWorldBorder().setSize(gameManager.getPlugin().getConfig().getDouble("nether_main_border_start"));
         nether.getWorldBorder().setCenter(0.0, 0.0);
         nether.getWorldBorder().setDamageAmount(0.0);
 

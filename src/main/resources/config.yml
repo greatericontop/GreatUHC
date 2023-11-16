@@ -11,8 +11,10 @@ pvp_time: 30000
 # Time for deathmatch (default 18000t/15m)
 deathmatch_time: 18000
 
+
 # You should probably have this disabled unless you want to use the fate kit
 enable_fate_kit: false
+
 
 # Decreases time before deathmatch if few players are left
 game_shortener:
@@ -26,8 +28,22 @@ game_shortener:
 
 # 99% of the time your world names should be the defaults
 # If your worlds are renamed, change them here
-overworld_name: "world"  # TODO: IMPLEMENT THIS
-nether_name: "world_nether"  # TODO: IMPLEMENT THIS
+overworld_name: "world"
+nether_name: "world_nether"
 
-# TODO: BORDER CONFIG
+
+# Starting main border sizes for overworld & nether
+# Note that this is the total size, not the radius, e.g., 1600.0 means -800 to +800
+overworld_main_border_start: 1600.0
+nether_main_border_start: 400.0
+# Ending border sizes for overworld & nether
+overworld_main_border_end: 400.0
+nether_main_border_end: 100.0
+# Time to shrink for the main border
+# This is in SECONDS, not TICKS!
+main_border_shrink_time: 1500
+
+
+# TODO: deathmatch borders
+
 # TODO: SPREADPLAYERS CONFIG

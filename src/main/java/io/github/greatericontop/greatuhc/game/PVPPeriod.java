@@ -40,8 +40,11 @@ public class PVPPeriod {
             player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1.0F, 1.0F);
         }
 
-        overworld.getWorldBorder().setSize(400.0, 1500L);
-        nether.getWorldBorder().setSize(100.0, 1500L);
+        double overworldEndSize = gameManager.getPlugin().getConfig().getDouble("overworld_main_border_end");
+        double netherEndSize = gameManager.getPlugin().getConfig().getDouble("nether_main_border_end");
+        long shrinkTime = gameManager.getPlugin().getConfig().getLong("main_border_shrink_time");
+        overworld.getWorldBorder().setSize(overworldEndSize, shrinkTime);
+        nether.getWorldBorder().setSize(netherEndSize, shrinkTime);
 
     }
 

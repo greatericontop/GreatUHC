@@ -43,6 +43,7 @@ import io.github.greatericontop.greatuhc.mechanics.ScuffedNoEndermanTeleport;
 import io.github.greatericontop.greatuhc.mechanics.UHCCustomDamage;
 import io.github.greatericontop.greatuhc.mechanics.WorldBorderDamage;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;

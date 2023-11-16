@@ -67,8 +67,8 @@ public class GameManager {
         currentPhase = GamePhase.INACTIVE;
         ticksLeft = -1;
 
-        overworld = Bukkit.getWorld("world");
-        nether = Bukkit.getWorld("world_nether");
+        overworld = Bukkit.getWorld(plugin.getConfig().getString("overworld_name"));
+        nether = Bukkit.getWorld(plugin.getConfig().getString("nether_name"));
     }
 
     public void registerRunnable() {
