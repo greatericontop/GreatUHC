@@ -17,6 +17,7 @@ package io.github.greatericontop.greatuhc.game.pregame;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import io.github.greatericontop.greatuhc.GreatUHCMain;
 import io.github.greatericontop.greatuhc.game.GameManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -47,7 +48,10 @@ public class PreGameManager {
     }
 
     private final Random random;
-    public PreGameManager() {
+
+    private final GreatUHCMain plugin;
+    public PreGameManager(GreatUHCMain plugin) {
+        this.plugin = plugin;
         random = new Random();
     }
 
@@ -177,7 +181,7 @@ public class PreGameManager {
         }
     }
     private void giveFateTo(Player player, boolean isEnhanced) {
-        if (!GameManager.SHORT_GAMES) {
+        if (!plugin.getConfig().getBoolean("enable_fate_kit")) {
             player.getInventory().addItem(new ItemStack(Material.DIRT, 1));
             player.sendMessage("§cYou get what you deserve.");
             return;

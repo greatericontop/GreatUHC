@@ -21,17 +21,13 @@ import io.github.greatericontop.greatuhc.GreatUHCMain;
 import io.github.greatericontop.greatuhc.Placeholders;
 import io.github.greatericontop.greatuhc.game.pregame.PreGameManager;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class GameManager {
-    public static final boolean SHORT_GAMES = false;
-    public static final int PRE_GAME_TIME = 900; // 45 seconds
-    public static final int GRACE_TIME = 18_000; // 15 minutes
-    public static final int PVP_TIME = 30_000; // 25 minutes
-    public static final int DEATHMATCH_TIME = 18_000; // 15 minutes
 
     public enum GamePhase {
         INACTIVE, PRE_GAME, GRACE_PERIOD, PVP, DEATHMATCH
@@ -86,17 +82,17 @@ public class GameManager {
                     switch (currentPhase) {
                         case PRE_GAME -> {
                             currentPhase = GamePhase.GRACE_PERIOD;
-                            ticksLeft = SHORT_GAMES ? 300 : GRACE_TIME;
+                            ticksLeft = plugin.getConfig().getInt("grace_period_time");
                             GracePeriod.start(GameManager.this);
                         }
                         case GRACE_PERIOD -> {
                             currentPhase = GamePhase.PVP;
-                            ticksLeft = SHORT_GAMES ? 1200 : PVP_TIME;
+                            ticksLeft = plugin.getConfig().getInt("pvp_time");;
                             PVPPeriod.start(GameManager.this);
                         }
                         case PVP -> {
                             currentPhase = GamePhase.DEATHMATCH;
-                            ticksLeft = DEATHMATCH_TIME;
+                            ticksLeft = plugin.getConfig().getInt("deathmatch_time");
                             DeathmatchPeriod.start(GameManager.this);
                         }
                         case DEATHMATCH -> {
@@ -130,8 +126,11 @@ public class GameManager {
                     }
                 }
                 // PVP: game shortener
-                if (currentPhase == GamePhase.PVP && ticksLeft > 6000 && Placeholders.getPlayersAliveCount() <= 4) {
-                    Bukkit.broadcastMessage("§c§lOnly 4 players left! Timer to deathmatch has been reduced to 5 minutes!");
+                if (currentPhase == GamePhase.PVP
+                        && ticksLeft > plugin.getConfig().getInt("game_shortener.decrease_to")
+                        && Placeholders.getPlayersAliveCount() <= plugin.getConfig().getInt("game_shortener.players_left")
+                ) {
+                    Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("game_shortener.message")));
                     for (Player p1 : Bukkit.getOnlinePlayers()) {
                         p1.playSound(p1.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.0F, 1.0F);
                     }
@@ -143,7 +142,7 @@ public class GameManager {
 
     public void start() {
         currentPhase = GamePhase.PRE_GAME;
-        ticksLeft = SHORT_GAMES ? 100 : PRE_GAME_TIME;
+        ticksLeft = plugin.getConfig().getInt("pre_game_time");
         PreGameManager.startPreGame(this);
     }
 

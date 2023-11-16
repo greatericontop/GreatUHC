@@ -73,7 +73,11 @@ public class GreatUHCMain extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        PreGameManager preGameManager = new PreGameManager();
+        this.saveDefaultConfig();
+        this.getConfig().options().copyDefaults(true);
+        this.saveConfig();
+
+        PreGameManager preGameManager = new PreGameManager(this);
         this.getServer().getPluginManager().registerEvents(new KitSelectorGUIListener(preGameManager), this);
         gameManager = new GameManager(this, preGameManager);
         gameManager.registerRunnable();

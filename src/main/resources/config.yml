@@ -1,0 +1,33 @@
+# GREATUHC CONFIG
+
+
+# These times are in ticks
+# Time before game starts (default 900t/45s)
+pre_game_time: 900
+# Time for grace period (default 18000t/15m)
+grace_period_time: 18000
+# Time for PVP (default 30000t/25m)
+pvp_time: 30000
+# Time for deathmatch (default 18000t/15m)
+deathmatch_time: 18000
+
+# You should probably have this disabled unless you want to use the fate kit
+enable_fate_kit: false
+
+# Decreases time before deathmatch if few players are left
+game_shortener:
+  # How many players need to be left to trigger
+  players_left: 4
+  # Decrease timer to this value if above (in ticks)
+  decrease_to: 6000
+  # Message to send
+  message: "&c&lOnly 4 players left! Timer to deathmatch has been reduced to 5 minutes!"
+
+
+# 99% of the time your world names should be the defaults
+# If your worlds are renamed, change them here
+overworld_name: "world"  # TODO: IMPLEMENT THIS
+nether_name: "world_nether"  # TODO: IMPLEMENT THIS
+
+# TODO: BORDER CONFIG
+# TODO: SPREADPLAYERS CONFIG
