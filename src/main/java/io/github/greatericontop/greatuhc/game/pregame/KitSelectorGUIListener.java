@@ -120,7 +120,7 @@ public class KitSelectorGUIListener implements Listener {
         ));
         gui.setItem(8, newItemStack(
                 Material.END_PORTAL_FRAME, "§7Fate",
-                "§7This kit could have some interesting materials."
+                "§7This kit could be a blessing or a curse."
         ));
         player.openInventory(gui);
     }

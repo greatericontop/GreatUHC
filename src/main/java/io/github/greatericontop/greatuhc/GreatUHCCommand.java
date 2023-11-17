@@ -66,6 +66,8 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage("");
             sender.sendMessage(generateMsg("Debug Mode", plugin.debugMode, "debug-mode"));
             sender.sendMessage("");
+            sender.sendMessage(Component.text("§b[Clear Crafts]").clickEvent(ClickEvent.runCommand("/greatuhc crafts")));
+            sender.sendMessage("");
             sender.sendMessage("§9--------------------------------------------------");
             return true;
         }

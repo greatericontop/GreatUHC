@@ -217,8 +217,6 @@ public class PreGameManager {
         overworld.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
         overworld.setTime(6000L);
 
-        // TODO: what stuff do we do in pregame vs start of grace period
-
         for (int x = 1985; x < 2015; x++) {
             for (int z = 1985; z < 2015; z++) {
                 overworld.getBlockAt(x, 319, z).setType(Material.AIR);
@@ -241,7 +239,7 @@ public class PreGameManager {
             // extra effects for pre-game fighting
             player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 999999, 4));
             player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 999999, 0));
-            player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 999999, 0));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 999999, 4));
 
             player.setGameMode(GameMode.SURVIVAL);
             player.undiscoverRecipes(player.getDiscoveredRecipes());

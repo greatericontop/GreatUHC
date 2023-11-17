@@ -59,6 +59,8 @@ public class GracePeriod {
         nether.getWorldBorder().setSize(gameManager.getPlugin().getConfig().getDouble("nether_main_border_start"));
         nether.getWorldBorder().setCenter(0.0, 0.0);
         nether.getWorldBorder().setDamageAmount(0.0);
+        
+        gameManager.getPlugin().craftLimiter.clearCrafts();
 
         // Modifiers
         ItemStack randomUltimate = null;
