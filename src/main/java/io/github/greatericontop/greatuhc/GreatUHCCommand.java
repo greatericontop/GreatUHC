@@ -58,8 +58,10 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage(generateMsg("Mining Modifier", plugin.uhcMiningModifier, "mining-modifier"));
             sender.sendMessage(generateMsg("Starting Heads", plugin.uhcStartingHeads, "starting-heads"));
             sender.sendMessage(generateMsg("Random Ultimate", plugin.uhcRandomUltimate, "random-ultimate"));
+            sender.sendMessage("");
             sender.sendMessage(generateMsg("All Drop Stone", plugin.uhcAllDropStone, "drop-stone"));
             sender.sendMessage(generateMsg("Fast Reflexes", plugin.uhcFastReflexes, "fast-reflexes"));
+            sender.sendMessage(generateMsg("Fate Kit", plugin.uhcFateKit, "fate-kit"));
             sender.sendMessage("");
             sender.sendMessage(generateMsg("Debug Mode", plugin.debugMode, "debug-mode"));
             sender.sendMessage("");
@@ -132,6 +134,11 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage(String.format("§cFast Reflexes §3is now %s", plugin.uhcFastReflexes ? "§2ON" : "§4OFF"));
             return true;
         }
+        if (args[0].equals("fate-kit")) {
+            plugin.uhcFateKit = !plugin.uhcFateKit;
+            sender.sendMessage(String.format("§cFate Kit §3is now %s", plugin.uhcFateKit ? "§2ON" : "§4OFF"));
+            return true;
+        }
         return false;
     }
 
@@ -140,8 +147,9 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
         if (args.length == 1) {
             List<String> mainCommands = Arrays.asList(
                     "crafts", "extend-clock",
-                    "double-heads", "powerful-heads", "survivalism", "mining-modifier",
-                    "starting-heads", "random-ultimate", "all-drop-stone", "fast-reflexes",
+                    "double-heads", "powerful-heads", "survivalism",
+                    "mining-modifier", "starting-heads", "random-ultimate",
+                    "all-drop-stone", "fast-reflexes", "fate-kit",
                     "debug-mode"
             );
             return StringUtil.copyPartialMatches(args[0], mainCommands, new ArrayList<>(mainCommands.size()));

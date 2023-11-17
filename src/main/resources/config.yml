@@ -12,11 +12,6 @@ pvp_time: 30000
 deathmatch_time: 18000
 
 
-# You should probably have this disabled unless you want to use the fate kit
-enable_fate_kit: false
-# TODO: maybe have this as a game config option and then have default values in the plugin config to be loaded on server start
-
-
 # Decreases time before deathmatch if few players are left
 game_shortener:
   # How many players need to be left to trigger

@@ -181,7 +181,7 @@ public class PreGameManager {
         }
     }
     private void giveFateTo(Player player, boolean isEnhanced) {
-        if (!plugin.getConfig().getBoolean("enable_fate_kit")) {
+        if (!plugin.uhcFateKit) {
             player.getInventory().addItem(new ItemStack(Material.DIRT, 1));
             player.sendMessage("§cYou get what you deserve.");
             return;
