@@ -62,6 +62,7 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage(generateMsg("All Drop Stone", plugin.uhcAllDropStone, "drop-stone"));
             sender.sendMessage(generateMsg("Fast Reflexes", plugin.uhcFastReflexes, "fast-reflexes"));
             sender.sendMessage(generateMsg("Fate Kit", plugin.uhcFateKit, "fate-kit"));
+            sender.sendMessage(generateMsg("Enhanced Kits", plugin.uhcEnhancedKits, "enhanced-kits"));
             sender.sendMessage("");
             sender.sendMessage(generateMsg("Debug Mode", plugin.debugMode, "debug-mode"));
             sender.sendMessage("");
@@ -139,6 +140,11 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage(String.format("§cFate Kit §3is now %s", plugin.uhcFateKit ? "§2ON" : "§4OFF"));
             return true;
         }
+        if (args[0].equals("enhanced-kits")) {
+            plugin.uhcEnhancedKits = !plugin.uhcEnhancedKits;
+            sender.sendMessage(String.format("§cEnhanced Kits §3is now %s", plugin.uhcEnhancedKits ? "§2ON" : "§4OFF"));
+            return true;
+        }
         return false;
     }
 
@@ -147,9 +153,12 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
         if (args.length == 1) {
             List<String> mainCommands = Arrays.asList(
                     "crafts", "extend-clock",
+
                     "double-heads", "powerful-heads", "survivalism",
                     "mining-modifier", "starting-heads", "random-ultimate",
-                    "all-drop-stone", "fast-reflexes", "fate-kit",
+
+                    "all-drop-stone", "fast-reflexes", "fate-kit", "enhanced-kits",
+
                     "debug-mode"
             );
             return StringUtil.copyPartialMatches(args[0], mainCommands, new ArrayList<>(mainCommands.size()));

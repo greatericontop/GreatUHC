@@ -93,7 +93,7 @@ public class GracePeriod {
             player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 200, 4));
             player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 200, 4));
 
-            gameManager.getPreGameManager().giveKitTo(player, true);
+            gameManager.getPreGameManager().giveKitTo(player, gameManager.getPlugin().uhcEnhancedKits);
             if (randomUltimate != null) {
                 player.sendMessage("§bYou have been given a random ultimate!");
                 player.getInventory().addItem(randomUltimate);

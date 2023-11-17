@@ -59,6 +59,7 @@ public class GreatUHCMain extends JavaPlugin {
     public boolean uhcAllDropStone = true;
     public boolean uhcFastReflexes = true;
     public boolean uhcFateKit = false;
+    public boolean uhcEnhancedKits = false;
     public boolean debugMode = false;
 
     public CraftLimiter craftLimiter = null;
