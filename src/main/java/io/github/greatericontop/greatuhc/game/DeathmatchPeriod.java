@@ -27,6 +27,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -60,6 +61,7 @@ public class DeathmatchPeriod {
     public static void start(GameManager gameManager) {
         World overworld = gameManager.getOverworld();
         Random random = new Random();
+        FileConfiguration config = gameManager.getPlugin().getConfig();
 
         Bukkit.broadcast(Component.text("§9------------------------------"));
         Bukkit.broadcast(Component.text(""));
@@ -74,25 +76,35 @@ public class DeathmatchPeriod {
         overworld.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, true);
 
         // Borders
-        overworld.getWorldBorder().setSize(140.0);
+        overworld.getWorldBorder().setSize(config.getDouble("deathmatch_border_start"));
         new BukkitRunnable() {
             public void run() {
-                overworld.getWorldBorder().setSize(20.0, 600L);
+                overworld.getWorldBorder().setSize(
+                        config.getDouble("deathmatch_border_end"),
+                        config.getLong("deathmatch_border_shrink_time"));
             }
-        }.runTaskLater(gameManager.getPlugin(), 1200L); // border shrinks to +/- 10 from 14 to 4 minutes remaining
+        }.runTaskLater(gameManager.getPlugin(), config.getLong("deathmatch_border_shrink_after"));
 
         // Setup world for deathmatch
         // OpenSimplex Noise: generate bedrock that transitions into stone
+        // (config values)
+        int RADIUS = config.getInt("deathmatch_gen.radius");
+        double XZ_SCALE = config.getDouble("deathmatch_gen.xz_noise_scale");
+        int EXTRA_DISTANCE_THRESHOLD = config.getInt("deathmatch_gen.extra_distance_threshold");
+        double BLOCK_SEL_SCALE = config.getDouble("deathmatch_gen.block_selection_noise_scale");
+        double DIAMOND_CHANCE = config.getDouble("deathmatch_gen.diamond_chance");
+        double EXTRA_DISTANCE_SCALE = RADIUS - EXTRA_DISTANCE_THRESHOLD;
+        // (end config values)
         long seedTerrain = random.nextLong();
         long seedTop = random.nextLong();
-        for (int x = -90; x <= 90; x++) {
-            for (int z = -90; z <= 90; z++) {
-                double noise = OpenSimplex2.noise2(seedTerrain, x/35.0, z/35.0) * 0.5 + 0.5;
-                // height suddenly begins to increase when past the world border (70 to 90)
-                // noise gets increased (the highest point will touch world height) over the span of 20 blocks
-                int extraDistance = Math.max(Math.abs(x), Math.abs(z)) - 70;
+        for (int x = -RADIUS; x <= RADIUS; x++) {
+            for (int z = -RADIUS; z <= RADIUS; z++) {
+                double noise = OpenSimplex2.noise2(seedTerrain, x/XZ_SCALE, z/XZ_SCALE) * 0.5 + 0.5;
+                // height suddenly begins to increase when past the world border (70 to 90 by default)
+                // noise gets increased (the highest point will touch world height) over the span of 20 blocks by default
+                int extraDistance = Math.max(Math.abs(x), Math.abs(z)) - EXTRA_DISTANCE_THRESHOLD;
                 if (extraDistance > 0) {
-                    double distMul = extraDistance / 20.0;
+                    double distMul = extraDistance / EXTRA_DISTANCE_SCALE;
                     // max noise: (319 - 307) / 5 = 2.4 (use 319 because it's rounded down)
                     // 1 + 0.77 + 0.63 = 2.4
                     noise += 0.77*Math.pow(distMul, 1.4) + 0.63*distMul;
@@ -103,7 +115,7 @@ public class DeathmatchPeriod {
                     if (y == height) {
                         // place top blocks depending on the noise value
                         // one of: mossy/cobblestone/stone; or grass; or sand/sandstone
-                        double noiseTop = OpenSimplex2.noise2(seedTop, x/30.0, z/30.0) * 0.5 + 0.5;
+                        double noiseTop = OpenSimplex2.noise2(seedTop, x/BLOCK_SEL_SCALE, z/BLOCK_SEL_SCALE) * 0.5 + 0.5;
                         if (noiseTop < 0.4 || (Math.random() < 0.5 && noiseTop < 0.5)) { // 45% (+/- 5%)
                             mat = stoneTopMaterials[random.nextInt(stoneTopMaterials.length)];
                         } else if (noiseTop < 0.75 || (Math.random() < 0.5 && noiseTop < 0.85)) { // 35%, appears between the other 2
@@ -125,7 +137,7 @@ public class DeathmatchPeriod {
                 for (int deltaY = 1; deltaY <= yMax; deltaY++) {
                     Block block = overworld.getBlockAt(x, DEATHMATCH_WORLD_HEIGHT + deltaY, z);
                     if (block.getType() != Material.BEDROCK) {
-                        boolean isOre = deltaY != yMax && random.nextDouble() < 0.013;
+                        boolean isOre = deltaY != yMax && random.nextDouble() < DIAMOND_CHANCE;
                         block.setType(isOre ? Material.DIAMOND_ORE : Material.SMOOTH_SANDSTONE, false);
                         debugAmountDiamond += isOre ? 1 : 0;
                         eligibleAmountPlaced += deltaY != yMax ? 1 : 0;
