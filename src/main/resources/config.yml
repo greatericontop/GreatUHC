@@ -69,7 +69,10 @@ deathmatch_gen:
   diamond_chance: 0.013
 
 
+# Minimum & maximum spread distance (radius) for players at the beginning of the game
+# (These are plugged into the vanilla /spreadplayers command)
+main_spread_min: 150
+main_spread_max: 650
+# All players are spread out EXACTLY this distance from the center
+deathmatch_spread_radius: 64.0
 
-# TODO: deathmatch borders
-
-# TODO: SPREADPLAYERS CONFIG

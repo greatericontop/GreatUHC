@@ -107,7 +107,8 @@ public class GracePeriod {
 
         // We just use the command here. There's no real reason for implementing it manually.
         String spreadCommand = String.format("spreadplayers 0 0 %s %s false @a",
-                150, 650);
+                gameManager.getPlugin().getConfig().getString("main_spread_min"),
+                gameManager.getPlugin().getConfig().getString("main_spread_max"));
         Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), spreadCommand);
 
         // Don't let players move for 10 seconds (slowness doesn't work due to the momentum gained by jumping)

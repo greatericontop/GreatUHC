@@ -169,10 +169,11 @@ public class DeathmatchPeriod {
         }
 
         // Player initialization & spreading
+        double SPREAD_RADIUS = config.getDouble("deathmatch_spread_radius");
         if (Bukkit.getOnlinePlayers().size() > 32) {
             Bukkit.broadcastMessage("§cToo many players! Falling back to normal spread algorithm.");
             String spreadCommand = String.format("spreadplayers 0 0 %s %s false @a",
-                    20, 60);
+                    8, (int) SPREAD_RADIUS);
             Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), spreadCommand);
         } else {
             int[] positions = GameUtils.shufflePositions(random);
@@ -180,8 +181,8 @@ public class DeathmatchPeriod {
             for (Player player : Bukkit.getOnlinePlayers()) {
                 player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 200, 4));
 
-                int x = (int) Math.round(64.0 * Math.cos(positions[i]*ANGLE_CONVERSION));
-                int z = (int) Math.round(64.0 * Math.sin(positions[i]*ANGLE_CONVERSION));
+                int x = (int) Math.round(SPREAD_RADIUS * Math.cos(positions[i]*ANGLE_CONVERSION));
+                int z = (int) Math.round(SPREAD_RADIUS * Math.sin(positions[i]*ANGLE_CONVERSION));
                 Location top = new Location(overworld, x, overworld.getHighestBlockYAt(x, z), z);
                 top.getBlock().setType(Material.QUARTZ_BLOCK);
                 player.teleport(top.add(0.5, 1.0, 0.5));
