@@ -71,3 +71,8 @@ main_spread_max: 650
 # All players are spread out EXACTLY this distance from the center
 deathmatch_spread_radius: 64.0
 
+
+# If a player takes environmental (not from a projectile or mob) damage during the grace period, then all other players
+# within 1.5 blocks XZ and 3 blocks Y of the player will take the same damage
+# This discourages traps where the victim can't get out because the other player is in their face
+grace_period_extra_protection: true
