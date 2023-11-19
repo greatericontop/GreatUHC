@@ -61,7 +61,7 @@ public class GracePeriodProtectionListener implements Listener {
         if (!(event.getEntity() instanceof Player victim))  return;
         if (!(
                 gameManager.getCurrentPhase() == GameManager.GamePhase.GRACE_PERIOD
-                && gameManager.getPlugin().getConfig().getBoolean("gracer_period_extra_protection")
+                && gameManager.getPlugin().getConfig().getBoolean("grace_period_extra_protection")
         )) {
             return;
         }
