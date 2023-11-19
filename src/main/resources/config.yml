@@ -62,6 +62,21 @@ deathmatch_gen:
   block_selection_noise_scale: 30.0
   # Chance of each block in the pyramid to be a diamond (double)
   diamond_chance: 0.013
+  # Starting y-level of deathmatch terrain generation (int)
+  deathmatch_world_height: 307
+  # Height of the pyramid (int)
+  # Note: :deathmatch_world_height: + :pyramid_height: <= max world height (319)
+  pyramid_height: 12
+  # Maximum height of deathmatch terrain (int)
+  # This is the amount of height variation in the terrain (this is added to :deathmatch_world_height:)
+  terrain_height: 5
+  # The value <:extra_a: * d**1.4 + :extra_b: * d>, where d from 0 to 1 represents how close we are to the edge
+  # of the map (:extra_distance_threshold: to :radius:), is added to the noise value.
+  # The defaults were chosen to prevent bedrock from showing on the sides (from ascending too fast) and/or at the\
+  # top (from going too high)
+  # (double)
+  extra_a: 0.77
+  extra_b: 0.63
 
 
 # Minimum & maximum spread distance (radius) for players at the beginning of the game

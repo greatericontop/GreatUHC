@@ -53,9 +53,7 @@ public class DeathmatchPeriod {
             Material.RED_SAND, Material.RED_SANDSTONE,
     };
 
-    private static final int DEATHMATCH_WORLD_HEIGHT = 307;
     private static final int MAX_WORLD_HEIGHT = 319;
-    private static final int PYRAMID_HEIGHT = 12;
     private static final int TERRAIN_HEIGHT = 5;
 
     public static void start(GameManager gameManager) {
@@ -93,6 +91,11 @@ public class DeathmatchPeriod {
         int EXTRA_DISTANCE_THRESHOLD = config.getInt("deathmatch_gen.extra_distance_threshold");
         double BLOCK_SEL_SCALE = config.getDouble("deathmatch_gen.block_selection_noise_scale");
         double DIAMOND_CHANCE = config.getDouble("deathmatch_gen.diamond_chance");
+        int DEATHMATCH_WORLD_HEIGHT = config.getInt("deathmatch_gen.deathmatch_world_height");
+        int PYRAMID_HEIGHT = config.getInt("deathmatch_gen.pyramid_height");
+        int TERRAIN_HEIGHT = config.getInt("deathmatch_gen.terrain_height");
+        double EXTRA_A = config.getDouble("deathmatch_gen.extra_a");
+        double EXTRA_B = config.getDouble("deathmatch_gen.extra_b");
         double EXTRA_DISTANCE_SCALE = RADIUS - EXTRA_DISTANCE_THRESHOLD;
         // (end config values)
         long seedTerrain = random.nextLong();
@@ -107,7 +110,7 @@ public class DeathmatchPeriod {
                     double distMul = extraDistance / EXTRA_DISTANCE_SCALE;
                     // max noise: (319 - 307) / 5 = 2.4 (use 319 because it's rounded down)
                     // 1 + 0.77 + 0.63 = 2.4
-                    noise += 0.77*Math.pow(distMul, 1.4) + 0.63*distMul;
+                    noise += EXTRA_A*Math.pow(distMul, 1.4) + EXTRA_B*distMul;
                 }
                 int height = (int) (TERRAIN_HEIGHT * noise) + 1; // height will be from 1 to :TERRAIN_HEIGHT:
                 for (int y = 0; y <= (MAX_WORLD_HEIGHT - DEATHMATCH_WORLD_HEIGHT); y++) {
