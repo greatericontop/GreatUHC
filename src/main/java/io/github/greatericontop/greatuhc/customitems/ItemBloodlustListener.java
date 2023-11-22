@@ -40,13 +40,13 @@ public class ItemBloodlustListener implements Listener {
             player.sendMessage("§7newTotal  " + newTotal);
             im.getPersistentDataContainer().set(BLOODLUST_DAMAGE, PersistentDataType.DOUBLE, newTotal);
             int necessarySharpnessLevel;
-            if (newTotal >= 600) {
+            if (newTotal >= 800) {
                 necessarySharpnessLevel = 4;
-            } else if (newTotal >= 300) {
+            } else if (newTotal >= 450) {
                 necessarySharpnessLevel = 3;
-            } else if (newTotal >= 150) {
+            } else if (newTotal >= 250) {
                 necessarySharpnessLevel = 2;
-            } else if (newTotal >= 50) {
+            } else if (newTotal >= 100) {
                 necessarySharpnessLevel = 1;
             } else {
                 necessarySharpnessLevel = 0;
