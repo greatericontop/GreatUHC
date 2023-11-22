@@ -94,6 +94,7 @@ public class GracePeriod {
             player.addPotionEffect(new PotionEffect(PotionEffectType.ABSORPTION, 18_000, 3));
             player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 200, 4));
             player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 200, 4));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 200, 1));
 
             gameManager.getPreGameManager().giveKitTo(player, gameManager.getPlugin().uhcEnhancedKits);
             if (randomUltimate != null) {
