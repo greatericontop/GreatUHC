@@ -43,7 +43,7 @@ import java.util.UUID;
 public class PreGameManager {
 
     public enum Kit {
-        ARMORER, STONE_GEAR, ECOLOGIST, ENCHANTER, ARCHER, // FIRE_LORD,
+        ARMORER, STONE_GEAR, ECOLOGIST, ENCHANTER, ARCHER, FIRE_LORD,
         FATE,
     }
 
@@ -70,6 +70,7 @@ public class PreGameManager {
             case ECOLOGIST -> giveEcologistTo(player, isEnhanced);
             case ENCHANTER -> giveEnchanterTo(player, isEnhanced);
             case ARCHER -> giveArcherTo(player, isEnhanced);
+            case FIRE_LORD -> giveFireLordTo(player, isEnhanced);
             case FATE -> giveFateTo(player, isEnhanced);
         }
     }
@@ -178,6 +179,16 @@ public class PreGameManager {
                 case 1 -> player.getInventory().addItem(new ItemStack(Material.BONE, 4));
                 case 2 -> player.getInventory().addItem(new ItemStack(Material.ARROW, random.nextInt(33) + 32)); // 32-64
             }
+        }
+    }
+    private void giveFireLordTo(Player player, boolean isEnhanced) {
+        ItemStack woodSword = new ItemStack(Material.WOODEN_SWORD, 1);
+        woodSword.addEnchantment(Enchantment.FIRE_ASPECT, 1);
+        ItemStack lava = new ItemStack(Material.LAVA_BUCKET, 1);
+        ItemStack flintAndSteel = new ItemStack(Material.FLINT_AND_STEEL, 1);
+        player.getInventory().addItem(woodSword, lava, lava, lava, lava, lava, flintAndSteel);
+        if (isEnhanced) {
+            player.getInventory().addItem(new ItemStack(Material.BLAZE_ROD, 2));
         }
     }
     private void giveFateTo(Player player, boolean isEnhanced) {

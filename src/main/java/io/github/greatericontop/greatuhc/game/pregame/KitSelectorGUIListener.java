@@ -118,6 +118,15 @@ public class KitSelectorGUIListener implements Listener {
                 "§7Chance to get:",
                 "§7flint, bones, arrows"
         ));
+        gui.setItem(5, newItemStack(
+                Material.LAVA_BUCKET, "§eFire Lord",
+                "§7Wooden Sword (Fire Aspect)",
+                "§75 Lava Bucket",
+                "§7Flint and Steel",
+                "",
+                "§6Enhancement",
+                "§72 Blaze Rod"
+        ));
         gui.setItem(8, newItemStack(
                 Material.END_PORTAL_FRAME, "§7Fate",
                 "§7This kit could be a blessing or a curse."
@@ -146,6 +155,7 @@ public class KitSelectorGUIListener implements Listener {
             case 2 -> manager.setPlayerKit(player.getUniqueId(), PreGameManager.Kit.ECOLOGIST);
             case 3 -> manager.setPlayerKit(player.getUniqueId(), PreGameManager.Kit.ENCHANTER);
             case 4 -> manager.setPlayerKit(player.getUniqueId(), PreGameManager.Kit.ARCHER);
+            case 5 -> manager.setPlayerKit(player.getUniqueId(), PreGameManager.Kit.FIRE_LORD);
             case 8 -> manager.setPlayerKit(player.getUniqueId(), PreGameManager.Kit.FATE);
         }
         player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0F, 1.0F);
