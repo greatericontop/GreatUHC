@@ -20,6 +20,9 @@ package io.github.greatericontop.greatuhc.game;
 import io.github.greatericontop.greatuhc.GreatUHCMain;
 import io.github.greatericontop.greatuhc.Placeholders;
 import io.github.greatericontop.greatuhc.game.pregame.PreGameManager;
+import io.github.greatericontop.greatuhc.util.GameUtils;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -135,6 +138,17 @@ public class GameManager {
                         p1.playSound(p1.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.0F, 1.0F);
                     }
                     ticksLeft = 6000;
+                }
+                // Winner check
+                if (plugin.getConfig().getBoolean("winner_check")) {
+                    Player winner = GameUtils.getWinner();
+                    if (winner != null) {
+                        winner.showTitle(Title.title(Component.text("§a§lYOU WON!"), Component.text("")));
+                        winner.playSound(winner.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 1.0F, 1.0F);
+
+                        currentPhase = GamePhase.INACTIVE;
+                        ticksLeft = 0;
+                    }
                 }
             }
         }.runTaskTimer(plugin, 1L, 1L);

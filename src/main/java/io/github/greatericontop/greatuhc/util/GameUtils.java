@@ -19,10 +19,12 @@ package io.github.greatericontop.greatuhc.util;
 
 import io.github.greatericontop.greatuhc.GreatUHCMain;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -62,6 +64,20 @@ public class GameUtils {
                 }
             }
         }.runTaskTimer(plugin, 5L, 5L);
+    }
+
+    public static @Nullable Player getWinner() {
+        Player winner = null;
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if (player.getGameMode() != GameMode.SPECTATOR && player.getHealth() > 0) {
+                if (winner != null) {
+                    return null; // returns null if there are multiple players left
+                } else {
+                    winner = player;
+                }
+            }
+        }
+        return winner;
     }
 
     public static int[] shuffleChest(Random random) {

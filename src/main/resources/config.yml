@@ -91,3 +91,7 @@ deathmatch_spread_radius: 64.0
 # within 1.5 blocks XZ and 3 blocks Y of the player will take the same damage
 # This discourages traps where the victim can't get out because the other player is in their face
 grace_period_extra_protection: true
+
+
+# You should probably have this enabled
+winner_check: true
