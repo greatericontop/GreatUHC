@@ -43,7 +43,7 @@ import java.util.UUID;
 public class PreGameManager {
 
     public enum Kit {
-        ARMORER, STONE_GEAR, ECOLOGIST, ENCHANTER, ARCHER, FIRE_LORD,
+        ARMORER, STONE_GEAR, ECOLOGIST, ENCHANTER, ARCHER, FIRE_LORD, MONSTER_TRAINER,
         FATE,
     }
 
@@ -71,6 +71,7 @@ public class PreGameManager {
             case ENCHANTER -> giveEnchanterTo(player, isEnhanced);
             case ARCHER -> giveArcherTo(player, isEnhanced);
             case FIRE_LORD -> giveFireLordTo(player, isEnhanced);
+            case MONSTER_TRAINER -> giveMonsterTrainerTo(player, isEnhanced);
             case FATE -> giveFateTo(player, isEnhanced);
         }
     }
@@ -189,6 +190,20 @@ public class PreGameManager {
         player.getInventory().addItem(woodSword, lava, lava, lava, lava, lava, flintAndSteel);
         if (isEnhanced) {
             player.getInventory().addItem(new ItemStack(Material.BLAZE_ROD, 2));
+        }
+    }
+    private void giveMonsterTrainerTo(Player player, boolean isEnhanced) {
+        ItemStack zombieEgg = new ItemStack(Material.ZOMBIE_SPAWN_EGG, 2);
+        ItemStack skeletonEgg = new ItemStack(Material.SKELETON_SPAWN_EGG, 2);
+        ItemStack spiderEgg = new ItemStack(Material.SPIDER_SPAWN_EGG, 2);
+        ItemStack creeperEgg = new ItemStack(Material.CREEPER_SPAWN_EGG, 2);
+        player.getInventory().addItem(zombieEgg, skeletonEgg, spiderEgg, creeperEgg);
+        if (isEnhanced) {
+            switch (random.nextInt(3)) {
+                case 0 -> player.getInventory().addItem(new ItemStack(Material.ENDER_PEARL, 1));
+                case 1 -> player.getInventory().addItem(new ItemStack(Material.MAGMA_CREAM, 2));
+                case 2 -> player.getInventory().addItem(new ItemStack(Material.SLIME_BALL, 4));
+            }
         }
     }
     private void giveFateTo(Player player, boolean isEnhanced) {

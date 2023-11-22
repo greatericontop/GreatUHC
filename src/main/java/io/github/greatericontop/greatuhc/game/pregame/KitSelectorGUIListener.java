@@ -127,6 +127,17 @@ public class KitSelectorGUIListener implements Listener {
                 "§6Enhancement",
                 "§72 Blaze Rod"
         ));
+        gui.setItem(6, newItemStack(
+                Material.ZOMBIE_HEAD, "§eMonster Trainer",
+                "§72 Zombie Spawn Egg",
+                "§72 Skeleton Spawn Egg",
+                "§72 Spider Spawn Egg",
+                "§72 Creeper Spawn Egg",
+                "",
+                "§6Enhancement",
+                "§7Chance to get:",
+                "§7ender pearl, magma cream, slime ball"
+        ));
         gui.setItem(8, newItemStack(
                 Material.END_PORTAL_FRAME, "§7Fate",
                 "§7This kit could be a blessing or a curse."
@@ -156,6 +167,7 @@ public class KitSelectorGUIListener implements Listener {
             case 3 -> manager.setPlayerKit(player.getUniqueId(), PreGameManager.Kit.ENCHANTER);
             case 4 -> manager.setPlayerKit(player.getUniqueId(), PreGameManager.Kit.ARCHER);
             case 5 -> manager.setPlayerKit(player.getUniqueId(), PreGameManager.Kit.FIRE_LORD);
+            case 6 -> manager.setPlayerKit(player.getUniqueId(), PreGameManager.Kit.MONSTER_TRAINER);
             case 8 -> manager.setPlayerKit(player.getUniqueId(), PreGameManager.Kit.FATE);
         }
         player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0F, 1.0F);
