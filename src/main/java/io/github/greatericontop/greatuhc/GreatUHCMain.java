@@ -102,7 +102,9 @@ public class GreatUHCMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new BreedBabyAnimals(), this);
         this.getServer().getPluginManager().registerEvents(new CustomHealingListener(this), this);
         this.getServer().getPluginManager().registerEvents(new DiamondSpreading(), this);
-        this.getServer().getPluginManager().registerEvents(new GracePeriodProtectionListener(gameManager), this);
+        GracePeriodProtectionListener gracePeriodProtectionListener = new GracePeriodProtectionListener(gameManager);
+        this.getServer().getPluginManager().registerEvents(gracePeriodProtectionListener, this);
+        gracePeriodProtectionListener.registerClearingRunnable(this);
         this.getServer().getPluginManager().registerEvents(new HungerListener(), this);
         this.getServer().getPluginManager().registerEvents(new ItemDropListener(this), this);
         this.getServer().getPluginManager().registerEvents(new MobSpawning(), this);

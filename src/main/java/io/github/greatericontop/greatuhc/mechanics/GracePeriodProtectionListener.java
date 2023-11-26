@@ -15,8 +15,10 @@ package io.github.greatericontop.greatuhc.mechanics;/*
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import io.github.greatericontop.greatuhc.GreatUHCMain;
 import io.github.greatericontop.greatuhc.game.GameManager;
 import io.github.greatericontop.greatuhc.util.TrueDamageHelper;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -27,7 +29,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+
 public class GracePeriodProtectionListener implements Listener {
+
+    // We use this to make sure we only damage players once per tick
+    // Avoids infinite recursion when the TrueDamageHelper uses Player.damage() when it wants to kill a player
+    private final Set<UUID> affectedPlayers = new HashSet<>();
 
     private final GameManager gameManager;
     public GracePeriodProtectionListener(GameManager gameManager) {
@@ -76,9 +86,15 @@ public class GracePeriodProtectionListener implements Listener {
         for (Entity e : victim.getNearbyEntities(1.5, 3.0, 1.5)) {
             if (!(e instanceof Player nearbyPlayer))  continue;
             if (nearbyPlayer == victim)  continue;
+            if (affectedPlayers.contains(nearbyPlayer.getUniqueId()))  continue;
+            affectedPlayers.add(nearbyPlayer.getUniqueId());
             TrueDamageHelper.dealTrueDamage(nearbyPlayer, event.getFinalDamage());
             nearbyPlayer.sendMessage("§cYou are too close to this player!");
         }
+    }
+
+    public void registerClearingRunnable(GreatUHCMain plugin) {
+        Bukkit.getScheduler().runTaskTimer(plugin, affectedPlayers::clear, 1L, 1L);
     }
 
 
