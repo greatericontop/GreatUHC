@@ -137,7 +137,7 @@ public class GameManager {
                     for (Player p1 : Bukkit.getOnlinePlayers()) {
                         p1.playSound(p1.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.0F, 1.0F);
                     }
-                    ticksLeft = 6000;
+                    ticksLeft = plugin.getConfig().getInt("game_shortener.decrease_to");
                 }
                 // Winner check
                 if (plugin.getConfig().getBoolean("winner_check")) {
