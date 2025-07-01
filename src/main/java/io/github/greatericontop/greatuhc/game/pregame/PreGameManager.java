@@ -222,7 +222,8 @@ public class PreGameManager {
                 new ItemStack(Material.IRON_INGOT, 32),
                 new ItemStack(Material.ANVIL, 1),
                 new ItemStack(Material.EXPERIENCE_BOTTLE, isEnhanced ? 160 : 64),
-                new ItemStack(Material.PAPER, isEnhanced ? 12 : 6),
+                new ItemStack(Material.PAPER, isEnhanced ? 24 : 12),
+                new ItemStack(Material.FLINT, isEnhanced ? 4 : 2),
                 new ItemStack(Material.BOW, 1),
                 new ItemStack(Material.ARROW, 48)
         );
