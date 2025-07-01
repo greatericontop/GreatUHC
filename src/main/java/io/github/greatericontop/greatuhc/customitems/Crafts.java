@@ -663,6 +663,34 @@ public class Crafts implements Listener {
         flask.setItemMeta(im);
         return flask;
     }
+    private static ItemStack itemStackScorpionBow() {
+        ItemStack scorpion = new ItemStack(Material.BOW, 1);
+        ItemMeta im = scorpion.getItemMeta();
+        im.setDisplayName("§2Scorpion Bow");
+        im.setLore(List.of(
+                "id: SCORPION_BOW",
+                "",
+                "§3Targets shot are poisoned for",
+                "§b6 §3seconds."
+        ));
+        AntiAnvil.disallowAnvil(im);
+        scorpion.setItemMeta(im);
+        return scorpion;
+    }
+    private static ItemStack itemStackAres() {
+        ItemStack ares = new ItemStack(Material.BOW, 1);
+        ItemMeta im = ares.getItemMeta();
+        im.setDisplayName("§eAres");
+        im.setLore(List.of(
+                "id: ARES",
+                "",
+                "§3A powerful lightning strike deals 1 heart of §6True Damage§3."
+        ));
+        AntiAnvil.disallowAnvil(im);
+        ares.setItemMeta(im);
+        return ares;
+    }
+
 
     public static void registerCrafts() {
         Bukkit.getServer().removeRecipe(new NamespacedKey("minecraft", "anduril"));
@@ -893,6 +921,24 @@ public class Crafts implements Listener {
         flaskOfIchorRecipe.setIngredient('g', Material.GLASS_BOTTLE);
         flaskOfIchorRecipe.setIngredient('I', Material.INK_SAC);
         Bukkit.getServer().addRecipe(flaskOfIchorRecipe);
+
+        ItemStack scorpionBow = itemStackScorpionBow();
+        ShapedRecipe scorpionBowRecipe = new ShapedRecipe(new NamespacedKey("uhc", "scorpion_bow"), scorpionBow);
+        scorpionBowRecipe.shape("sRs", "sBs", "sRs");
+        scorpionBowRecipe.setIngredient('s', Material.SPIDER_EYE);
+        scorpionBowRecipe.setIngredient('R', Material.REDSTONE_BLOCK);
+        scorpionBowRecipe.setIngredient('B', Material.BOW);
+        Bukkit.getServer().addRecipe(scorpionBowRecipe);
+
+        ItemStack ares = itemStackAres();
+        ShapedRecipe aresRecipe = new ShapedRecipe(new NamespacedKey("uhc", "ares"), ares);
+        aresRecipe.shape("LFL", "dBd", "LEL");
+        aresRecipe.setIngredient('L', Material.LIGHTNING_ROD);
+        aresRecipe.setIngredient('F', Material.FIRE_CHARGE);
+        aresRecipe.setIngredient('d', Material.DIAMOND);
+        aresRecipe.setIngredient('B', Material.BOW);
+        aresRecipe.setIngredient('E', Material.ENDER_PEARL);
+        Bukkit.getServer().addRecipe(aresRecipe);
     }
 
     public static ItemStack getRandomUltimate() {
@@ -918,6 +964,8 @@ public class Crafts implements Listener {
                 itemStackVitalityPotion(),
                 itemStackBloodlust(),
                 itemStackFlaskOfIchor(),
+                itemStackScorpionBow(),
+                itemStackAres(),
         };
         return extraUltimates[new Random().nextInt(extraUltimates.length)];
     }
