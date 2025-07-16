@@ -17,6 +17,7 @@ package io.github.greatericontop.greatuhc.customitems;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import io.github.greatericontop.greatuhc.GreatUHCMain;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
@@ -29,14 +30,38 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 public class ItemBloodlustListener implements Listener {
     private static final NamespacedKey BLOODLUST_DAMAGE = new NamespacedKey("uhc", "bloodlust_damage");
+
+    private final Map<UUID, Double> bloodlustInvincibilityFrameMap = new HashMap<>();
+
+    private final GreatUHCMain plugin;
+    public ItemBloodlustListener(GreatUHCMain plugin) {
+        this.plugin = plugin;
+    }
 
     private void doBloodlust(Player player, double damage) {
         ItemMeta im = player.getInventory().getItemInMainHand().getItemMeta();
         if (im == null)  return;
         if (im.getPersistentDataContainer().has(BLOODLUST_DAMAGE, PersistentDataType.DOUBLE)) {
-            double newTotal = im.getPersistentDataContainer().get(BLOODLUST_DAMAGE, PersistentDataType.DOUBLE) + damage;
+            // if cooldown is active, adjust damage value
+            double iFrameDamage = bloodlustInvincibilityFrameMap.getOrDefault(player.getUniqueId(), 0.0);
+            double adjustedDamage = damage;
+            if (iFrameDamage > 0.0) {
+                adjustedDamage = Math.max(0.0, damage - iFrameDamage);
+                if (adjustedDamage <= 0.1) {
+                    return;
+                }
+            } else {
+                // (no cooldown currently) set invincibility frame
+                bloodlustInvincibilityFrameMap.put(player.getUniqueId(), damage);
+                plugin.getServer().getScheduler().runTaskLater(plugin, () -> bloodlustInvincibilityFrameMap.remove(player.getUniqueId()), 10L);
+            }
+            double newTotal = im.getPersistentDataContainer().get(BLOODLUST_DAMAGE, PersistentDataType.DOUBLE) + adjustedDamage;
             player.sendMessage("§7newTotal  " + newTotal);
             im.getPersistentDataContainer().set(BLOODLUST_DAMAGE, PersistentDataType.DOUBLE, newTotal);
             int necessarySharpnessLevel;
