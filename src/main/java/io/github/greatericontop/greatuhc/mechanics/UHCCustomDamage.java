@@ -125,12 +125,12 @@ public class UHCCustomDamage implements Listener {
         totalProtectionLevel += boots != null ? boots.getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL) : 0;
         if (totalProtectionLevel > 0) {
             totalProtectionLevel = Math.min(totalProtectionLevel, 18); // arbitrary threshold
-            double damageMultiplier = Math.pow(0.9725, totalProtectionLevel); // multiplicative reduction makes high levels less overpowered
+            double damageMultiplier = Math.pow(0.9825, totalProtectionLevel); // multiplicative reduction makes high levels less overpowered
             plugin.debugMsg(player, "protection levels: %d | reduction: %.3f", totalProtectionLevel, 1-damageMultiplier);
             event.setDamage(event.getDamage() * damageMultiplier);
         }
 
-        event.setDamage(event.getDamage() * 0.89); // 11% damage reduction for everything for players
+        event.setDamage(event.getDamage() * 0.95); // 5% damage reduction for everything for players
     }
 
     @EventHandler(priority = EventPriority.LOWEST) // runs first
