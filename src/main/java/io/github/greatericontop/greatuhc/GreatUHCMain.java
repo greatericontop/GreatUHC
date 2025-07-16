@@ -91,7 +91,7 @@ public class GreatUHCMain extends JavaPlugin {
         craftNotifications = new CraftNotifications();
         this.getServer().getPluginManager().registerEvents(craftNotifications, this);
 
-        this.getServer().getPluginManager().registerEvents(new ItemBloodlustListener(), this);
+        this.getServer().getPluginManager().registerEvents(new ItemBloodlustListener(this), this);
         this.getServer().getPluginManager().registerEvents(new ItemEnhancementBookListener(), this);
         this.getServer().getPluginManager().registerEvents(new ItemSugarCookieListener(), this);
         this.getServer().getPluginManager().registerEvents(new ItemVitalityListener(), this);
