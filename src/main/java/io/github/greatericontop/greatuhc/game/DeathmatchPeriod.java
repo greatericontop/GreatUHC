@@ -187,7 +187,7 @@ public class DeathmatchPeriod {
 
                 int x = (int) Math.round(SPREAD_RADIUS * Math.cos(positions[i]*ANGLE_CONVERSION));
                 int z = (int) Math.round(SPREAD_RADIUS * Math.sin(positions[i]*ANGLE_CONVERSION));
-                Location top = new Location(overworld, x + XZ_OFFSET, overworld.getHighestBlockYAt(x, z), z + XZ_OFFSET);
+                Location top = new Location(overworld, x + XZ_OFFSET, overworld.getHighestBlockYAt(x + XZ_OFFSET, z + XZ_OFFSET), z + XZ_OFFSET);
                 top.getBlock().setType(Material.QUARTZ_BLOCK);
                 player.teleport(top.add(0.5, 1.0, 0.5));
 
