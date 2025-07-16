@@ -53,8 +53,8 @@ public class DeathmatchPeriod {
             Material.RED_SAND, Material.RED_SANDSTONE,
     };
 
+    private static final int XZ_OFFSET = 2000; // (0, 0) of deathmatch arena is (2000, 2000) in the overworld
     private static final int MAX_WORLD_HEIGHT = 319;
-    private static final int TERRAIN_HEIGHT = 5;
 
     public static void start(GameManager gameManager) {
         World overworld = gameManager.getOverworld();
@@ -74,6 +74,7 @@ public class DeathmatchPeriod {
         overworld.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, true);
 
         // Borders
+        overworld.getWorldBorder().setCenter(XZ_OFFSET, XZ_OFFSET);
         overworld.getWorldBorder().setSize(config.getDouble("deathmatch_border_start"));
         new BukkitRunnable() {
             public void run() {
@@ -129,7 +130,7 @@ public class DeathmatchPeriod {
                     } else {
                         mat = y <= height ? Material.BEDROCK : Material.AIR;
                     }
-                    overworld.getBlockAt(x, y + DEATHMATCH_WORLD_HEIGHT, z).setType(mat, false);
+                    overworld.getBlockAt(x + XZ_OFFSET, y + DEATHMATCH_WORLD_HEIGHT, z + XZ_OFFSET).setType(mat, false);
                 }
             }
         }
@@ -138,7 +139,7 @@ public class DeathmatchPeriod {
             for (int z = -PYRAMID_HEIGHT+1; z <= PYRAMID_HEIGHT-1; z++) {
                 int yMax = PYRAMID_HEIGHT - Math.max(Math.abs(x), Math.abs(z));
                 for (int deltaY = 1; deltaY <= yMax; deltaY++) {
-                    Block block = overworld.getBlockAt(x, DEATHMATCH_WORLD_HEIGHT + deltaY, z);
+                    Block block = overworld.getBlockAt(x + XZ_OFFSET, DEATHMATCH_WORLD_HEIGHT + deltaY, z + XZ_OFFSET);
                     if (block.getType() != Material.BEDROCK) {
                         boolean isOre = deltaY != yMax && random.nextDouble() < DIAMOND_CHANCE;
                         block.setType(isOre ? Material.DIAMOND_ORE : Material.SMOOTH_SANDSTONE, false);
@@ -152,7 +153,7 @@ public class DeathmatchPeriod {
         // Middle Chests
         int chestWithGoldApple = random.nextInt(4);
         for (int chestNum = 0; chestNum < 4; chestNum++) {
-            Block chestBlock = overworld.getBlockAt(dx[chestNum], DEATHMATCH_WORLD_HEIGHT + PYRAMID_HEIGHT - 1, dz[chestNum]);
+            Block chestBlock = overworld.getBlockAt(dx[chestNum] + XZ_OFFSET, DEATHMATCH_WORLD_HEIGHT + PYRAMID_HEIGHT - 1, dz[chestNum] + XZ_OFFSET);
             chestBlock.setType(Material.CHEST, false);
             org.bukkit.block.Chest chest = (org.bukkit.block.Chest) chestBlock.getState();
             org.bukkit.block.data.type.Chest chestData = (org.bukkit.block.data.type.Chest) chestBlock.getBlockData();
@@ -175,8 +176,8 @@ public class DeathmatchPeriod {
         double SPREAD_RADIUS = config.getDouble("deathmatch_spread_radius");
         if (Bukkit.getOnlinePlayers().size() > 32) {
             Bukkit.broadcastMessage("§cToo many players! Falling back to normal spread algorithm.");
-            String spreadCommand = String.format("spreadplayers 0 0 %s %s false @a",
-                    8, (int) SPREAD_RADIUS);
+            String spreadCommand = String.format("spreadplayers %d %d %s %s false @a",
+                    XZ_OFFSET, XZ_OFFSET, 8, (int) SPREAD_RADIUS);
             Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), spreadCommand);
         } else {
             int[] positions = GameUtils.shufflePositions(random);
@@ -186,7 +187,7 @@ public class DeathmatchPeriod {
 
                 int x = (int) Math.round(SPREAD_RADIUS * Math.cos(positions[i]*ANGLE_CONVERSION));
                 int z = (int) Math.round(SPREAD_RADIUS * Math.sin(positions[i]*ANGLE_CONVERSION));
-                Location top = new Location(overworld, x, overworld.getHighestBlockYAt(x, z), z);
+                Location top = new Location(overworld, x + XZ_OFFSET, overworld.getHighestBlockYAt(x, z), z + XZ_OFFSET);
                 top.getBlock().setType(Material.QUARTZ_BLOCK);
                 player.teleport(top.add(0.5, 1.0, 0.5));
 
