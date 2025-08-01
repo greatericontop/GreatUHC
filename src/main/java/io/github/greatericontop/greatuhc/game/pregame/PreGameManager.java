@@ -212,16 +212,21 @@ public class PreGameManager {
             player.sendMessage("§cYou get what you deserve.");
             return;
         }
+        ItemStack superXPBottles = new ItemStack(Material.EXPERIENCE_BOTTLE, 32);
+        ItemMeta im = superXPBottles.getItemMeta();
+        im.setDisplayName("§eSuper XP Bottle");
+        im.setLore(List.of("id: SUPER_XP_BOTTLE"));
+        superXPBottles.setItemMeta(im);
         player.getInventory().addItem(
                 new ItemStack(Material.MOSSY_COBBLESTONE, isEnhanced ? 126 : 63),
                 new ItemStack(Material.JUKEBOX, isEnhanced ? 18 : 9),
                 new ItemStack(Material.PLAYER_HEAD, isEnhanced ? 20 : 11),
-                new ItemStack(Material.GOLD_INGOT, isEnhanced ? 40 : 24),
-                new ItemStack(Material.APPLE, isEnhanced ? 4 : 2),
+                new ItemStack(Material.GOLD_INGOT, isEnhanced ? 48 : 32),
+                new ItemStack(Material.APPLE, isEnhanced ? 5 : 3),
                 new ItemStack(Material.OAK_PLANKS, 64),
                 new ItemStack(Material.IRON_INGOT, 32),
                 new ItemStack(Material.ANVIL, 1),
-                new ItemStack(Material.EXPERIENCE_BOTTLE, isEnhanced ? 160 : 64),
+                superXPBottles,
                 new ItemStack(Material.PAPER, isEnhanced ? 24 : 12),
                 new ItemStack(Material.FLINT, isEnhanced ? 4 : 2),
                 new ItemStack(Material.BOW, 1),
