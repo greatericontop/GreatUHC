@@ -55,9 +55,8 @@ public class UHCCustomDamage implements Listener {
     @EventHandler(priority = EventPriority.HIGH) // runs last
     public void onDamageSurvivalism(EntityDamageEvent event) {
         if (!plugin.uhcSurvivalism)  return;
-        if (!(event.getEntity() instanceof Player))  return;
+        if (!(event.getEntity() instanceof Player player))  return;
         if (event.isCancelled())  return;
-        Player player = (Player) event.getEntity();
         DamageCause cause = event.getCause();
 
         if (cause == DamageCause.VOID
@@ -83,10 +82,9 @@ public class UHCCustomDamage implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST) // runs last
     public void onDamageByEntitySurvivalism(EntityDamageByEntityEvent event) {
         if (!plugin.uhcSurvivalism)  return;
-        if (!(event.getEntity() instanceof Player))  return;
+        if (!(event.getEntity() instanceof Player player))  return;
         if (event.isCancelled())  return;
         Entity damagingEntity = event.getDamager();
-        Player player = (Player) event.getEntity();
         DamageCause cause = event.getCause();
 
         if (cause == DamageCause.ENTITY_ATTACK || cause == DamageCause.ENTITY_SWEEP_ATTACK) {
@@ -135,9 +133,8 @@ public class UHCCustomDamage implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST) // runs first
     public void onDamageSharpness(EntityDamageByEntityEvent event) {
-        if (!(event.getDamager() instanceof Player))  return; // melee attacks from players only
+        if (!(event.getDamager() instanceof Player player))  return; // melee attacks from players only
         if (event.isCancelled())  return;
-        Player player = (Player) event.getDamager();
 
         ItemStack attackingItem = player.getInventory().getItemInMainHand();
         int sharpnessLevel = attackingItem.getEnchantmentLevel(Enchantment.DAMAGE_ALL);
@@ -154,9 +151,8 @@ public class UHCCustomDamage implements Listener {
 
     @EventHandler()
     public void onShootBow(EntityShootBowEvent event) {
-        if (!(event.getProjectile() instanceof AbstractArrow))  return;
-        AbstractArrow projectile = (AbstractArrow) event.getProjectile();
-        double multi = 0.65;
+        if (!(event.getProjectile() instanceof AbstractArrow projectile))  return;
+        double multi = 0.8;
         if (event.getEntity() instanceof Player) {
             ItemStack bow = event.getBow();
             if (bow != null) {
