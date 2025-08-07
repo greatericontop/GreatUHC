@@ -4,7 +4,7 @@ A simple UHC plugin.
 
 ---
 
-## Game Structure
+## Game Overview
 
 When the game is started, everyone is teleported to a bedrock platform. You'll get some time to choose a kit.
 
@@ -44,9 +44,25 @@ Later after that, Deathmatch will begin. Everyone will be teleported to a random
 
 `/uhcstart` - starts the game
 
-`/uhc` - allows you to manage things (like modifiers)
+`/uhc` - allows you to manage things (like modifiers) - see link to configuring guide below for more
 - It can set modifiers
 - `/uhc crafts` clears craft counters
 - `/uhc extend-clock <seconds>` extends the game clock by the specified amount
 - `/uhc debug-mode` toggles debug mode
 
+
+## Custom Crafts
+
+(Docs coming soon)
+
+## Installation
+
+Download the jar file, place it in the plugins folder, and restart the server.
+
+## Setup
+
+[Click here to go to the setup guide.](https://github.com/greatericontop/GreatUHC/blob/main/Setup.md)
+
+## Configuring
+
+[]
