@@ -1,8 +1,6 @@
 # GreatUHC
 
-A UHC plugin.
-
-I'm too lazy to write good docs, so you'll have to figure it out yourself.
+A simple UHC plugin.
 
 ---
 
@@ -33,14 +31,14 @@ Later after that, Deathmatch will begin. Everyone will be teleported to a random
   - Nether gold ore drops significantly less gold
 - Blazes can spawn in the open nether outside a fortress
 - Older version PVP rules apply
-  - Shields are disabled and axes deal more damage
+  - Shields are disabled and axes deal less damage
   - (Configurable) Swords have unlimited attack speed
 - Players drop gold on death and give their killers the strength effect for a few seconds
 - Endermen won't teleport when they are hit
 - The world border does true damage, but it is constant
-- Enchantments, especially `Sharpness` and `Protection` are significantly buffed
+- Enchantments like `Sharpness` and `Protection` are buffed to be similar to 1.8 levels
 - You take less damage from natural sources
-- <u>**There are numerous custom crafts to explore!**</u>
+- **There are numerous custom crafts to explore!**
 
 ## Commands
 
