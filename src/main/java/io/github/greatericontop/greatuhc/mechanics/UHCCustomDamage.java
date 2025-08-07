@@ -107,9 +107,8 @@ public class UHCCustomDamage implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST) // runs first
     public void onDamageProtection(EntityDamageEvent event) {
-        if (!(event.getEntity() instanceof Player))  return;
+        if (!(event.getEntity() instanceof Player player))  return;
         if (event.isCancelled())  return;
-        Player player = (Player) event.getEntity();
 
         // buff protection
         int totalProtectionLevel = 0;
