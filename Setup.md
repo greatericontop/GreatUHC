@@ -11,11 +11,13 @@ I use [AnimatedScoreboard](https://www.spigotmc.org/resources/animatedscoreboard
 
 ### Quick AnimatedScoreboard Setup
 
-Replace the `globalscoreboard.yml` file in `plugins/AnimatedScoreboard/scoreboards` with [this prewritten one](https://github.com/greatericontop/GreatUHC/blob/main/setup_files/globalscoreboard.yml).
+1. Download and install [AnimatedScoreboard](https://www.spigotmc.org/resources/animatedscoreboard.20848/).
+2. Run the server once to generate the config files.
+3. Replace the `globalscoreboard.yml` file in `plugins/AnimatedScoreboard/scoreboards` with [this prewritten one](https://github.com/greatericontop/GreatUHC/blob/main/setup_files/globalscoreboard.yml).
 
 ### Customizing and/or using a different scoreboard plugin
 
-GreatUHC has the following placeholders that you can use in your own scoreboards:
+GreatUHC has the following placeholders (you do need [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/)) that you can use in making your own scoreboards:
 
 - `%greatuhc_border_0%` - shows the world border size in the player's current world
 - `%greatuhc_border_my_world%` - shows the world border size in the world "my_world" (you can change the name)

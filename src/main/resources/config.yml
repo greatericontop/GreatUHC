@@ -72,7 +72,7 @@ deathmatch_gen:
   terrain_height: 5
   # The value <:extra_a: * d**1.4 + :extra_b: * d>, where d from 0 to 1 represents how close we are to the edge
   # of the map (:extra_distance_threshold: to :radius:), is added to the noise value.
-  # The defaults were chosen to prevent bedrock from showing on the sides (from ascending too fast) and/or at the\
+  # The defaults were chosen to prevent bedrock from showing on the sides (from ascending too fast) and/or at the
   # top (from going too high)
   # (double)
   extra_a: 0.77
