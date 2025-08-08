@@ -14,11 +14,13 @@ After the grace period, everyone is allowed to fight.
 
 Later after that, Deathmatch will begin. Everyone will be teleported to a randomly generated arena and forced to fight there until the end of the game.
 
-## Mechanics
+## Features
 
-
-
-[Click here for a more detailed list.](https://github.com/greatericontop/GreatUHC/blob/main/MechanicsInDetail.md)
+- Easy to use
+- Automatically manages the flow of the game, including grace period, PvP, and deathmatch
+- Configurable game modifiers
+- Custom kits and crafts! [Click here for more details on kits and crafts!](https://github.com/greatericontop/GreatUHC/blob/main/KitsAndCrafts.md)
+- Many changes to the vanilla game ([click here for a more detailed list](https://github.com/greatericontop/GreatUHC/blob/main/GameplayChanges.md))
 
 ## Commands
 
@@ -29,11 +31,6 @@ Later after that, Deathmatch will begin. Everyone will be teleported to a random
 - `/uhc crafts` clears craft counters
 - `/uhc extend-clock <seconds>` extends the game clock by the specified amount
 - `/uhc debug-mode` toggles debug mode
-
-
-## Custom Crafts
-
-(Docs coming soon)
 
 ## Installation
 
