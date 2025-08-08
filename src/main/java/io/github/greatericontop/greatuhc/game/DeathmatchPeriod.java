@@ -149,7 +149,6 @@ public class DeathmatchPeriod {
                 }
             }
         }
-        Bukkit.broadcastMessage(String.format("§7Placed §e%d§7, §b%d §7diamonds, expectation: §6%.1f", eligibleAmountPlaced, debugAmountDiamond, eligibleAmountPlaced*0.014));
         // Middle Chests
         int chestWithGoldApple = random.nextInt(4);
         for (int chestNum = 0; chestNum < 4; chestNum++) {
