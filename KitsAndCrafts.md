@@ -116,6 +116,8 @@ Apprentice Bow: A bow that gains increasing levels of power over time. (1 craft)
 
 ![](assets/apprenticeBow.png)
 
+---
+
 ### Tools
 
 Quick Pick: A better iron pickaxe with efficiency 1.
@@ -125,6 +127,8 @@ Quick Pick: A better iron pickaxe with efficiency 1.
 Philosopher's Pickaxe: A pickaxe with fortune 2 but only 3 durability left. Can't be repaired. (1 craft)
 
 ![](assets/philo.png)
+
+---
 
 ### Enchantments
 
@@ -143,6 +147,8 @@ Book of Protection: A craftable protection 1 book. (4 crafts)
 Book of Power: A craftable power 1 book. (4 crafts)
 
 ![](assets/power.png)
+
+---
 
 ### Potions & Healing
 
@@ -169,6 +175,8 @@ Sugar Cookie: This cookie will energize you and give you speed and jump boost. (
 Potion of Toughness: Gives you resistance. (1 craft)
 
 ![](assets/toughness.png)
+
+---
 
 ### Others
 
@@ -212,14 +220,105 @@ Obsidian: Lets you craft obsidian from lava and water. (1 craft)
 
 ![](assets/obsidian.png)
 
-
-
-
+---
 
 ## Ultimate Crafts
 
-WIP
+Ultimates are some of the most powerful itmes, and they can only be crafted once per game.
 
+Dragon Sword: A powerful sword with higher damage output.
+
+![](assets/dragonSword.png)
+
+Excalibur: Explodes, dealing 1.5 hearts of true damage.
+
+![](assets/excalibur.png)
+
+Exodus: Heals you 1 heart every time you hit an entity.
+
+![](assets/exodus.png)
+
+Assassin's Blade: Deals much more damage when backstabbing an enemy.
+
+![](assets/assassins.png)
+
+Seven League Boots: Boots with protection 3, feather falling 3, and unbreaking 2.
+
+![](assets/sevenLeagueBoots.png)
+
+Hermes Boots: Boots that increase your speed by 10%.
+
+![](assets/hermes.png)
+
+Corn: Instantly eats to give you regeneration and saturation.
+
+![](assets/corn.png)
+
+Hide of Leviathan: Leggings with protection 4, respiration 3, and unbreaking 1.
+
+![](assets/hide.png)
+
+Dragon Armor: Chestplate with protection 3 that reduces your damage taken by 5% and increases your damage dealt by 2%.
+
+![](assets/dragonArmor.png)
+
+Anduril: Permanent speed and resistance while holding.
+
+![](assets/anduril.png)
+
+Enhancement Book: Gives a random level 30 enchantment to an item when combined in an anvil.
+
+![](assets/enhancementBook.png)
+
+Expert Seal: Increases all enchantments on an item by 1 level.
+
+![](assets/expertSeal.png)
+
+Deus Ex Machina: Makes you invincible for a few seconds. Crafting costs half your health!
+
+![](assets/deus.png)
+
+Artemis Bow: Arrows heat seek toward enemies.
+
+![](assets/artemis.png)
+
+Death's Scythe: Each hit deals 30% of your target's health as true damage, and gain strength based on the damage dealt.
+
+![](assets/scythe.png)
+
+Book of Thoth: A book with sharpness 2, fire aspect 1, power 2, punch 1, and protection 3.
+
+![](assets/thoth.png)
+
+Shoes of Vidar: Boots with depth strider 2 and unbreaking 2.
+
+![](assets/vidar1.png)
+
+![](assets/vidar2.png)
+
+Warlock Pants: Gives permanent strength.
+
+![](assets/warlock.png)
+
+Vitality Potion: Gives positive effects to you and negative effects to your enemies when splashed.
+
+![](assets/vitality.png)
+
+Bloodlust: A sword that increases in sharpness level the more damage you deal with it.
+
+![](assets/bloodlust.png)
+
+Flask of Ichor: A harming potion that deals a LOT of damage.
+
+![](assets/flask.png)
+
+Scorpion Bow: Gives poison to your enemies.
+
+![](assets/scorpion.png)
+
+Ares: Strike lightning dealing 1 heart of true damage.
+
+![](assets/ares.png)
 
 ## Special Crafts
 
