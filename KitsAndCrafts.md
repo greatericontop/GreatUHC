@@ -90,8 +90,137 @@ You can enable/disable the enhanced versions of the kits using `/uhc enhanced-ki
 
 ## Basic Crafts
 
-WIP
+### Weapons and Armor
+
+Apprentice Helmet: A stronger iron helmet with protection 1, blast protection 1, projectile protection 1, and fire protection 1. (1 craft)
+
+![](assets/apprenticeHelmet.png)
+
+Tarnhelm: A stronger diamond helmet with protection 2, blast protection 1, projectile protection 1, and fire protection 1. (1 craft)
+
+![](assets/tarnhelm.png)
+
+Undead Bow: Deals extra damage to all enemies.
+
+![](assets/undeadBow.png)
+
+Cupid's Bow: A bow with flame.
+
+![](assets/cupidsBow.png)
+
+Apprentice Sword: An iron sword that gains increasing levels of sharpness over time. (1 craft)
+
+![](assets/apprenticeSword.png)
+
+Apprentice Bow: A bow that gains increasing levels of power over time. (1 craft)
+
+![](assets/apprenticeBow.png)
+
+### Tools
+
+Quick Pick: A better iron pickaxe with efficiency 1.
+
+![](assets/quickpick.png)
+
+Philosopher's Pickaxe: A pickaxe with fortune 2 but only 3 durability left. Can't be repaired. (1 craft)
+
+![](assets/philo.png)
+
+### Enchantments
+
+Book of Sharpnening: A craftable sharpness 1 book. (4 crafts)
+
+![](assets/sharp.png)
+
+Nether Blessing: A book with protection 2, thorns 1, and unbreaking 2 created from the Nether. (1 craft)
+
+![](assets/netherBlessing.png)
+
+Book of Protection: A craftable protection 1 book. (4 crafts)
+
+![](assets/protection.png)
+
+Book of Power: A craftable power 1 book. (4 crafts)
+
+![](assets/power.png)
+
+### Potions & Healing
+
+Holy Water: Heals 8 hearts. (3 crafts)
+
+![](assets/holyWater.png)
+
+Golden Head: Very strong healing and can eat instantly. (2 crafts)
+
+![](assets/goldenHead.png)
+
+Velocity Potion: A potion that can briefly give your speed a massive boost. (3 crafts)
+
+![](assets/velocity.png)
+
+Nectar: Gives 4 absorption hearts. (3 crafts)
+
+![](assets/nectar.png)
+
+Sugar Cookie: This cookie will energize you and give you speed and jump boost. (3 crafts)
+
+![](assets/sugarCookie.png)
+
+Potion of Toughness: Gives you resistance. (1 craft)
+
+![](assets/toughness.png)
+
+### Others
+
+Light Apple: A cheaper golden apple. (2 crafts)
+
+![](assets/light.png)
+
+Light Anvil: A cheaper anvil.
+
+![](assets/lightanvil.png)
+
+Flaming Artifact: A blaze rod. (1 craft)
+
+![](assets/blazerod.png)
+
+Arrow Economy: Gives you 20 arrows for the price of 12. (3 crafts)
+
+![](assets/arrowEconomy.png)
+
+Apple Economy: Lets you get extra apples. (3 crafts)
+
+![](assets/appleEconomy.png)
+
+Backpack: A shulker box to increase the size of your inventory. (1 craft)
+
+![](assets/backpack.png)
+
+Delicious Meal: Instantly cooks your meat. (3 crafts)
+
+![](assets/deliciousMeal.png)
+
+Glass Economy: Instantly turns sand into glass. (3 crafts)
+
+![](assets/glass.png)
+
+Sugar Economy: Gives you extra sugar cane. (3 crafts)
+
+![](assets/sugarEconomy.png)
+
+Obsidian: Lets you craft obsidian from lava and water. (1 craft)
+
+![](assets/obsidian.png)
+
+
+
+
 
 ## Ultimate Crafts
 
 WIP
+
+
+## Special Crafts
+
+WIP (dice, fates temptation, chest of fate)
