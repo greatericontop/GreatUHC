@@ -322,4 +322,21 @@ Ares: Strike lightning dealing 1 heart of true damage.
 
 ## Special Crafts
 
-WIP (dice, fates temptation, chest of fate)
+These are some powerful crafts that have special effects. Only 1 craft each.
+
+Dice of God: Gives you a random ultimate.
+This can be very overpowered or very underhelming.
+
+![](assets/dice.png)
+
+Chest of Fate: 50% chance to give you a powerful potion (18 hearts of absorption, speed, and jump),
+and 50% chance to blow up in your face for 10 hearts of true damage.
+
+![](assets/chestOfFate.png)
+
+Fate's Temptation: A chest is spawned on your location with random items used in crafting recipes inside.
+Maybe you'll get lucky and get some good ingredients.
+
+![](assets/fatesTemptation.png)
+
+---
