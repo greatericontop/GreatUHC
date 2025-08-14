@@ -2,6 +2,8 @@
 
 A simple UHC plugin.
 
+![](https://github.com/greatericontop/GreatUHC/blob/main/assets/deathmatchShowcase.png?raw=true)
+
 ---
 
 ## Game Overview
