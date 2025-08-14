@@ -42,4 +42,4 @@ Download the jar file, place it in the plugins folder, and restart the server.
 
 ## Configuring
 
-[]
+[Click here to go to the configuration guide.](https://github.com/greatericontop/GreatUHC/blob/main/Configuring.md)
