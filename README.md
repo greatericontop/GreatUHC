@@ -1,6 +1,6 @@
 # GreatUHC
 
-![](https://github.com/greatericontop/GreatUHC/blob/main/assets/deathmatchShowcase.png?raw=true)
+![Showcase](https://github.com/greatericontop/GreatUHC/blob/main/assets/deathmatchShowcase.png?raw=true)
 
 ## Features
 
@@ -31,3 +31,7 @@ Download the jar file, place it in the plugins folder, and restart the server.
 ## Configuring
 
 [Click here to go to the configuration guide.](https://github.com/greatericontop/GreatUHC/blob/main/Configuring.md)
+
+## Support
+
+To get support, report bugs, or make feature requests, please go to the [issues page](https://github.com/greatericontop/GreatUHC/issues).
