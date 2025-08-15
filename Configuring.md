@@ -35,3 +35,4 @@ Other commands:
 
 - `/uhc debug-mode` - toggles debug mode (you probably don't need this)
 - `/uhc crafts` - clears the counters for the custom crafts, doesn't change any other settings
+- `/uhc extend-clock <number of seconds, positive or negative>` - extends (or shortens) the clock by the specified number of seconds
