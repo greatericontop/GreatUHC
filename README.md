@@ -1,25 +1,11 @@
 # GreatUHC
 
-A simple UHC plugin.
-
 ![](https://github.com/greatericontop/GreatUHC/blob/main/assets/deathmatchShowcase.png?raw=true)
-
----
-
-## Game Overview
-
-When the game is started, everyone is teleported to a bedrock platform. You'll get some time to choose a kit.
-
-Then, you'll be teleported randomly in the map. This is the grace period, and you have 15 minutes to peacefully gather materials.
-
-After the grace period, everyone is allowed to fight.
-
-Later after that, Deathmatch will begin. Everyone will be teleported to a randomly generated arena and forced to fight there until the end of the game.
 
 ## Features
 
 - Easy to use
-- Automatically manages the flow of the game, including grace period, PvP, and deathmatch
+- **Game phases**: pre-game kit selection time, grace period, PvP period, and deathmatch
 - Configurable game modifiers
 - Custom kits and crafts! [Click here for more details on kits and crafts!](https://github.com/greatericontop/GreatUHC/blob/main/KitsAndCrafts.md)
 - Many changes to the vanilla game ([click here for a more detailed list](https://github.com/greatericontop/GreatUHC/blob/main/GameplayChanges.md))
