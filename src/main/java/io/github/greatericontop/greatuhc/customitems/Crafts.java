@@ -453,7 +453,7 @@ public class Crafts implements Listener {
         ItemStack dragonSword = new ItemStack(Material.DIAMOND_SWORD, 1);
         ItemMeta im = dragonSword.getItemMeta();
         im.setDisplayName("§aDragon Sword");
-        im.setLore(List.of("id: DRAGON_SWORD", "§7WeaponMaster", "§7A very powerful sword.", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"));
+        im.setLore(List.of("id: DRAGON_SWORD", "§bChance to deal up to", "§c+80% §bdamage!", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"));
         dragonSword.setItemMeta(im);
         return dragonSword;
     }
@@ -461,7 +461,7 @@ public class Crafts implements Listener {
         ItemStack excalibur = new ItemStack(Material.DIAMOND_SWORD, 1);
         ItemMeta im = excalibur.getItemMeta();
         im.setDisplayName("§bExcalibur");
-        im.setLore(List.of("id: EXCALIBUR", "§7WeaponMaster", "§7A very powerful sword."));
+        im.setLore(List.of("id: EXCALIBUR", "§bExplodes on hit for", "§b1.5 hearts of true damage!", "§76 second cooldown"));
         AntiAnvil.disallowAnvil(im);
         excalibur.setItemMeta(im);
         return excalibur;
@@ -471,7 +471,7 @@ public class Crafts implements Listener {
         ItemMeta im = exodus.getItemMeta();
         im.addEnchant(Enchantment.DURABILITY, 3, false);
         im.setDisplayName("§cExodus");
-        im.setLore(List.of("id: EXODUS", "§7WeaponMaster", "§7A very powerful helmet."));
+        im.setLore(List.of("id: EXODUS", "§bGives you regeneration every time you hit something!"));
         AntiAnvil.disallowAnvil(im);
         exodus.setItemMeta(im);
         return exodus;
@@ -480,7 +480,7 @@ public class Crafts implements Listener {
         ItemStack assassinBlade = new ItemStack(Material.IRON_SWORD, 1);
         ItemMeta im = assassinBlade.getItemMeta();
         im.setDisplayName("§bAssassin's Blade");
-        im.setLore(List.of("id: ASSASSINS_BLADE", "§7WeaponMaster", "§7A very powerful sword."));
+        im.setLore(List.of("id: ASSASSINS_BLADE", "§bBack hits do +40% damage!"));
         assassinBlade.setItemMeta(im);
         return assassinBlade;
     }
@@ -529,7 +529,7 @@ public class Crafts implements Listener {
         ItemMeta im = dragonArmor.getItemMeta();
         im.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, false);
         im.setDisplayName("§5Dragon Armor");
-        im.setLore(List.of("id: DRAGON_ARMOR", "§7WeaponMaster", "§7A very powerful chestplate."));
+        im.setLore(List.of("id: DRAGON_ARMOR", "§bReduces damage taken by 5%", "§bIncreases damage dealt by 2%"));
         dragonArmor.setItemMeta(im);
         return dragonArmor;
     }
@@ -538,7 +538,7 @@ public class Crafts implements Listener {
         ItemMeta im = anduril.getItemMeta();
         im.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
         im.setDisplayName("§aAnduril");
-        im.setLore(List.of("id: ANDURIL", "§7WeaponMaster", "§7A very powerful sword."));
+        im.setLore(List.of("id: ANDURIL", "§bPermanent Speed I", "§bPermanent Resistance I"));
         AntiAnvil.disallowAnvil(im);
         anduril.setItemMeta(im);
         return anduril;
@@ -556,7 +556,7 @@ public class Crafts implements Listener {
         ItemStack expertSeal = new ItemStack(Material.NETHER_STAR, 3);
         ItemMeta im = expertSeal.getItemMeta();
         im.setDisplayName("§6Expert Seal");
-        im.setLore(List.of("id: EXPERT_SEAL", "§7WeaponMaster", "§eMove this over another item", "§eto upgrade its enchantments."));
+        im.setLore(List.of("id: EXPERT_SEAL", "§eMove this over another item", "§eto upgrade its enchantments."));
         expertSeal.setItemMeta(im);
         return expertSeal;
     }
@@ -574,7 +574,7 @@ public class Crafts implements Listener {
         ItemStack artemisBow = new ItemStack(Material.BOW, 1);
         ItemMeta im = artemisBow.getItemMeta();
         im.setDisplayName("§5Artemis Bow");
-        im.setLore(List.of("id: ARTEMIS_BOW", "§7WeaponMaster", "§7Arrows shot from this bow", "§7will always hit their target!"));
+        im.setLore(List.of("id: ARTEMIS_BOW", "§bArrows shot from this bow", "§bwill always hit their target!"));
         im.addEnchant(Enchantment.DURABILITY, 1, true);
         AntiAnvil.disallowAnvil(im);
         artemisBow.setItemMeta(im);
@@ -584,8 +584,8 @@ public class Crafts implements Listener {
         ItemStack deathScythe = new ItemStack(Material.IRON_HOE, 1);
         ItemMeta im = deathScythe.getItemMeta();
         im.setDisplayName("§cDeath's Scythe");
-        im.setLore(List.of("id: DEATH_SCYTHE", "§7WeaponMaster",
-                "§7Deals increasing true damage to your enemies!", "§7Gain §cStrength §7based on the damage dealt."));
+        im.setLore(List.of("id: DEATH_SCYTHE",
+                "§bDeals increasing true damage to your enemies!", "§bGain §cStrength §bbased on the damage dealt."));
         deathScythe.setItemMeta(im);
         return deathScythe;
     }
@@ -614,7 +614,7 @@ public class Crafts implements Listener {
         ItemStack warlockPants = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
         ItemMeta im = warlockPants.getItemMeta();
         im.setDisplayName("§7Warlock Pants");
-        im.setLore(Arrays.asList("id: WARLOCK_PANTS", "§7WeaponMaster", "§3Permanent §cStrength §3while wearing!"));
+        im.setLore(Arrays.asList("id: WARLOCK_PANTS", "§bPermanent §cStrength §bwhile wearing!"));
         im.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, false);
         AntiAnvil.disallowAnvil(im);
         warlockPants.setItemMeta(im);
