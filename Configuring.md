@@ -28,7 +28,7 @@ Game settings:
 
 - `/uhc all-drop-stone` - toggles whether all stone variants (andesite, etc.) drop cobblestone
 - `/uhc fast-reflexes` - toggles between 1.8-style spam click PvP and modern version attack cooldowns
-- `/uhc fate-kit` - toggles whether players can use the fate kit
+- `/uhc fate-kit` - toggles whether players can use the fate kit (this also sets the max number of dice crafts to unlimited)
 - `/uhc enhanced-kits` - toggles whether the kits are enhanced (see the kits guide for more details)
 
 Other commands:

@@ -206,7 +206,7 @@ public class CraftLimiter implements Listener {
                     event.setCancelled(true);
                     return;
                 }
-                handleLimitedCraft(craftKey, event, 1000);
+                handleLimitedCraft(craftKey, event, plugin.uhcFateKit ? 1000 : 1);
                 if (!event.isCancelled()) {
                     ItemStack ultimate = Crafts.getRandomUltimate();
                     event.getInventory().setResult(ultimate);
