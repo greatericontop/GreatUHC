@@ -17,6 +17,7 @@ package io.github.greatericontop.greatuhc.customitems;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import io.github.greatericontop.greatuhc.GreatUHCMain;
 import io.github.greatericontop.greatuhc.mechanics.AntiAnvil;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -208,12 +209,11 @@ public class Crafts implements Listener {
         arrowEconomyRecipe.setIngredient('f', Material.FEATHER);
         Bukkit.getServer().addRecipe(arrowEconomyRecipe);
     }
-    private static void goldenHead() {
+    private static void goldenHead(GreatUHCMain plugin) {
         ItemStack goldenHead = new ItemStack(Material.PLAYER_HEAD, 1);
         SkullMeta im = (SkullMeta) goldenHead.getItemMeta();
         im.setDisplayName("§6Golden Head");
-        // https://namemc.com/skin/4ed16e1139f0f81f
-        im.setOwningPlayer(Bukkit.getOfflinePlayer("_GoldenHead"));
+        im.setOwningPlayer(Bukkit.getOfflinePlayer(plugin.getConfig().getString("golden_head_texture_username")));
         im.getPersistentDataContainer().set(new NamespacedKey("uhc", "golden_head"), PersistentDataType.INTEGER, 1);
         goldenHead.setItemMeta(im);
         ShapedRecipe goldenHeadRecipe = new ShapedRecipe(new NamespacedKey("uhc", "golden_head"), goldenHead);
@@ -692,7 +692,7 @@ public class Crafts implements Listener {
     }
 
 
-    public static void registerCrafts() {
+    public static void registerCrafts(GreatUHCMain plugin) {
         Bukkit.getServer().removeRecipe(new NamespacedKey("minecraft", "anduril"));
 
         // Normal crafts
@@ -709,7 +709,7 @@ public class Crafts implements Listener {
         undeadBow();
         philosopherPickaxe();
         arrowEconomy();
-        goldenHead();
+        goldenHead(plugin);
         powerBook();
         appleEconomy();
         apprenticeSword();

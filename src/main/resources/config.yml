@@ -93,5 +93,9 @@ deathmatch_spread_radius: 64.0
 grace_period_extra_protection: true
 
 
+# Customize the username for the texture of the golden head item
+golden_head_texture_username: "UHC"
+
+
 # You should probably have this enabled
 winner_check: true
