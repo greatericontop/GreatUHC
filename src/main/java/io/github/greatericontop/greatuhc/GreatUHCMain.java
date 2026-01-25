@@ -133,7 +133,7 @@ public class GreatUHCMain extends JavaPlugin {
 
         new BukkitRunnable() {
             public void run() {
-                Crafts.registerCrafts(GreatUHCMain.this); // need to wait a few ticks because this needs to run AFTER other plugins initialize
+                Crafts.registerCrafts(); // need to wait a few ticks because this needs to run AFTER other plugins initialize
                 craftNotifications.initializeCraftLists();
                 craftLimiter.init();
                 getLogger().info("Crafts ready!");

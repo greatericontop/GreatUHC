@@ -17,7 +17,6 @@ package io.github.greatericontop.greatuhc.customitems;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import io.github.greatericontop.greatuhc.GreatUHCMain;
 import io.github.greatericontop.greatuhc.mechanics.AntiAnvil;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -42,7 +41,11 @@ import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
+import org.bukkit.profile.PlayerProfile;
+import org.bukkit.profile.PlayerTextures;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -209,11 +212,21 @@ public class Crafts implements Listener {
         arrowEconomyRecipe.setIngredient('f', Material.FEATHER);
         Bukkit.getServer().addRecipe(arrowEconomyRecipe);
     }
-    private static void goldenHead(GreatUHCMain plugin) {
+    private static void goldenHead() {
         ItemStack goldenHead = new ItemStack(Material.PLAYER_HEAD, 1);
         SkullMeta im = (SkullMeta) goldenHead.getItemMeta();
         im.setDisplayName("§6Golden Head");
-        im.setOwningPlayer(Bukkit.getOfflinePlayer(plugin.getConfig().getString("golden_head_texture_username")));
+
+        PlayerProfile profile = Bukkit.createProfile(UUID.randomUUID());
+        PlayerTextures textures = profile.getTextures();
+        try {
+            textures.setSkin(new URL("http://textures.minecraft.net/texture/4e5b308a1eb5caa97e5fb257b2d9e1861fdef15161d50a1f46f22315f4929"));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        profile.setTextures(textures);
+        im.setOwnerProfile(profile);
+
         im.getPersistentDataContainer().set(new NamespacedKey("uhc", "golden_head"), PersistentDataType.INTEGER, 1);
         goldenHead.setItemMeta(im);
         ShapedRecipe goldenHeadRecipe = new ShapedRecipe(new NamespacedKey("uhc", "golden_head"), goldenHead);
@@ -692,7 +705,7 @@ public class Crafts implements Listener {
     }
 
 
-    public static void registerCrafts(GreatUHCMain plugin) {
+    public static void registerCrafts() {
         Bukkit.getServer().removeRecipe(new NamespacedKey("minecraft", "anduril"));
 
         // Normal crafts
@@ -709,7 +722,7 @@ public class Crafts implements Listener {
         undeadBow();
         philosopherPickaxe();
         arrowEconomy();
-        goldenHead(plugin);
+        goldenHead();
         powerBook();
         appleEconomy();
         apprenticeSword();
