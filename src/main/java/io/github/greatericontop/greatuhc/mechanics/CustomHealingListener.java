@@ -36,7 +36,13 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 public class CustomHealingListener implements Listener {
+
+    private final Map<UUID, Boolean> headEatCooldown = new HashMap<>();
 
     private final GreatUHCMain plugin;
     public CustomHealingListener(GreatUHCMain plugin) {
@@ -70,6 +76,9 @@ public class CustomHealingListener implements Listener {
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             event.setCancelled(true); // prevent placing the head
         }
+        if (headEatCooldown.getOrDefault(player.getUniqueId(), false)) {
+            return;
+        }
         ItemMeta im = item.getItemMeta();
         if (im != null && im.getPersistentDataContainer().has(new NamespacedKey("uhc", "golden_head"))) {
             player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 120, 3)); // 10 hearts
@@ -84,6 +93,8 @@ public class CustomHealingListener implements Listener {
             player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 400, 0));
         }
         item.setAmount(item.getAmount() - 1);
+        headEatCooldown.put(player.getUniqueId(), true);
+        plugin.getServer().getScheduler().runTaskLater(plugin, () -> headEatCooldown.put(player.getUniqueId(), false), 10L);
     }
 
     @EventHandler()
@@ -99,9 +110,14 @@ public class CustomHealingListener implements Listener {
             return;
         }
         if (item.getItemMeta().getLore().get(0).equals("Corn")) {
+            if (headEatCooldown.getOrDefault(player.getUniqueId(), false)) {
+                return;
+            }
             player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 160, 1));
             player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 1200, 0));
             item.setAmount(item.getAmount() - 1);
+            headEatCooldown.put(player.getUniqueId(), true);
+            plugin.getServer().getScheduler().runTaskLater(plugin, () -> headEatCooldown.put(player.getUniqueId(), false), 10L);
         }
     }
 
