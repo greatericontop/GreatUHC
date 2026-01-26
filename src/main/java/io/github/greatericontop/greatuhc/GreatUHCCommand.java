@@ -67,6 +67,8 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage(generateMsg("Debug Mode", plugin.debugMode, "debug-mode"));
             sender.sendMessage("");
             sender.sendMessage(Component.text("§b[Clear Crafts]").clickEvent(ClickEvent.runCommand("/greatuhc crafts")));
+            sender.sendMessage(Component.text("§b[Reload Config]").clickEvent(ClickEvent.runCommand("/greatuhc reload")));
+            sender.sendMessage(Component.text("§b[Extend Clock]").clickEvent(ClickEvent.suggestCommand("/greatuhc extend-clock ")));
             sender.sendMessage("");
             sender.sendMessage("§9--------------------------------------------------");
             return true;
@@ -74,6 +76,11 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
         if (args[0].equals("crafts")) {
             plugin.craftLimiter.clearCrafts();
             sender.sendMessage("§aCrafts cleared!");
+            return true;
+        }
+        if (args[0].equals("reload")) {
+            plugin.reloadConfig();
+            sender.sendMessage("§aConfig reloaded!");
             return true;
         }
         if (args[0].equals("extend-clock")) {
@@ -154,7 +161,7 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length == 1) {
             List<String> mainCommands = Arrays.asList(
-                    "crafts", "extend-clock",
+                    "crafts", "reload", "extend-clock",
 
                     "double-heads", "powerful-heads", "survivalism",
                     "mining-modifier", "starting-heads", "random-ultimate",
