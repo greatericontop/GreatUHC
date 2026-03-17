@@ -24,20 +24,20 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.ChunkLoadEvent;
 
-public class IncreaseSugarcane implements Listener {
+public class CustomSugarcane implements Listener {
     private static final int WATER_LVL = 62;
     private static final int[] DX = {1, -1, 0, 0};
     private static final int[] DZ = {0, 0, 1, -1};
 
     private final GreatUHCMain plugin;
-    public IncreaseSugarcane(GreatUHCMain plugin) {
+    public CustomSugarcane(GreatUHCMain plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler()
     public void onChunkLoad(ChunkLoadEvent event) {
         if (!event.isNewChunk())  return;
-        double increaseAmount = plugin.getConfig().getDouble("world_gen_tweaks.increase_sugarcane");
+        double increaseAmount = plugin.getConfig().getDouble("world_gen_tweaks.custom_sugarcane_freq");
         if (increaseAmount <= 0.0)  return;
 
         Chunk c = event.getChunk();
@@ -45,6 +45,18 @@ public class IncreaseSugarcane implements Listener {
             for (int z = 0; z < 16; z++) {
                 Material floorType = c.getBlock(x, WATER_LVL, z).getType();
                 Material curType = c.getBlock(x, WATER_LVL + 1, z).getType();
+
+                // Remove old sugar cane
+                if (curType == Material.SUGAR_CANE) {
+                    c.getBlock(x, WATER_LVL + 1, z).setType(Material.REDSTONE_BLOCK);
+                    for (int y = WATER_LVL + 2; y <= WATER_LVL + 6; y++) {
+                        if (c.getBlock(x, y, z).getType() == Material.SUGAR_CANE) {
+                            c.getBlock(x, y, z).setType(Material.REDSTONE_BLOCK);
+                            break;
+                        }
+                    }
+                }
+
                 if (floorType != Material.DIRT && floorType != Material.GRASS_BLOCK && floorType != Material.SAND)  continue;
                 if (curType != Material.AIR)  continue; // Already cane, or obstructed
                 boolean hasWaterNeighbor = false;
@@ -62,7 +74,8 @@ public class IncreaseSugarcane implements Listener {
                 if (Math.random() < increaseAmount) {
                     c.getBlock(x, WATER_LVL + 1, z).setType(Material.DIAMOND_BLOCK);
                     int y = WATER_LVL + 2;
-                    while (Math.random() < 0.5 && y <= WATER_LVL + 4 && c.getBlock(x, y, z).getType() == Material.AIR) {
+                    int maxHeight = WATER_LVL + 1 + (int)(Math.random() * 4); // uniform 1 to 4
+                    while (y <= maxHeight && c.getBlock(x, y, z).getType() == Material.AIR) {
                         c.getBlock(x, y, z).setType(Material.DIAMOND_BLOCK);
                         y++;
                     }

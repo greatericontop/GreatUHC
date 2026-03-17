@@ -96,10 +96,10 @@ grace_period_extra_protection: true
 # Optional world generation tweaks
 # In my opinion, enabling these allows for a better game experience
 world_gen_tweaks:
-  # Artificially generates more sugar cane in all chunks
-  # Spawn a sugar cane with this chance at every block that is adjacent to water
-  # Set to 0.0 or a negative number to disable
-  increase_sugarcane: 0.006
+  # Replaces sugarcane generation with a more uniform distribution, instead of getting a lot when you're in certain
+  # biomes and nearly none in others.
+  # Spawn a sugar cane with this chance at every block that is adjacent to water; set to 0.0 to use vanilla
+  custom_sugarcane_freq: 0.014
 
 
 # You should probably have this enabled
