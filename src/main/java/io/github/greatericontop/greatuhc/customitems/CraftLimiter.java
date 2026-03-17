@@ -238,8 +238,8 @@ public class CraftLimiter implements Listener {
                     chestBlock.setType(Material.CHEST, false);
                     org.bukkit.block.Chest chest = (org.bukkit.block.Chest) chestBlock.getState();
                     Inventory inv = chest.getInventory();
-                    // fill the 7 items in the middle
-                    for (int i = 10; i <= 16; i++) {
+                    // fill the 9 items in the middle
+                    for (int i = 9; i <= 17; i++) {
                         Material mat = craftMaterials.get(random.nextInt(craftMaterials.size()));
                         inv.setItem(i, new ItemStack(mat, 1));
                     }
