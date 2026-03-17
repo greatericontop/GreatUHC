@@ -44,6 +44,7 @@ import java.util.Random;
 import java.util.UUID;
 
 public class CraftLimiter implements Listener {
+    private static final Material[] FUSION_MATERIALS = {Material.NETHERITE_HELMET, Material.NETHERITE_CHESTPLATE, Material.NETHERITE_LEGGINGS, Material.NETHERITE_BOOTS};
 
     private Random random = null;
     private List<Material> craftMaterials = null;
@@ -247,6 +248,26 @@ public class CraftLimiter implements Listener {
             case "sugar_economy" -> handleLimitedCraft(craftKey, event, 3);
             case "obsidian" -> handleLimitedCraft(craftKey, event, 1);
             case "flask_of_ichor" -> handleLimitedCraft(craftKey, event, 1);
+            case "fusion_armor" -> {
+                if (event.getClick() != ClickType.LEFT && event.getClick() != ClickType.RIGHT) {
+                    event.getWhoClicked().sendMessage("§cYou can only craft this item by left or right clicking.");
+                    event.setCancelled(true);
+                    return;
+                }
+                if (event.getWhoClicked().getItemOnCursor().getType() != Material.AIR) {
+                    event.getWhoClicked().sendMessage("§cThere can't be an item already on your cursor!");
+                    event.setCancelled(true);
+                    return;
+                }
+                handleLimitedCraft(craftKey, event, 1);
+                if (!event.isCancelled()) {
+                    Material newMat = FUSION_MATERIALS[random.nextInt(FUSION_MATERIALS.length)];
+                    ItemStack stack = event.getInventory().getResult();
+                    stack.setType(newMat);
+                    stack.setLore(null);
+                    event.getInventory().setResult(stack);
+                }
+            }
         }
     }
 

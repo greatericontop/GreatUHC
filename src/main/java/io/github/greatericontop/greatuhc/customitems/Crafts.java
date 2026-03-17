@@ -461,6 +461,23 @@ public class Crafts implements Listener {
         obsidianRecipe.addIngredient(2, Material.LAVA_BUCKET);
         Bukkit.getServer().addRecipe(obsidianRecipe);
     }
+    private static void fusionArmor() {
+        ItemStack fusion = new ItemStack(Material.NETHERITE_CHESTPLATE, 1);
+        ItemMeta im = fusion.getItemMeta();
+        im.setDisplayName("§bFusion Armor");
+        im.setLore(List.of(
+                "§eRandom piece of netherite armor!"
+        ));
+        im.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, false);
+        fusion.setItemMeta(im);
+        ShapelessRecipe fusionRecipe = new ShapelessRecipe(new NamespacedKey("uhc", "fusion_armor"), fusion);
+        fusionRecipe.addIngredient(new RecipeChoice.MaterialChoice(Material.DIAMOND_HELMET, Material.DIAMOND_CHESTPLATE, Material.DIAMOND_LEGGINGS, Material.DIAMOND_BOOTS));
+        fusionRecipe.addIngredient(new RecipeChoice.MaterialChoice(Material.DIAMOND_HELMET, Material.DIAMOND_CHESTPLATE, Material.DIAMOND_LEGGINGS, Material.DIAMOND_BOOTS));
+        fusionRecipe.addIngredient(new RecipeChoice.MaterialChoice(Material.DIAMOND_HELMET, Material.DIAMOND_CHESTPLATE, Material.DIAMOND_LEGGINGS, Material.DIAMOND_BOOTS));
+        fusionRecipe.addIngredient(new RecipeChoice.MaterialChoice(Material.DIAMOND_HELMET, Material.DIAMOND_CHESTPLATE, Material.DIAMOND_LEGGINGS, Material.DIAMOND_BOOTS));
+        fusionRecipe.addIngredient(new RecipeChoice.MaterialChoice(Material.DIAMOND_HELMET, Material.DIAMOND_CHESTPLATE, Material.DIAMOND_LEGGINGS, Material.DIAMOND_BOOTS));
+        Bukkit.getServer().addRecipe(fusionRecipe);
+    }
 
     private static ItemStack itemStackDragonSword() {
         ItemStack dragonSword = new ItemStack(Material.DIAMOND_SWORD, 1);
@@ -743,6 +760,7 @@ public class Crafts implements Listener {
         chestOfFate();
         cupidsBow();
         diceOfGod();
+        fusionArmor();
 
         ItemStack dragonSword = itemStackDragonSword();
         ShapedRecipe dragonSwordRecipe = new ShapedRecipe(new NamespacedKey("uhc", "uhc_dragon_sword"), dragonSword);
