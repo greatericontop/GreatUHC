@@ -48,10 +48,10 @@ public class CustomSugarcane implements Listener {
 
                 // Remove old sugar cane
                 if (curType == Material.SUGAR_CANE) {
-                    c.getBlock(x, WATER_LVL + 1, z).setType(Material.REDSTONE_BLOCK);
+                    c.getBlock(x, WATER_LVL + 1, z).setType(Material.AIR);
                     for (int y = WATER_LVL + 2; y <= WATER_LVL + 6; y++) {
                         if (c.getBlock(x, y, z).getType() == Material.SUGAR_CANE) {
-                            c.getBlock(x, y, z).setType(Material.REDSTONE_BLOCK);
+                            c.getBlock(x, y, z).setType(Material.AIR);
                             break;
                         }
                     }
@@ -72,11 +72,11 @@ public class CustomSugarcane implements Listener {
                 }
                 if (!hasWaterNeighbor)  continue;
                 if (Math.random() < increaseAmount) {
-                    c.getBlock(x, WATER_LVL + 1, z).setType(Material.DIAMOND_BLOCK);
+                    c.getBlock(x, WATER_LVL + 1, z).setType(Material.SUGAR_CANE);
                     int y = WATER_LVL + 2;
                     int maxHeight = WATER_LVL + 1 + (int)(Math.random() * 4); // uniform 1 to 4
                     while (y <= maxHeight && c.getBlock(x, y, z).getType() == Material.AIR) {
-                        c.getBlock(x, y, z).setType(Material.DIAMOND_BLOCK);
+                        c.getBlock(x, y, z).setType(Material.SUGAR_CANE);
                         y++;
                     }
                 }

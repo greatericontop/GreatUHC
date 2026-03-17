@@ -99,7 +99,7 @@ world_gen_tweaks:
   # Replaces sugarcane generation with a more uniform distribution, instead of getting a lot when you're in certain
   # biomes and nearly none in others.
   # Spawn a sugar cane with this chance at every block that is adjacent to water; set to 0.0 to use vanilla
-  custom_sugarcane_freq: 0.014
+  custom_sugarcane_freq: 0.009
 
 
 # You should probably have this enabled
