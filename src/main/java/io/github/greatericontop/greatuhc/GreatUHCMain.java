@@ -43,6 +43,7 @@ import io.github.greatericontop.greatuhc.mechanics.PlayerDeathListener;
 import io.github.greatericontop.greatuhc.mechanics.ScuffedNoEndermanTeleport;
 import io.github.greatericontop.greatuhc.mechanics.UHCCustomDamage;
 import io.github.greatericontop.greatuhc.mechanics.WorldBorderDamage;
+import io.github.greatericontop.greatuhc.worldgentweaks.IncreaseSugarcane;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -113,6 +114,8 @@ public class GreatUHCMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new ScuffedNoEndermanTeleport(), this);
         this.getServer().getPluginManager().registerEvents(new UHCCustomDamage(this), this);
         WorldBorderDamage.registerRunnable(this);
+
+        this.getServer().getPluginManager().registerEvents(new IncreaseSugarcane(this), this);
 
         fightingDisplay = new FightingDisplay(this);
         this.getServer().getPluginManager().registerEvents(fightingDisplay, this);

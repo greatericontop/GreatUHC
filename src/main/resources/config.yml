@@ -93,5 +93,14 @@ deathmatch_spread_radius: 64.0
 grace_period_extra_protection: true
 
 
+# Optional world generation tweaks
+# In my opinion, enabling these allows for a better game experience
+world_gen_tweaks:
+  # Artificially generates more sugar cane in all chunks
+  # Spawn a sugar cane with this chance at every block that is adjacent to water
+  # Set to 0.0 or a negative number to disable
+  increase_sugarcane: 0.006
+
+
 # You should probably have this enabled
 winner_check: true
