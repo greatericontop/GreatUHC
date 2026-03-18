@@ -65,13 +65,13 @@ public class ItemDropListener implements Listener {
         }
 
         if (typeBroken == Material.OBSIDIAN) {
-            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.OBSIDIAN, 1));
+            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(0.5, 0.5, 0.5), new ItemStack(Material.OBSIDIAN, 1));
         }
         if (typeBroken == Material.GRAVEL) {
             // +10% chance (19% total) for a flint
             if (Math.random() < 0.1) {
                 event.setDropItems(false);
-                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.FLINT, 1));
+                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(0.5, 0.5, 0.5), new ItemStack(Material.FLINT, 1));
             }
         }
 
@@ -79,37 +79,37 @@ public class ItemDropListener implements Listener {
             event.setDropItems(false);
             int amount = Math.random() < 0.15 ? 2 : 1;
             amount += (plugin.uhcMiningModifier && Math.random() < 0.4) ? 1 : 0;
-            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.IRON_INGOT, amount));
+            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(0.5, 0.5, 0.5), new ItemStack(Material.IRON_INGOT, amount));
             event.setExpToDrop(randint(1, 2));
         }
         if (typeBroken == Material.GOLD_ORE || typeBroken == Material.DEEPSLATE_GOLD_ORE) {
             event.setDropItems(false);
             int amount = Math.random() < 0.05 ? 2 : 1;
             amount += (plugin.uhcMiningModifier && Math.random() < 0.3) ? 1 : 0;
-            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.GOLD_INGOT, amount));
+            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(0.5, 0.5, 0.5), new ItemStack(Material.GOLD_INGOT, amount));
             event.setExpToDrop(randint(1, 3));
         }
         if (typeBroken == Material.DIAMOND_ORE || typeBroken == Material.DEEPSLATE_DIAMOND_ORE) {
             if (plugin.uhcMiningModifier && Math.random() < 0.4) {
-                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.DIAMOND, 1));
+                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(0.5, 0.5, 0.5), new ItemStack(Material.DIAMOND, 1));
             }
         }
         if (typeBroken == Material.NETHER_GOLD_ORE) {
             event.setDropItems(false);
             if (Math.random() < 0.8) {
-                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.GOLD_NUGGET, 1));
+                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(0.5, 0.5, 0.5), new ItemStack(Material.GOLD_NUGGET, 1));
             }
             event.setExpToDrop(randint(0, 1));
         }
 
         if (plugin.uhcAllDropStone && (typeBroken == Material.ANDESITE || typeBroken == Material.DIORITE || typeBroken == Material.GRANITE)) {
             event.setDropItems(false);
-            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.COBBLESTONE, 1));
+            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(0.5, 0.5, 0.5), new ItemStack(Material.COBBLESTONE, 1));
         }
 
         if (typeBroken == Material.OAK_LEAVES || typeBroken == Material.DARK_OAK_LEAVES) {
             if (Math.random() < 0.035) {
-                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.APPLE, 1));
+                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(0.5, 0.5, 0.5), new ItemStack(Material.APPLE, 1));
             }
         }
         if (typeBroken == Material.ACACIA_LEAVES
@@ -120,7 +120,7 @@ public class ItemDropListener implements Listener {
                 || typeBroken == Material.SPRUCE_LEAVES
         ) {
             if (Math.random() < 0.01) {
-                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.APPLE, 1));
+                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation().add(0.5, 0.5, 0.5), new ItemStack(Material.APPLE, 1));
             }
         }
     }
