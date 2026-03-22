@@ -63,6 +63,7 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage(generateMsg("Fast Reflexes", plugin.uhcFastReflexes, "fast-reflexes"));
             sender.sendMessage(generateMsg("Fate Kit", plugin.uhcFateKit, "fate-kit"));
             sender.sendMessage(generateMsg("Enhanced Kits", plugin.uhcEnhancedKits, "enhanced-kits"));
+            sender.sendMessage(generateMsg("Rated", plugin.uhcRated, "rated"));
             sender.sendMessage("");
             sender.sendMessage(generateMsg("Debug Mode", plugin.debugMode, "debug-mode"));
             sender.sendMessage("");
@@ -154,6 +155,11 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage(String.format("§cEnhanced Kits §3is now %s", plugin.uhcEnhancedKits ? "§2ON" : "§4OFF"));
             return true;
         }
+        if (args[0].equals("rated")) {
+            plugin.uhcRated = !plugin.uhcRated;
+            sender.sendMessage(String.format("§cRated §3is now %s", plugin.uhcEnhancedKits ? "§2ON" : "§4OFF"));
+            return true;
+        }
         return false;
     }
 
@@ -166,7 +172,7 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
                     "double-heads", "powerful-heads", "survivalism",
                     "mining-modifier", "starting-heads", "random-ultimate",
 
-                    "all-drop-stone", "fast-reflexes", "fate-kit", "enhanced-kits",
+                    "all-drop-stone", "fast-reflexes", "fate-kit", "enhanced-kits", "rated",
 
                     "debug-mode"
             );
