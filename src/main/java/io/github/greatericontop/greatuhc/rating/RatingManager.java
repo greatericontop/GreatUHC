@@ -34,6 +34,7 @@ import java.util.UUID;
 public class RatingManager implements Listener {
     private static final double DEFAULT_RATING = 1500.0; // arbitrary, I just picked a number I liked
     private static final double DEFAULT_RD = 350.0;
+    private static final double MIN_RD = 60.0;
 
     private final Map<UUID, Double> handicaps = new HashMap<>();
 
@@ -64,6 +65,44 @@ public class RatingManager implements Listener {
         if (!(event.getEntity() instanceof Player victim))  return;
         double damageFactor = handicaps.getOrDefault(victim.getUniqueId(), 1.0);
         event.setDamage(event.getDamage() * damageFactor);
+    }
+
+
+    public double getDisplayedRating(UUID uuid) {
+        double rating = plugin.ratingManager.getRating(uuid);
+        double rd = plugin.ratingManager.getRD(uuid);
+        return rating - 4*Math.max(rd-100, 0);
+    }
+
+    public String getDisplayColor(double displayedRating) {
+        if (displayedRating >= 2400) {
+            return "§4";
+        }
+        if (displayedRating >= 2200) {
+            return "§c";
+        }
+        if (displayedRating >= 2000) {
+            return "§6";
+        }
+        if (displayedRating >= 1800) {
+            return "§e";
+        }
+        if (displayedRating >= 1600) {
+            return "§d";
+        }
+        if (displayedRating >= 1400) {
+            return "§x§8§8§8§8§f§f";
+        }
+        if (displayedRating >= 1200) {
+            return "§b";
+        }
+        if (displayedRating >= 1000) {
+            return "§a";
+        }
+        if (displayedRating >= 800) {
+            return "§f";
+        }
+        return "§7";
     }
 
 
@@ -100,9 +139,9 @@ public class RatingManager implements Listener {
             deltas.put(winner, deltas.get(winner) + winnerRating[0]);
             deltas.put(p1, deltas.get(p1) + loserRating[0]);
             setRating(uuidWinner, winnerRating[0]);
-            setRD(uuidWinner, winnerRating[1]);
+            setRD(uuidWinner, Math.max(MIN_RD, winnerRating[1]));
             setRating(uuidLoser, loserRating[0]);
-            setRD(uuidLoser, loserRating[1]);
+            setRD(uuidLoser, Math.max(MIN_RD, loserRating[1]));
         }
         return deltas;
     }

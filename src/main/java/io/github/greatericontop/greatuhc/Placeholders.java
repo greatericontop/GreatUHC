@@ -101,24 +101,9 @@ public class Placeholders extends PlaceholderExpansion {
             if (player == null) {
                 return "§7N/A";
             }
-            double rating = plugin.ratingManager.getRating(player.getUniqueId()) - 4*Math.max(plugin.ratingManager.getRD(player.getUniqueId())-100, 0);
-            String color;
-            if (rating >= 2000) {
-                color = "§c";
-            } else if (rating >= 1800) {
-                color = "§6";
-            } else if (rating >= 1600) {
-                color = "§5";
-            } else if (rating >= 1400) {
-                color = "§9";
-            } else if (rating >= 1200) {
-                color = "§b";
-            } else if (rating >= 1000) {
-                color = "§a";
-            } else {
-                color = "§7";
-            }
-            return String.format("%s%.0f", color, rating);
+            double displayedRating = plugin.ratingManager.getDisplayedRating(player.getUniqueId());
+            String color = plugin.ratingManager.getDisplayColor(displayedRating);
+            return String.format("%s%.0f", color, displayedRating);
         }
 
         return null;

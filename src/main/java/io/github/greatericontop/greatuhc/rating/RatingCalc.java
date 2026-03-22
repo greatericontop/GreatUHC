@@ -25,8 +25,8 @@ public class RatingCalc {
      */
     public static double calcHandicap(double rating, double ratingAverage) {
         double delta = rating - ratingAverage;
-        // 10% more per 200 rating points
-        return Math.pow(1.1, delta/200.0);
+        // 15% more per 200 rating points
+        return Math.pow(1.15, delta/200.0);
     }
 
     /*
@@ -34,7 +34,9 @@ public class RatingCalc {
      */
     public static void estimate(double[] winner, double[] loser) {
         // Hyperparameter: 76% chance of winning if handicap is this many points
-        double beta = 200.0;
+        // UHC is probably pretty random, so maybe set this slightly on the higher side? But also not overdo it since
+        //  15-20% more damage is quite a lot.
+        double beta = 270.0;
         double c = Math.sqrt(winner[1]*winner[1] + loser[1]*loser[1] + 2*beta*beta);
         // z (or t) = 0 because they should both be equally likely to win
         double v = 0.398942 / 0.5; // normalpdf(0) / normalcdf(0)
