@@ -46,16 +46,16 @@ public class RatingManager implements Listener {
 
 
     public double getRating(UUID target) {
-        return plugin.getConfig().getDouble("ratings.%s.rating".formatted(target.toString()), DEFAULT_RATING);
+        return plugin.ratingConfig.getDouble("ratings.%s.rating".formatted(target.toString()), DEFAULT_RATING);
     }
     public void setRating(UUID target, double rating) {
-        plugin.getConfig().set("ratings.%s.rating".formatted(target.toString()), rating);
+        plugin.ratingConfig.set("ratings.%s.rating".formatted(target.toString()), rating);
     }
     public double getRD(UUID target) {
-        return plugin.getConfig().getDouble("ratings.%s.rd".formatted(target.toString()), DEFAULT_RD);
+        return plugin.ratingConfig.getDouble("ratings.%s.rd".formatted(target.toString()), DEFAULT_RD);
     }
     public void setRD(UUID target, double rd) {
-        plugin.getConfig().set("ratings.%s.rd".formatted(target.toString()), rd);
+        plugin.ratingConfig.set("ratings.%s.rd".formatted(target.toString()), rd);
     }
 
 

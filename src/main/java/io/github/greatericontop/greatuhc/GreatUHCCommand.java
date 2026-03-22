@@ -24,6 +24,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 
 import java.util.ArrayList;
@@ -157,9 +158,21 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
         }
         if (args[0].equals("rated")) {
             plugin.uhcRated = !plugin.uhcRated;
-            sender.sendMessage(String.format("§cRated §3is now %s", plugin.uhcEnhancedKits ? "§2ON" : "§4OFF"));
+            sender.sendMessage(String.format("§cRated §3is now %s", plugin.uhcRated ? "§2ON" : "§4OFF"));
             return true;
         }
+
+        if (args[0].equals("change-rating")) {
+            // TODO: make this better
+            Player player = Bukkit.getPlayer(args[1]);
+            double rating = Double.parseDouble(args[2]);
+            double rd = Double.parseDouble(args[3]);
+            plugin.ratingManager.setRating(player.getUniqueId(), rating);
+            plugin.ratingManager.setRD(player.getUniqueId(), rd);
+            sender.sendMessage(String.format("§aChanged %s's rating to %.0f and RD to %.0f!", player.getName(), rating, rd));
+            return true;
+        }
+
         return false;
     }
 
@@ -174,7 +187,7 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
 
                     "all-drop-stone", "fast-reflexes", "fate-kit", "enhanced-kits", "rated",
 
-                    "debug-mode"
+                    "debug-mode", "change-rating"
             );
             return StringUtil.copyPartialMatches(args[0], mainCommands, new ArrayList<>(mainCommands.size()));
         }
