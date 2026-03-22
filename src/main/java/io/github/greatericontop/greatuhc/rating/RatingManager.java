@@ -91,7 +91,7 @@ public class RatingManager implements Listener {
             return "§d";
         }
         if (displayedRating >= 1400) {
-            return "§x§8§8§8§8§f§f";
+            return "§x§7§7§7§7§f§f";
         }
         if (displayedRating >= 1200) {
             return "§b";
