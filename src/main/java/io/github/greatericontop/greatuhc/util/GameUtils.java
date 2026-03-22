@@ -104,4 +104,15 @@ public class GameUtils {
         return arr;
     }
 
+    public static Object[] shuffle(Random random, Object[] arr) {
+        // Durstenfeld Shuffle
+        for (int i = arr.length-1; i >= 1; i--) {
+            int other = random.nextInt(i+1); // 0 to i, inclusive
+            Object temp = arr[other];
+            arr[other] = arr[i];
+            arr[i] = temp;
+        }
+        return arr;
+    }
+
 }

@@ -43,11 +43,15 @@ import io.github.greatericontop.greatuhc.mechanics.PlayerDeathListener;
 import io.github.greatericontop.greatuhc.mechanics.ScuffedNoEndermanTeleport;
 import io.github.greatericontop.greatuhc.mechanics.UHCCustomDamage;
 import io.github.greatericontop.greatuhc.mechanics.WorldBorderDamage;
+import io.github.greatericontop.greatuhc.rating.RatingManager;
 import io.github.greatericontop.greatuhc.worldgentweaks.CustomSugarcane;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.io.File;
 
 public class GreatUHCMain extends JavaPlugin {
 
@@ -67,6 +71,9 @@ public class GreatUHCMain extends JavaPlugin {
     public CraftNotifications craftNotifications = null;
     public FightingDisplay fightingDisplay = null;
     public GameManager gameManager = null;
+
+    public RatingManager ratingManager = null;
+    public YamlConfiguration ratingConfig = null;
 
     public void debugMsg(Player player, String str, Object... args) {
         if (debugMode) {
@@ -120,6 +127,11 @@ public class GreatUHCMain extends JavaPlugin {
         fightingDisplay = new FightingDisplay(this);
         this.getServer().getPluginManager().registerEvents(fightingDisplay, this);
 
+        ratingManager = new RatingManager(this);
+        this.getServer().getPluginManager().registerEvents(ratingManager, this);
+        File ratingFile = new File(this.getDataFolder(), "ratings.yml");
+        ratingConfig = YamlConfiguration.loadConfiguration(ratingFile);
+
         GreatUHCCommand greatUHCCommand = new GreatUHCCommand(this);
         this.getCommand("greatuhc").setExecutor(greatUHCCommand);
         this.getCommand("greatuhc").setTabCompleter(greatUHCCommand);
@@ -132,8 +144,6 @@ public class GreatUHCMain extends JavaPlugin {
             getLogger().warning("PlaceholderAPI not found, you will lose its functionality");
         }
 
-        this.getLogger().info("GreatUHC finished setting up!");
-
         new BukkitRunnable() {
             public void run() {
                 Crafts.registerCrafts(); // need to wait a few ticks because this needs to run AFTER other plugins initialize
@@ -143,6 +153,23 @@ public class GreatUHCMain extends JavaPlugin {
             }
         }.runTaskLater(this, 10L);
 
+        Bukkit.getScheduler().runTaskTimer(this, this::saveAll, 2400L, 2400L);
+
+        this.getLogger().info("GreatUHC finished setting up!");
+    }
+
+    @Override
+    public void onDisable() {
+        saveAll();
+    }
+
+    public void saveAll() {
+        this.saveConfig();
+        try {
+            ratingConfig.save(new File(this.getDataFolder(), "ratings.yml"));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
