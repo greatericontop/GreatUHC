@@ -127,17 +127,17 @@ public class RatingManager implements Listener {
     public Map<Player, Double> processGame(Player winner, Player[] players) {
         Map<Player, Double> deltas = new HashMap<>();
         GameUtils.shuffle(random, players);
-        for (Player p1 : players) {
-            if (p1.getUniqueId().equals(winner.getUniqueId())) continue;
+        for (Player loser : players) {
+            if (loser.getUniqueId().equals(winner.getUniqueId())) continue;
             UUID uuidWinner = winner.getUniqueId();
-            UUID uuidLoser = p1.getUniqueId();
+            UUID uuidLoser = loser.getUniqueId();
             double[] winnerRating = {getRating(uuidWinner), getRD(uuidWinner)};
             double[] loserRating = {getRating(uuidLoser), getRD(uuidLoser)};
-            deltas.put(winner, deltas.getOrDefault(winner, 0.0) - winnerRating[0]);
-            deltas.put(p1, deltas.getOrDefault(p1, 0.0) - loserRating[0]);
+            deltas.put(winner, deltas.getOrDefault(winner, 0.0) - getDisplayedRating(winner.getUniqueId()));
+            deltas.put(loser, deltas.getOrDefault(loser, 0.0) - getDisplayedRating(loser.getUniqueId()));
             RatingCalc.estimate(winnerRating, loserRating);
-            deltas.put(winner, deltas.get(winner) + winnerRating[0]);
-            deltas.put(p1, deltas.get(p1) + loserRating[0]);
+            deltas.put(winner, deltas.get(winner) + getDisplayedRating(winner.getUniqueId()));
+            deltas.put(loser, deltas.get(loser) + getDisplayedRating(loser.getUniqueId()));
             setRating(uuidWinner, winnerRating[0]);
             setRD(uuidWinner, Math.max(MIN_RD, winnerRating[1]));
             setRating(uuidLoser, loserRating[0]);

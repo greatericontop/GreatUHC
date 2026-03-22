@@ -30,6 +30,8 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.Map;
+
 public class GameManager {
 
     public enum GamePhase {
@@ -155,7 +157,14 @@ public class GameManager {
                             if (ratedPlayers == null) {
                                 Bukkit.broadcastMessage("§cRated game was not set up correctly! Please enable it before the game starts!");
                             } else {
-                                plugin.ratingManager.processGame(winner, ratedPlayers);
+                                Map<Player, Double> deltas = plugin.ratingManager.processGame(winner, ratedPlayers);
+                                for (Player p : deltas.keySet()) {
+                                    double delta = deltas.get(p);
+                                    double newRating = plugin.ratingManager.getDisplayedRating(p.getUniqueId());
+                                    String color = plugin.ratingManager.getDisplayColor(newRating);
+                                    Bukkit.broadcastMessage(String.format("§3Rating update! %s%s§3: %s%.0f §7(%s%.0f§7)",
+                                            color, p.getName(), color, newRating, (delta >= 0) ? "§a+" : "§7", delta));
+                                }
                             }
                         }
                     }
