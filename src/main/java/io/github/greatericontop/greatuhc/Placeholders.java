@@ -97,6 +97,30 @@ public class Placeholders extends PlaceholderExpansion {
             return plugin.gameManager.getMessageLine2();
         }
 
+        if (args.equals("myrating")) {
+            if (player == null) {
+                return "§7N/A";
+            }
+            double rating = plugin.ratingManager.getRating(player.getUniqueId());
+            String color;
+            if (rating >= 2000) {
+                color = "§c";
+            } else if (rating >= 1800) {
+                color = "§6";
+            } else if (rating >= 1600) {
+                color = "§5";
+            } else if (rating >= 1400) {
+                color = "§9";
+            } else if (rating >= 1200) {
+                color = "§b";
+            } else if (rating >= 1000) {
+                color = "§a";
+            } else {
+                color = "§7";
+            }
+            return String.format("%s%.0f", color, rating);
+        }
+
         return null;
     }
 

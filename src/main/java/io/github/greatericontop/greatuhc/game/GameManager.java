@@ -64,6 +64,8 @@ public class GameManager {
         return preGameManager;
     }
 
+    public Player[] ratedPlayers = null;
+
     public GameManager(GreatUHCMain plugin, PreGameManager preGameManager) {
         this.plugin = plugin;
         this.preGameManager = preGameManager;
@@ -148,6 +150,14 @@ public class GameManager {
 
                         currentPhase = GamePhase.INACTIVE;
                         ticksLeft = 0;
+
+                        if (plugin.uhcRated) {
+                            if (ratedPlayers == null) {
+                                Bukkit.broadcastMessage("§cRated game was not set up correctly! Please enable it before the game starts!");
+                            } else {
+                                plugin.ratingManager.processGame(winner, ratedPlayers);
+                            }
+                        }
                     }
                 }
             }

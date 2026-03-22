@@ -281,6 +281,15 @@ public class PreGameManager {
             player.teleport(new Location(overworld, 2000.0, 320.0, 2000.0));
         }
 
+        gameManager.ratedPlayers = null;
+        gameManager.getPlugin().ratingManager.clearHandicaps();
+        if (gameManager.getPlugin().uhcRated) {
+            Bukkit.broadcastMessage("§6This game counts for ratings!");
+            Player[] players = Bukkit.getOnlinePlayers().toArray(new Player[0]);
+            gameManager.ratedPlayers = players;
+            gameManager.getPlugin().ratingManager.applyHandicaps(players);
+        }
+
     }
 
 }
