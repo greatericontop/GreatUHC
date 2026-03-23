@@ -24,7 +24,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -61,7 +61,7 @@ public class RatingManager implements Listener {
 
 
     @EventHandler(priority = EventPriority.HIGH)
-    public void processHandicaps(EntityDamageByEntityEvent event) {
+    public void processHandicaps(EntityDamageEvent event) {
         if (!(event.getEntity() instanceof Player victim))  return;
         double damageFactor = handicaps.getOrDefault(victim.getUniqueId(), 1.0);
         event.setDamage(event.getDamage() * damageFactor);
@@ -120,7 +120,8 @@ public class RatingManager implements Listener {
             double rating = getRating(p.getUniqueId());
             double handicap = RatingCalc.calcHandicap(rating, averageRating);
             handicaps.put(p.getUniqueId(), handicap);
-            Bukkit.broadcastMessage("§3Player §b%s §3has damage multiplier §b%.0f%%§3!".formatted(p.getName(), handicap*100.0));
+            String color = getDisplayColor(getDisplayedRating(p.getUniqueId()));
+            Bukkit.broadcastMessage("§3Player %s%s §3has damage multiplier §b%.0f%%§3!".formatted(color, p.getName(), handicap*100.0));
         }
     }
 
