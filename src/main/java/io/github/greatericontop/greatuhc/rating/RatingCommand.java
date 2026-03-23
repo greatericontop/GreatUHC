@@ -42,6 +42,7 @@ public class RatingCommand implements CommandExecutor, TabCompleter {
         double rd;
         double displayedRating;
         String color;
+        String name;
         if (p == null) {
             if (!(sender instanceof Player player)) {
                 sender.sendMessage("§cYou must be a player to check your rating!");
@@ -51,15 +52,17 @@ public class RatingCommand implements CommandExecutor, TabCompleter {
             rd = plugin.ratingManager.getRD(player.getUniqueId());
             displayedRating = plugin.ratingManager.getDisplayedRating(player.getUniqueId());
             color = plugin.ratingManager.getDisplayColor(displayedRating);
+            name = player.getName();
         } else {
             rating = plugin.ratingManager.getRating(p.getUniqueId());
             rd = plugin.ratingManager.getRD(p.getUniqueId());
             displayedRating = plugin.ratingManager.getDisplayedRating(p.getUniqueId());
             color = plugin.ratingManager.getDisplayColor(displayedRating);
+            name = p.getName();
         }
         sender.sendMessage("§9------------------------------");
-        sender.sendMessage("§3Your Rating: %s%.0f".formatted(color, displayedRating));
-        sender.sendMessage("§7Performance: %.0f   RD: %.0f".formatted(rating, rd));
+        sender.sendMessage("%s%s§3's rating: %s%.0f".formatted(color, name, color, displayedRating));
+        sender.sendMessage("§7Performance: %.0f    RD: %.0f".formatted(rating, rd));
         sender.sendMessage("§9------------------------------");
         return true;
     }
