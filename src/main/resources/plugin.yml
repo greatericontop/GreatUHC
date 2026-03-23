@@ -18,3 +18,6 @@ commands:
     uhcstart:
         description: 'GreatUHC start command'
         usage: '§cusage: /uhcstart'
+    uhcrating:
+        description: "Check you or someone else's UHC rating"
+        usage: '§cusage: /uhcrating [<player>]'

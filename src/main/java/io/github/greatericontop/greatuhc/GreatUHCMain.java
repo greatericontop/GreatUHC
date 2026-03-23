@@ -43,6 +43,7 @@ import io.github.greatericontop.greatuhc.mechanics.PlayerDeathListener;
 import io.github.greatericontop.greatuhc.mechanics.ScuffedNoEndermanTeleport;
 import io.github.greatericontop.greatuhc.mechanics.UHCCustomDamage;
 import io.github.greatericontop.greatuhc.mechanics.WorldBorderDamage;
+import io.github.greatericontop.greatuhc.rating.RatingCommand;
 import io.github.greatericontop.greatuhc.rating.RatingManager;
 import io.github.greatericontop.greatuhc.worldgentweaks.CustomSugarcane;
 import org.bukkit.Bukkit;
@@ -138,6 +139,9 @@ public class GreatUHCMain extends JavaPlugin {
         this.getCommand("greatuhc").setTabCompleter(greatUHCCommand);
         this.getCommand("uhcrecipes").setExecutor(new RecipesCommand());
         this.getCommand("uhcstart").setExecutor(new StartCommand(this));
+        RatingCommand ratingCommand = new RatingCommand(this);
+        this.getCommand("uhcrating").setExecutor(ratingCommand);
+        this.getCommand("uhcrating").setTabCompleter(ratingCommand);
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new Placeholders(this).register();
