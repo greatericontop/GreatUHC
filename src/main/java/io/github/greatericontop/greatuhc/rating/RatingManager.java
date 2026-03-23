@@ -137,12 +137,12 @@ public class RatingManager implements Listener {
             deltas.put(winner, deltas.getOrDefault(winner, 0.0) - getDisplayedRating(winner.getUniqueId()));
             deltas.put(loser, deltas.getOrDefault(loser, 0.0) - getDisplayedRating(loser.getUniqueId()));
             RatingCalc.estimate(winnerRating, loserRating);
-            deltas.put(winner, deltas.get(winner) + getDisplayedRating(winner.getUniqueId()));
-            deltas.put(loser, deltas.get(loser) + getDisplayedRating(loser.getUniqueId()));
             setRating(uuidWinner, winnerRating[0]);
             setRD(uuidWinner, Math.max(MIN_RD, winnerRating[1]));
             setRating(uuidLoser, loserRating[0]);
             setRD(uuidLoser, Math.max(MIN_RD, loserRating[1]));
+            deltas.put(winner, deltas.get(winner) + getDisplayedRating(winner.getUniqueId()));
+            deltas.put(loser, deltas.get(loser) + getDisplayedRating(loser.getUniqueId()));
         }
         return deltas;
     }
