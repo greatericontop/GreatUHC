@@ -113,6 +113,14 @@ public class Placeholders extends PlaceholderExpansion {
             String color = plugin.ratingManager.getDisplayColor(displayedRating);
             return color;
         }
+        if (args.equals("colorednamedisplay")) {
+            if (player == null) {
+                return "";
+            }
+            double displayedRating = plugin.ratingManager.getDisplayedRating(player.getUniqueId());
+            String color = plugin.ratingManager.getDisplayColor(displayedRating);
+            return color + player.getName();
+        }
 
         return null;
     }
