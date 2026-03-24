@@ -26,6 +26,8 @@ There are also fun colors for the ratings because why not (I *totally* didn't st
 - 2200: red
 - 2400: dark red
 
+*Fun fact: If a 2400 rated player fought an 800 rated player, the 2400 player would take just barely over 3 times as much damage!*
+
 ## Inner details
 
 The initial *internal* rating is `1500` with rating deviation of `350`.
