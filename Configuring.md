@@ -47,3 +47,7 @@ You can also further customize the pack to make your own favorite flavor of worl
 In `config.yml`, you'll also find some world generation tweaks (just one for now):
 
 - Modified sugar cane generation changes sugar cane to generate more randomly near all bodies of water, so it's less RNG dependent to find sugar cane.
+
+## Rating system (optional)
+
+[See `RatingSystem.md` for more information.](https://github.com/greatericontop/GreatUHC/blob/main/RatingSystem.md)
