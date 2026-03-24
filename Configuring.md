@@ -36,3 +36,14 @@ Other commands:
 - `/uhc debug-mode` - toggles debug mode (you probably don't need this)
 - `/uhc crafts` - clears the counters for the custom crafts, doesn't change any other settings
 - `/uhc extend-clock <number of seconds, positive or negative>` - extends (or shortens) the clock by the specified number of seconds
+
+## Custom world generation (optional)
+
+You can customize world generation with [my UHC world generation datapack](https://modrinth.com/datapack/uhc-world-generation).
+
+By default, it will remove oceans, smooth out extreme mountains, change the world bottom to -32 instead of -64, and adjust ore frequencies to what I think are balanced values.
+You can also further customize the pack to make your own favorite flavor of world generation!
+
+In `config.yml`, you'll also find some world generation tweaks (just one for now):
+
+- Modified sugar cane generation changes sugar cane to generate more randomly near all bodies of water, so it's less RNG dependent to find sugar cane.
