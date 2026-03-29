@@ -43,6 +43,5 @@ Players take less damage if they're below the average.
 (*Nerdy note: this sets the scale of the rating unit - if we had a 100 point difference make you take 15% more damage, then rating gaps would be smaller, and vice versa.*)
 
 Rating is adjusted using Bayesian max a-posteriori estimation.
-I pretty much copied TrueSkill's formulas, with a custom $\beta$ factor.
-Also, a game of $n$ players is treated as the winner winning against every other player (the order of losers is shuffled randomly).
-Rating is only earned if you are the sole winner.
+My algorithm is somewhat reminiscent of Glicko and TrueSkill, but (maybe biased) I think mine is better.
+I wrote a more detailed paper about it [here](https://typst.app/project/r77r2YOHlFsQsYR08KdsBi) if you're interested in statistics and machine learning.
