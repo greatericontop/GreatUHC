@@ -19,13 +19,16 @@ package io.github.greatericontop.greatuhc.rating;
 
 import io.github.greatericontop.greatuhc.GreatUHCMain;
 import io.github.greatericontop.greatuhc.util.GreatCommands;
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.util.StringUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RatingCommand implements CommandExecutor, TabCompleter {
@@ -70,7 +73,11 @@ public class RatingCommand implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length == 1) {
-            return List.of("[<player>]");
+            List<String> playerNames = new ArrayList<>();
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                playerNames.add(player.getName());
+            }
+            return StringUtil.copyPartialMatches(args[0], playerNames, new ArrayList<>(playerNames.size()));
         }
         return null;
     }

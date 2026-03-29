@@ -194,6 +194,21 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
         if (args.length == 2 && args[0].equals("extend-clock")) {
             return List.of("<seconds>");
         }
+        if (args.length >= 2 && args[0].equals("change-rating")) {
+            if (args.length == 2) {
+                List<String> playerNames = new ArrayList<>();
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    playerNames.add(player.getName());
+                }
+                return StringUtil.copyPartialMatches(args[1], playerNames, new ArrayList<>(playerNames.size()));
+            }
+            if (args.length == 3) {
+                return List.of("<rating>");
+            }
+            if (args.length == 4) {
+                return List.of("<rd>");
+            }
+        }
         return null;
     }
 
