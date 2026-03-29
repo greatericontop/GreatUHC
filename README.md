@@ -24,13 +24,9 @@
 
 Download the jar file, place it in the plugins folder, and restart the server.
 
-## Setup
+## Setup & Configuring
 
-[Click here to go to the setup guide.](https://github.com/greatericontop/GreatUHC/blob/main/Setup.md)
-
-## Configuring
-
-[Click here to go to the configuration guide.](https://github.com/greatericontop/GreatUHC/blob/main/Configuring.md)
+[Click here to go to the setup and config guide.](https://github.com/greatericontop/GreatUHC/blob/main/Configuring.md)
 
 ## Support
 

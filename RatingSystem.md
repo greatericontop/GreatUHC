@@ -32,6 +32,12 @@ There are also fun colors for the ratings because why not (I *totally* didn't st
 
 *Fun fact: If a 2400 rated player fought an 800 rated player, the 2400 player would take just barely over 3 times as much damage!*
 
+## Placeholders
+
+- `%greatuhc_myrating%` - shows your rating (colored)
+- `%greatuhc_myratingcolor%` - the color of your rating
+- `%greatuhc_colorednamedisplay%` - display your name in the rating's color
+
 ## Inner details
 
 The initial *internal* rating is `1500` with rating deviation of `350`.
