@@ -11,13 +11,28 @@ commands:
         description: 'GreatUHC command'
         usage: '§cusage: /greatuhc'
         aliases: [uhc]
+        permission: greatuhc.admin
     uhcrecipes:
         description: 'GreatUHC unlock recipes command'
         usage: '§cusage: /uhcrecipes'
         aliases: [custom-recipes]
+        permission: greatuhc.uhcrecipes
     uhcstart:
         description: 'GreatUHC start command'
         usage: '§cusage: /uhcstart'
+        permission: greatuhc.admin
     uhcrating:
         description: "Check you or someone else's UHC rating"
         usage: '§cusage: /uhcrating [<player>]'
+        permission: greatuhc.uhcrating
+
+permissions:
+    greatuhc.admin:
+        description: 'Allows access to all GreatUHC admin commands'
+        default: op
+    greatuhc.uhcrecipes:
+        description: 'Allows access to the /uhcrecipes command'
+        default: true
+    greatuhc.uhcrating:
+        description: 'Allows access to the /uhcrating command'
+        default: true
