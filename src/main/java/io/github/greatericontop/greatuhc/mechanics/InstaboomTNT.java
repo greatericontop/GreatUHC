@@ -44,7 +44,7 @@ public class InstaboomTNT implements Listener {
 //            player.getInventory().getItemInOffHand().setAmount(player.getInventory().getItemInOffHand().getAmount() - 1);
 //        }
         event.getBlockPlaced().setType(Material.AIR);
-        event.getBlockPlaced().getWorld().createExplosion(event.getBlockPlaced().getLocation(), 3.0F, false, true, player);
+        event.getBlockPlaced().getWorld().createExplosion(event.getBlockPlaced().getLocation(), 4.0F, false, true, player);
     }
 
 }

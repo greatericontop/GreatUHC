@@ -124,6 +124,11 @@ public class UHCCustomDamage implements Listener {
                 event.setDamage(event.getDamage() * 0.65);
                 return;
             }
+            if (damagingEntity instanceof Player) {
+                plugin.debugMsg(player, "survivalism: player (deathmatch tnt) explosion, reducing damage");
+                event.setDamage(event.getDamage() * 0.25);
+                return;
+            }
         }
 
     }
