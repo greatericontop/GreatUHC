@@ -7,6 +7,10 @@ We all have different skill levels, so I ended up pretty much winning every game
 Under this rating system, better players will have higher ratings, and a higher rated player *takes more damage*.
 The goal is for the damage adjustment to make everyone have an equal chance of winning.
 
+## How to use
+
+To turn a game rated, run `/uhc rated`.
+
 ## How it works
 
 Higher rated players take more damage, and lower rated players take less damage.

@@ -30,6 +30,7 @@ Game settings:
 - `/uhc fast-reflexes` - toggles between 1.8-style spam click PvP and modern version attack cooldowns
 - `/uhc fate-kit` - toggles whether players can use the fate kit (this also sets the max number of dice crafts to unlimited)
 - `/uhc enhanced-kits` - toggles whether the kits are enhanced (see the kits guide for more details)
+- `/uhc rated` - toggles rated mode, which enables damage multipliers and rating changes
 
 Other commands:
 
@@ -51,3 +52,9 @@ In `config.yml`, you'll also find some world generation tweaks (just one for now
 ## Rating system (optional)
 
 [See `RatingSystem.md` for more information.](https://github.com/greatericontop/GreatUHC/blob/main/RatingSystem.md)
+
+## Permissions (optional)
+
+- `greatuhc.admin` - allows access to `/uhc` to change game settings and `/uhcstart`
+- `greatuhc.uhcrecipes` - allows access to `/uhcrecipes` to unlock all recipes (enabled for all players by default)
+- `greatuhc.uhcrating` - allows access to `/uhcrating` (enabled for all players by default)
