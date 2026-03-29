@@ -20,10 +20,12 @@ package io.github.greatericontop.greatuhc.mechanics;
 import io.github.greatericontop.greatuhc.GreatUHCMain;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.AbstractArrow;
+import org.bukkit.entity.Creeper;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
+import org.bukkit.entity.minecart.ExplosiveMinecart;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -62,7 +64,8 @@ public class UHCCustomDamage implements Listener {
         if (cause == DamageCause.VOID
                 || cause == DamageCause.ENTITY_ATTACK
                 || cause == DamageCause.ENTITY_SWEEP_ATTACK
-                || cause == DamageCause.PROJECTILE) {
+                || cause == DamageCause.PROJECTILE
+                || cause == DamageCause.ENTITY_EXPLOSION) {
             return;
         }
         if (cause == DamageCause.MAGIC || cause == DamageCause.POISON || cause == DamageCause.WITHER) {
@@ -73,6 +76,12 @@ public class UHCCustomDamage implements Listener {
         if (cause == DamageCause.LAVA || cause == DamageCause.FIRE || cause == DamageCause.FIRE_TICK) {
             plugin.debugMsg(player, "survivalism: fire damage cause, slightly reducing damage");
             event.setDamage(event.getDamage() * 0.65);
+            return;
+        }
+        if (cause == DamageCause.BLOCK_EXPLOSION) {
+            // Beds
+            plugin.debugMsg(player, "survivalism: block explosion, reducing damage");
+            event.setDamage(event.getDamage() * 0.25);
             return;
         }
         plugin.debugMsg(player, "survivalism: other damage cause, reducing damage");
@@ -103,6 +112,20 @@ public class UHCCustomDamage implements Listener {
             }
             return;
         }
+
+        if (cause == DamageCause.ENTITY_EXPLOSION) {
+            if (damagingEntity instanceof ExplosiveMinecart) {
+                plugin.debugMsg(player, "survivalism: tnt minecart explosion, reducing damage");
+                event.setDamage(event.getDamage() * 0.15);
+                return;
+            }
+            if (damagingEntity instanceof Creeper) {
+                plugin.debugMsg(player, "survivalism: creeper explosion, slightly reducing damage");
+                event.setDamage(event.getDamage() * 0.65);
+                return;
+            }
+        }
+
     }
 
     @EventHandler(priority = EventPriority.LOWEST) // runs first
