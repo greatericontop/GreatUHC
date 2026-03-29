@@ -29,22 +29,25 @@ public class RatingCalc {
         return Math.pow(1.15, delta/200.0);
     }
 
+    private static double sigmoid(double x) {
+        return 1.0 / (1.0 + Math.exp(-x));
+    }
+
     /*
-     * Perform update based off TrueSkill update formula
+     * Perform update using our own in-house rating calculation :)
      */
     public static void estimate(double[] winner, double[] loser) {
-        // Hyperparameter: 76% chance of winning if handicap is this many points
-        // UHC is probably pretty random, so maybe set this slightly on the higher side? But also not overdo it since
-        //  15-20% more damage is quite a lot.
-        double beta = 270.0;
-        double c = Math.sqrt(winner[1]*winner[1] + loser[1]*loser[1] + 2*beta*beta);
-        // z (or t) = 0 because they should both be equally likely to win
-        double v = 0.398942 / 0.5; // normalpdf(0) / normalcdf(0)
-        double w = v * v;
-        winner[0] += winner[1] * winner[1] / c * v;
-        loser[0] -= loser[1] * loser[1] / c * v;
-        winner[1] *= Math.sqrt(1 - winner[1]*winner[1]/(c*c) * w);
-        loser[1] *= Math.sqrt(1 - loser[1]*loser[1]/(c*c) * w);
+        double beta = 173.7178;
+        double g_winner = Math.sqrt(beta*beta + Math.PI/8.0 * loser[1]*loser[1]);
+        double g_loser = Math.sqrt(beta*beta + Math.PI/8.0 * winner[1]*winner[1]);
+        double winner_delta = 1.0 / (  (2.0*g_winner)/(winner[1]*winner[1]) + 1.0/(2.0*g_winner)  );
+        double loser_delta = 1.0 / (  (2.0*g_loser)/(loser[1]*loser[1]) + 1.0/(2.0*g_loser)  );
+        double winner_rd = 1.0 / Math.sqrt(  1.0/(winner[1]*winner[1]) + sigmoid(winner_delta/g_winner)*(1-sigmoid(winner_delta/g_winner))/(g_winner*g_winner)  );
+        double loser_rd = 1.0 / Math.sqrt(  1.0/(loser[1]*loser[1]) + sigmoid(loser_delta/g_loser)*(1-sigmoid(loser_delta/g_loser))/(g_loser*g_loser)  );
+        winner[0] += winner_delta;
+        loser[0] -= loser_delta;
+        winner[1] = winner_rd;
+        loser[1] = loser_rd;
     }
 
 }
