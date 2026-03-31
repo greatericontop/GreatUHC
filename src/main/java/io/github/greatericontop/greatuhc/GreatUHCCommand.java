@@ -82,6 +82,7 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
         }
         if (args[0].equals("reload")) {
             plugin.reloadConfig();
+            plugin.ratingManager.reloadHyperparameters();
             sender.sendMessage("§aConfig reloaded!");
             return true;
         }

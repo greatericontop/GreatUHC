@@ -102,5 +102,18 @@ world_gen_tweaks:
   custom_sugarcane_freq: 0.009
 
 
+# Options to tweak the rating system
+rating_settings:
+  # Default rating (note that the displayed rating is lower)
+  default_rating: 1500.0
+  # Default rating deviation, higher makes ratings update more at the beginning
+  default_rd: 350.0
+  # Minimum RD can go, so player ratings can still update
+  min_rd: 60.0
+  # For every 1 RD above :established_rating_threshold:, decrease the displayed rating by :display_multiplier:
+  established_rating_threshold: 100.0
+  display_multiplier: 4.0
+
+
 # You should probably have this enabled
 winner_check: true

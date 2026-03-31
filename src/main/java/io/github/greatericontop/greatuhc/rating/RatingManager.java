@@ -32,9 +32,11 @@ import java.util.Random;
 import java.util.UUID;
 
 public class RatingManager implements Listener {
-    private static final double DEFAULT_RATING = 1500.0; // arbitrary, I just picked a number I liked
-    private static final double DEFAULT_RD = 350.0;
-    private static final double MIN_RD = 60.0;
+    private double DEFAULT_RATING;
+    private double DEFAULT_RD;
+    private double MIN_RD;
+    private double ESTABLISHED_RATING_THRESHOLD;
+    private double DISPLAY_MULTIPLIER;
 
     private final Map<UUID, Double> handicaps = new HashMap<>();
 
@@ -43,6 +45,15 @@ public class RatingManager implements Listener {
     public RatingManager(GreatUHCMain plugin) {
         this.plugin = plugin;
         this.random = new Random();
+        reloadHyperparameters();
+    }
+
+    public void reloadHyperparameters() {
+        DEFAULT_RATING = plugin.getConfig().getDouble("rating_settings.default_rating", 1500.0);
+        DEFAULT_RD = plugin.getConfig().getDouble("rating_settings.default_rd", 350.0);
+        MIN_RD = plugin.getConfig().getDouble("rating_settings.min_rd", 60.0);
+        ESTABLISHED_RATING_THRESHOLD = plugin.getConfig().getDouble("rating_settings.established_rating_threshold", 100.0);
+        DISPLAY_MULTIPLIER = plugin.getConfig().getDouble("rating_settings.display_multiplier", 4.0);
     }
 
 
@@ -71,7 +82,7 @@ public class RatingManager implements Listener {
     public double getDisplayedRating(UUID uuid) {
         double rating = plugin.ratingManager.getRating(uuid);
         double rd = plugin.ratingManager.getRD(uuid);
-        return rating - 4*Math.max(rd-100, 0);
+        return rating - DISPLAY_MULTIPLIER*Math.max(rd-ESTABLISHED_RATING_THRESHOLD, 0);
     }
 
     public String getDisplayColor(double displayedRating) {
