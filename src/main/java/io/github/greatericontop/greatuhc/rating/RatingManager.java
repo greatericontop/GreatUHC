@@ -74,19 +74,28 @@ public class RatingManager implements Listener {
         plugin.ratingConfig.set("ratings.%s.rd".formatted(target.toString()), rd);
     }
 
+    public double getDisplayedRating(UUID uuid) {
+        double rating = plugin.ratingManager.getRating(uuid);
+        double rd = plugin.ratingManager.getRD(uuid);
+        return rating - DISPLAY_MULTIPLIER*Math.max(rd-ESTABLISHED_RATING_THRESHOLD, 0);
+    }
+
+    public double getPeakRating(UUID target) {
+        return plugin.ratingConfig.getDouble("ratings.%s.peak_rating".formatted(target.toString()), 0.0);
+    }
+    public void setPeakRating(UUID target) {
+        double currentDisplayedRating = getDisplayedRating(target);
+        if (currentDisplayedRating > getPeakRating(target)) {
+            plugin.ratingConfig.set("ratings.%s.peak_rating".formatted(target.toString()), currentDisplayedRating);
+        }
+    }
+
 
     @EventHandler(priority = EventPriority.HIGH)
     public void processHandicaps(EntityDamageEvent event) {
         if (!(event.getEntity() instanceof Player victim))  return;
         double damageFactor = handicaps.getOrDefault(victim.getUniqueId(), 1.0);
         event.setDamage(event.getDamage() * damageFactor);
-    }
-
-
-    public double getDisplayedRating(UUID uuid) {
-        double rating = plugin.ratingManager.getRating(uuid);
-        double rd = plugin.ratingManager.getRD(uuid);
-        return rating - DISPLAY_MULTIPLIER*Math.max(rd-ESTABLISHED_RATING_THRESHOLD, 0);
     }
 
     public String getDisplayColor(double displayedRating) {
@@ -154,8 +163,10 @@ public class RatingManager implements Listener {
             RatingCalc.estimate(winnerRating, loserRating, BETA);
             setRating(uuidWinner, winnerRating[0]);
             setRD(uuidWinner, Math.max(MIN_RD, winnerRating[1]));
+            setPeakRating(uuidWinner);
             setRating(uuidLoser, loserRating[0]);
             setRD(uuidLoser, Math.max(MIN_RD, loserRating[1]));
+            setPeakRating(uuidLoser);
             deltas.put(winner, deltas.get(winner) + getDisplayedRating(winner.getUniqueId()));
             deltas.put(loser, deltas.get(loser) + getDisplayedRating(loser.getUniqueId()));
         }
