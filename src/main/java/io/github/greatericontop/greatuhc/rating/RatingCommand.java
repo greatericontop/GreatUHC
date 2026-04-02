@@ -64,7 +64,8 @@ public class RatingCommand implements CommandExecutor, TabCompleter {
             name = p.getName();
         }
         sender.sendMessage("§9------------------------------");
-        sender.sendMessage("%s%s§3's rating: %s%.0f".formatted(color, name, color, displayedRating));
+                        if (displayedRating >= 3000)  sender.sendMessage("%s§3's rating: %.0f".formatted(RatingManager._specialrender(name), RatingManager._specialrender("%.0f".formatted(displayedRating))));
+        else  sender.sendMessage("%s%s§3's rating: %s%.0f".formatted(color, name, color, displayedRating));
         sender.sendMessage("§7Performance: %.0f    RD: %.0f".formatted(rating, rd));
         sender.sendMessage("§9------------------------------");
         return true;
