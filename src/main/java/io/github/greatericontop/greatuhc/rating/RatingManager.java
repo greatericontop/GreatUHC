@@ -162,4 +162,41 @@ public class RatingManager implements Listener {
         return deltas;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public static String _specialrender(String s) {
+        return "§e" + s.charAt(0) + "§6" + s.charAt(1) + "§c" + s.charAt(2) + "§4" + s.substring(3);
+    }
+
 }
