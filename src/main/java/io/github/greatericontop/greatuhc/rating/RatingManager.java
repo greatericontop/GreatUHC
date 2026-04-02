@@ -37,6 +37,8 @@ public class RatingManager implements Listener {
     private double MIN_RD;
     private double ESTABLISHED_RATING_THRESHOLD;
     private double DISPLAY_MULTIPLIER;
+    private double BETA;
+    private double DAMAGE_MULTIPLIER;
 
     private final Map<UUID, Double> handicaps = new HashMap<>();
 
@@ -54,6 +56,8 @@ public class RatingManager implements Listener {
         MIN_RD = plugin.getConfig().getDouble("rating_settings.min_rd", 60.0);
         ESTABLISHED_RATING_THRESHOLD = plugin.getConfig().getDouble("rating_settings.established_rating_threshold", 100.0);
         DISPLAY_MULTIPLIER = plugin.getConfig().getDouble("rating_settings.display_multiplier", 4.0);
+        BETA = plugin.getConfig().getDouble("rating_settings.beta", 173.7178);
+        DAMAGE_MULTIPLIER = plugin.getConfig().getDouble("rating_settings.damage_multiplier", 1.15);
     }
 
 
@@ -129,7 +133,7 @@ public class RatingManager implements Listener {
         double averageRating = totalRating / players.length;
         for (Player p : players) {
             double rating = getRating(p.getUniqueId());
-            double handicap = RatingCalc.calcHandicap(rating, averageRating);
+            double handicap = RatingCalc.calcHandicap(rating, averageRating, DAMAGE_MULTIPLIER);
             handicaps.put(p.getUniqueId(), handicap);
             String color = getDisplayColor(getDisplayedRating(p.getUniqueId()));
             Bukkit.broadcastMessage("§3Player %s%s §3has damage multiplier §b%.0f%%§3!".formatted(color, p.getName(), handicap*100.0));
@@ -147,7 +151,7 @@ public class RatingManager implements Listener {
             double[] loserRating = {getRating(uuidLoser), getRD(uuidLoser)};
             deltas.put(winner, deltas.getOrDefault(winner, 0.0) - getDisplayedRating(winner.getUniqueId()));
             deltas.put(loser, deltas.getOrDefault(loser, 0.0) - getDisplayedRating(loser.getUniqueId()));
-            RatingCalc.estimate(winnerRating, loserRating);
+            RatingCalc.estimate(winnerRating, loserRating, BETA);
             setRating(uuidWinner, winnerRating[0]);
             setRD(uuidWinner, Math.max(MIN_RD, winnerRating[1]));
             setRating(uuidLoser, loserRating[0]);

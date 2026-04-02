@@ -23,10 +23,9 @@ public class RatingCalc {
      * Calculate the handicap for a player rated :rating: in a game with average rating :ratingAverage:.
      * The higher the rating, the higher the handicap (exponentially).
      */
-    public static double calcHandicap(double rating, double ratingAverage) {
+    public static double calcHandicap(double rating, double ratingAverage, double damageMultiplier) {
         double delta = rating - ratingAverage;
-        // 15% more per 200 rating points
-        return Math.pow(1.15, delta/200.0);
+        return Math.pow(damageMultiplier, delta/200.0);
     }
 
     private static double sigmoid(double x) {
@@ -36,8 +35,7 @@ public class RatingCalc {
     /*
      * Perform update using our own in-house rating calculation :)
      */
-    public static void estimate(double[] winner, double[] loser) {
-        double beta = 173.7178;
+    public static void estimate(double[] winner, double[] loser, double beta) {
         double g_winner = Math.sqrt(beta*beta + Math.PI/8.0 * loser[1]*loser[1]);
         double g_loser = Math.sqrt(beta*beta + Math.PI/8.0 * winner[1]*winner[1]);
         double winner_delta = 1.0 / (  (2.0*g_winner)/(winner[1]*winner[1]) + 1.0/(2.0*g_winner)  );

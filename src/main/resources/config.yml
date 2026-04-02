@@ -113,6 +113,12 @@ rating_settings:
   # For every 1 RD above :established_rating_threshold:, decrease the displayed rating by :display_multiplier:
   established_rating_threshold: 100.0
   display_multiplier: 4.0
+  # Beta controls how much ratings change after each game
+  # Specifically, if you are beta points higher, you should have a 2.718x higher chance to win. The default of
+  # 173.7178 is so a 400 point difference is expected to correspond to a 10x difference in win probability
+  beta: 173.7178
+  # A 200 point difference in rating causes damage to be multiplied (exponentially) by this much
+  damage_multiplier: 1.15
 
 
 # You should probably have this enabled
