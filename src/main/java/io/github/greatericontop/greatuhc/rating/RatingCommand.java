@@ -46,6 +46,7 @@ public class RatingCommand implements CommandExecutor, TabCompleter {
         double displayedRating;
         double peakRating;
         String color;
+        String peakColor;
         String name;
         if (p == null) {
             if (!(sender instanceof Player player)) {
@@ -57,6 +58,7 @@ public class RatingCommand implements CommandExecutor, TabCompleter {
             displayedRating = plugin.ratingManager.getDisplayedRating(player.getUniqueId());
             peakRating = plugin.ratingManager.getPeakRating(player.getUniqueId());
             color = plugin.ratingManager.getDisplayColor(displayedRating);
+            peakColor = plugin.ratingManager.getDisplayColor(peakRating);
             name = player.getName();
         } else {
             rating = plugin.ratingManager.getRating(p.getUniqueId());
@@ -64,6 +66,7 @@ public class RatingCommand implements CommandExecutor, TabCompleter {
             displayedRating = plugin.ratingManager.getDisplayedRating(p.getUniqueId());
             peakRating = plugin.ratingManager.getPeakRating(p.getUniqueId());
             color = plugin.ratingManager.getDisplayColor(displayedRating);
+            peakColor = plugin.ratingManager.getDisplayColor(peakRating);
             name = p.getName();
         }
         sender.sendMessage("§9------------------------------");
@@ -71,7 +74,7 @@ public class RatingCommand implements CommandExecutor, TabCompleter {
         else  sender.sendMessage("%s%s§3's rating: %s%.0f".formatted(color, name, color, displayedRating));
         sender.sendMessage("§7Performance: %.0f    RD: %.0f".formatted(rating, rd));
                         if (peakRating >= 3000)  sender.sendMessage("§3Peak rating: %s".formatted(RatingManager._specialrender("%.0f".formatted(peakRating))));
-        else  sender.sendMessage("§3Peak rating: %s%.0f".formatted(color, peakRating));
+        else  sender.sendMessage("§3Peak rating: %s%.0f".formatted(peakColor, peakRating));
         sender.sendMessage("§9------------------------------");
         return true;
     }
