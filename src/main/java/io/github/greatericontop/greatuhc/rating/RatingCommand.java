@@ -75,6 +75,28 @@ public class RatingCommand implements CommandExecutor, TabCompleter {
         sender.sendMessage("§7Performance: %.0f    RD: %.0f".formatted(rating, rd));
                         if (peakRating >= 3000)  sender.sendMessage("§3Peak rating: %s".formatted(RatingManager._specialrender("%.0f".formatted(peakRating))));
         else  sender.sendMessage("§3Peak rating: %s%.0f".formatted(peakColor, peakRating));
+
+        GameHistoryEntry[] history = plugin.ratingManager.historyManager.getLatestEntries(p == null ? ((Player) sender).getUniqueId() : p.getUniqueId(), 10);
+        if (history.length > 0) {
+            String yourName = p == null ? sender.getName() : p.getName();
+            sender.sendMessage("§3Recent games:");
+            for (GameHistoryEntry entry : history) {
+                String result = entry.won() ? "§awon vs" : "§7lost vs";
+                String yourColor = plugin.ratingManager.getDisplayColor(entry.yourRatingBefore());
+                StringBuilder opponentDisplay = new StringBuilder();
+                for (int i = 0; i < entry.oppNames().size(); i++) {
+                    String oppName = entry.oppNames().get(i);
+                    double oppRating = entry.oppRatings().get(i);
+                    String oppColor = plugin.ratingManager.getDisplayColor(oppRating);
+                    opponentDisplay.append("%s%s".formatted(oppColor, oppName));
+                    if (i < entry.oppNames().size() - 1) {
+                        opponentDisplay.append("§7, ");
+                    }
+                }
+                String delta = "%s%.0f".formatted(entry.ratingDelta() >= 0 ? "§a+" : "§7", entry.ratingDelta());
+                sender.sendMessage("§7- %s%s %s %s  §7(%s§7)".formatted(yourColor, yourName, result, opponentDisplay, delta));
+            }
+        }
         sender.sendMessage("§9------------------------------");
         return true;
     }

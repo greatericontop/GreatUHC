@@ -42,11 +42,14 @@ public class RatingManager implements Listener {
 
     private final Map<UUID, Double> handicaps = new HashMap<>();
 
+    public final RatingGameHistoryManager historyManager;
+
     private final Random random;
     private final GreatUHCMain plugin;
     public RatingManager(GreatUHCMain plugin) {
         this.plugin = plugin;
         this.random = new Random();
+        this.historyManager = new RatingGameHistoryManager(plugin);
         reloadHyperparameters();
     }
 
@@ -58,6 +61,7 @@ public class RatingManager implements Listener {
         DISPLAY_MULTIPLIER = plugin.getConfig().getDouble("rating_settings.display_multiplier", 4.0);
         BETA = plugin.getConfig().getDouble("rating_settings.beta", 173.7178);
         DAMAGE_MULTIPLIER = plugin.getConfig().getDouble("rating_settings.damage_multiplier", 1.15);
+        historyManager.reloadHyperparameters();
     }
 
 
@@ -150,6 +154,10 @@ public class RatingManager implements Listener {
     }
 
     public Map<Player, Double> processGame(Player winner, Player[] players) {
+        Map<Player, Double> previousRatings = new HashMap<>();
+        for (Player p : players) {
+            previousRatings.put(p, getDisplayedRating(p.getUniqueId()));
+        }
         Map<Player, Double> deltas = new HashMap<>();
         GameUtils.shuffle(random, players);
         for (Player loser : players) {
@@ -170,6 +178,7 @@ public class RatingManager implements Listener {
             deltas.put(winner, deltas.get(winner) + getDisplayedRating(winner.getUniqueId()));
             deltas.put(loser, deltas.get(loser) + getDisplayedRating(loser.getUniqueId()));
         }
+        plugin.ratingManager.historyManager.saveGame(winner, players, previousRatings, deltas);
         return deltas;
     }
 

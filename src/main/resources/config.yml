@@ -119,6 +119,9 @@ rating_settings:
   beta: 173.7178
   # A 200 point difference in rating causes damage to be multiplied (exponentially) by this much
   damage_multiplier: 1.15
+  # Maximum number of games to keep in the history of each player (purely for record-keeping/cosmetic purposes, it has
+  # no effect on rating calculation), to avoid too much data being stored.
+  max_game_history: 200
 
 
 # You should probably have this enabled
