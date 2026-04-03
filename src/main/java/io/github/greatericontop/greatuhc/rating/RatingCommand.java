@@ -45,8 +45,6 @@ public class RatingCommand implements CommandExecutor, TabCompleter {
         double rd;
         double displayedRating;
         double peakRating;
-        String color;
-        String peakColor;
         String name;
         if (p == null) {
             if (!(sender instanceof Player player)) {
@@ -57,44 +55,35 @@ public class RatingCommand implements CommandExecutor, TabCompleter {
             rd = plugin.ratingManager.getRD(player.getUniqueId());
             displayedRating = plugin.ratingManager.getDisplayedRating(player.getUniqueId());
             peakRating = plugin.ratingManager.getPeakRating(player.getUniqueId());
-            color = plugin.ratingManager.getDisplayColor(displayedRating);
-            peakColor = plugin.ratingManager.getDisplayColor(peakRating);
             name = player.getName();
         } else {
             rating = plugin.ratingManager.getRating(p.getUniqueId());
             rd = plugin.ratingManager.getRD(p.getUniqueId());
             displayedRating = plugin.ratingManager.getDisplayedRating(p.getUniqueId());
             peakRating = plugin.ratingManager.getPeakRating(p.getUniqueId());
-            color = plugin.ratingManager.getDisplayColor(displayedRating);
-            peakColor = plugin.ratingManager.getDisplayColor(peakRating);
             name = p.getName();
         }
         sender.sendMessage("§9------------------------------");
-                        if (displayedRating >= 3000)  sender.sendMessage("%s§3's rating: %s".formatted(RatingManager._specialrender(name), RatingManager._specialrender("%.0f".formatted(displayedRating))));
-        else  sender.sendMessage("%s%s§3's rating: %s%.0f".formatted(color, name, color, displayedRating));
+        sender.sendMessage("%s§3's rating: %s".formatted(plugin.ratingManager.renderName(name, displayedRating), plugin.ratingManager.renderRating(displayedRating)));
         sender.sendMessage("§7Performance: %.0f    RD: %.0f".formatted(rating, rd));
-                        if (peakRating >= 3000)  sender.sendMessage("§3Peak rating: %s".formatted(RatingManager._specialrender("%.0f".formatted(peakRating))));
-        else  sender.sendMessage("§3Peak rating: %s%.0f".formatted(peakColor, peakRating));
+        sender.sendMessage("§3Peak rating: %s".formatted(plugin.ratingManager.renderRating(peakRating)));
 
         GameHistoryEntry[] history = plugin.ratingManager.historyManager.getLatestEntries(p == null ? ((Player) sender).getUniqueId() : p.getUniqueId(), 10);
         if (history.length > 0) {
-            String yourName = p == null ? sender.getName() : p.getName();
             sender.sendMessage("§3Recent games:");
             for (GameHistoryEntry entry : history) {
-                String result = entry.won() ? "§awon vs" : "§7lost vs";
-                String yourColor = plugin.ratingManager.getDisplayColor(entry.yourRatingBefore());
+                String result = entry.won() ? "§aWon vs" : "§7Lost vs";
                 StringBuilder opponentDisplay = new StringBuilder();
                 for (int i = 0; i < entry.oppNames().size(); i++) {
                     String oppName = entry.oppNames().get(i);
                     double oppRating = entry.oppRatings().get(i);
-                    String oppColor = plugin.ratingManager.getDisplayColor(oppRating);
-                    opponentDisplay.append("%s%s".formatted(oppColor, oppName));
+                    opponentDisplay.append(plugin.ratingManager.renderName(oppName, oppRating));
                     if (i < entry.oppNames().size() - 1) {
                         opponentDisplay.append("§7, ");
                     }
                 }
                 String delta = "%s%.0f".formatted(entry.ratingDelta() >= 0 ? "§a+" : "§7", entry.ratingDelta());
-                sender.sendMessage("§7- %s%s %s %s  §7(%s§7)".formatted(yourColor, yourName, result, opponentDisplay, delta));
+                sender.sendMessage("§7- %s %s  §7(%s§7)".formatted(result, opponentDisplay, delta));
             }
         }
         sender.sendMessage("§9------------------------------");
