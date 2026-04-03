@@ -40,20 +40,20 @@ public class RatingGameHistoryManager {
 
 
     private void saveEntry(UUID uuid, GameHistoryEntry entry) {
-        int counter = plugin.ratingConfig.getInt("%s.game_history_counter".formatted(uuid.toString()), 0);
-        plugin.ratingConfig.set("%s.game_history.%d".formatted(uuid.toString(), counter), entry);
-        plugin.ratingConfig.set("%s.game_history_counter".formatted(uuid.toString()), counter + 1);
+        int counter = plugin.ratingConfig.getInt("game_history.%s.game_history_counter".formatted(uuid.toString()), 0);
+        plugin.ratingConfig.set("game_history.%s.%d".formatted(uuid.toString(), counter), entry);
+        plugin.ratingConfig.set("game_history.%s.game_history_counter".formatted(uuid.toString()), counter + 1);
     }
 
     public void pruneOldData(UUID uuid) {
-        int latest = plugin.ratingConfig.getInt("%s.game_history_counter".formatted(uuid.toString()), 0) - 1;
-        int earliest = plugin.ratingConfig.getInt("%s.game_history_earliest".formatted(uuid.toString()), 0);
+        int latest = plugin.ratingConfig.getInt("game_history.%s.game_history_counter".formatted(uuid.toString()), 0) - 1;
+        int earliest = plugin.ratingConfig.getInt("game_history.%s.game_history_earliest".formatted(uuid.toString()), 0);
         while (latest - earliest + 1 > MAX_GAME_HISTORY) {
             plugin.getLogger().info("Pruned game history entry #%d for player %s".formatted(earliest, uuid.toString()));
-            plugin.ratingConfig.set("%s.game_history.%d".formatted(uuid.toString(), earliest), null);
+            plugin.ratingConfig.set("game_history.%s.%d".formatted(uuid.toString(), earliest), null);
             earliest++;
         }
-        plugin.ratingConfig.set("%s.game_history_earliest".formatted(uuid.toString()), earliest);
+        plugin.ratingConfig.set("game_history.%s.game_history_earliest".formatted(uuid.toString()), earliest);
     }
 
     public void saveGame(Player winner, Player[] players, Map<Player, Double> previousRatings, Map<Player, Double> deltas) {
@@ -78,11 +78,11 @@ public class RatingGameHistoryManager {
 
     /* Return an array of the last up to :n: games played by this player, most recent in [0]. */
     public GameHistoryEntry[] getLatestEntries(UUID uuid, int n) {
-        int counter = plugin.ratingConfig.getInt("%s.game_history_counter".formatted(uuid.toString()), 0) - 1;
-        int earliest = plugin.ratingConfig.getInt("%s.game_history_earliest".formatted(uuid.toString()), 0);
+        int counter = plugin.ratingConfig.getInt("game_history.%s.game_history_counter".formatted(uuid.toString()), 0) - 1;
+        int earliest = plugin.ratingConfig.getInt("game_history.%s.game_history_earliest".formatted(uuid.toString()), 0);
         GameHistoryEntry[] entries = new GameHistoryEntry[Math.min(n, counter - earliest + 1)];
         for (int i = 0; i < entries.length; i++) {
-            entries[i] = plugin.ratingConfig.getObject("%s.game_history.%d".formatted(uuid.toString(), counter - i), GameHistoryEntry.class);
+            entries[i] = plugin.ratingConfig.getObject("game_history.%s.%d".formatted(uuid.toString(), counter - i), GameHistoryEntry.class);
         }
         return entries;
     }

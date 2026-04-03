@@ -18,11 +18,13 @@ package io.github.greatericontop.greatuhc.rating;
  */
 
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
+import org.bukkit.configuration.serialization.SerializableAs;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Map;
 
+@SerializableAs("GameHistoryEntry")
 public record GameHistoryEntry(
         boolean won,
         double yourRatingBefore,

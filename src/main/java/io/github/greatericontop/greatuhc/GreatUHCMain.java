@@ -44,11 +44,13 @@ import io.github.greatericontop.greatuhc.mechanics.PlayerDeathListener;
 import io.github.greatericontop.greatuhc.mechanics.ScuffedNoEndermanTeleport;
 import io.github.greatericontop.greatuhc.mechanics.UHCCustomDamage;
 import io.github.greatericontop.greatuhc.mechanics.WorldBorderDamage;
+import io.github.greatericontop.greatuhc.rating.GameHistoryEntry;
 import io.github.greatericontop.greatuhc.rating.RatingCommand;
 import io.github.greatericontop.greatuhc.rating.RatingManager;
 import io.github.greatericontop.greatuhc.worldgentweaks.CustomSugarcane;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -133,6 +135,7 @@ public class GreatUHCMain extends JavaPlugin {
 
         ratingManager = new RatingManager(this);
         this.getServer().getPluginManager().registerEvents(ratingManager, this);
+        ConfigurationSerialization.registerClass( GameHistoryEntry.class, "GameHistoryEntry");
         File ratingFile = new File(this.getDataFolder(), "ratings.yml");
         ratingConfig = YamlConfiguration.loadConfiguration(ratingFile);
 
