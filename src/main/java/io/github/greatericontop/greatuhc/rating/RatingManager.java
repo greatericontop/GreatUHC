@@ -102,7 +102,7 @@ public class RatingManager implements Listener {
         event.setDamage(event.getDamage() * damageFactor);
     }
 
-    public String getDisplayColor(double displayedRating) {
+    public static String getDisplayColor(double displayedRating) {
         if (displayedRating >= 2400) {
             return "§4";
         }
@@ -132,12 +132,12 @@ public class RatingManager implements Listener {
         }
         return "§7";
     }
-    public String renderRating(double displayedRating) {
+    public static String renderRating(double displayedRating) {
         if (displayedRating >= 3000)  return _specialrender("%.0f".formatted(displayedRating));
         String color = getDisplayColor(displayedRating);
         return "%s%.0f".formatted(color, displayedRating);
     }
-    public String renderName(String name, double displayedRating) {
+    public static String renderName(String name, double displayedRating) {
         if (displayedRating >= 3000)  return _specialrender(name);
         String color = getDisplayColor(displayedRating);
         return "%s%s".formatted(color, name);

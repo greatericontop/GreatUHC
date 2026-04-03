@@ -17,6 +17,7 @@ package io.github.greatericontop.greatuhc;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import io.github.greatericontop.greatuhc.rating.RatingManager;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -102,14 +103,14 @@ public class Placeholders extends PlaceholderExpansion {
                 return "§7N/A";
             }
             double displayedRating = plugin.ratingManager.getDisplayedRating(player.getUniqueId());
-            return plugin.ratingManager.renderRating(displayedRating);
+            return RatingManager.renderRating(displayedRating);
         }
         if (args.equals("myratingcolor")) {
             if (player == null) {
                 return "§7";
             }
             double displayedRating = plugin.ratingManager.getDisplayedRating(player.getUniqueId());
-            String color = plugin.ratingManager.getDisplayColor(displayedRating);
+            String color = RatingManager.getDisplayColor(displayedRating);
             return color;
         }
         if (args.equals("colorednamedisplay")) {
@@ -117,7 +118,7 @@ public class Placeholders extends PlaceholderExpansion {
                 return "";
             }
             double displayedRating = plugin.ratingManager.getDisplayedRating(player.getUniqueId());
-            return plugin.ratingManager.renderName(player.getName(), displayedRating);
+            return RatingManager.renderName(player.getName(), displayedRating);
         }
 
         return null;

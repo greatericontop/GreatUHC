@@ -64,9 +64,9 @@ public class RatingCommand implements CommandExecutor, TabCompleter {
             name = p.getName();
         }
         sender.sendMessage("§9------------------------------");
-        sender.sendMessage("%s§3's rating: %s".formatted(plugin.ratingManager.renderName(name, displayedRating), plugin.ratingManager.renderRating(displayedRating)));
+        sender.sendMessage("%s§3's rating: %s".formatted(RatingManager.renderName(name, displayedRating), RatingManager.renderRating(displayedRating)));
         sender.sendMessage("§7Performance: %.0f    RD: %.0f".formatted(rating, rd));
-        sender.sendMessage("§3Peak rating: %s".formatted(plugin.ratingManager.renderRating(peakRating)));
+        sender.sendMessage("§3Peak rating: %s".formatted(RatingManager.renderRating(peakRating)));
 
         GameHistoryEntry[] history = plugin.ratingManager.historyManager.getLatestEntries(p == null ? ((Player) sender).getUniqueId() : p.getUniqueId(), 10);
         if (history.length > 0) {
@@ -77,7 +77,7 @@ public class RatingCommand implements CommandExecutor, TabCompleter {
                 for (int i = 0; i < entry.oppNames().size(); i++) {
                     String oppName = entry.oppNames().get(i);
                     double oppRating = entry.oppRatings().get(i);
-                    opponentDisplay.append(plugin.ratingManager.renderName(oppName, oppRating));
+                    opponentDisplay.append(RatingManager.renderName(oppName, oppRating));
                     if (i < entry.oppNames().size() - 1) {
                         opponentDisplay.append("§7, ");
                     }
