@@ -475,7 +475,6 @@ public class Crafts implements Listener {
         fusionRecipe.addIngredient(new RecipeChoice.MaterialChoice(Material.DIAMOND_HELMET, Material.DIAMOND_CHESTPLATE, Material.DIAMOND_LEGGINGS, Material.DIAMOND_BOOTS));
         fusionRecipe.addIngredient(new RecipeChoice.MaterialChoice(Material.DIAMOND_HELMET, Material.DIAMOND_CHESTPLATE, Material.DIAMOND_LEGGINGS, Material.DIAMOND_BOOTS));
         fusionRecipe.addIngredient(new RecipeChoice.MaterialChoice(Material.DIAMOND_HELMET, Material.DIAMOND_CHESTPLATE, Material.DIAMOND_LEGGINGS, Material.DIAMOND_BOOTS));
-        fusionRecipe.addIngredient(new RecipeChoice.MaterialChoice(Material.DIAMOND_HELMET, Material.DIAMOND_CHESTPLATE, Material.DIAMOND_LEGGINGS, Material.DIAMOND_BOOTS));
         Bukkit.getServer().addRecipe(fusionRecipe);
     }
 
