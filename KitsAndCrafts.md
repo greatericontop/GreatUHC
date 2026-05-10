@@ -339,4 +339,8 @@ Maybe you'll get lucky and get some good ingredients.
 
 ![](assets/fatesTemptation.png)
 
+Fusion Armor: Fuse 4 pieces of any type of diamond armor together to get a random piece of netherite armor enchanted with protection 3.
+
+![](assets/fusion.png)
+
 ---
