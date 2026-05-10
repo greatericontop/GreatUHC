@@ -41,7 +41,7 @@ public class WorldBorderDamage {
     public void reloadFromConfig() {
         this.DAMAGE_AMOUNT = plugin.getConfig().getDouble("border_damage.damage_amount", 2.0);
         this.DAMAGE_EVERY = plugin.getConfig().getLong("border_damage.damage_every", 15L);
-        this.BUFFER = plugin.getConfig().getDouble("border_damage.buffer", 1.0);
+        this.BUFFER = plugin.getConfig().getDouble("border_damage.buffer", 1.5);
         this.IGNORE_BUFFER_WHEN_BORDER_STOPS = plugin.getConfig().getBoolean("border_damage.ignore_buffer_when_border_stops", true);
         this.MIN_DEATHMATCH_BORDER_R = plugin.getConfig().getDouble("deathmatch_border_end", 0.0) / 2.0;
     }

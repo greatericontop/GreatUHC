@@ -103,7 +103,7 @@ world_gen_tweaks:
 
 
 # Blocks placed by players during deathmatch will automatically despawn after this number of ticks
-deathmatch_blocks_despawn_after: 180
+deathmatch_blocks_despawn_after: 100
 
 
 # Configuration for world border damage
@@ -114,7 +114,7 @@ border_damage:
   damage_amount: 2.0
   damage_every: 15
   # Players will still take damage if they are within :buffer: blocks *inside* of the border but close to the edge.
-  buffer: 1.0
+  buffer: 1.5
   # If the border has already shrunk to :deathmatch_border_end:, then the buffer is ignored.
   ignore_buffer_when_border_stops: true
 

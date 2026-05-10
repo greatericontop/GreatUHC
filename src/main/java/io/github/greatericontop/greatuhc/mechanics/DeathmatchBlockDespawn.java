@@ -47,7 +47,7 @@ public class DeathmatchBlockDespawn implements Listener {
         }
         nonces.clear();
         nonce = 0;
-        TICKS_TO_DESPAWN = plugin.getConfig().getLong("deathmatch_blocks_despawn_after", 180L);
+        TICKS_TO_DESPAWN = plugin.getConfig().getLong("deathmatch_blocks_despawn_after", 100L);
     }
 
     @EventHandler()
