@@ -80,6 +80,7 @@ public class GreatUHCMain extends JavaPlugin {
     public GameManager gameManager = null;
 
     public DeathmatchBlockDespawn deathmatchBlockDespawn = null;
+    public WorldBorderDamage worldBorderDamage = null;
 
     public RatingManager ratingManager = null;
     public YamlConfiguration ratingConfig = null;
@@ -130,7 +131,6 @@ public class GreatUHCMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
         this.getServer().getPluginManager().registerEvents(new ScuffedNoEndermanTeleport(), this);
         this.getServer().getPluginManager().registerEvents(new UHCCustomDamage(this), this);
-        WorldBorderDamage.registerRunnable(this);
 
         this.getServer().getPluginManager().registerEvents(new CustomSugarcane(this), this);
 
@@ -145,6 +145,8 @@ public class GreatUHCMain extends JavaPlugin {
 
         deathmatchBlockDespawn = new DeathmatchBlockDespawn(this);
         this.getServer().getPluginManager().registerEvents(deathmatchBlockDespawn, this);
+        worldBorderDamage = new WorldBorderDamage(this);
+        worldBorderDamage.registerRunnable();
 
         GreatUHCCommand greatUHCCommand = new GreatUHCCommand(this);
         this.getCommand("greatuhc").setExecutor(greatUHCCommand);
@@ -187,6 +189,12 @@ public class GreatUHCMain extends JavaPlugin {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void doReload() {
+        this.reloadConfig();
+        ratingManager.reloadHyperparameters();
+        worldBorderDamage.reloadFromConfig();
     }
 
 }

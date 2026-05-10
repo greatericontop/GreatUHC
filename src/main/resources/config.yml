@@ -106,6 +106,19 @@ world_gen_tweaks:
 deathmatch_blocks_despawn_after: 180
 
 
+# Configuration for world border damage
+border_damage:
+  # Deal :damage_amount: amount of true damage every :damage_every: ticks.
+  # By default, 1 heart every 15 ticks.
+  # Note that for this setting you have to restart the server (reloading the plugin does not work)!
+  damage_amount: 2.0
+  damage_every: 15
+  # Players will still take damage if they are within :buffer: blocks *inside* of the border but close to the edge.
+  buffer: 1.0
+  # If the border has already shrunk to :deathmatch_border_end:, then the buffer is ignored.
+  ignore_buffer_when_border_stops: true
+
+
 # Options to tweak the rating system
 rating_settings:
   # Default rating (note that the displayed rating is lower)
