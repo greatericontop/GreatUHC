@@ -33,6 +33,7 @@ import io.github.greatericontop.greatuhc.mechanics.AbsorptionEffectFix;
 import io.github.greatericontop.greatuhc.mechanics.AntiAnvil;
 import io.github.greatericontop.greatuhc.mechanics.BreedBabyAnimals;
 import io.github.greatericontop.greatuhc.mechanics.CustomHealingListener;
+import io.github.greatericontop.greatuhc.mechanics.DeathmatchBlockDespawn;
 import io.github.greatericontop.greatuhc.mechanics.DiamondSpreading;
 import io.github.greatericontop.greatuhc.mechanics.GracePeriodProtectionListener;
 import io.github.greatericontop.greatuhc.mechanics.HungerListener;
@@ -72,10 +73,13 @@ public class GreatUHCMain extends JavaPlugin {
     public boolean uhcRated = false;
     public boolean debugMode = false;
 
+
     public CraftLimiter craftLimiter = null;
     public CraftNotifications craftNotifications = null;
     public FightingDisplay fightingDisplay = null;
     public GameManager gameManager = null;
+
+    public DeathmatchBlockDespawn deathmatchBlockDespawn = null;
 
     public RatingManager ratingManager = null;
     public YamlConfiguration ratingConfig = null;
@@ -138,6 +142,9 @@ public class GreatUHCMain extends JavaPlugin {
         ConfigurationSerialization.registerClass( GameHistoryEntry.class, "GameHistoryEntry");
         File ratingFile = new File(this.getDataFolder(), "ratings.yml");
         ratingConfig = YamlConfiguration.loadConfiguration(ratingFile);
+
+        deathmatchBlockDespawn = new DeathmatchBlockDespawn(this);
+        this.getServer().getPluginManager().registerEvents(deathmatchBlockDespawn, this);
 
         GreatUHCCommand greatUHCCommand = new GreatUHCCommand(this);
         this.getCommand("greatuhc").setExecutor(greatUHCCommand);

@@ -281,6 +281,8 @@ public class PreGameManager {
             player.teleport(new Location(overworld, 2000.0, 320.0, 2000.0));
         }
 
+        gameManager.getPlugin().deathmatchBlockDespawn.reset();
+
         gameManager.ratedPlayers = null;
         gameManager.getPlugin().ratingManager.clearHandicaps();
         if (gameManager.getPlugin().uhcRated) {

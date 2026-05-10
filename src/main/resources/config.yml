@@ -102,6 +102,10 @@ world_gen_tweaks:
   custom_sugarcane_freq: 0.009
 
 
+# Blocks placed by players during deathmatch will automatically despawn after this number of ticks
+deathmatch_blocks_despawn_after: 180
+
+
 # Options to tweak the rating system
 rating_settings:
   # Default rating (note that the displayed rating is lower)
