@@ -26,12 +26,27 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class WorldBorderDamage {
 
+    // Players will begin to take damage even if they are inside the border but close to the edge.
+    private static final double BUFFER = 1.0;
+
+    public static boolean shouldApplyDamage(Player player) {
+        double playerX = player.getLocation().getX();
+        double playerZ = player.getLocation().getZ();
+        double borderRadius = player.getWorld().getWorldBorder().getSize() / 2.0;
+        double centerX = player.getWorld().getWorldBorder().getCenter().getX();
+        double centerZ = player.getWorld().getWorldBorder().getCenter().getZ();
+        double dx = Math.abs(playerX - centerX);
+        double dz = Math.abs(playerZ - centerZ);
+        // TODO: make it configurable
+        return (dx > 10.0 || dz > 10.0) && (dx > (borderRadius - BUFFER) || dz > (borderRadius - BUFFER));
+    }
+
     public static void registerRunnable(GreatUHCMain plugin) {
         new BukkitRunnable() {
             public void run() {
                 for (Player player : Bukkit.getOnlinePlayers()) {
                     if (player.getGameMode() == GameMode.CREATIVE || player.getGameMode() == GameMode.SPECTATOR)  continue;
-                    if (!player.getWorld().getWorldBorder().isInside(player.getLocation())) {
+                    if (shouldApplyDamage(player)) {
                         player.sendActionBar("§cYou are outside the world; turn back!");
                         TrueDamageHelper.dealTrueDamage(player, 1.0);
                     }
