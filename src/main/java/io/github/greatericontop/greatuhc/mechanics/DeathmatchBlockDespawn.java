@@ -39,6 +39,11 @@ public class DeathmatchBlockDespawn implements Listener {
     private final GreatUHCMain plugin;
     public DeathmatchBlockDespawn(GreatUHCMain plugin) {
         this.plugin = plugin;
+        reloadFromConfig();
+    }
+
+    public void reloadFromConfig() {
+        TICKS_TO_DESPAWN = plugin.getConfig().getLong("deathmatch_blocks_despawn_after", 100L);
     }
 
     public void reset() {
@@ -47,7 +52,6 @@ public class DeathmatchBlockDespawn implements Listener {
         }
         nonces.clear();
         nonce = 0;
-        TICKS_TO_DESPAWN = plugin.getConfig().getLong("deathmatch_blocks_despawn_after", 100L);
     }
 
     @EventHandler()

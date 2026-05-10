@@ -194,6 +194,7 @@ public class GreatUHCMain extends JavaPlugin {
     public void doReload() {
         this.reloadConfig();
         ratingManager.reloadHyperparameters();
+        deathmatchBlockDespawn.reloadFromConfig();
         worldBorderDamage.reloadFromConfig();
     }
 
