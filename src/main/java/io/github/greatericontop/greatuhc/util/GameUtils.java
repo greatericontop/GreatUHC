@@ -18,6 +18,7 @@ package io.github.greatericontop.greatuhc.util;
  */
 
 import io.github.greatericontop.greatuhc.GreatUHCMain;
+import io.github.greatericontop.greatuhc.game.GameManager;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -37,10 +38,15 @@ public class GameUtils {
         for (Player player : Bukkit.getOnlinePlayers()) {
             locations.put(player.getUniqueId(), player.getLocation());
         }
+        GameManager.GamePhase boundGamePhase = plugin.gameManager.getCurrentPhase();
         new BukkitRunnable() {
             int counter = ticks / 5;
             public void run() {
                 if (counter <= 0) {
+                    cancel();
+                    return;
+                }
+                if (plugin.gameManager.getCurrentPhase() != boundGamePhase) {
                     cancel();
                     return;
                 }
@@ -58,7 +64,9 @@ public class GameUtils {
                         player.teleport(previousLoc);
                     }
                 }
-                if (counter % 4 == 0 && counter != 0) {
+                if (counter == 0) {
+                    Bukkit.broadcastMessage("§7You can now move!");
+                } else if (counter % 4 == 0) {
                     int seconds = counter / 4;
                     Bukkit.broadcastMessage(String.format("§7You'll be able to move in §e%d§7 seconds.", seconds));
                 }
