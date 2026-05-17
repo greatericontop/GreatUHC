@@ -48,6 +48,12 @@
             <version>2.10.10</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>io.github.greatericontop</groupId>
+            <artifactId>weaponmaster</artifactId>
+            <version>1.13.0-debug</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
 </project>

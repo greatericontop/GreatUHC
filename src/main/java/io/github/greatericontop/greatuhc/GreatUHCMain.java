@@ -48,6 +48,7 @@ import io.github.greatericontop.greatuhc.mechanics.WorldBorderDamage;
 import io.github.greatericontop.greatuhc.rating.GameHistoryEntry;
 import io.github.greatericontop.greatuhc.rating.RatingCommand;
 import io.github.greatericontop.greatuhc.rating.RatingManager;
+import io.github.greatericontop.greatuhc.rating.WMTrueDamageListener;
 import io.github.greatericontop.greatuhc.worldgentweaks.CustomSugarcane;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -160,7 +161,13 @@ public class GreatUHCMain extends JavaPlugin {
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new Placeholders(this).register();
         } else {
-            getLogger().warning("PlaceholderAPI not found, you will lose its functionality");
+            this.getLogger().warning("PlaceholderAPI not found, you will lose its functionality");
+        }
+        if (Bukkit.getPluginManager().getPlugin("WeaponMaster") != null) {
+            this.getServer().getPluginManager().registerEvents(new WMTrueDamageListener(ratingManager), this);
+            this.getLogger().info("WeaponMaster true damage event integration enabled. If you get errors, make sure WeaponMaster is up to date.");
+        } else {
+            this.getLogger().warning("WeaponMaster not found, you will lose its functionality");
         }
 
         new BukkitRunnable() {

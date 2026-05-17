@@ -4,7 +4,7 @@ main: io.github.greatericontop.greatuhc.GreatUHCMain
 api-version: 1.18
 authors: [greateric]
 
-softdepend: [PlaceholderAPI]
+softdepend: [PlaceholderAPI, WeaponMaster]
 
 commands:
     greatuhc:

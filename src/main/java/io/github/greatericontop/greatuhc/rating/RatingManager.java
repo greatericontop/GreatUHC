@@ -40,7 +40,7 @@ public class RatingManager implements Listener {
     private double BETA;
     private double DAMAGE_MULTIPLIER;
 
-    private final Map<UUID, Double> handicaps = new HashMap<>();
+    protected final Map<UUID, Double> handicaps = new HashMap<>();
 
     public final RatingGameHistoryManager historyManager;
 
