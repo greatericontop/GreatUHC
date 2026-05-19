@@ -63,8 +63,10 @@ public class RatingCommand implements CommandExecutor, TabCompleter {
             peakRating = plugin.ratingManager.getPeakRating(p.getUniqueId());
             name = p.getName();
         }
+        String title = RatingManager.getDisplayTitle(displayedRating);
+        if (!title.isEmpty())  title += " ";
         sender.sendMessage("§9------------------------------");
-        sender.sendMessage("%s§3's rating: %s".formatted(RatingManager.renderName(name, displayedRating), RatingManager.renderRating(displayedRating)));
+        sender.sendMessage("%s§3's rating: %s".formatted(RatingManager.renderName(title+name, displayedRating), RatingManager.renderRating(displayedRating)));
         sender.sendMessage("§7Performance: %.0f    RD: %.0f".formatted(rating, rd));
         sender.sendMessage("§3Peak rating: %s".formatted(RatingManager.renderRating(peakRating)));
 

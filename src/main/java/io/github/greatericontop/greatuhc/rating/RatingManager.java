@@ -103,34 +103,40 @@ public class RatingManager implements Listener {
     }
 
     public static String getDisplayColor(double displayedRating) {
+        return _getDisplay(displayedRating)[0];
+    }
+    public static String getDisplayTitle(double displayedRating) {
+        return _getDisplay(displayedRating)[1];
+    }
+    public static String[] _getDisplay(double displayedRating) {
         if (displayedRating >= 2400) {
-            return "§4";
+            return new String[]{"§4", "Legendary Grandmaster"};
         }
         if (displayedRating >= 2200) {
-            return "§c";
+            return new String[]{"§c", "Grandmaster"};
         }
         if (displayedRating >= 2000) {
-            return "§6";
+            return new String[]{"§6", "High Master"};
         }
         if (displayedRating >= 1800) {
-            return "§e";
+            return new String[]{"§e", "Master"};
         }
         if (displayedRating >= 1600) {
-            return "§d";
+            return new String[]{"§d", "Candidate Master"};
         }
         if (displayedRating >= 1400) {
-            return "§x§8§0§8§0§f§f";
+            return new String[]{"§x§8§0§8§0§f§f", "Expert"};
         }
         if (displayedRating >= 1200) {
-            return "§b";
+            return new String[]{"§b", "Specialist"};
         }
         if (displayedRating >= 1000) {
-            return "§a";
+            return new String[]{"§a", "Journeyman"};
         }
         if (displayedRating >= 800) {
-            return "§f";
+            return new String[]{"§f", "Apprentice"};
         }
-        return "§7";
+        return new String[]{"§7", ""};
     }
     public static String renderRating(double displayedRating) {
         if (displayedRating >= 3000)  return _specialrender("%.0f".formatted(displayedRating));
