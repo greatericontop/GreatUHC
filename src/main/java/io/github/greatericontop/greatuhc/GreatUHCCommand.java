@@ -20,6 +20,7 @@ package io.github.greatericontop.greatuhc;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -164,7 +165,7 @@ public class GreatUHCCommand implements CommandExecutor, TabCompleter {
 
         if (args[0].equals("change-rating")) {
             // TODO: make this better
-            Player player = Bukkit.getPlayer(args[1]);
+            OfflinePlayer player = Bukkit.getOfflinePlayer(args[1]);
             double rating = Double.parseDouble(args[2]);
             double rd = Double.parseDouble(args[3]);
             plugin.ratingManager.setRating(player.getUniqueId(), rating);

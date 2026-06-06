@@ -109,31 +109,31 @@ public class RatingManager implements Listener {
         return _getDisplay(displayedRating)[1];
     }
     public static String[] _getDisplay(double displayedRating) {
-        if (displayedRating >= 2400) {
+        if (displayedRating >= 2600) {
             return new String[]{"§4", "Legendary Grandmaster"};
         }
-        if (displayedRating >= 2200) {
+        if (displayedRating >= 2400) {
             return new String[]{"§c", "Grandmaster"};
         }
-        if (displayedRating >= 2000) {
+        if (displayedRating >= 2200) {
             return new String[]{"§6", "High Master"};
         }
-        if (displayedRating >= 1800) {
+        if (displayedRating >= 2000) {
             return new String[]{"§e", "Master"};
         }
-        if (displayedRating >= 1600) {
+        if (displayedRating >= 1800) {
             return new String[]{"§d", "Candidate Master"};
         }
-        if (displayedRating >= 1400) {
+        if (displayedRating >= 1600) {
             return new String[]{"§x§8§0§8§0§f§f", "Expert"};
         }
-        if (displayedRating >= 1200) {
+        if (displayedRating >= 1400) {
             return new String[]{"§b", "Specialist"};
         }
-        if (displayedRating >= 1000) {
+        if (displayedRating >= 1200) {
             return new String[]{"§a", "Journeyman"};
         }
-        if (displayedRating >= 800) {
+        if (displayedRating >= 1000) {
             return new String[]{"§f", "Apprentice"};
         }
         return new String[]{"§7", ""};
