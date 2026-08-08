@@ -232,7 +232,13 @@ public class RatingManager implements Listener {
 
 
     public static String _specialrender(String s) {
-        return "§e" + s.charAt(0) + "§6" + s.charAt(1) + "§c" + s.charAt(2) + "§4" + s.substring(3);
+        String[] words = s.split(" ");
+        String[] newWords = new String[words.length];
+        for (int i = 0; i < words.length; i++) {
+            // Assumes length >= 3, which it should
+            newWords[i] = "§e" + words[i].charAt(0) + "§6" + words[i].charAt(1) + "§c" + words[i].charAt(2) + "§4" + words[i].substring(3);
+        }
+        return String.join(" ", newWords);
     }
 
 }
