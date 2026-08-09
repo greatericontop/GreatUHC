@@ -20,6 +20,7 @@ package io.github.greatericontop.greatuhc.rating;
 import io.github.greatericontop.greatuhc.GreatUHCMain;
 import io.github.greatericontop.greatuhc.util.GameUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -155,11 +156,15 @@ public class RatingManager implements Listener {
     }
 
     public void applyHandicaps(Player[] players) {
+        int num = 0;
         double totalRating = 0.0;
         for (Player p : players) {
-            totalRating += getRating(p.getUniqueId());
+            if (p.getGameMode() != GameMode.SPECTATOR) {
+                num++;
+                totalRating += getRating(p.getUniqueId());
+            }
         }
-        double averageRating = totalRating / players.length;
+        double averageRating = totalRating / num;
         for (Player p : players) {
             double rating = getRating(p.getUniqueId());
             double handicap = RatingCalc.calcHandicap(rating, averageRating, DAMAGE_MULTIPLIER);

@@ -17,6 +17,8 @@ package io.github.greatericontop.greatuhc.mechanics;
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import io.github.greatericontop.greatuhc.GreatUHCMain;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -32,8 +34,10 @@ import java.util.Random;
 public class PlayerDeathListener implements Listener {
 
     private final Random random;
-    public PlayerDeathListener() {
+    private final GreatUHCMain plugin;
+    public PlayerDeathListener(GreatUHCMain plugin) {
         random = new Random();
+        this.plugin = plugin;
     }
 
     @EventHandler()
@@ -51,6 +55,11 @@ public class PlayerDeathListener implements Listener {
         if (killer != null) {
             killer.sendMessage(String.format("§aYou killed §f%s§a!", player.getName()));
             killer.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100, 0));
+        }
+
+        if (plugin.uhcRated) {
+            // Update damage multipliers based on alive players, but don't change the list of rated players
+            plugin.ratingManager.applyHandicaps(Bukkit.getOnlinePlayers().toArray(new Player[0]));
         }
     }
 

@@ -129,7 +129,7 @@ public class GreatUHCMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new ItemDropListener(this), this);
         this.getServer().getPluginManager().registerEvents(new MobSpawning(), this);
         this.getServer().getPluginManager().registerEvents(new OldPVP(), this);
-        this.getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
+        this.getServer().getPluginManager().registerEvents(new PlayerDeathListener(this), this);
         this.getServer().getPluginManager().registerEvents(new ScuffedNoEndermanTeleport(), this);
         this.getServer().getPluginManager().registerEvents(new UHCCustomDamage(this), this);
 
