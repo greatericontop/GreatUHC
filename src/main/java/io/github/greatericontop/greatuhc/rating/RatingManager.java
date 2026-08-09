@@ -33,12 +33,15 @@ import java.util.Random;
 import java.util.UUID;
 
 public class RatingManager implements Listener {
+
     private double DEFAULT_RATING;
     private double DEFAULT_RD;
     private double MIN_RD;
     private double ESTABLISHED_RATING_THRESHOLD;
     private double DISPLAY_MULTIPLIER;
     private double BETA;
+    private double C;
+    private long EPOCH_TIME;
     private double DAMAGE_MULTIPLIER;
 
     protected final Map<UUID, Double> handicaps = new HashMap<>();
@@ -61,6 +64,8 @@ public class RatingManager implements Listener {
         ESTABLISHED_RATING_THRESHOLD = plugin.getConfig().getDouble("rating_settings.established_rating_threshold", 100.0);
         DISPLAY_MULTIPLIER = plugin.getConfig().getDouble("rating_settings.display_multiplier", 4.0);
         BETA = plugin.getConfig().getDouble("rating_settings.beta", 173.7178);
+        C = plugin.getConfig().getDouble("rating_settings.rd_decay_c", 1.5);
+        EPOCH_TIME = plugin.getConfig().getLong("rating_settings.rd_decay_epoch_time", 3600000L);
         DAMAGE_MULTIPLIER = plugin.getConfig().getDouble("rating_settings.damage_multiplier", 1.15);
         historyManager.reloadHyperparameters();
     }
@@ -78,6 +83,15 @@ public class RatingManager implements Listener {
     public void setRD(UUID target, double rd) {
         plugin.ratingConfig.set("ratings.%s.rd".formatted(target.toString()), rd);
     }
+    public long getCurrentRDDecayEpoch() {
+        return System.currentTimeMillis() / EPOCH_TIME;
+    }
+    public long getLastRDDecay(UUID target) {
+        return plugin.ratingConfig.getLong("ratings.%s.last_rd_decay".formatted(target.toString()), System.currentTimeMillis()) / EPOCH_TIME;
+    }
+    public void setLastRDDecay(UUID target) {
+        plugin.ratingConfig.set("ratings.%s.last_rd_decay".formatted(target.toString()), System.currentTimeMillis());  // will be rounded to nearest epoch, don't care about off-by-1 issues mostly
+    }
 
     public double getDisplayedRating(UUID uuid) {
         double rating = plugin.ratingManager.getRating(uuid);
@@ -92,6 +106,16 @@ public class RatingManager implements Listener {
         double currentDisplayedRating = getDisplayedRating(target);
         if (currentDisplayedRating > getPeakRating(target)) {
             plugin.ratingConfig.set("ratings.%s.peak_rating".formatted(target.toString()), currentDisplayedRating);
+        }
+    }
+
+    public void decayRD(UUID target) {
+        double currentRD = getRD(target);
+        long epochsRequired = getCurrentRDDecayEpoch() - getLastRDDecay(target);
+        if (epochsRequired > 0) {
+            double newRD = RatingCalc.decayRD(currentRD, epochsRequired, C);
+            setRD(target, newRD);
+            setLastRDDecay(target);  // this doesn't create junk entries when decayRD() is called on nonexistent players
         }
     }
 
@@ -178,6 +202,7 @@ public class RatingManager implements Listener {
         Map<Player, Double> previousRatings = new HashMap<>();
         for (Player p : players) {
             previousRatings.put(p, getDisplayedRating(p.getUniqueId()));
+            decayRD(p.getUniqueId());
         }
         Map<Player, Double> deltas = new HashMap<>();
         GameUtils.shuffle(random, players);

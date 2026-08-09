@@ -134,6 +134,11 @@ rating_settings:
   # Specifically, if you are beta points higher, you should have a 2.718x higher chance to win. The default of
   # 173.7178 is so a 400 point difference is expected to correspond to a 10x difference in win probability
   beta: 173.7178
+  # The :c: parameter controls how fast RD increases over time.
+  # RDs increase (nonlinearly) by :rd_decay_c: every :rd_decay_epoch_time: milliseconds.
+  # In the default values, RD increases from 65 -> 118 in 6 months.
+  rd_decay_c: 1.5
+  rd_decay_epoch_time: 3600000
   # A 200 point difference in rating causes damage to be multiplied (exponentially) by this much
   damage_multiplier: 1.15
   # Maximum number of games to keep in the history of each player (purely for record-keeping/cosmetic purposes, it has

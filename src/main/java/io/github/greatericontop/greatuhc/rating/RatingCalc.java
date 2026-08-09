@@ -48,4 +48,12 @@ public class RatingCalc {
         loser[1] = loser_rd;
     }
 
+    /*
+     * Decay the rating deviation after :timeDelta: amount of time and hyperparameter :c:. Return the new RD.
+     */
+    public static double decayRD(double rdOld, double timeDelta, double c) {
+        double var = timeDelta * c*c;
+        return Math.sqrt(rdOld*rdOld + var);
+    }
+
 }
