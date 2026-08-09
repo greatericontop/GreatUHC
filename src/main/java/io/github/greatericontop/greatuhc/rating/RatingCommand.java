@@ -69,7 +69,7 @@ public class RatingCommand implements CommandExecutor, TabCompleter {
         if (!title.isEmpty())  title += " ";
         sender.sendMessage("§9------------------------------");
         sender.sendMessage("%s§3's rating: %s".formatted(RatingManager.renderName(title+name, displayedRating), RatingManager.renderRating(displayedRating)));
-        sender.sendMessage("§7Performance: %.0f    RD: %.0f".formatted(rating, rd));
+        sender.sendMessage("§7Performance: %.2f    RD: %.2f".formatted(rating, rd));
         sender.sendMessage("§3Peak rating: %s".formatted(RatingManager.renderRating(peakRating)));
 
         GameHistoryEntry[] history = plugin.ratingManager.historyManager.getLatestEntries(p == null ? ((Player) sender).getUniqueId() : p.getUniqueId(), 10);
