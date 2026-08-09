@@ -51,14 +51,14 @@ public class RatingCommand implements CommandExecutor, TabCompleter {
                 sender.sendMessage("§cYou must be a player to check your rating!");
                 return false;
             }
-            plugin.ratingManager.decayRD(player.getUniqueId());
+            plugin.ratingManager.decayRD(player.getUniqueId(), true);
             rating = plugin.ratingManager.getRating(player.getUniqueId());
             rd = plugin.ratingManager.getRD(player.getUniqueId());
             displayedRating = plugin.ratingManager.getDisplayedRating(player.getUniqueId());
             peakRating = plugin.ratingManager.getPeakRating(player.getUniqueId());
             name = player.getName();
         } else {
-            plugin.ratingManager.decayRD(p.getUniqueId());
+            plugin.ratingManager.decayRD(p.getUniqueId(), true);
             rating = plugin.ratingManager.getRating(p.getUniqueId());
             rd = plugin.ratingManager.getRD(p.getUniqueId());
             displayedRating = plugin.ratingManager.getDisplayedRating(p.getUniqueId());

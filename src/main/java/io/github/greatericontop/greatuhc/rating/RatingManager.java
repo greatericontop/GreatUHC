@@ -109,13 +109,16 @@ public class RatingManager implements Listener {
         }
     }
 
-    public void decayRD(UUID target) {
+    public void decayRD(UUID target, boolean readOnly) {
         double currentRD = getRD(target);
         long epochsRequired = getCurrentRDDecayEpoch() - getLastRDDecay(target);
         if (epochsRequired > 0) {
             double newRD = RatingCalc.decayRD(currentRD, epochsRequired, C);
             setRD(target, newRD);
             setLastRDDecay(target);  // this doesn't create junk entries when decayRD() is called on nonexistent players
+        }
+        if (!readOnly) {
+            setLastRDDecay(target);  // do force junk entries
         }
     }
 
@@ -202,7 +205,7 @@ public class RatingManager implements Listener {
         Map<Player, Double> previousRatings = new HashMap<>();
         for (Player p : players) {
             previousRatings.put(p, getDisplayedRating(p.getUniqueId()));
-            decayRD(p.getUniqueId());
+            decayRD(p.getUniqueId(), false);
         }
         Map<Player, Double> deltas = new HashMap<>();
         GameUtils.shuffle(random, players);
